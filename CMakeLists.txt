@@ -17,5 +17,9 @@ if(CMAKE_CXX_COMPLIER_VERSION VERSION_GREATER 7.2.9)
   message(STATUS "GCC Version > 7 . 3 . 0, USING -Wno-error=unused-result -Werror=return-type")
   set(CMAKE_CXX_FLAGS "-Wno-error=unused-result -Werror=return-type $ { CMAKE_CXX_FLAGS}")
 endif()
+#设置静态库生成路径名称
+set(LIB_PATH ${PROJECT_SOURCE_DIR}/lib)
+#设置静态库名称
+set(BASE_LIB base)
 include_directories(src)
 add_subdirectory(src)

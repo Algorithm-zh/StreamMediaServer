@@ -1,3 +1,5 @@
 aux_source_directory(. SRCS)
+link_directories(${LIB_PATH})
+link_libraries(${BASE_LIB})
 add_executable(tmms ${SRCS})
 install(TARGETS tmms RUNTIME DESTINATION sbin)
