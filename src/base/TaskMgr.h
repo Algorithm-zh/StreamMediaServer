@@ -27,5 +27,6 @@ namespace tmms
         std::mutex lock_;
     };
   }
-  #define sTaskMgr tmms::base::Singleton<tmms::base::TaskMgr>::Instance()
 }
+
+#define sTaskMgr tmms::base::Singleton<tmms::base::TaskMgr>::Instance()

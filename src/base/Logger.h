@@ -1,5 +1,6 @@
 #pragma once
 #include "NonCopyable.h"
+#include "FileLog.h"
 #include <iostream>
 
 namespace tmms {
@@ -14,7 +15,7 @@ namespace tmms {
     };
     class Logger : public NonCopyable {
     public:
-      Logger() = default;
+      Logger( const FileLogPtr &file_log);
       ~Logger() = default;
       
       void SetLogLevel(const LogLevel &level);
@@ -22,6 +23,7 @@ namespace tmms {
       void Write(const std::string &msg);
     private:
       LogLevel level_{kDebug};
+      FileLogPtr log_{nullptr};
     };
   }
 }
