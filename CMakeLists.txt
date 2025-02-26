@@ -1,20 +1,39 @@
 
-cmake_minimum_required(VERSION 2.6)
+cmake_minimum_required(VERSION 3.1)
 project(tmms)
 
 # 设置安装路径
 set(CMAKE_INSTALL_PREFIX ../bin)
 
-# 设置构建类型
+# 设置静态库生成路径和名称
+set(LIB_PATH ${PROJECT_SOURCE_DIR}/lib)
+set(BASE_LIB base)
+
+# 配置jsoncpp
+include(ExternalProject)
+ExternalProject_Add(jsoncpp
+    SOURCE_DIR ${PROJECT_SOURCE_DIR}/third_party/jsoncpp
+    CONFIGURE_COMMAND mkdir -p ../jsoncpp-build && cd ../jsoncpp-build && cmake ../jsoncpp -DCMAKE_INSTALL_PREFIX=${PROJECT_SOURCE_DIR}/lib/jsoncpp/ 
+    BUILD_COMMAND cd ../jsoncpp-build && make
+    BUILD_IN_SOURCE 1
+    INSTALL_COMMAND cd ../jsoncpp-build && make install
+)
+# 包含源代码目录
+include_directories(${PROJECT_SOURCE_DIR}/lib/jsoncpp/include/)
+link_directories(${PROJECT_SOURCE_DIR}/lib/jsoncpp/lib64/)
+link_directories(${PROJECT_SOURCE_DIR}/lib/jsoncpp/lib)
+
+
+# 开启debug模式 
 set(CMAKE_BUILD_TYPE Debug)
 
 # 设置编译选项
 if(CMAKE_BUILD_TYPE STREQUAL "Debug")
   message(STATUS "Building in Debug mode")
-  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -O0 -g -pipe -Wall -Werror -Wno-unused-variable -lrt -pthread")
+  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++17 -O0 -g -pipe -Wall -Werror -Wno-unused-variable -lrt -pthread")
 elseif(CMAKE_BUILD_TYPE STREQUAL "Release")
   message(STATUS "Building in Release mode")
-  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -O3 -g -pipe -Wall -Werror -Wno-unused-variable -lrt -pthread")
+  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++17 -O3 -g -pipe -Wall -Werror -Wno-unused-variable -lrt -pthread")
 endif()
 
 # 设置通用编译选项
@@ -29,12 +48,7 @@ if(CMAKE_CXX_COMPILER_VERSION VERSION_GREATER "7.2.9")
   set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wno-error=unused-result -Werror=return-type")
 endif()
 
-# 设置静态库生成路径和名称
-set(LIB_PATH ${PROJECT_SOURCE_DIR}/lib)
-set(BASE_LIB base)
-
-# 包含源代码目录
-include_directories(src)
-
 # 添加子目录
 add_subdirectory(src)
+#add_subdirectory(./third_party/jsoncpp/)
+#target_link_libraries(tmms jsoncpp)

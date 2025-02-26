@@ -24,13 +24,15 @@ void TestTask()
   sTaskMgr->Add(task3);
   sTaskMgr->Add(task4);
 }
-//int main()
-//{
-//  TestTask();
-//  while(1)
-//  {
-//    sTaskMgr->OnWork();
-//    std::this_thread::sleep_for(std::chrono::milliseconds(50));
-//  }
-//  return 0;
-//}
+#if 0
+int main()
+{
+  TestTask();
+  while(1)
+  {
+    sTaskMgr->OnWork();
+    std::this_thread::sleep_for(std::chrono::milliseconds(50));
+  }
+  return 0;
+}
+#endif

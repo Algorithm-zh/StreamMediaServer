@@ -1,0 +1,11 @@
+{
+  "name" : "tmms server",
+  "cpu_start" : 0,
+  "threads" : 4,
+  "log" : 
+  {
+    "level" : "DEBUG",
+    "name" : "tmms.log",
+    "path" : "../log/",
+  },
+}

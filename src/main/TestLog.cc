@@ -6,6 +6,7 @@
 #include "../base/TaskMgr.h"
 using namespace tmms::base;
 
+#if 0
 std::thread t;
 void TestLog()
 {
@@ -37,3 +38,4 @@ int main()
   }
   return 0;
 }
+#endif

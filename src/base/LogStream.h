@@ -21,13 +21,13 @@ namespace tmms {
 }
 
 #define LOG_TRACE \
-  if(tmms::base::g_logger->GetLogLevel() <= tmms::base::kTrace) \
+  if(g_logger && tmms::base::g_logger->GetLogLevel() <= tmms::base::kTrace) \
     tmms::base::LogStream(tmms::base::g_logger, __FILE__, __LINE__, tmms::base::kTrace, __func__)
 #define LOG_DEBUG \
-  if(tmms::base::g_logger->GetLogLevel() <= tmms::base::kDebug) \
+  if(g_logger && tmms::base::g_logger->GetLogLevel() <= tmms::base::kDebug) \
     tmms::base::LogStream(tmms::base::g_logger, __FILE__, __LINE__, tmms::base::kDebug, __func__)
 #define LOG_INFO \
-  if(tmms::base::g_logger->GetLogLevel() <= tmms::base::kInfo) \
+  if(g_logger && tmms::base::g_logger->GetLogLevel() <= tmms::base::kInfo) \
     tmms::base::LogStream(tmms::base::g_logger, __FILE__, __LINE__, tmms::base::kInfo)
 #define LOG_WARN \
     tmms::base::LogStream(tmms::base::g_logger, __FILE__, __LINE__, tmms::base::kWarn, __func__)
