@@ -7,5 +7,6 @@
     "level" : "DEBUG",
     "name" : "tmms.log",
     "path" : "../log/",
+    "rotate" : "DAY",
   },
 }

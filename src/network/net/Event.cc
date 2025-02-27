@@ -1,0 +1,33 @@
+#include "Event.h"
+#include "EventLoop.h"
+#include <unistd.h>
+using namespace tmms::network;
+
+Event::Event()  {
+ 
+}
+ 
+Event::Event(EventLoop *loop, int fd)  {
+ 
+}
+ 
+Event::~Event()  {
+  if(fd_ > 0)
+  {
+    ::close(fd_);
+    fd_ = -1;
+  }
+}
+
+bool Event::EnableWriting(bool enable)  {
+	return false;
+}
+ 
+bool Event::EnableReading(bool enable)  {
+	return false;
+}
+ 
+int Event::Fd() const {
+  return fd_;
+}
+

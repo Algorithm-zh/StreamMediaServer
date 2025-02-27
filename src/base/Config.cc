@@ -41,14 +41,11 @@ bool Config::LoadConfig(const std::string &file)  {
  
 bool Config::ParseLogInfo(const Json::Value &root)  {
 
-  std::cout << "parse log info" << std::endl;
   log_info_ = std::make_shared<LogInfo>();
   //打印级别
   Json::Value levelObj = root["level"];
-  std::cout << "levelObj:" << levelObj.asString() << std::endl;
   if(!levelObj.isNull()) {
     std::string level = levelObj.asString();
-    std::cout << "parse log level:" << level << std::endl;
     if(level == "TRACE")
     {
       log_info_->level = kTrace;
