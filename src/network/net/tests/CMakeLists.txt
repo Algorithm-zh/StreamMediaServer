@@ -1,0 +1,3 @@
+add_executable(EventLoopThreadTest EventLoopThreadTest.cpp)
+target_link_libraries(EventLoopThreadTest network)
+install(TARGETS EventLoopThreadTest RUNTIME DESTINATION sbin)

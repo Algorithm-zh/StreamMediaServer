@@ -16,6 +16,7 @@ namespace tmms
       friend class EventLoop;
     public:
       Event();
+      Event(EventLoop *loop);
       Event(EventLoop *loop, int fd);
       ~Event();
       virtual void OnRead(){};
@@ -25,7 +26,7 @@ namespace tmms
       bool EnableWriting(bool enable);
       bool EnableReading(bool enable);
       int Fd() const; 
-    private:
+    protected:
       EventLoop *loop_{nullptr};
       int fd_{-1};
       int event_{0};

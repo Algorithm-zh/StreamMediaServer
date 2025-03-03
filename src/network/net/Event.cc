@@ -6,8 +6,13 @@ using namespace tmms::network;
 Event::Event()  {
  
 }
+Event::Event(EventLoop *loop)  
+:loop_(loop){
+
+}
  
-Event::Event(EventLoop *loop, int fd)  {
+Event::Event(EventLoop *loop, int fd)  
+:loop_(loop),fd_(fd){
  
 }
  

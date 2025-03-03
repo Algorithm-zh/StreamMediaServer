@@ -9,6 +9,7 @@
 #include <iostream>
 using namespace tmms::base;
 std::thread t;
+#if 0
 void TestLog()
 {
   t = std::thread([](){
@@ -53,3 +54,4 @@ int main (int argc, char *argv[]) {
   }
   return 0;
 }
+#endif
