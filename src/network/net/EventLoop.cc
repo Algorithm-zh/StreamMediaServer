@@ -1,5 +1,6 @@
 #include "EventLoop.h"
 #include "Event.h"
+#include <algorithm>
 #include <asm-generic/socket.h>
 #include <cerrno>
 #include <cstdlib>
@@ -7,6 +8,8 @@
 #include <sys/epoll.h>
 #include <sys/socket.h>
 #include <unistd.h>
+#include "PipeEvent.h"
+#include "../../base/TTime.h"
 using namespace tmms::network;
 
 //thread_local修饰的变量，一个线程只有一个，因此能保证一个线程只有一个loop
@@ -31,11 +34,14 @@ EventLoop::~EventLoop()
 
 void EventLoop::Loop()  {
   looping_ = true;
+  int64_t timeout = 1000;
   while(looping_)
   {
     memset(&epoll_events_[0], 0x00, sizeof(struct epoll_event) * epoll_events_.size());
-    auto ret = ::epoll_wait(epoll_fd_, (struct epoll_event*)&epoll_events_[0], static_cast<int>(epoll_events_.size()), -1);
-    if(ret > 0)
+    auto ret = ::epoll_wait(epoll_fd_, (struct epoll_event*)&epoll_events_[0], 
+                            static_cast<int>(epoll_events_.size()), timeout);
+    std::cout << "epoll_wait ret:" << ret << std::endl;
+    if(ret >= 0)
     {
       for(int i = 0; i < ret; i++)
       {
@@ -68,14 +74,17 @@ void EventLoop::Loop()  {
           event->OnClose();
         }
       }
+      if(ret == epoll_events_.size())
+      {
+        epoll_events_.resize(epoll_events_.size() * 2);
+      }
+      RunFuctions();
+      auto now = tmms::base::TTime::NowMs();
+      wheel_.OnTimer(now);
     }
     else if(ret < 0)
     {
       NETWORK_ERROR << "epoll_wait error" << errno;
-    }
-    else if(ret == epoll_events_.size())
-    {
-      epoll_events_.resize(epoll_events_.size() * 2);
     }
   }
 }
@@ -157,4 +166,136 @@ bool EventLoop::EnableEventReading(const EventPtr &event, bool enable)  {
   ev.data.fd = event->fd_;
   epoll_ctl(epoll_fd_, EPOLL_CTL_MOD, event->fd_, &ev);
   return true;
+}
+ 
+void EventLoop::AssertInLoopThread()  {
+
+  if(!IsInLoopThread())
+  {
+    NETWORK_ERROR << "not in loop thread ! ! !";
+    exit(-1);
+  }
+}
+ 
+bool EventLoop::IsInLoopThread() const {
+	return t_local_eventloop == this;
+}
+ 
+void EventLoop::RunInLoop(const Func &f)  {
+
+  if(IsInLoopThread())
+  {
+    f();
+  }else{
+    std::lock_guard<std::mutex> lk(lock_);
+    functions_.push(f);
+    WakeUp();
+  }
+}
+
+void EventLoop::RunInLoop(Func &&f)  {
+
+  if(IsInLoopThread())
+  {
+    f();
+  }else{
+    std::lock_guard<std::mutex> lk(lock_);
+    functions_.push(std::move(f));
+    WakeUp();
+  }
+}
+
+void EventLoop::RunFuctions(){
+  
+  std::lock_guard<std::mutex> lk(lock_);
+  while(!functions_.empty())
+  {
+    auto &f = functions_.front();
+    f();
+    functions_.pop();
+  }
+}
+
+ 
+void EventLoop::WakeUp()  {
+ 
+  if(!pipe_event_)
+  {
+    pipe_event_ = std::make_shared<PipeEvent>(this);
+    AddEvent(pipe_event_);
+  }
+  int64_t tmp = 1;
+  pipe_event_->Write((const char*)&tmp, sizeof(tmp));
+}
+
+
+
+ 
+void EventLoop::InsertEntry(uint32_t delay, EntryPtr entryPtr)  {
+ 
+  if(IsInLoopThread())
+  {
+    wheel_.InsertEntry(delay, entryPtr);
+  }
+  else
+  {
+    RunInLoop([this, delay, entryPtr](){
+      wheel_.InsertEntry(delay, entryPtr);
+    });
+  }
+}
+ 
+void EventLoop::RunAfter(double delay, const Func &cb)  {
+ 
+  if(IsInLoopThread())
+  {
+    wheel_.RunAfter(delay, cb);
+  }
+  else
+  {
+    RunInLoop([this, delay, cb](){
+      wheel_.RunAfter(delay, cb);
+    });
+  }
+}
+ 
+void EventLoop::RunAfter(double delay, Func &&cb)  {
+ 
+  if(IsInLoopThread())
+  {
+    wheel_.RunAfter(delay, cb);
+  }
+  else
+  {
+    RunInLoop([this, delay, cb](){
+      wheel_.RunAfter(delay, cb);
+    });
+  }
+}
+ 
+void EventLoop::RunEvery(double interval, const Func &cb)  {
+  if(IsInLoopThread())
+  {
+    wheel_.RunEvery(interval, cb);
+  }
+  else
+  {
+    RunInLoop([this, interval, cb](){
+      wheel_.RunEvery(interval, cb);
+    });
+  }
+}
+ 
+void EventLoop::RunEvery(double interval, Func &&cb)  {
+ 
+  if(IsInLoopThread())
+  {
+    wheel_.RunEvery(interval, cb);
+  }
+  else
+  {
+    RunInLoop([this, interval, cb](){
+      wheel_.RunEvery(interval, cb);
+    });
+  }
 }

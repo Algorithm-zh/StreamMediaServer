@@ -40,16 +40,44 @@ void TestEventLoopThreadPool() {
   
   EventLoopThreadPool pool(2, 0, 2);
   pool.Start();
+  std::cout << "thread id: " << std::this_thread::get_id() << std::endl;
   std::vector<EventLoop*> list = pool.GetLoops();
   for(auto &loop : list)
   {
-    std::cout << "loop: " << loop << std::endl;
+    loop->RunInLoop([&loop](){
+      std::cout << "loop: " << loop << " thread id: " << std::this_thread::get_id() << std::endl;
+    });
   }
-  std::cout << "loop size: " << pool.Size() << std::endl;
-  EventLoop *loop = pool.GetNextLoop();
-  std::cout << "loop: " << loop << std::endl;
+}
 
+void TestTimingWheel() {
+
+  EventLoopThreadPool pool(2, 0, 2);
+  pool.Start();
+  EventLoop *loop = pool.GetNextLoop();
+  std::cout << "loop: " << loop << " thread id: " << std::this_thread::get_id() << std::endl;
+  loop->RunAfter(1, [](){
+    std::cout << "run after 1000 ms:" << tmms::base::TTime::Now() << std::endl;
+  });
+  loop->RunAfter(5, [](){
+    std::cout << "run after 5000 ms:" << tmms::base::TTime::Now() << std::endl;
+  });
+  loop->RunEvery(1, [](){
+    std::cout << "run every 1000 ms:" << tmms::base::TTime::Now() << std::endl;
+  });
+  loop->RunEvery(5, [](){
+    std::cout << "run every 5000 ms:" << tmms::base::TTime::Now() << std::endl;
+  });
+  while(1)
+  {
+    std::this_thread::sleep_for(std::chrono::seconds(1));
+  }
 }
 int main() {
-  TestEventLoopThreadPool();
+  TestTimingWheel();
+  while(true)
+  {
+    std::this_thread::sleep_for(std::chrono::seconds(1));
+  }
+  return 0;
 }
