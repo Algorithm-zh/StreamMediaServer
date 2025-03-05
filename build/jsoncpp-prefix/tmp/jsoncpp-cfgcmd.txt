@@ -1,0 +1,1 @@
+cmd='mkdir;-p;../jsoncpp-build;&&;cd;../jsoncpp-build;&&;cmake;../jsoncpp;-DCMAKE_INSTALL_PREFIX=/home/zxe/My-Project/StreamMediaServer/lib/jsoncpp/'
