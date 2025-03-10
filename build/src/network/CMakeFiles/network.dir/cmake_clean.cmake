@@ -1,6 +1,10 @@
 file(REMOVE_RECURSE
   "CMakeFiles/network.dir/base/InetAddress.cc.o"
   "CMakeFiles/network.dir/base/InetAddress.cc.o.d"
+  "CMakeFiles/network.dir/base/SocketOpt.cc.o"
+  "CMakeFiles/network.dir/base/SocketOpt.cc.o.d"
+  "CMakeFiles/network.dir/net/Acceptor.cc.o"
+  "CMakeFiles/network.dir/net/Acceptor.cc.o.d"
   "CMakeFiles/network.dir/net/Event.cc.o"
   "CMakeFiles/network.dir/net/Event.cc.o.d"
   "CMakeFiles/network.dir/net/EventLoop.cc.o"

@@ -132,6 +132,8 @@ src/network/clean: src/network/net/tests/clean
 # Recursive "all" directory target.
 src/network/net/tests/all: src/network/net/tests/CMakeFiles/EventLoopThreadTest.dir/all
 src/network/net/tests/all: src/network/net/tests/CMakeFiles/InetAddressTest.dir/all
+src/network/net/tests/all: src/network/net/tests/CMakeFiles/SocketOptTest.dir/all
+src/network/net/tests/all: src/network/net/tests/CMakeFiles/AcceptorTest.dir/all
 .PHONY : src/network/net/tests/all
 
 # Recursive "preinstall" directory target.
@@ -141,6 +143,8 @@ src/network/net/tests/preinstall:
 # Recursive "clean" directory target.
 src/network/net/tests/clean: src/network/net/tests/CMakeFiles/EventLoopThreadTest.dir/clean
 src/network/net/tests/clean: src/network/net/tests/CMakeFiles/InetAddressTest.dir/clean
+src/network/net/tests/clean: src/network/net/tests/CMakeFiles/SocketOptTest.dir/clean
+src/network/net/tests/clean: src/network/net/tests/CMakeFiles/AcceptorTest.dir/clean
 .PHONY : src/network/net/tests/clean
 
 #=============================================================================
@@ -150,7 +154,7 @@ src/network/net/tests/clean: src/network/net/tests/CMakeFiles/InetAddressTest.di
 CMakeFiles/jsoncpp.dir/all:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/jsoncpp.dir/build.make CMakeFiles/jsoncpp.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/jsoncpp.dir/build.make CMakeFiles/jsoncpp.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/zxe/My-Project/StreamMediaServer/build/CMakeFiles --progress-num=15,16,17,18,19,20,21,22 "Built target jsoncpp"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/zxe/My-Project/StreamMediaServer/build/CMakeFiles --progress-num=19,20,21,22,23,24,25,26 "Built target jsoncpp"
 .PHONY : CMakeFiles/jsoncpp.dir/all
 
 # Build rule for subdir invocation for target.
@@ -176,7 +180,7 @@ CMakeFiles/jsoncpp.dir/clean:
 src/base/CMakeFiles/base.dir/all:
 	$(MAKE) $(MAKESILENT) -f src/base/CMakeFiles/base.dir/build.make src/base/CMakeFiles/base.dir/depend
 	$(MAKE) $(MAKESILENT) -f src/base/CMakeFiles/base.dir/build.make src/base/CMakeFiles/base.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/zxe/My-Project/StreamMediaServer/build/CMakeFiles --progress-num=5,6,7,8,9,10,11,12,13,14 "Built target base"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/zxe/My-Project/StreamMediaServer/build/CMakeFiles --progress-num=9,10,11,12,13,14,15,16,17,18 "Built target base"
 .PHONY : src/base/CMakeFiles/base.dir/all
 
 # Build rule for subdir invocation for target.
@@ -202,12 +206,12 @@ src/base/CMakeFiles/base.dir/clean:
 src/network/CMakeFiles/network.dir/all: src/base/CMakeFiles/base.dir/all
 	$(MAKE) $(MAKESILENT) -f src/network/CMakeFiles/network.dir/build.make src/network/CMakeFiles/network.dir/depend
 	$(MAKE) $(MAKESILENT) -f src/network/CMakeFiles/network.dir/build.make src/network/CMakeFiles/network.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/zxe/My-Project/StreamMediaServer/build/CMakeFiles --progress-num=23,24,25,26,27,28,29,30 "Built target network"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/zxe/My-Project/StreamMediaServer/build/CMakeFiles --progress-num=27,28,29,30,31,32,33,34,35,36 "Built target network"
 .PHONY : src/network/CMakeFiles/network.dir/all
 
 # Build rule for subdir invocation for target.
 src/network/CMakeFiles/network.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/zxe/My-Project/StreamMediaServer/build/CMakeFiles 18
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/zxe/My-Project/StreamMediaServer/build/CMakeFiles 20
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/network/CMakeFiles/network.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/zxe/My-Project/StreamMediaServer/build/CMakeFiles 0
 .PHONY : src/network/CMakeFiles/network.dir/rule
@@ -229,12 +233,12 @@ src/network/net/tests/CMakeFiles/EventLoopThreadTest.dir/all: src/base/CMakeFile
 src/network/net/tests/CMakeFiles/EventLoopThreadTest.dir/all: src/network/CMakeFiles/network.dir/all
 	$(MAKE) $(MAKESILENT) -f src/network/net/tests/CMakeFiles/EventLoopThreadTest.dir/build.make src/network/net/tests/CMakeFiles/EventLoopThreadTest.dir/depend
 	$(MAKE) $(MAKESILENT) -f src/network/net/tests/CMakeFiles/EventLoopThreadTest.dir/build.make src/network/net/tests/CMakeFiles/EventLoopThreadTest.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/zxe/My-Project/StreamMediaServer/build/CMakeFiles --progress-num=1,2 "Built target EventLoopThreadTest"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/zxe/My-Project/StreamMediaServer/build/CMakeFiles --progress-num=3,4 "Built target EventLoopThreadTest"
 .PHONY : src/network/net/tests/CMakeFiles/EventLoopThreadTest.dir/all
 
 # Build rule for subdir invocation for target.
 src/network/net/tests/CMakeFiles/EventLoopThreadTest.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/zxe/My-Project/StreamMediaServer/build/CMakeFiles 20
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/zxe/My-Project/StreamMediaServer/build/CMakeFiles 22
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/network/net/tests/CMakeFiles/EventLoopThreadTest.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/zxe/My-Project/StreamMediaServer/build/CMakeFiles 0
 .PHONY : src/network/net/tests/CMakeFiles/EventLoopThreadTest.dir/rule
@@ -256,12 +260,12 @@ src/network/net/tests/CMakeFiles/InetAddressTest.dir/all: src/base/CMakeFiles/ba
 src/network/net/tests/CMakeFiles/InetAddressTest.dir/all: src/network/CMakeFiles/network.dir/all
 	$(MAKE) $(MAKESILENT) -f src/network/net/tests/CMakeFiles/InetAddressTest.dir/build.make src/network/net/tests/CMakeFiles/InetAddressTest.dir/depend
 	$(MAKE) $(MAKESILENT) -f src/network/net/tests/CMakeFiles/InetAddressTest.dir/build.make src/network/net/tests/CMakeFiles/InetAddressTest.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/zxe/My-Project/StreamMediaServer/build/CMakeFiles --progress-num=3,4 "Built target InetAddressTest"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/zxe/My-Project/StreamMediaServer/build/CMakeFiles --progress-num=5,6 "Built target InetAddressTest"
 .PHONY : src/network/net/tests/CMakeFiles/InetAddressTest.dir/all
 
 # Build rule for subdir invocation for target.
 src/network/net/tests/CMakeFiles/InetAddressTest.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/zxe/My-Project/StreamMediaServer/build/CMakeFiles 20
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/zxe/My-Project/StreamMediaServer/build/CMakeFiles 22
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/network/net/tests/CMakeFiles/InetAddressTest.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/zxe/My-Project/StreamMediaServer/build/CMakeFiles 0
 .PHONY : src/network/net/tests/CMakeFiles/InetAddressTest.dir/rule
@@ -274,6 +278,60 @@ InetAddressTest: src/network/net/tests/CMakeFiles/InetAddressTest.dir/rule
 src/network/net/tests/CMakeFiles/InetAddressTest.dir/clean:
 	$(MAKE) $(MAKESILENT) -f src/network/net/tests/CMakeFiles/InetAddressTest.dir/build.make src/network/net/tests/CMakeFiles/InetAddressTest.dir/clean
 .PHONY : src/network/net/tests/CMakeFiles/InetAddressTest.dir/clean
+
+#=============================================================================
+# Target rules for target src/network/net/tests/CMakeFiles/SocketOptTest.dir
+
+# All Build rule for target.
+src/network/net/tests/CMakeFiles/SocketOptTest.dir/all: src/base/CMakeFiles/base.dir/all
+src/network/net/tests/CMakeFiles/SocketOptTest.dir/all: src/network/CMakeFiles/network.dir/all
+	$(MAKE) $(MAKESILENT) -f src/network/net/tests/CMakeFiles/SocketOptTest.dir/build.make src/network/net/tests/CMakeFiles/SocketOptTest.dir/depend
+	$(MAKE) $(MAKESILENT) -f src/network/net/tests/CMakeFiles/SocketOptTest.dir/build.make src/network/net/tests/CMakeFiles/SocketOptTest.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/zxe/My-Project/StreamMediaServer/build/CMakeFiles --progress-num=7,8 "Built target SocketOptTest"
+.PHONY : src/network/net/tests/CMakeFiles/SocketOptTest.dir/all
+
+# Build rule for subdir invocation for target.
+src/network/net/tests/CMakeFiles/SocketOptTest.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/zxe/My-Project/StreamMediaServer/build/CMakeFiles 22
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/network/net/tests/CMakeFiles/SocketOptTest.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/zxe/My-Project/StreamMediaServer/build/CMakeFiles 0
+.PHONY : src/network/net/tests/CMakeFiles/SocketOptTest.dir/rule
+
+# Convenience name for target.
+SocketOptTest: src/network/net/tests/CMakeFiles/SocketOptTest.dir/rule
+.PHONY : SocketOptTest
+
+# clean rule for target.
+src/network/net/tests/CMakeFiles/SocketOptTest.dir/clean:
+	$(MAKE) $(MAKESILENT) -f src/network/net/tests/CMakeFiles/SocketOptTest.dir/build.make src/network/net/tests/CMakeFiles/SocketOptTest.dir/clean
+.PHONY : src/network/net/tests/CMakeFiles/SocketOptTest.dir/clean
+
+#=============================================================================
+# Target rules for target src/network/net/tests/CMakeFiles/AcceptorTest.dir
+
+# All Build rule for target.
+src/network/net/tests/CMakeFiles/AcceptorTest.dir/all: src/base/CMakeFiles/base.dir/all
+src/network/net/tests/CMakeFiles/AcceptorTest.dir/all: src/network/CMakeFiles/network.dir/all
+	$(MAKE) $(MAKESILENT) -f src/network/net/tests/CMakeFiles/AcceptorTest.dir/build.make src/network/net/tests/CMakeFiles/AcceptorTest.dir/depend
+	$(MAKE) $(MAKESILENT) -f src/network/net/tests/CMakeFiles/AcceptorTest.dir/build.make src/network/net/tests/CMakeFiles/AcceptorTest.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/zxe/My-Project/StreamMediaServer/build/CMakeFiles --progress-num=1,2 "Built target AcceptorTest"
+.PHONY : src/network/net/tests/CMakeFiles/AcceptorTest.dir/all
+
+# Build rule for subdir invocation for target.
+src/network/net/tests/CMakeFiles/AcceptorTest.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/zxe/My-Project/StreamMediaServer/build/CMakeFiles 22
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/network/net/tests/CMakeFiles/AcceptorTest.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/zxe/My-Project/StreamMediaServer/build/CMakeFiles 0
+.PHONY : src/network/net/tests/CMakeFiles/AcceptorTest.dir/rule
+
+# Convenience name for target.
+AcceptorTest: src/network/net/tests/CMakeFiles/AcceptorTest.dir/rule
+.PHONY : AcceptorTest
+
+# clean rule for target.
+src/network/net/tests/CMakeFiles/AcceptorTest.dir/clean:
+	$(MAKE) $(MAKESILENT) -f src/network/net/tests/CMakeFiles/AcceptorTest.dir/build.make src/network/net/tests/CMakeFiles/AcceptorTest.dir/clean
+.PHONY : src/network/net/tests/CMakeFiles/AcceptorTest.dir/clean
 
 #=============================================================================
 # Special targets to cleanup operation of make.

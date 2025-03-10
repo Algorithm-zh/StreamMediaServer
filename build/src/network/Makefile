@@ -199,6 +199,54 @@ base/InetAddress.cc.s:
 	cd /home/zxe/My-Project/StreamMediaServer/build && $(MAKE) $(MAKESILENT) -f src/network/CMakeFiles/network.dir/build.make src/network/CMakeFiles/network.dir/base/InetAddress.cc.s
 .PHONY : base/InetAddress.cc.s
 
+base/SocketOpt.o: base/SocketOpt.cc.o
+.PHONY : base/SocketOpt.o
+
+# target to build an object file
+base/SocketOpt.cc.o:
+	cd /home/zxe/My-Project/StreamMediaServer/build && $(MAKE) $(MAKESILENT) -f src/network/CMakeFiles/network.dir/build.make src/network/CMakeFiles/network.dir/base/SocketOpt.cc.o
+.PHONY : base/SocketOpt.cc.o
+
+base/SocketOpt.i: base/SocketOpt.cc.i
+.PHONY : base/SocketOpt.i
+
+# target to preprocess a source file
+base/SocketOpt.cc.i:
+	cd /home/zxe/My-Project/StreamMediaServer/build && $(MAKE) $(MAKESILENT) -f src/network/CMakeFiles/network.dir/build.make src/network/CMakeFiles/network.dir/base/SocketOpt.cc.i
+.PHONY : base/SocketOpt.cc.i
+
+base/SocketOpt.s: base/SocketOpt.cc.s
+.PHONY : base/SocketOpt.s
+
+# target to generate assembly for a file
+base/SocketOpt.cc.s:
+	cd /home/zxe/My-Project/StreamMediaServer/build && $(MAKE) $(MAKESILENT) -f src/network/CMakeFiles/network.dir/build.make src/network/CMakeFiles/network.dir/base/SocketOpt.cc.s
+.PHONY : base/SocketOpt.cc.s
+
+net/Acceptor.o: net/Acceptor.cc.o
+.PHONY : net/Acceptor.o
+
+# target to build an object file
+net/Acceptor.cc.o:
+	cd /home/zxe/My-Project/StreamMediaServer/build && $(MAKE) $(MAKESILENT) -f src/network/CMakeFiles/network.dir/build.make src/network/CMakeFiles/network.dir/net/Acceptor.cc.o
+.PHONY : net/Acceptor.cc.o
+
+net/Acceptor.i: net/Acceptor.cc.i
+.PHONY : net/Acceptor.i
+
+# target to preprocess a source file
+net/Acceptor.cc.i:
+	cd /home/zxe/My-Project/StreamMediaServer/build && $(MAKE) $(MAKESILENT) -f src/network/CMakeFiles/network.dir/build.make src/network/CMakeFiles/network.dir/net/Acceptor.cc.i
+.PHONY : net/Acceptor.cc.i
+
+net/Acceptor.s: net/Acceptor.cc.s
+.PHONY : net/Acceptor.s
+
+# target to generate assembly for a file
+net/Acceptor.cc.s:
+	cd /home/zxe/My-Project/StreamMediaServer/build && $(MAKE) $(MAKESILENT) -f src/network/CMakeFiles/network.dir/build.make src/network/CMakeFiles/network.dir/net/Acceptor.cc.s
+.PHONY : net/Acceptor.cc.s
+
 net/Event.o: net/Event.cc.o
 .PHONY : net/Event.o
 
@@ -359,6 +407,12 @@ help:
 	@echo "... base/InetAddress.o"
 	@echo "... base/InetAddress.i"
 	@echo "... base/InetAddress.s"
+	@echo "... base/SocketOpt.o"
+	@echo "... base/SocketOpt.i"
+	@echo "... base/SocketOpt.s"
+	@echo "... net/Acceptor.o"
+	@echo "... net/Acceptor.i"
+	@echo "... net/Acceptor.s"
 	@echo "... net/Event.o"
 	@echo "... net/Event.i"
 	@echo "... net/Event.s"

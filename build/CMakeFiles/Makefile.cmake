@@ -59,4 +59,6 @@ set(CMAKE_DEPEND_INFO_FILES
   "src/network/CMakeFiles/network.dir/DependInfo.cmake"
   "src/network/net/tests/CMakeFiles/EventLoopThreadTest.dir/DependInfo.cmake"
   "src/network/net/tests/CMakeFiles/InetAddressTest.dir/DependInfo.cmake"
+  "src/network/net/tests/CMakeFiles/SocketOptTest.dir/DependInfo.cmake"
+  "src/network/net/tests/CMakeFiles/AcceptorTest.dir/DependInfo.cmake"
   )

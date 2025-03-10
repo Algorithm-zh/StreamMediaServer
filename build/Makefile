@@ -226,6 +226,32 @@ InetAddressTest/fast:
 	$(MAKE) $(MAKESILENT) -f src/network/net/tests/CMakeFiles/InetAddressTest.dir/build.make src/network/net/tests/CMakeFiles/InetAddressTest.dir/build
 .PHONY : InetAddressTest/fast
 
+#=============================================================================
+# Target rules for targets named SocketOptTest
+
+# Build rule for target.
+SocketOptTest: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 SocketOptTest
+.PHONY : SocketOptTest
+
+# fast build rule for target.
+SocketOptTest/fast:
+	$(MAKE) $(MAKESILENT) -f src/network/net/tests/CMakeFiles/SocketOptTest.dir/build.make src/network/net/tests/CMakeFiles/SocketOptTest.dir/build
+.PHONY : SocketOptTest/fast
+
+#=============================================================================
+# Target rules for targets named AcceptorTest
+
+# Build rule for target.
+AcceptorTest: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 AcceptorTest
+.PHONY : AcceptorTest
+
+# fast build rule for target.
+AcceptorTest/fast:
+	$(MAKE) $(MAKESILENT) -f src/network/net/tests/CMakeFiles/AcceptorTest.dir/build.make src/network/net/tests/CMakeFiles/AcceptorTest.dir/build
+.PHONY : AcceptorTest/fast
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -239,8 +265,10 @@ help:
 	@echo "... list_install_components"
 	@echo "... rebuild_cache"
 	@echo "... jsoncpp"
+	@echo "... AcceptorTest"
 	@echo "... EventLoopThreadTest"
 	@echo "... InetAddressTest"
+	@echo "... SocketOptTest"
 	@echo "... base"
 	@echo "... network"
 .PHONY : help

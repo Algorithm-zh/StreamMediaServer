@@ -15,10 +15,9 @@ namespace tmms
     {
       friend class EventLoop;
     public:
-      Event();
       Event(EventLoop *loop);
       Event(EventLoop *loop, int fd);
-      ~Event();
+      virtual ~Event();
       virtual void OnRead(){};
       virtual void OnWrite(){};
       virtual void OnError(const std::string &err_msg){};

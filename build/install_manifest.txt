@@ -1,2 +1,4 @@
 /home/zxe/My-Project/StreamMediaServer/build/../bin/sbin/EventLoopThreadTest
 /home/zxe/My-Project/StreamMediaServer/build/../bin/sbin/InetAddressTest
+/home/zxe/My-Project/StreamMediaServer/build/../bin/sbin/SocketOptTest
+/home/zxe/My-Project/StreamMediaServer/build/../bin/sbin/AcceptorTest

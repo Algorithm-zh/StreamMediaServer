@@ -40,7 +40,6 @@ void EventLoop::Loop()  {
     memset(&epoll_events_[0], 0x00, sizeof(struct epoll_event) * epoll_events_.size());
     auto ret = ::epoll_wait(epoll_fd_, (struct epoll_event*)&epoll_events_[0], 
                             static_cast<int>(epoll_events_.size()), timeout);
-    std::cout << "epoll_wait ret:" << ret << std::endl;
     if(ret >= 0)
     {
       for(int i = 0; i < ret; i++)

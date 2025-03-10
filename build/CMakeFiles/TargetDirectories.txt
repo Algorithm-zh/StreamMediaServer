@@ -27,6 +27,8 @@
 /home/zxe/My-Project/StreamMediaServer/build/src/network/CMakeFiles/install/strip.dir
 /home/zxe/My-Project/StreamMediaServer/build/src/network/net/tests/CMakeFiles/EventLoopThreadTest.dir
 /home/zxe/My-Project/StreamMediaServer/build/src/network/net/tests/CMakeFiles/InetAddressTest.dir
+/home/zxe/My-Project/StreamMediaServer/build/src/network/net/tests/CMakeFiles/SocketOptTest.dir
+/home/zxe/My-Project/StreamMediaServer/build/src/network/net/tests/CMakeFiles/AcceptorTest.dir
 /home/zxe/My-Project/StreamMediaServer/build/src/network/net/tests/CMakeFiles/edit_cache.dir
 /home/zxe/My-Project/StreamMediaServer/build/src/network/net/tests/CMakeFiles/rebuild_cache.dir
 /home/zxe/My-Project/StreamMediaServer/build/src/network/net/tests/CMakeFiles/list_install_components.dir

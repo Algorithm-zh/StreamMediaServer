@@ -189,6 +189,58 @@ InetAddressTest/fast:
 	cd /home/zxe/My-Project/StreamMediaServer/build && $(MAKE) $(MAKESILENT) -f src/network/net/tests/CMakeFiles/InetAddressTest.dir/build.make src/network/net/tests/CMakeFiles/InetAddressTest.dir/build
 .PHONY : InetAddressTest/fast
 
+# Convenience name for target.
+src/network/net/tests/CMakeFiles/SocketOptTest.dir/rule:
+	cd /home/zxe/My-Project/StreamMediaServer/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/network/net/tests/CMakeFiles/SocketOptTest.dir/rule
+.PHONY : src/network/net/tests/CMakeFiles/SocketOptTest.dir/rule
+
+# Convenience name for target.
+SocketOptTest: src/network/net/tests/CMakeFiles/SocketOptTest.dir/rule
+.PHONY : SocketOptTest
+
+# fast build rule for target.
+SocketOptTest/fast:
+	cd /home/zxe/My-Project/StreamMediaServer/build && $(MAKE) $(MAKESILENT) -f src/network/net/tests/CMakeFiles/SocketOptTest.dir/build.make src/network/net/tests/CMakeFiles/SocketOptTest.dir/build
+.PHONY : SocketOptTest/fast
+
+# Convenience name for target.
+src/network/net/tests/CMakeFiles/AcceptorTest.dir/rule:
+	cd /home/zxe/My-Project/StreamMediaServer/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/network/net/tests/CMakeFiles/AcceptorTest.dir/rule
+.PHONY : src/network/net/tests/CMakeFiles/AcceptorTest.dir/rule
+
+# Convenience name for target.
+AcceptorTest: src/network/net/tests/CMakeFiles/AcceptorTest.dir/rule
+.PHONY : AcceptorTest
+
+# fast build rule for target.
+AcceptorTest/fast:
+	cd /home/zxe/My-Project/StreamMediaServer/build && $(MAKE) $(MAKESILENT) -f src/network/net/tests/CMakeFiles/AcceptorTest.dir/build.make src/network/net/tests/CMakeFiles/AcceptorTest.dir/build
+.PHONY : AcceptorTest/fast
+
+AcceptorTest.o: AcceptorTest.cpp.o
+.PHONY : AcceptorTest.o
+
+# target to build an object file
+AcceptorTest.cpp.o:
+	cd /home/zxe/My-Project/StreamMediaServer/build && $(MAKE) $(MAKESILENT) -f src/network/net/tests/CMakeFiles/AcceptorTest.dir/build.make src/network/net/tests/CMakeFiles/AcceptorTest.dir/AcceptorTest.cpp.o
+.PHONY : AcceptorTest.cpp.o
+
+AcceptorTest.i: AcceptorTest.cpp.i
+.PHONY : AcceptorTest.i
+
+# target to preprocess a source file
+AcceptorTest.cpp.i:
+	cd /home/zxe/My-Project/StreamMediaServer/build && $(MAKE) $(MAKESILENT) -f src/network/net/tests/CMakeFiles/AcceptorTest.dir/build.make src/network/net/tests/CMakeFiles/AcceptorTest.dir/AcceptorTest.cpp.i
+.PHONY : AcceptorTest.cpp.i
+
+AcceptorTest.s: AcceptorTest.cpp.s
+.PHONY : AcceptorTest.s
+
+# target to generate assembly for a file
+AcceptorTest.cpp.s:
+	cd /home/zxe/My-Project/StreamMediaServer/build && $(MAKE) $(MAKESILENT) -f src/network/net/tests/CMakeFiles/AcceptorTest.dir/build.make src/network/net/tests/CMakeFiles/AcceptorTest.dir/AcceptorTest.cpp.s
+.PHONY : AcceptorTest.cpp.s
+
 EventLoopThreadTest.o: EventLoopThreadTest.cpp.o
 .PHONY : EventLoopThreadTest.o
 
@@ -237,6 +289,30 @@ InetAddressTest.cpp.s:
 	cd /home/zxe/My-Project/StreamMediaServer/build && $(MAKE) $(MAKESILENT) -f src/network/net/tests/CMakeFiles/InetAddressTest.dir/build.make src/network/net/tests/CMakeFiles/InetAddressTest.dir/InetAddressTest.cpp.s
 .PHONY : InetAddressTest.cpp.s
 
+SocketOptTest.o: SocketOptTest.cpp.o
+.PHONY : SocketOptTest.o
+
+# target to build an object file
+SocketOptTest.cpp.o:
+	cd /home/zxe/My-Project/StreamMediaServer/build && $(MAKE) $(MAKESILENT) -f src/network/net/tests/CMakeFiles/SocketOptTest.dir/build.make src/network/net/tests/CMakeFiles/SocketOptTest.dir/SocketOptTest.cpp.o
+.PHONY : SocketOptTest.cpp.o
+
+SocketOptTest.i: SocketOptTest.cpp.i
+.PHONY : SocketOptTest.i
+
+# target to preprocess a source file
+SocketOptTest.cpp.i:
+	cd /home/zxe/My-Project/StreamMediaServer/build && $(MAKE) $(MAKESILENT) -f src/network/net/tests/CMakeFiles/SocketOptTest.dir/build.make src/network/net/tests/CMakeFiles/SocketOptTest.dir/SocketOptTest.cpp.i
+.PHONY : SocketOptTest.cpp.i
+
+SocketOptTest.s: SocketOptTest.cpp.s
+.PHONY : SocketOptTest.s
+
+# target to generate assembly for a file
+SocketOptTest.cpp.s:
+	cd /home/zxe/My-Project/StreamMediaServer/build && $(MAKE) $(MAKESILENT) -f src/network/net/tests/CMakeFiles/SocketOptTest.dir/build.make src/network/net/tests/CMakeFiles/SocketOptTest.dir/SocketOptTest.cpp.s
+.PHONY : SocketOptTest.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -249,14 +325,22 @@ help:
 	@echo "... install/strip"
 	@echo "... list_install_components"
 	@echo "... rebuild_cache"
+	@echo "... AcceptorTest"
 	@echo "... EventLoopThreadTest"
 	@echo "... InetAddressTest"
+	@echo "... SocketOptTest"
+	@echo "... AcceptorTest.o"
+	@echo "... AcceptorTest.i"
+	@echo "... AcceptorTest.s"
 	@echo "... EventLoopThreadTest.o"
 	@echo "... EventLoopThreadTest.i"
 	@echo "... EventLoopThreadTest.s"
 	@echo "... InetAddressTest.o"
 	@echo "... InetAddressTest.i"
 	@echo "... InetAddressTest.s"
+	@echo "... SocketOptTest.o"
+	@echo "... SocketOptTest.i"
+	@echo "... SocketOptTest.s"
 .PHONY : help
 
 

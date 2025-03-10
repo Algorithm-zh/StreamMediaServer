@@ -83,10 +83,38 @@ src/network/CMakeFiles/network.dir/base/InetAddress.cc.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/network.dir/base/InetAddress.cc.s"
 	cd /home/zxe/My-Project/StreamMediaServer/build/src/network && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/zxe/My-Project/StreamMediaServer/src/network/base/InetAddress.cc -o CMakeFiles/network.dir/base/InetAddress.cc.s
 
+src/network/CMakeFiles/network.dir/base/SocketOpt.cc.o: src/network/CMakeFiles/network.dir/flags.make
+src/network/CMakeFiles/network.dir/base/SocketOpt.cc.o: ../src/network/base/SocketOpt.cc
+src/network/CMakeFiles/network.dir/base/SocketOpt.cc.o: src/network/CMakeFiles/network.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/zxe/My-Project/StreamMediaServer/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object src/network/CMakeFiles/network.dir/base/SocketOpt.cc.o"
+	cd /home/zxe/My-Project/StreamMediaServer/build/src/network && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/network/CMakeFiles/network.dir/base/SocketOpt.cc.o -MF CMakeFiles/network.dir/base/SocketOpt.cc.o.d -o CMakeFiles/network.dir/base/SocketOpt.cc.o -c /home/zxe/My-Project/StreamMediaServer/src/network/base/SocketOpt.cc
+
+src/network/CMakeFiles/network.dir/base/SocketOpt.cc.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/network.dir/base/SocketOpt.cc.i"
+	cd /home/zxe/My-Project/StreamMediaServer/build/src/network && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/zxe/My-Project/StreamMediaServer/src/network/base/SocketOpt.cc > CMakeFiles/network.dir/base/SocketOpt.cc.i
+
+src/network/CMakeFiles/network.dir/base/SocketOpt.cc.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/network.dir/base/SocketOpt.cc.s"
+	cd /home/zxe/My-Project/StreamMediaServer/build/src/network && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/zxe/My-Project/StreamMediaServer/src/network/base/SocketOpt.cc -o CMakeFiles/network.dir/base/SocketOpt.cc.s
+
+src/network/CMakeFiles/network.dir/net/Acceptor.cc.o: src/network/CMakeFiles/network.dir/flags.make
+src/network/CMakeFiles/network.dir/net/Acceptor.cc.o: ../src/network/net/Acceptor.cc
+src/network/CMakeFiles/network.dir/net/Acceptor.cc.o: src/network/CMakeFiles/network.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/zxe/My-Project/StreamMediaServer/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object src/network/CMakeFiles/network.dir/net/Acceptor.cc.o"
+	cd /home/zxe/My-Project/StreamMediaServer/build/src/network && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/network/CMakeFiles/network.dir/net/Acceptor.cc.o -MF CMakeFiles/network.dir/net/Acceptor.cc.o.d -o CMakeFiles/network.dir/net/Acceptor.cc.o -c /home/zxe/My-Project/StreamMediaServer/src/network/net/Acceptor.cc
+
+src/network/CMakeFiles/network.dir/net/Acceptor.cc.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/network.dir/net/Acceptor.cc.i"
+	cd /home/zxe/My-Project/StreamMediaServer/build/src/network && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/zxe/My-Project/StreamMediaServer/src/network/net/Acceptor.cc > CMakeFiles/network.dir/net/Acceptor.cc.i
+
+src/network/CMakeFiles/network.dir/net/Acceptor.cc.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/network.dir/net/Acceptor.cc.s"
+	cd /home/zxe/My-Project/StreamMediaServer/build/src/network && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/zxe/My-Project/StreamMediaServer/src/network/net/Acceptor.cc -o CMakeFiles/network.dir/net/Acceptor.cc.s
+
 src/network/CMakeFiles/network.dir/net/Event.cc.o: src/network/CMakeFiles/network.dir/flags.make
 src/network/CMakeFiles/network.dir/net/Event.cc.o: ../src/network/net/Event.cc
 src/network/CMakeFiles/network.dir/net/Event.cc.o: src/network/CMakeFiles/network.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/zxe/My-Project/StreamMediaServer/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object src/network/CMakeFiles/network.dir/net/Event.cc.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/zxe/My-Project/StreamMediaServer/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object src/network/CMakeFiles/network.dir/net/Event.cc.o"
 	cd /home/zxe/My-Project/StreamMediaServer/build/src/network && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/network/CMakeFiles/network.dir/net/Event.cc.o -MF CMakeFiles/network.dir/net/Event.cc.o.d -o CMakeFiles/network.dir/net/Event.cc.o -c /home/zxe/My-Project/StreamMediaServer/src/network/net/Event.cc
 
 src/network/CMakeFiles/network.dir/net/Event.cc.i: cmake_force
@@ -100,7 +128,7 @@ src/network/CMakeFiles/network.dir/net/Event.cc.s: cmake_force
 src/network/CMakeFiles/network.dir/net/EventLoop.cc.o: src/network/CMakeFiles/network.dir/flags.make
 src/network/CMakeFiles/network.dir/net/EventLoop.cc.o: ../src/network/net/EventLoop.cc
 src/network/CMakeFiles/network.dir/net/EventLoop.cc.o: src/network/CMakeFiles/network.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/zxe/My-Project/StreamMediaServer/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object src/network/CMakeFiles/network.dir/net/EventLoop.cc.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/zxe/My-Project/StreamMediaServer/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object src/network/CMakeFiles/network.dir/net/EventLoop.cc.o"
 	cd /home/zxe/My-Project/StreamMediaServer/build/src/network && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/network/CMakeFiles/network.dir/net/EventLoop.cc.o -MF CMakeFiles/network.dir/net/EventLoop.cc.o.d -o CMakeFiles/network.dir/net/EventLoop.cc.o -c /home/zxe/My-Project/StreamMediaServer/src/network/net/EventLoop.cc
 
 src/network/CMakeFiles/network.dir/net/EventLoop.cc.i: cmake_force
@@ -114,7 +142,7 @@ src/network/CMakeFiles/network.dir/net/EventLoop.cc.s: cmake_force
 src/network/CMakeFiles/network.dir/net/EventLoopThread.cc.o: src/network/CMakeFiles/network.dir/flags.make
 src/network/CMakeFiles/network.dir/net/EventLoopThread.cc.o: ../src/network/net/EventLoopThread.cc
 src/network/CMakeFiles/network.dir/net/EventLoopThread.cc.o: src/network/CMakeFiles/network.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/zxe/My-Project/StreamMediaServer/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object src/network/CMakeFiles/network.dir/net/EventLoopThread.cc.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/zxe/My-Project/StreamMediaServer/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object src/network/CMakeFiles/network.dir/net/EventLoopThread.cc.o"
 	cd /home/zxe/My-Project/StreamMediaServer/build/src/network && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/network/CMakeFiles/network.dir/net/EventLoopThread.cc.o -MF CMakeFiles/network.dir/net/EventLoopThread.cc.o.d -o CMakeFiles/network.dir/net/EventLoopThread.cc.o -c /home/zxe/My-Project/StreamMediaServer/src/network/net/EventLoopThread.cc
 
 src/network/CMakeFiles/network.dir/net/EventLoopThread.cc.i: cmake_force
@@ -128,7 +156,7 @@ src/network/CMakeFiles/network.dir/net/EventLoopThread.cc.s: cmake_force
 src/network/CMakeFiles/network.dir/net/EventLoopThreadPool.cc.o: src/network/CMakeFiles/network.dir/flags.make
 src/network/CMakeFiles/network.dir/net/EventLoopThreadPool.cc.o: ../src/network/net/EventLoopThreadPool.cc
 src/network/CMakeFiles/network.dir/net/EventLoopThreadPool.cc.o: src/network/CMakeFiles/network.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/zxe/My-Project/StreamMediaServer/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object src/network/CMakeFiles/network.dir/net/EventLoopThreadPool.cc.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/zxe/My-Project/StreamMediaServer/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object src/network/CMakeFiles/network.dir/net/EventLoopThreadPool.cc.o"
 	cd /home/zxe/My-Project/StreamMediaServer/build/src/network && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/network/CMakeFiles/network.dir/net/EventLoopThreadPool.cc.o -MF CMakeFiles/network.dir/net/EventLoopThreadPool.cc.o.d -o CMakeFiles/network.dir/net/EventLoopThreadPool.cc.o -c /home/zxe/My-Project/StreamMediaServer/src/network/net/EventLoopThreadPool.cc
 
 src/network/CMakeFiles/network.dir/net/EventLoopThreadPool.cc.i: cmake_force
@@ -142,7 +170,7 @@ src/network/CMakeFiles/network.dir/net/EventLoopThreadPool.cc.s: cmake_force
 src/network/CMakeFiles/network.dir/net/PipeEvent.cc.o: src/network/CMakeFiles/network.dir/flags.make
 src/network/CMakeFiles/network.dir/net/PipeEvent.cc.o: ../src/network/net/PipeEvent.cc
 src/network/CMakeFiles/network.dir/net/PipeEvent.cc.o: src/network/CMakeFiles/network.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/zxe/My-Project/StreamMediaServer/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object src/network/CMakeFiles/network.dir/net/PipeEvent.cc.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/zxe/My-Project/StreamMediaServer/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object src/network/CMakeFiles/network.dir/net/PipeEvent.cc.o"
 	cd /home/zxe/My-Project/StreamMediaServer/build/src/network && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/network/CMakeFiles/network.dir/net/PipeEvent.cc.o -MF CMakeFiles/network.dir/net/PipeEvent.cc.o.d -o CMakeFiles/network.dir/net/PipeEvent.cc.o -c /home/zxe/My-Project/StreamMediaServer/src/network/net/PipeEvent.cc
 
 src/network/CMakeFiles/network.dir/net/PipeEvent.cc.i: cmake_force
@@ -156,7 +184,7 @@ src/network/CMakeFiles/network.dir/net/PipeEvent.cc.s: cmake_force
 src/network/CMakeFiles/network.dir/net/TimingWheel.cc.o: src/network/CMakeFiles/network.dir/flags.make
 src/network/CMakeFiles/network.dir/net/TimingWheel.cc.o: ../src/network/net/TimingWheel.cc
 src/network/CMakeFiles/network.dir/net/TimingWheel.cc.o: src/network/CMakeFiles/network.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/zxe/My-Project/StreamMediaServer/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object src/network/CMakeFiles/network.dir/net/TimingWheel.cc.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/zxe/My-Project/StreamMediaServer/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object src/network/CMakeFiles/network.dir/net/TimingWheel.cc.o"
 	cd /home/zxe/My-Project/StreamMediaServer/build/src/network && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/network/CMakeFiles/network.dir/net/TimingWheel.cc.o -MF CMakeFiles/network.dir/net/TimingWheel.cc.o.d -o CMakeFiles/network.dir/net/TimingWheel.cc.o -c /home/zxe/My-Project/StreamMediaServer/src/network/net/TimingWheel.cc
 
 src/network/CMakeFiles/network.dir/net/TimingWheel.cc.i: cmake_force
@@ -170,6 +198,8 @@ src/network/CMakeFiles/network.dir/net/TimingWheel.cc.s: cmake_force
 # Object files for target network
 network_OBJECTS = \
 "CMakeFiles/network.dir/base/InetAddress.cc.o" \
+"CMakeFiles/network.dir/base/SocketOpt.cc.o" \
+"CMakeFiles/network.dir/net/Acceptor.cc.o" \
 "CMakeFiles/network.dir/net/Event.cc.o" \
 "CMakeFiles/network.dir/net/EventLoop.cc.o" \
 "CMakeFiles/network.dir/net/EventLoopThread.cc.o" \
@@ -181,6 +211,8 @@ network_OBJECTS = \
 network_EXTERNAL_OBJECTS =
 
 src/network/libnetwork.a: src/network/CMakeFiles/network.dir/base/InetAddress.cc.o
+src/network/libnetwork.a: src/network/CMakeFiles/network.dir/base/SocketOpt.cc.o
+src/network/libnetwork.a: src/network/CMakeFiles/network.dir/net/Acceptor.cc.o
 src/network/libnetwork.a: src/network/CMakeFiles/network.dir/net/Event.cc.o
 src/network/libnetwork.a: src/network/CMakeFiles/network.dir/net/EventLoop.cc.o
 src/network/libnetwork.a: src/network/CMakeFiles/network.dir/net/EventLoopThread.cc.o
@@ -189,7 +221,7 @@ src/network/libnetwork.a: src/network/CMakeFiles/network.dir/net/PipeEvent.cc.o
 src/network/libnetwork.a: src/network/CMakeFiles/network.dir/net/TimingWheel.cc.o
 src/network/libnetwork.a: src/network/CMakeFiles/network.dir/build.make
 src/network/libnetwork.a: src/network/CMakeFiles/network.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/zxe/My-Project/StreamMediaServer/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Linking CXX static library libnetwork.a"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/zxe/My-Project/StreamMediaServer/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Linking CXX static library libnetwork.a"
 	cd /home/zxe/My-Project/StreamMediaServer/build/src/network && $(CMAKE_COMMAND) -P CMakeFiles/network.dir/cmake_clean_target.cmake
 	cd /home/zxe/My-Project/StreamMediaServer/build/src/network && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/network.dir/link.txt --verbose=$(VERBOSE)
 

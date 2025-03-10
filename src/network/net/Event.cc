@@ -3,9 +3,6 @@
 #include <unistd.h>
 using namespace tmms::network;
 
-Event::Event()  {
- 
-}
 Event::Event(EventLoop *loop)  
 :loop_(loop){
 
