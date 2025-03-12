@@ -217,6 +217,20 @@ AcceptorTest/fast:
 	cd /home/zxe/My-Project/StreamMediaServer/build && $(MAKE) $(MAKESILENT) -f src/network/net/tests/CMakeFiles/AcceptorTest.dir/build.make src/network/net/tests/CMakeFiles/AcceptorTest.dir/build
 .PHONY : AcceptorTest/fast
 
+# Convenience name for target.
+src/network/net/tests/CMakeFiles/TcpConnectionTest.dir/rule:
+	cd /home/zxe/My-Project/StreamMediaServer/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/network/net/tests/CMakeFiles/TcpConnectionTest.dir/rule
+.PHONY : src/network/net/tests/CMakeFiles/TcpConnectionTest.dir/rule
+
+# Convenience name for target.
+TcpConnectionTest: src/network/net/tests/CMakeFiles/TcpConnectionTest.dir/rule
+.PHONY : TcpConnectionTest
+
+# fast build rule for target.
+TcpConnectionTest/fast:
+	cd /home/zxe/My-Project/StreamMediaServer/build && $(MAKE) $(MAKESILENT) -f src/network/net/tests/CMakeFiles/TcpConnectionTest.dir/build.make src/network/net/tests/CMakeFiles/TcpConnectionTest.dir/build
+.PHONY : TcpConnectionTest/fast
+
 AcceptorTest.o: AcceptorTest.cpp.o
 .PHONY : AcceptorTest.o
 
@@ -313,6 +327,30 @@ SocketOptTest.cpp.s:
 	cd /home/zxe/My-Project/StreamMediaServer/build && $(MAKE) $(MAKESILENT) -f src/network/net/tests/CMakeFiles/SocketOptTest.dir/build.make src/network/net/tests/CMakeFiles/SocketOptTest.dir/SocketOptTest.cpp.s
 .PHONY : SocketOptTest.cpp.s
 
+TcpConnectionTest.o: TcpConnectionTest.cpp.o
+.PHONY : TcpConnectionTest.o
+
+# target to build an object file
+TcpConnectionTest.cpp.o:
+	cd /home/zxe/My-Project/StreamMediaServer/build && $(MAKE) $(MAKESILENT) -f src/network/net/tests/CMakeFiles/TcpConnectionTest.dir/build.make src/network/net/tests/CMakeFiles/TcpConnectionTest.dir/TcpConnectionTest.cpp.o
+.PHONY : TcpConnectionTest.cpp.o
+
+TcpConnectionTest.i: TcpConnectionTest.cpp.i
+.PHONY : TcpConnectionTest.i
+
+# target to preprocess a source file
+TcpConnectionTest.cpp.i:
+	cd /home/zxe/My-Project/StreamMediaServer/build && $(MAKE) $(MAKESILENT) -f src/network/net/tests/CMakeFiles/TcpConnectionTest.dir/build.make src/network/net/tests/CMakeFiles/TcpConnectionTest.dir/TcpConnectionTest.cpp.i
+.PHONY : TcpConnectionTest.cpp.i
+
+TcpConnectionTest.s: TcpConnectionTest.cpp.s
+.PHONY : TcpConnectionTest.s
+
+# target to generate assembly for a file
+TcpConnectionTest.cpp.s:
+	cd /home/zxe/My-Project/StreamMediaServer/build && $(MAKE) $(MAKESILENT) -f src/network/net/tests/CMakeFiles/TcpConnectionTest.dir/build.make src/network/net/tests/CMakeFiles/TcpConnectionTest.dir/TcpConnectionTest.cpp.s
+.PHONY : TcpConnectionTest.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -329,6 +367,7 @@ help:
 	@echo "... EventLoopThreadTest"
 	@echo "... InetAddressTest"
 	@echo "... SocketOptTest"
+	@echo "... TcpConnectionTest"
 	@echo "... AcceptorTest.o"
 	@echo "... AcceptorTest.i"
 	@echo "... AcceptorTest.s"
@@ -341,6 +380,9 @@ help:
 	@echo "... SocketOptTest.o"
 	@echo "... SocketOptTest.i"
 	@echo "... SocketOptTest.s"
+	@echo "... TcpConnectionTest.o"
+	@echo "... TcpConnectionTest.i"
+	@echo "... TcpConnectionTest.s"
 .PHONY : help
 
 

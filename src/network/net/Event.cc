@@ -14,11 +14,7 @@ Event::Event(EventLoop *loop, int fd)
 }
  
 Event::~Event()  {
-  if(fd_ > 0)
-  {
-    ::close(fd_);
-    fd_ = -1;
-  }
+  Close();
 }
 
 bool Event::EnableWriting(bool enable)  {
@@ -33,3 +29,12 @@ int Event::Fd() const {
   return fd_;
 }
 
+ 
+void Event::Close()  {
+ 
+  if(fd_ > 0)
+  {
+    ::close(fd_);
+    fd_ = -1;
+  }
+}

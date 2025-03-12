@@ -199,6 +199,30 @@ base/InetAddress.cc.s:
 	cd /home/zxe/My-Project/StreamMediaServer/build && $(MAKE) $(MAKESILENT) -f src/network/CMakeFiles/network.dir/build.make src/network/CMakeFiles/network.dir/base/InetAddress.cc.s
 .PHONY : base/InetAddress.cc.s
 
+base/MsgBuffer.o: base/MsgBuffer.cpp.o
+.PHONY : base/MsgBuffer.o
+
+# target to build an object file
+base/MsgBuffer.cpp.o:
+	cd /home/zxe/My-Project/StreamMediaServer/build && $(MAKE) $(MAKESILENT) -f src/network/CMakeFiles/network.dir/build.make src/network/CMakeFiles/network.dir/base/MsgBuffer.cpp.o
+.PHONY : base/MsgBuffer.cpp.o
+
+base/MsgBuffer.i: base/MsgBuffer.cpp.i
+.PHONY : base/MsgBuffer.i
+
+# target to preprocess a source file
+base/MsgBuffer.cpp.i:
+	cd /home/zxe/My-Project/StreamMediaServer/build && $(MAKE) $(MAKESILENT) -f src/network/CMakeFiles/network.dir/build.make src/network/CMakeFiles/network.dir/base/MsgBuffer.cpp.i
+.PHONY : base/MsgBuffer.cpp.i
+
+base/MsgBuffer.s: base/MsgBuffer.cpp.s
+.PHONY : base/MsgBuffer.s
+
+# target to generate assembly for a file
+base/MsgBuffer.cpp.s:
+	cd /home/zxe/My-Project/StreamMediaServer/build && $(MAKE) $(MAKESILENT) -f src/network/CMakeFiles/network.dir/build.make src/network/CMakeFiles/network.dir/base/MsgBuffer.cpp.s
+.PHONY : base/MsgBuffer.cpp.s
+
 base/SocketOpt.o: base/SocketOpt.cc.o
 .PHONY : base/SocketOpt.o
 
@@ -246,6 +270,30 @@ net/Acceptor.s: net/Acceptor.cc.s
 net/Acceptor.cc.s:
 	cd /home/zxe/My-Project/StreamMediaServer/build && $(MAKE) $(MAKESILENT) -f src/network/CMakeFiles/network.dir/build.make src/network/CMakeFiles/network.dir/net/Acceptor.cc.s
 .PHONY : net/Acceptor.cc.s
+
+net/Connection.o: net/Connection.cc.o
+.PHONY : net/Connection.o
+
+# target to build an object file
+net/Connection.cc.o:
+	cd /home/zxe/My-Project/StreamMediaServer/build && $(MAKE) $(MAKESILENT) -f src/network/CMakeFiles/network.dir/build.make src/network/CMakeFiles/network.dir/net/Connection.cc.o
+.PHONY : net/Connection.cc.o
+
+net/Connection.i: net/Connection.cc.i
+.PHONY : net/Connection.i
+
+# target to preprocess a source file
+net/Connection.cc.i:
+	cd /home/zxe/My-Project/StreamMediaServer/build && $(MAKE) $(MAKESILENT) -f src/network/CMakeFiles/network.dir/build.make src/network/CMakeFiles/network.dir/net/Connection.cc.i
+.PHONY : net/Connection.cc.i
+
+net/Connection.s: net/Connection.cc.s
+.PHONY : net/Connection.s
+
+# target to generate assembly for a file
+net/Connection.cc.s:
+	cd /home/zxe/My-Project/StreamMediaServer/build && $(MAKE) $(MAKESILENT) -f src/network/CMakeFiles/network.dir/build.make src/network/CMakeFiles/network.dir/net/Connection.cc.s
+.PHONY : net/Connection.cc.s
 
 net/Event.o: net/Event.cc.o
 .PHONY : net/Event.o
@@ -367,6 +415,30 @@ net/PipeEvent.cc.s:
 	cd /home/zxe/My-Project/StreamMediaServer/build && $(MAKE) $(MAKESILENT) -f src/network/CMakeFiles/network.dir/build.make src/network/CMakeFiles/network.dir/net/PipeEvent.cc.s
 .PHONY : net/PipeEvent.cc.s
 
+net/TcpConnection.o: net/TcpConnection.cc.o
+.PHONY : net/TcpConnection.o
+
+# target to build an object file
+net/TcpConnection.cc.o:
+	cd /home/zxe/My-Project/StreamMediaServer/build && $(MAKE) $(MAKESILENT) -f src/network/CMakeFiles/network.dir/build.make src/network/CMakeFiles/network.dir/net/TcpConnection.cc.o
+.PHONY : net/TcpConnection.cc.o
+
+net/TcpConnection.i: net/TcpConnection.cc.i
+.PHONY : net/TcpConnection.i
+
+# target to preprocess a source file
+net/TcpConnection.cc.i:
+	cd /home/zxe/My-Project/StreamMediaServer/build && $(MAKE) $(MAKESILENT) -f src/network/CMakeFiles/network.dir/build.make src/network/CMakeFiles/network.dir/net/TcpConnection.cc.i
+.PHONY : net/TcpConnection.cc.i
+
+net/TcpConnection.s: net/TcpConnection.cc.s
+.PHONY : net/TcpConnection.s
+
+# target to generate assembly for a file
+net/TcpConnection.cc.s:
+	cd /home/zxe/My-Project/StreamMediaServer/build && $(MAKE) $(MAKESILENT) -f src/network/CMakeFiles/network.dir/build.make src/network/CMakeFiles/network.dir/net/TcpConnection.cc.s
+.PHONY : net/TcpConnection.cc.s
+
 net/TimingWheel.o: net/TimingWheel.cc.o
 .PHONY : net/TimingWheel.o
 
@@ -407,12 +479,18 @@ help:
 	@echo "... base/InetAddress.o"
 	@echo "... base/InetAddress.i"
 	@echo "... base/InetAddress.s"
+	@echo "... base/MsgBuffer.o"
+	@echo "... base/MsgBuffer.i"
+	@echo "... base/MsgBuffer.s"
 	@echo "... base/SocketOpt.o"
 	@echo "... base/SocketOpt.i"
 	@echo "... base/SocketOpt.s"
 	@echo "... net/Acceptor.o"
 	@echo "... net/Acceptor.i"
 	@echo "... net/Acceptor.s"
+	@echo "... net/Connection.o"
+	@echo "... net/Connection.i"
+	@echo "... net/Connection.s"
 	@echo "... net/Event.o"
 	@echo "... net/Event.i"
 	@echo "... net/Event.s"
@@ -428,6 +506,9 @@ help:
 	@echo "... net/PipeEvent.o"
 	@echo "... net/PipeEvent.i"
 	@echo "... net/PipeEvent.s"
+	@echo "... net/TcpConnection.o"
+	@echo "... net/TcpConnection.i"
+	@echo "... net/TcpConnection.s"
 	@echo "... net/TimingWheel.o"
 	@echo "... net/TimingWheel.i"
 	@echo "... net/TimingWheel.s"

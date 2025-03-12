@@ -252,6 +252,19 @@ AcceptorTest/fast:
 	$(MAKE) $(MAKESILENT) -f src/network/net/tests/CMakeFiles/AcceptorTest.dir/build.make src/network/net/tests/CMakeFiles/AcceptorTest.dir/build
 .PHONY : AcceptorTest/fast
 
+#=============================================================================
+# Target rules for targets named TcpConnectionTest
+
+# Build rule for target.
+TcpConnectionTest: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 TcpConnectionTest
+.PHONY : TcpConnectionTest
+
+# fast build rule for target.
+TcpConnectionTest/fast:
+	$(MAKE) $(MAKESILENT) -f src/network/net/tests/CMakeFiles/TcpConnectionTest.dir/build.make src/network/net/tests/CMakeFiles/TcpConnectionTest.dir/build
+.PHONY : TcpConnectionTest/fast
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -269,6 +282,7 @@ help:
 	@echo "... EventLoopThreadTest"
 	@echo "... InetAddressTest"
 	@echo "... SocketOptTest"
+	@echo "... TcpConnectionTest"
 	@echo "... base"
 	@echo "... network"
 .PHONY : help

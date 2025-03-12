@@ -13,3 +13,7 @@ install(TARGETS SocketOptTest RUNTIME DESTINATION sbin)
 add_executable(AcceptorTest AcceptorTest.cpp)
 target_link_libraries(AcceptorTest base network)
 install(TARGETS AcceptorTest RUNTIME DESTINATION sbin)
+
+add_executable(TcpConnectionTest TcpConnectionTest.cpp)
+target_link_libraries(TcpConnectionTest base network)
+install(TARGETS TcpConnectionTest RUNTIME DESTINATION sbin)
