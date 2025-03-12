@@ -18,11 +18,11 @@ Event::~Event()  {
 }
 
 bool Event::EnableWriting(bool enable)  {
-	return false;
+  return loop_->EnableEventWriting(shared_from_this(),enable);
 }
  
 bool Event::EnableReading(bool enable)  {
-	return false;
+  return loop_->EnableEventReading(shared_from_this(),enable);
 }
  
 int Event::Fd() const {

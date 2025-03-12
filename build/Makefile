@@ -265,6 +265,32 @@ TcpConnectionTest/fast:
 	$(MAKE) $(MAKESILENT) -f src/network/net/tests/CMakeFiles/TcpConnectionTest.dir/build.make src/network/net/tests/CMakeFiles/TcpConnectionTest.dir/build
 .PHONY : TcpConnectionTest/fast
 
+#=============================================================================
+# Target rules for targets named TcpServerTest
+
+# Build rule for target.
+TcpServerTest: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 TcpServerTest
+.PHONY : TcpServerTest
+
+# fast build rule for target.
+TcpServerTest/fast:
+	$(MAKE) $(MAKESILENT) -f src/network/net/tests/CMakeFiles/TcpServerTest.dir/build.make src/network/net/tests/CMakeFiles/TcpServerTest.dir/build
+.PHONY : TcpServerTest/fast
+
+#=============================================================================
+# Target rules for targets named TcpClientTest
+
+# Build rule for target.
+TcpClientTest: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 TcpClientTest
+.PHONY : TcpClientTest
+
+# fast build rule for target.
+TcpClientTest/fast:
+	$(MAKE) $(MAKESILENT) -f src/network/net/tests/CMakeFiles/TcpClientTest.dir/build.make src/network/net/tests/CMakeFiles/TcpClientTest.dir/build
+.PHONY : TcpClientTest/fast
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -282,7 +308,9 @@ help:
 	@echo "... EventLoopThreadTest"
 	@echo "... InetAddressTest"
 	@echo "... SocketOptTest"
+	@echo "... TcpClientTest"
 	@echo "... TcpConnectionTest"
+	@echo "... TcpServerTest"
 	@echo "... base"
 	@echo "... network"
 .PHONY : help

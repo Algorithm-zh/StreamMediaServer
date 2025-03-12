@@ -3,3 +3,5 @@
 /home/zxe/My-Project/StreamMediaServer/build/../bin/sbin/SocketOptTest
 /home/zxe/My-Project/StreamMediaServer/build/../bin/sbin/AcceptorTest
 /home/zxe/My-Project/StreamMediaServer/build/../bin/sbin/TcpConnectionTest
+/home/zxe/My-Project/StreamMediaServer/build/../bin/sbin/TcpServerTest
+/home/zxe/My-Project/StreamMediaServer/build/../bin/sbin/TcpClientTest

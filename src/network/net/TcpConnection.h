@@ -32,7 +32,7 @@ namespace tmms
     public:
       //构造函数
       TcpConnection(EventLoop *loop, int socketfd, const InetAddress &localAddr, const InetAddress &peerAddr);
-      ~TcpConnection();
+      virtual ~TcpConnection();
       //关闭事件成员函数
       void SetCloseCallback(const CloseConnectionCallback &cb);
       void SetCloseCallback(CloseConnectionCallback &&cb);

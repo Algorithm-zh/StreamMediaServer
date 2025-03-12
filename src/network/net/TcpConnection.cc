@@ -19,11 +19,11 @@ void TcpConnection::OnClose()  {
   loop_->AssertInLoopThread();
   if(!closed_)
   {
+    closed_ = true;
     if(close_cb_)
     {
       close_cb_(std::dynamic_pointer_cast<TcpConnection>(shared_from_this()));
     }
-    closed_ = true;
     //关闭文件描述符
     Event::Close();
   }

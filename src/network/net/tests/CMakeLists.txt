@@ -17,3 +17,11 @@ install(TARGETS AcceptorTest RUNTIME DESTINATION sbin)
 add_executable(TcpConnectionTest TcpConnectionTest.cpp)
 target_link_libraries(TcpConnectionTest base network)
 install(TARGETS TcpConnectionTest RUNTIME DESTINATION sbin)
+
+add_executable(TcpServerTest TcpServerTest.cpp)
+target_link_libraries(TcpServerTest base network)
+install(TARGETS TcpServerTest RUNTIME DESTINATION sbin)
+
+add_executable(TcpClientTest TcpClientTest.cpp)
+target_link_libraries(TcpClientTest base network)
+install(TARGETS TcpClientTest RUNTIME DESTINATION sbin)

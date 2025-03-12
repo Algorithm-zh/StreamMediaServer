@@ -8,6 +8,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
+  "/home/zxe/My-Project/StreamMediaServer/src/network/TcpServer.cc" "src/network/CMakeFiles/network.dir/TcpServer.cc.o" "gcc" "src/network/CMakeFiles/network.dir/TcpServer.cc.o.d"
   "/home/zxe/My-Project/StreamMediaServer/src/network/base/InetAddress.cc" "src/network/CMakeFiles/network.dir/base/InetAddress.cc.o" "gcc" "src/network/CMakeFiles/network.dir/base/InetAddress.cc.o.d"
   "/home/zxe/My-Project/StreamMediaServer/src/network/base/MsgBuffer.cpp" "src/network/CMakeFiles/network.dir/base/MsgBuffer.cpp.o" "gcc" "src/network/CMakeFiles/network.dir/base/MsgBuffer.cpp.o.d"
   "/home/zxe/My-Project/StreamMediaServer/src/network/base/SocketOpt.cc" "src/network/CMakeFiles/network.dir/base/SocketOpt.cc.o" "gcc" "src/network/CMakeFiles/network.dir/base/SocketOpt.cc.o.d"
@@ -18,6 +19,7 @@ set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "/home/zxe/My-Project/StreamMediaServer/src/network/net/EventLoopThread.cc" "src/network/CMakeFiles/network.dir/net/EventLoopThread.cc.o" "gcc" "src/network/CMakeFiles/network.dir/net/EventLoopThread.cc.o.d"
   "/home/zxe/My-Project/StreamMediaServer/src/network/net/EventLoopThreadPool.cc" "src/network/CMakeFiles/network.dir/net/EventLoopThreadPool.cc.o" "gcc" "src/network/CMakeFiles/network.dir/net/EventLoopThreadPool.cc.o.d"
   "/home/zxe/My-Project/StreamMediaServer/src/network/net/PipeEvent.cc" "src/network/CMakeFiles/network.dir/net/PipeEvent.cc.o" "gcc" "src/network/CMakeFiles/network.dir/net/PipeEvent.cc.o.d"
+  "/home/zxe/My-Project/StreamMediaServer/src/network/net/TcpClient.cc" "src/network/CMakeFiles/network.dir/net/TcpClient.cc.o" "gcc" "src/network/CMakeFiles/network.dir/net/TcpClient.cc.o.d"
   "/home/zxe/My-Project/StreamMediaServer/src/network/net/TcpConnection.cc" "src/network/CMakeFiles/network.dir/net/TcpConnection.cc.o" "gcc" "src/network/CMakeFiles/network.dir/net/TcpConnection.cc.o.d"
   "/home/zxe/My-Project/StreamMediaServer/src/network/net/TimingWheel.cc" "src/network/CMakeFiles/network.dir/net/TimingWheel.cc.o" "gcc" "src/network/CMakeFiles/network.dir/net/TimingWheel.cc.o.d"
   )

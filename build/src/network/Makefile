@@ -175,6 +175,30 @@ network/fast:
 	cd /home/zxe/My-Project/StreamMediaServer/build && $(MAKE) $(MAKESILENT) -f src/network/CMakeFiles/network.dir/build.make src/network/CMakeFiles/network.dir/build
 .PHONY : network/fast
 
+TcpServer.o: TcpServer.cc.o
+.PHONY : TcpServer.o
+
+# target to build an object file
+TcpServer.cc.o:
+	cd /home/zxe/My-Project/StreamMediaServer/build && $(MAKE) $(MAKESILENT) -f src/network/CMakeFiles/network.dir/build.make src/network/CMakeFiles/network.dir/TcpServer.cc.o
+.PHONY : TcpServer.cc.o
+
+TcpServer.i: TcpServer.cc.i
+.PHONY : TcpServer.i
+
+# target to preprocess a source file
+TcpServer.cc.i:
+	cd /home/zxe/My-Project/StreamMediaServer/build && $(MAKE) $(MAKESILENT) -f src/network/CMakeFiles/network.dir/build.make src/network/CMakeFiles/network.dir/TcpServer.cc.i
+.PHONY : TcpServer.cc.i
+
+TcpServer.s: TcpServer.cc.s
+.PHONY : TcpServer.s
+
+# target to generate assembly for a file
+TcpServer.cc.s:
+	cd /home/zxe/My-Project/StreamMediaServer/build && $(MAKE) $(MAKESILENT) -f src/network/CMakeFiles/network.dir/build.make src/network/CMakeFiles/network.dir/TcpServer.cc.s
+.PHONY : TcpServer.cc.s
+
 base/InetAddress.o: base/InetAddress.cc.o
 .PHONY : base/InetAddress.o
 
@@ -415,6 +439,30 @@ net/PipeEvent.cc.s:
 	cd /home/zxe/My-Project/StreamMediaServer/build && $(MAKE) $(MAKESILENT) -f src/network/CMakeFiles/network.dir/build.make src/network/CMakeFiles/network.dir/net/PipeEvent.cc.s
 .PHONY : net/PipeEvent.cc.s
 
+net/TcpClient.o: net/TcpClient.cc.o
+.PHONY : net/TcpClient.o
+
+# target to build an object file
+net/TcpClient.cc.o:
+	cd /home/zxe/My-Project/StreamMediaServer/build && $(MAKE) $(MAKESILENT) -f src/network/CMakeFiles/network.dir/build.make src/network/CMakeFiles/network.dir/net/TcpClient.cc.o
+.PHONY : net/TcpClient.cc.o
+
+net/TcpClient.i: net/TcpClient.cc.i
+.PHONY : net/TcpClient.i
+
+# target to preprocess a source file
+net/TcpClient.cc.i:
+	cd /home/zxe/My-Project/StreamMediaServer/build && $(MAKE) $(MAKESILENT) -f src/network/CMakeFiles/network.dir/build.make src/network/CMakeFiles/network.dir/net/TcpClient.cc.i
+.PHONY : net/TcpClient.cc.i
+
+net/TcpClient.s: net/TcpClient.cc.s
+.PHONY : net/TcpClient.s
+
+# target to generate assembly for a file
+net/TcpClient.cc.s:
+	cd /home/zxe/My-Project/StreamMediaServer/build && $(MAKE) $(MAKESILENT) -f src/network/CMakeFiles/network.dir/build.make src/network/CMakeFiles/network.dir/net/TcpClient.cc.s
+.PHONY : net/TcpClient.cc.s
+
 net/TcpConnection.o: net/TcpConnection.cc.o
 .PHONY : net/TcpConnection.o
 
@@ -476,6 +524,9 @@ help:
 	@echo "... list_install_components"
 	@echo "... rebuild_cache"
 	@echo "... network"
+	@echo "... TcpServer.o"
+	@echo "... TcpServer.i"
+	@echo "... TcpServer.s"
 	@echo "... base/InetAddress.o"
 	@echo "... base/InetAddress.i"
 	@echo "... base/InetAddress.s"
@@ -506,6 +557,9 @@ help:
 	@echo "... net/PipeEvent.o"
 	@echo "... net/PipeEvent.i"
 	@echo "... net/PipeEvent.s"
+	@echo "... net/TcpClient.o"
+	@echo "... net/TcpClient.i"
+	@echo "... net/TcpClient.s"
 	@echo "... net/TcpConnection.o"
 	@echo "... net/TcpConnection.i"
 	@echo "... net/TcpConnection.s"
