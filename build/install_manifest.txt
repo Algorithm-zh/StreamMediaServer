@@ -1,2 +1,0 @@
-/home/zxe/My-Project/StreamMediaServer/build/../bin/sbin/UdpServerTest
-/home/zxe/My-Project/StreamMediaServer/build/../bin/sbin/UdpClientTest
