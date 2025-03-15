@@ -33,3 +33,9 @@ install(TARGETS UdpServerTest RUNTIME DESTINATION sbin)
 add_executable(UdpClientTest UdpClientTest.cpp)
 target_link_libraries(UdpClientTest base network)
 install(TARGETS UdpClientTest RUNTIME DESTINATION sbin)
+
+
+add_executable(DnsServiceTest DnsServiceTest.cpp)
+target_link_libraries(DnsServiceTest base network)
+install(TARGETS DnsServiceTest RUNTIME DESTINATION sbin)
+
