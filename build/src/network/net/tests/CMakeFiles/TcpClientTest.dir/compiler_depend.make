@@ -297,7 +297,7 @@ src/network/net/tests/CMakeFiles/TcpClientTest.dir/TcpClientTest.cpp.o: ../src/n
   /usr/include/c++/11/bits/std_thread.h \
   /usr/include/c++/11/thread \
   /usr/include/c++/11/bits/this_thread_sleep.h \
-  ../src/network/net/TcpClient.h \
+  ../src/network/TcpClient.h \
   ../src/network/net/TcpConnection.h \
   ../src/network/net/Connection.h \
   ../src/network/base/MsgBuffer.h \
@@ -333,7 +333,7 @@ src/network/net/tests/CMakeFiles/TcpClientTest.dir/TcpClientTest.cpp.o: ../src/n
 
 ../src/network/net/Connection.h:
 
-../src/network/net/TcpClient.h:
+../src/network/TcpClient.h:
 
 /usr/include/c++/11/atomic:
 

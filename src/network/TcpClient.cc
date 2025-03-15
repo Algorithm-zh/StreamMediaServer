@@ -1,6 +1,6 @@
 #include "TcpClient.h"
-#include "../base/Network.h"
-#include "../base/SocketOpt.h"
+#include "base/Network.h"
+#include "base/SocketOpt.h"
 using namespace tmms::network;
 
  
@@ -29,7 +29,6 @@ void TcpClient::ConnectInLoop()  {
     return;
   }
   status_ = kTcpConStatusConnecting;
-  std::cout << "add event" << std::endl;
   loop_->AddEvent(std::dynamic_pointer_cast<TcpClient>(shared_from_this()));
   EnableWriting(true);
   EnableCheckIdleTimeout(3);

@@ -23,6 +23,13 @@ namespace tmms
     class Connection;
     using ConnectionPtr = std::shared_ptr<Connection>;
     using ActiveCallback = std::function<void(const ConnectionPtr&)>;
+    struct BufferNode
+    {
+      BufferNode(void *buf, size_t s):addr(buf),size(s){}
+      void *addr{nullptr};
+      size_t size{0};
+    };
+    using BufferNodePtr = std::shared_ptr<BufferNode>;
     class Connection : public Event
     {
     public:

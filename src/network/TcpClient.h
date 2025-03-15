@@ -1,7 +1,7 @@
 #pragma once
-#include "TcpConnection.h"
-#include "../base/InetAddress.h"
-#include "EventLoop.h"
+#include "net/TcpConnection.h"
+#include "base/InetAddress.h"
+#include "net/EventLoop.h"
 #include <cstdint>
 #include <functional>
 namespace tmms

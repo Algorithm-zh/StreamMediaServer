@@ -57,11 +57,6 @@ set(CMAKE_DEPEND_INFO_FILES
   "CMakeFiles/jsoncpp.dir/DependInfo.cmake"
   "src/base/CMakeFiles/base.dir/DependInfo.cmake"
   "src/network/CMakeFiles/network.dir/DependInfo.cmake"
-  "src/network/net/tests/CMakeFiles/EventLoopThreadTest.dir/DependInfo.cmake"
-  "src/network/net/tests/CMakeFiles/InetAddressTest.dir/DependInfo.cmake"
-  "src/network/net/tests/CMakeFiles/SocketOptTest.dir/DependInfo.cmake"
-  "src/network/net/tests/CMakeFiles/AcceptorTest.dir/DependInfo.cmake"
-  "src/network/net/tests/CMakeFiles/TcpConnectionTest.dir/DependInfo.cmake"
-  "src/network/net/tests/CMakeFiles/TcpServerTest.dir/DependInfo.cmake"
-  "src/network/net/tests/CMakeFiles/TcpClientTest.dir/DependInfo.cmake"
+  "src/network/net/tests/CMakeFiles/UdpServerTest.dir/DependInfo.cmake"
+  "src/network/net/tests/CMakeFiles/UdpClientTest.dir/DependInfo.cmake"
   )

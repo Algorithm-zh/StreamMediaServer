@@ -162,270 +162,80 @@ depend:
 .PHONY : depend
 
 # Convenience name for target.
-src/network/net/tests/CMakeFiles/EventLoopThreadTest.dir/rule:
-	cd /home/zxe/My-Project/StreamMediaServer/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/network/net/tests/CMakeFiles/EventLoopThreadTest.dir/rule
-.PHONY : src/network/net/tests/CMakeFiles/EventLoopThreadTest.dir/rule
+src/network/net/tests/CMakeFiles/UdpServerTest.dir/rule:
+	cd /home/zxe/My-Project/StreamMediaServer/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/network/net/tests/CMakeFiles/UdpServerTest.dir/rule
+.PHONY : src/network/net/tests/CMakeFiles/UdpServerTest.dir/rule
 
 # Convenience name for target.
-EventLoopThreadTest: src/network/net/tests/CMakeFiles/EventLoopThreadTest.dir/rule
-.PHONY : EventLoopThreadTest
+UdpServerTest: src/network/net/tests/CMakeFiles/UdpServerTest.dir/rule
+.PHONY : UdpServerTest
 
 # fast build rule for target.
-EventLoopThreadTest/fast:
-	cd /home/zxe/My-Project/StreamMediaServer/build && $(MAKE) $(MAKESILENT) -f src/network/net/tests/CMakeFiles/EventLoopThreadTest.dir/build.make src/network/net/tests/CMakeFiles/EventLoopThreadTest.dir/build
-.PHONY : EventLoopThreadTest/fast
+UdpServerTest/fast:
+	cd /home/zxe/My-Project/StreamMediaServer/build && $(MAKE) $(MAKESILENT) -f src/network/net/tests/CMakeFiles/UdpServerTest.dir/build.make src/network/net/tests/CMakeFiles/UdpServerTest.dir/build
+.PHONY : UdpServerTest/fast
 
 # Convenience name for target.
-src/network/net/tests/CMakeFiles/InetAddressTest.dir/rule:
-	cd /home/zxe/My-Project/StreamMediaServer/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/network/net/tests/CMakeFiles/InetAddressTest.dir/rule
-.PHONY : src/network/net/tests/CMakeFiles/InetAddressTest.dir/rule
+src/network/net/tests/CMakeFiles/UdpClientTest.dir/rule:
+	cd /home/zxe/My-Project/StreamMediaServer/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/network/net/tests/CMakeFiles/UdpClientTest.dir/rule
+.PHONY : src/network/net/tests/CMakeFiles/UdpClientTest.dir/rule
 
 # Convenience name for target.
-InetAddressTest: src/network/net/tests/CMakeFiles/InetAddressTest.dir/rule
-.PHONY : InetAddressTest
+UdpClientTest: src/network/net/tests/CMakeFiles/UdpClientTest.dir/rule
+.PHONY : UdpClientTest
 
 # fast build rule for target.
-InetAddressTest/fast:
-	cd /home/zxe/My-Project/StreamMediaServer/build && $(MAKE) $(MAKESILENT) -f src/network/net/tests/CMakeFiles/InetAddressTest.dir/build.make src/network/net/tests/CMakeFiles/InetAddressTest.dir/build
-.PHONY : InetAddressTest/fast
+UdpClientTest/fast:
+	cd /home/zxe/My-Project/StreamMediaServer/build && $(MAKE) $(MAKESILENT) -f src/network/net/tests/CMakeFiles/UdpClientTest.dir/build.make src/network/net/tests/CMakeFiles/UdpClientTest.dir/build
+.PHONY : UdpClientTest/fast
 
-# Convenience name for target.
-src/network/net/tests/CMakeFiles/SocketOptTest.dir/rule:
-	cd /home/zxe/My-Project/StreamMediaServer/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/network/net/tests/CMakeFiles/SocketOptTest.dir/rule
-.PHONY : src/network/net/tests/CMakeFiles/SocketOptTest.dir/rule
-
-# Convenience name for target.
-SocketOptTest: src/network/net/tests/CMakeFiles/SocketOptTest.dir/rule
-.PHONY : SocketOptTest
-
-# fast build rule for target.
-SocketOptTest/fast:
-	cd /home/zxe/My-Project/StreamMediaServer/build && $(MAKE) $(MAKESILENT) -f src/network/net/tests/CMakeFiles/SocketOptTest.dir/build.make src/network/net/tests/CMakeFiles/SocketOptTest.dir/build
-.PHONY : SocketOptTest/fast
-
-# Convenience name for target.
-src/network/net/tests/CMakeFiles/AcceptorTest.dir/rule:
-	cd /home/zxe/My-Project/StreamMediaServer/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/network/net/tests/CMakeFiles/AcceptorTest.dir/rule
-.PHONY : src/network/net/tests/CMakeFiles/AcceptorTest.dir/rule
-
-# Convenience name for target.
-AcceptorTest: src/network/net/tests/CMakeFiles/AcceptorTest.dir/rule
-.PHONY : AcceptorTest
-
-# fast build rule for target.
-AcceptorTest/fast:
-	cd /home/zxe/My-Project/StreamMediaServer/build && $(MAKE) $(MAKESILENT) -f src/network/net/tests/CMakeFiles/AcceptorTest.dir/build.make src/network/net/tests/CMakeFiles/AcceptorTest.dir/build
-.PHONY : AcceptorTest/fast
-
-# Convenience name for target.
-src/network/net/tests/CMakeFiles/TcpConnectionTest.dir/rule:
-	cd /home/zxe/My-Project/StreamMediaServer/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/network/net/tests/CMakeFiles/TcpConnectionTest.dir/rule
-.PHONY : src/network/net/tests/CMakeFiles/TcpConnectionTest.dir/rule
-
-# Convenience name for target.
-TcpConnectionTest: src/network/net/tests/CMakeFiles/TcpConnectionTest.dir/rule
-.PHONY : TcpConnectionTest
-
-# fast build rule for target.
-TcpConnectionTest/fast:
-	cd /home/zxe/My-Project/StreamMediaServer/build && $(MAKE) $(MAKESILENT) -f src/network/net/tests/CMakeFiles/TcpConnectionTest.dir/build.make src/network/net/tests/CMakeFiles/TcpConnectionTest.dir/build
-.PHONY : TcpConnectionTest/fast
-
-# Convenience name for target.
-src/network/net/tests/CMakeFiles/TcpServerTest.dir/rule:
-	cd /home/zxe/My-Project/StreamMediaServer/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/network/net/tests/CMakeFiles/TcpServerTest.dir/rule
-.PHONY : src/network/net/tests/CMakeFiles/TcpServerTest.dir/rule
-
-# Convenience name for target.
-TcpServerTest: src/network/net/tests/CMakeFiles/TcpServerTest.dir/rule
-.PHONY : TcpServerTest
-
-# fast build rule for target.
-TcpServerTest/fast:
-	cd /home/zxe/My-Project/StreamMediaServer/build && $(MAKE) $(MAKESILENT) -f src/network/net/tests/CMakeFiles/TcpServerTest.dir/build.make src/network/net/tests/CMakeFiles/TcpServerTest.dir/build
-.PHONY : TcpServerTest/fast
-
-# Convenience name for target.
-src/network/net/tests/CMakeFiles/TcpClientTest.dir/rule:
-	cd /home/zxe/My-Project/StreamMediaServer/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/network/net/tests/CMakeFiles/TcpClientTest.dir/rule
-.PHONY : src/network/net/tests/CMakeFiles/TcpClientTest.dir/rule
-
-# Convenience name for target.
-TcpClientTest: src/network/net/tests/CMakeFiles/TcpClientTest.dir/rule
-.PHONY : TcpClientTest
-
-# fast build rule for target.
-TcpClientTest/fast:
-	cd /home/zxe/My-Project/StreamMediaServer/build && $(MAKE) $(MAKESILENT) -f src/network/net/tests/CMakeFiles/TcpClientTest.dir/build.make src/network/net/tests/CMakeFiles/TcpClientTest.dir/build
-.PHONY : TcpClientTest/fast
-
-AcceptorTest.o: AcceptorTest.cpp.o
-.PHONY : AcceptorTest.o
+UdpClientTest.o: UdpClientTest.cpp.o
+.PHONY : UdpClientTest.o
 
 # target to build an object file
-AcceptorTest.cpp.o:
-	cd /home/zxe/My-Project/StreamMediaServer/build && $(MAKE) $(MAKESILENT) -f src/network/net/tests/CMakeFiles/AcceptorTest.dir/build.make src/network/net/tests/CMakeFiles/AcceptorTest.dir/AcceptorTest.cpp.o
-.PHONY : AcceptorTest.cpp.o
+UdpClientTest.cpp.o:
+	cd /home/zxe/My-Project/StreamMediaServer/build && $(MAKE) $(MAKESILENT) -f src/network/net/tests/CMakeFiles/UdpClientTest.dir/build.make src/network/net/tests/CMakeFiles/UdpClientTest.dir/UdpClientTest.cpp.o
+.PHONY : UdpClientTest.cpp.o
 
-AcceptorTest.i: AcceptorTest.cpp.i
-.PHONY : AcceptorTest.i
+UdpClientTest.i: UdpClientTest.cpp.i
+.PHONY : UdpClientTest.i
 
 # target to preprocess a source file
-AcceptorTest.cpp.i:
-	cd /home/zxe/My-Project/StreamMediaServer/build && $(MAKE) $(MAKESILENT) -f src/network/net/tests/CMakeFiles/AcceptorTest.dir/build.make src/network/net/tests/CMakeFiles/AcceptorTest.dir/AcceptorTest.cpp.i
-.PHONY : AcceptorTest.cpp.i
+UdpClientTest.cpp.i:
+	cd /home/zxe/My-Project/StreamMediaServer/build && $(MAKE) $(MAKESILENT) -f src/network/net/tests/CMakeFiles/UdpClientTest.dir/build.make src/network/net/tests/CMakeFiles/UdpClientTest.dir/UdpClientTest.cpp.i
+.PHONY : UdpClientTest.cpp.i
 
-AcceptorTest.s: AcceptorTest.cpp.s
-.PHONY : AcceptorTest.s
+UdpClientTest.s: UdpClientTest.cpp.s
+.PHONY : UdpClientTest.s
 
 # target to generate assembly for a file
-AcceptorTest.cpp.s:
-	cd /home/zxe/My-Project/StreamMediaServer/build && $(MAKE) $(MAKESILENT) -f src/network/net/tests/CMakeFiles/AcceptorTest.dir/build.make src/network/net/tests/CMakeFiles/AcceptorTest.dir/AcceptorTest.cpp.s
-.PHONY : AcceptorTest.cpp.s
+UdpClientTest.cpp.s:
+	cd /home/zxe/My-Project/StreamMediaServer/build && $(MAKE) $(MAKESILENT) -f src/network/net/tests/CMakeFiles/UdpClientTest.dir/build.make src/network/net/tests/CMakeFiles/UdpClientTest.dir/UdpClientTest.cpp.s
+.PHONY : UdpClientTest.cpp.s
 
-EventLoopThreadTest.o: EventLoopThreadTest.cpp.o
-.PHONY : EventLoopThreadTest.o
+UdpServerTest.o: UdpServerTest.cpp.o
+.PHONY : UdpServerTest.o
 
 # target to build an object file
-EventLoopThreadTest.cpp.o:
-	cd /home/zxe/My-Project/StreamMediaServer/build && $(MAKE) $(MAKESILENT) -f src/network/net/tests/CMakeFiles/EventLoopThreadTest.dir/build.make src/network/net/tests/CMakeFiles/EventLoopThreadTest.dir/EventLoopThreadTest.cpp.o
-.PHONY : EventLoopThreadTest.cpp.o
+UdpServerTest.cpp.o:
+	cd /home/zxe/My-Project/StreamMediaServer/build && $(MAKE) $(MAKESILENT) -f src/network/net/tests/CMakeFiles/UdpServerTest.dir/build.make src/network/net/tests/CMakeFiles/UdpServerTest.dir/UdpServerTest.cpp.o
+.PHONY : UdpServerTest.cpp.o
 
-EventLoopThreadTest.i: EventLoopThreadTest.cpp.i
-.PHONY : EventLoopThreadTest.i
-
-# target to preprocess a source file
-EventLoopThreadTest.cpp.i:
-	cd /home/zxe/My-Project/StreamMediaServer/build && $(MAKE) $(MAKESILENT) -f src/network/net/tests/CMakeFiles/EventLoopThreadTest.dir/build.make src/network/net/tests/CMakeFiles/EventLoopThreadTest.dir/EventLoopThreadTest.cpp.i
-.PHONY : EventLoopThreadTest.cpp.i
-
-EventLoopThreadTest.s: EventLoopThreadTest.cpp.s
-.PHONY : EventLoopThreadTest.s
-
-# target to generate assembly for a file
-EventLoopThreadTest.cpp.s:
-	cd /home/zxe/My-Project/StreamMediaServer/build && $(MAKE) $(MAKESILENT) -f src/network/net/tests/CMakeFiles/EventLoopThreadTest.dir/build.make src/network/net/tests/CMakeFiles/EventLoopThreadTest.dir/EventLoopThreadTest.cpp.s
-.PHONY : EventLoopThreadTest.cpp.s
-
-InetAddressTest.o: InetAddressTest.cpp.o
-.PHONY : InetAddressTest.o
-
-# target to build an object file
-InetAddressTest.cpp.o:
-	cd /home/zxe/My-Project/StreamMediaServer/build && $(MAKE) $(MAKESILENT) -f src/network/net/tests/CMakeFiles/InetAddressTest.dir/build.make src/network/net/tests/CMakeFiles/InetAddressTest.dir/InetAddressTest.cpp.o
-.PHONY : InetAddressTest.cpp.o
-
-InetAddressTest.i: InetAddressTest.cpp.i
-.PHONY : InetAddressTest.i
+UdpServerTest.i: UdpServerTest.cpp.i
+.PHONY : UdpServerTest.i
 
 # target to preprocess a source file
-InetAddressTest.cpp.i:
-	cd /home/zxe/My-Project/StreamMediaServer/build && $(MAKE) $(MAKESILENT) -f src/network/net/tests/CMakeFiles/InetAddressTest.dir/build.make src/network/net/tests/CMakeFiles/InetAddressTest.dir/InetAddressTest.cpp.i
-.PHONY : InetAddressTest.cpp.i
+UdpServerTest.cpp.i:
+	cd /home/zxe/My-Project/StreamMediaServer/build && $(MAKE) $(MAKESILENT) -f src/network/net/tests/CMakeFiles/UdpServerTest.dir/build.make src/network/net/tests/CMakeFiles/UdpServerTest.dir/UdpServerTest.cpp.i
+.PHONY : UdpServerTest.cpp.i
 
-InetAddressTest.s: InetAddressTest.cpp.s
-.PHONY : InetAddressTest.s
-
-# target to generate assembly for a file
-InetAddressTest.cpp.s:
-	cd /home/zxe/My-Project/StreamMediaServer/build && $(MAKE) $(MAKESILENT) -f src/network/net/tests/CMakeFiles/InetAddressTest.dir/build.make src/network/net/tests/CMakeFiles/InetAddressTest.dir/InetAddressTest.cpp.s
-.PHONY : InetAddressTest.cpp.s
-
-SocketOptTest.o: SocketOptTest.cpp.o
-.PHONY : SocketOptTest.o
-
-# target to build an object file
-SocketOptTest.cpp.o:
-	cd /home/zxe/My-Project/StreamMediaServer/build && $(MAKE) $(MAKESILENT) -f src/network/net/tests/CMakeFiles/SocketOptTest.dir/build.make src/network/net/tests/CMakeFiles/SocketOptTest.dir/SocketOptTest.cpp.o
-.PHONY : SocketOptTest.cpp.o
-
-SocketOptTest.i: SocketOptTest.cpp.i
-.PHONY : SocketOptTest.i
-
-# target to preprocess a source file
-SocketOptTest.cpp.i:
-	cd /home/zxe/My-Project/StreamMediaServer/build && $(MAKE) $(MAKESILENT) -f src/network/net/tests/CMakeFiles/SocketOptTest.dir/build.make src/network/net/tests/CMakeFiles/SocketOptTest.dir/SocketOptTest.cpp.i
-.PHONY : SocketOptTest.cpp.i
-
-SocketOptTest.s: SocketOptTest.cpp.s
-.PHONY : SocketOptTest.s
+UdpServerTest.s: UdpServerTest.cpp.s
+.PHONY : UdpServerTest.s
 
 # target to generate assembly for a file
-SocketOptTest.cpp.s:
-	cd /home/zxe/My-Project/StreamMediaServer/build && $(MAKE) $(MAKESILENT) -f src/network/net/tests/CMakeFiles/SocketOptTest.dir/build.make src/network/net/tests/CMakeFiles/SocketOptTest.dir/SocketOptTest.cpp.s
-.PHONY : SocketOptTest.cpp.s
-
-TcpClientTest.o: TcpClientTest.cpp.o
-.PHONY : TcpClientTest.o
-
-# target to build an object file
-TcpClientTest.cpp.o:
-	cd /home/zxe/My-Project/StreamMediaServer/build && $(MAKE) $(MAKESILENT) -f src/network/net/tests/CMakeFiles/TcpClientTest.dir/build.make src/network/net/tests/CMakeFiles/TcpClientTest.dir/TcpClientTest.cpp.o
-.PHONY : TcpClientTest.cpp.o
-
-TcpClientTest.i: TcpClientTest.cpp.i
-.PHONY : TcpClientTest.i
-
-# target to preprocess a source file
-TcpClientTest.cpp.i:
-	cd /home/zxe/My-Project/StreamMediaServer/build && $(MAKE) $(MAKESILENT) -f src/network/net/tests/CMakeFiles/TcpClientTest.dir/build.make src/network/net/tests/CMakeFiles/TcpClientTest.dir/TcpClientTest.cpp.i
-.PHONY : TcpClientTest.cpp.i
-
-TcpClientTest.s: TcpClientTest.cpp.s
-.PHONY : TcpClientTest.s
-
-# target to generate assembly for a file
-TcpClientTest.cpp.s:
-	cd /home/zxe/My-Project/StreamMediaServer/build && $(MAKE) $(MAKESILENT) -f src/network/net/tests/CMakeFiles/TcpClientTest.dir/build.make src/network/net/tests/CMakeFiles/TcpClientTest.dir/TcpClientTest.cpp.s
-.PHONY : TcpClientTest.cpp.s
-
-TcpConnectionTest.o: TcpConnectionTest.cpp.o
-.PHONY : TcpConnectionTest.o
-
-# target to build an object file
-TcpConnectionTest.cpp.o:
-	cd /home/zxe/My-Project/StreamMediaServer/build && $(MAKE) $(MAKESILENT) -f src/network/net/tests/CMakeFiles/TcpConnectionTest.dir/build.make src/network/net/tests/CMakeFiles/TcpConnectionTest.dir/TcpConnectionTest.cpp.o
-.PHONY : TcpConnectionTest.cpp.o
-
-TcpConnectionTest.i: TcpConnectionTest.cpp.i
-.PHONY : TcpConnectionTest.i
-
-# target to preprocess a source file
-TcpConnectionTest.cpp.i:
-	cd /home/zxe/My-Project/StreamMediaServer/build && $(MAKE) $(MAKESILENT) -f src/network/net/tests/CMakeFiles/TcpConnectionTest.dir/build.make src/network/net/tests/CMakeFiles/TcpConnectionTest.dir/TcpConnectionTest.cpp.i
-.PHONY : TcpConnectionTest.cpp.i
-
-TcpConnectionTest.s: TcpConnectionTest.cpp.s
-.PHONY : TcpConnectionTest.s
-
-# target to generate assembly for a file
-TcpConnectionTest.cpp.s:
-	cd /home/zxe/My-Project/StreamMediaServer/build && $(MAKE) $(MAKESILENT) -f src/network/net/tests/CMakeFiles/TcpConnectionTest.dir/build.make src/network/net/tests/CMakeFiles/TcpConnectionTest.dir/TcpConnectionTest.cpp.s
-.PHONY : TcpConnectionTest.cpp.s
-
-TcpServerTest.o: TcpServerTest.cpp.o
-.PHONY : TcpServerTest.o
-
-# target to build an object file
-TcpServerTest.cpp.o:
-	cd /home/zxe/My-Project/StreamMediaServer/build && $(MAKE) $(MAKESILENT) -f src/network/net/tests/CMakeFiles/TcpServerTest.dir/build.make src/network/net/tests/CMakeFiles/TcpServerTest.dir/TcpServerTest.cpp.o
-.PHONY : TcpServerTest.cpp.o
-
-TcpServerTest.i: TcpServerTest.cpp.i
-.PHONY : TcpServerTest.i
-
-# target to preprocess a source file
-TcpServerTest.cpp.i:
-	cd /home/zxe/My-Project/StreamMediaServer/build && $(MAKE) $(MAKESILENT) -f src/network/net/tests/CMakeFiles/TcpServerTest.dir/build.make src/network/net/tests/CMakeFiles/TcpServerTest.dir/TcpServerTest.cpp.i
-.PHONY : TcpServerTest.cpp.i
-
-TcpServerTest.s: TcpServerTest.cpp.s
-.PHONY : TcpServerTest.s
-
-# target to generate assembly for a file
-TcpServerTest.cpp.s:
-	cd /home/zxe/My-Project/StreamMediaServer/build && $(MAKE) $(MAKESILENT) -f src/network/net/tests/CMakeFiles/TcpServerTest.dir/build.make src/network/net/tests/CMakeFiles/TcpServerTest.dir/TcpServerTest.cpp.s
-.PHONY : TcpServerTest.cpp.s
+UdpServerTest.cpp.s:
+	cd /home/zxe/My-Project/StreamMediaServer/build && $(MAKE) $(MAKESILENT) -f src/network/net/tests/CMakeFiles/UdpServerTest.dir/build.make src/network/net/tests/CMakeFiles/UdpServerTest.dir/UdpServerTest.cpp.s
+.PHONY : UdpServerTest.cpp.s
 
 # Help Target
 help:
@@ -439,34 +249,14 @@ help:
 	@echo "... install/strip"
 	@echo "... list_install_components"
 	@echo "... rebuild_cache"
-	@echo "... AcceptorTest"
-	@echo "... EventLoopThreadTest"
-	@echo "... InetAddressTest"
-	@echo "... SocketOptTest"
-	@echo "... TcpClientTest"
-	@echo "... TcpConnectionTest"
-	@echo "... TcpServerTest"
-	@echo "... AcceptorTest.o"
-	@echo "... AcceptorTest.i"
-	@echo "... AcceptorTest.s"
-	@echo "... EventLoopThreadTest.o"
-	@echo "... EventLoopThreadTest.i"
-	@echo "... EventLoopThreadTest.s"
-	@echo "... InetAddressTest.o"
-	@echo "... InetAddressTest.i"
-	@echo "... InetAddressTest.s"
-	@echo "... SocketOptTest.o"
-	@echo "... SocketOptTest.i"
-	@echo "... SocketOptTest.s"
-	@echo "... TcpClientTest.o"
-	@echo "... TcpClientTest.i"
-	@echo "... TcpClientTest.s"
-	@echo "... TcpConnectionTest.o"
-	@echo "... TcpConnectionTest.i"
-	@echo "... TcpConnectionTest.s"
-	@echo "... TcpServerTest.o"
-	@echo "... TcpServerTest.i"
-	@echo "... TcpServerTest.s"
+	@echo "... UdpClientTest"
+	@echo "... UdpServerTest"
+	@echo "... UdpClientTest.o"
+	@echo "... UdpClientTest.i"
+	@echo "... UdpClientTest.s"
+	@echo "... UdpServerTest.o"
+	@echo "... UdpServerTest.i"
+	@echo "... UdpServerTest.s"
 .PHONY : help
 
 

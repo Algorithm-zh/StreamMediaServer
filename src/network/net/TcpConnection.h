@@ -18,13 +18,6 @@ namespace tmms
     using CloseConnectionCallback = std::function<void(const TcpConnectionPtr&)>;
     using MessageCallback = std::function<void(const TcpConnectionPtr&, MsgBuffer &)>;
     using WriteCompleteCallback = std::function<void(const TcpConnectionPtr&)>;
-    struct BufferNode
-    {
-      BufferNode(void *buf, size_t s):addr(buf),size(s){}
-      void *addr{nullptr};
-      size_t size{0};
-    };
-    using BufferNodePtr = std::shared_ptr<BufferNode>;
     struct TimeoutEntry;
     using TimeoutCallback = std::function<void(const TcpConnectionPtr&)>;
     class TcpConnection : public Connection
@@ -70,6 +63,7 @@ namespace tmms
       std::vector<struct iovec> io_vec_list_;
       WriteCompleteCallback write_complete_cb_;
       //超时事件成员变量
+      //为什么要用 weak, 这个是为了记录指针的引用数，当引用数为 0 即超时，也可以通过增加引用数来延长生命周期
       std::weak_ptr<TimeoutEntry> timeout_entry_; //超时事件条目
       int32_t max_idle_time_{30}; //最大空闲事件
     };

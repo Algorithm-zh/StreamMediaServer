@@ -175,6 +175,30 @@ network/fast:
 	cd /home/zxe/My-Project/StreamMediaServer/build && $(MAKE) $(MAKESILENT) -f src/network/CMakeFiles/network.dir/build.make src/network/CMakeFiles/network.dir/build
 .PHONY : network/fast
 
+TcpClient.o: TcpClient.cc.o
+.PHONY : TcpClient.o
+
+# target to build an object file
+TcpClient.cc.o:
+	cd /home/zxe/My-Project/StreamMediaServer/build && $(MAKE) $(MAKESILENT) -f src/network/CMakeFiles/network.dir/build.make src/network/CMakeFiles/network.dir/TcpClient.cc.o
+.PHONY : TcpClient.cc.o
+
+TcpClient.i: TcpClient.cc.i
+.PHONY : TcpClient.i
+
+# target to preprocess a source file
+TcpClient.cc.i:
+	cd /home/zxe/My-Project/StreamMediaServer/build && $(MAKE) $(MAKESILENT) -f src/network/CMakeFiles/network.dir/build.make src/network/CMakeFiles/network.dir/TcpClient.cc.i
+.PHONY : TcpClient.cc.i
+
+TcpClient.s: TcpClient.cc.s
+.PHONY : TcpClient.s
+
+# target to generate assembly for a file
+TcpClient.cc.s:
+	cd /home/zxe/My-Project/StreamMediaServer/build && $(MAKE) $(MAKESILENT) -f src/network/CMakeFiles/network.dir/build.make src/network/CMakeFiles/network.dir/TcpClient.cc.s
+.PHONY : TcpClient.cc.s
+
 TcpServer.o: TcpServer.cc.o
 .PHONY : TcpServer.o
 
@@ -198,6 +222,54 @@ TcpServer.s: TcpServer.cc.s
 TcpServer.cc.s:
 	cd /home/zxe/My-Project/StreamMediaServer/build && $(MAKE) $(MAKESILENT) -f src/network/CMakeFiles/network.dir/build.make src/network/CMakeFiles/network.dir/TcpServer.cc.s
 .PHONY : TcpServer.cc.s
+
+UdpClient.o: UdpClient.cc.o
+.PHONY : UdpClient.o
+
+# target to build an object file
+UdpClient.cc.o:
+	cd /home/zxe/My-Project/StreamMediaServer/build && $(MAKE) $(MAKESILENT) -f src/network/CMakeFiles/network.dir/build.make src/network/CMakeFiles/network.dir/UdpClient.cc.o
+.PHONY : UdpClient.cc.o
+
+UdpClient.i: UdpClient.cc.i
+.PHONY : UdpClient.i
+
+# target to preprocess a source file
+UdpClient.cc.i:
+	cd /home/zxe/My-Project/StreamMediaServer/build && $(MAKE) $(MAKESILENT) -f src/network/CMakeFiles/network.dir/build.make src/network/CMakeFiles/network.dir/UdpClient.cc.i
+.PHONY : UdpClient.cc.i
+
+UdpClient.s: UdpClient.cc.s
+.PHONY : UdpClient.s
+
+# target to generate assembly for a file
+UdpClient.cc.s:
+	cd /home/zxe/My-Project/StreamMediaServer/build && $(MAKE) $(MAKESILENT) -f src/network/CMakeFiles/network.dir/build.make src/network/CMakeFiles/network.dir/UdpClient.cc.s
+.PHONY : UdpClient.cc.s
+
+UdpServer.o: UdpServer.cc.o
+.PHONY : UdpServer.o
+
+# target to build an object file
+UdpServer.cc.o:
+	cd /home/zxe/My-Project/StreamMediaServer/build && $(MAKE) $(MAKESILENT) -f src/network/CMakeFiles/network.dir/build.make src/network/CMakeFiles/network.dir/UdpServer.cc.o
+.PHONY : UdpServer.cc.o
+
+UdpServer.i: UdpServer.cc.i
+.PHONY : UdpServer.i
+
+# target to preprocess a source file
+UdpServer.cc.i:
+	cd /home/zxe/My-Project/StreamMediaServer/build && $(MAKE) $(MAKESILENT) -f src/network/CMakeFiles/network.dir/build.make src/network/CMakeFiles/network.dir/UdpServer.cc.i
+.PHONY : UdpServer.cc.i
+
+UdpServer.s: UdpServer.cc.s
+.PHONY : UdpServer.s
+
+# target to generate assembly for a file
+UdpServer.cc.s:
+	cd /home/zxe/My-Project/StreamMediaServer/build && $(MAKE) $(MAKESILENT) -f src/network/CMakeFiles/network.dir/build.make src/network/CMakeFiles/network.dir/UdpServer.cc.s
+.PHONY : UdpServer.cc.s
 
 base/InetAddress.o: base/InetAddress.cc.o
 .PHONY : base/InetAddress.o
@@ -439,30 +511,6 @@ net/PipeEvent.cc.s:
 	cd /home/zxe/My-Project/StreamMediaServer/build && $(MAKE) $(MAKESILENT) -f src/network/CMakeFiles/network.dir/build.make src/network/CMakeFiles/network.dir/net/PipeEvent.cc.s
 .PHONY : net/PipeEvent.cc.s
 
-net/TcpClient.o: net/TcpClient.cc.o
-.PHONY : net/TcpClient.o
-
-# target to build an object file
-net/TcpClient.cc.o:
-	cd /home/zxe/My-Project/StreamMediaServer/build && $(MAKE) $(MAKESILENT) -f src/network/CMakeFiles/network.dir/build.make src/network/CMakeFiles/network.dir/net/TcpClient.cc.o
-.PHONY : net/TcpClient.cc.o
-
-net/TcpClient.i: net/TcpClient.cc.i
-.PHONY : net/TcpClient.i
-
-# target to preprocess a source file
-net/TcpClient.cc.i:
-	cd /home/zxe/My-Project/StreamMediaServer/build && $(MAKE) $(MAKESILENT) -f src/network/CMakeFiles/network.dir/build.make src/network/CMakeFiles/network.dir/net/TcpClient.cc.i
-.PHONY : net/TcpClient.cc.i
-
-net/TcpClient.s: net/TcpClient.cc.s
-.PHONY : net/TcpClient.s
-
-# target to generate assembly for a file
-net/TcpClient.cc.s:
-	cd /home/zxe/My-Project/StreamMediaServer/build && $(MAKE) $(MAKESILENT) -f src/network/CMakeFiles/network.dir/build.make src/network/CMakeFiles/network.dir/net/TcpClient.cc.s
-.PHONY : net/TcpClient.cc.s
-
 net/TcpConnection.o: net/TcpConnection.cc.o
 .PHONY : net/TcpConnection.o
 
@@ -511,6 +559,30 @@ net/TimingWheel.cc.s:
 	cd /home/zxe/My-Project/StreamMediaServer/build && $(MAKE) $(MAKESILENT) -f src/network/CMakeFiles/network.dir/build.make src/network/CMakeFiles/network.dir/net/TimingWheel.cc.s
 .PHONY : net/TimingWheel.cc.s
 
+net/UdpSocket.o: net/UdpSocket.cc.o
+.PHONY : net/UdpSocket.o
+
+# target to build an object file
+net/UdpSocket.cc.o:
+	cd /home/zxe/My-Project/StreamMediaServer/build && $(MAKE) $(MAKESILENT) -f src/network/CMakeFiles/network.dir/build.make src/network/CMakeFiles/network.dir/net/UdpSocket.cc.o
+.PHONY : net/UdpSocket.cc.o
+
+net/UdpSocket.i: net/UdpSocket.cc.i
+.PHONY : net/UdpSocket.i
+
+# target to preprocess a source file
+net/UdpSocket.cc.i:
+	cd /home/zxe/My-Project/StreamMediaServer/build && $(MAKE) $(MAKESILENT) -f src/network/CMakeFiles/network.dir/build.make src/network/CMakeFiles/network.dir/net/UdpSocket.cc.i
+.PHONY : net/UdpSocket.cc.i
+
+net/UdpSocket.s: net/UdpSocket.cc.s
+.PHONY : net/UdpSocket.s
+
+# target to generate assembly for a file
+net/UdpSocket.cc.s:
+	cd /home/zxe/My-Project/StreamMediaServer/build && $(MAKE) $(MAKESILENT) -f src/network/CMakeFiles/network.dir/build.make src/network/CMakeFiles/network.dir/net/UdpSocket.cc.s
+.PHONY : net/UdpSocket.cc.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -524,9 +596,18 @@ help:
 	@echo "... list_install_components"
 	@echo "... rebuild_cache"
 	@echo "... network"
+	@echo "... TcpClient.o"
+	@echo "... TcpClient.i"
+	@echo "... TcpClient.s"
 	@echo "... TcpServer.o"
 	@echo "... TcpServer.i"
 	@echo "... TcpServer.s"
+	@echo "... UdpClient.o"
+	@echo "... UdpClient.i"
+	@echo "... UdpClient.s"
+	@echo "... UdpServer.o"
+	@echo "... UdpServer.i"
+	@echo "... UdpServer.s"
 	@echo "... base/InetAddress.o"
 	@echo "... base/InetAddress.i"
 	@echo "... base/InetAddress.s"
@@ -557,15 +638,15 @@ help:
 	@echo "... net/PipeEvent.o"
 	@echo "... net/PipeEvent.i"
 	@echo "... net/PipeEvent.s"
-	@echo "... net/TcpClient.o"
-	@echo "... net/TcpClient.i"
-	@echo "... net/TcpClient.s"
 	@echo "... net/TcpConnection.o"
 	@echo "... net/TcpConnection.i"
 	@echo "... net/TcpConnection.s"
 	@echo "... net/TimingWheel.o"
 	@echo "... net/TimingWheel.i"
 	@echo "... net/TimingWheel.s"
+	@echo "... net/UdpSocket.o"
+	@echo "... net/UdpSocket.i"
+	@echo "... net/UdpSocket.s"
 .PHONY : help
 
 
