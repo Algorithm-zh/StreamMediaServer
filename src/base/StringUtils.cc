@@ -89,3 +89,47 @@ std::vector<std::string> StringUtils::SplitString(const std::string &s, const st
   }
   return result;
 }
+ 
+std::vector<std::string> StringUtils::SplitStringFSM(const std::string &str, const char delim)  {
+
+  enum 
+  {
+    kStateInit = 0,
+    kStateNormal = 1,
+    kStateDelimiter = 2,
+    kStateEnd = 3,
+  };
+  std::vector<std::string> result;
+  int state = kStateInit;
+  std::string tmp;
+  state = kStateNormal;
+  for(int pos = 0; pos < str.size();)
+  {
+    if(state == kStateNormal)
+    {
+      if(str.at(pos) == delim)
+      {
+        state = kStateDelimiter;
+        continue;
+      }
+      tmp.push_back(str.at(pos));
+      pos++;
+    }else if(state == kStateDelimiter)
+    {
+      result.push_back(tmp);
+      tmp.clear();
+      state = kStateNormal;
+      pos ++;
+    }
+  }
+  if(!tmp.empty())
+  {
+    result.push_back(tmp);
+  }
+
+  return result;
+}
+
+
+
+

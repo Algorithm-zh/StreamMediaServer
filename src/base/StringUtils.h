@@ -22,6 +22,8 @@ namespace tmms
       static std::string Extension(const std::string &path);
       // 分割字符串
       static std::vector<std::string> SplitString(const std::string &str, const std::string &delim);
+      // 使用有限状态机
+      static std::vector<std::string> SplitStringFSM(const std::string &str, const char delim);
     };
   }
 }

@@ -9,7 +9,7 @@ using namespace tmms::network;
 
 EventLoopThread eventloop_thread;
 std::thread th;
-const char *http_request = "GET / HTTP/1.0\r\nHost: 172.18.12.3\r\nAccept: */*\r\nContent-Type: text/plain\r\nContent-Length: 0\r\n\r\n";
+const char *http_request = "GET / HTTP/1.0\r\nHost: 10.17.1.19\r\nAccept: */*\r\nContent-Type: text/plain\r\nContent-Length: 0\r\n\r\n";
 const char * http_response = "HTTP/1.0 200 OK\r\nServer: tmms\r\nContent-Type: text/html\r\nContent-Length: 0\r\n\r\n";
 int main(int argc, char *argv[]) {
 
@@ -18,7 +18,7 @@ int main(int argc, char *argv[]) {
 
   if(loop)
   {
-    InetAddress server("172.18.12.3:34444");
+    InetAddress server("10.17.1.19:34444");
     std::shared_ptr<TcpClient> client = std::make_shared<TcpClient>(loop, server);
     client->SetRecvMsgCallback([](const TcpConnectionPtr& con, MsgBuffer &buf){
       std::cout << "host: " << con->PeerAddr().ToIpPort() << " recv msg:" << buf.Peek() << std::endl;
@@ -39,7 +39,9 @@ int main(int argc, char *argv[]) {
     client->SetConnectCallback([](const TcpConnectionPtr& con, bool connected){
       if(connected)
       {
-        //con->Send(http_request, strlen(http_request));
+        auto size = htonl(strlen(http_request));
+        con->Send((const char*)&size, sizeof(size));
+        con->Send(http_request, strlen(http_request));
       }
     });
     client->Connect();

@@ -31,7 +31,7 @@ void TcpClient::ConnectInLoop()  {
   status_ = kTcpConStatusConnecting;
   loop_->AddEvent(std::dynamic_pointer_cast<TcpClient>(shared_from_this()));
   EnableWriting(true);
-  EnableCheckIdleTimeout(3);
+  //EnableCheckIdleTimeout(3);
   SocketOpt opt(fd_);
   auto ret = opt.Connect(server_addr_);
   if(ret == 0)

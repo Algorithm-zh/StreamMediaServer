@@ -51,7 +51,7 @@ namespace tmms
         {
           return nullptr;
         }
-        return std::dynamic_pointer_cast<T>(iter->second);
+        return std::static_pointer_cast<T>(iter->second);
       }
       void ClearContext(int type);
       void ClearContext();
