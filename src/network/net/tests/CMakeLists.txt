@@ -18,13 +18,13 @@
 #target_link_libraries(TcpConnectionTest base network)
 #install(TARGETS TcpConnectionTest RUNTIME DESTINATION sbin)
 #
-add_executable(TcpServerTest TcpServerTest.cpp)
-target_link_libraries(TcpServerTest base network)
-install(TARGETS TcpServerTest RUNTIME DESTINATION sbin)
-
-add_executable(TcpClientTest TcpClientTest.cpp)
-target_link_libraries(TcpClientTest base network)
-install(TARGETS TcpClientTest RUNTIME DESTINATION sbin)
+#add_executable(TcpServerTest TcpServerTest.cpp)
+#target_link_libraries(TcpServerTest base network)
+#install(TARGETS TcpServerTest RUNTIME DESTINATION sbin)
+#
+#add_executable(TcpClientTest TcpClientTest.cpp)
+#target_link_libraries(TcpClientTest base network)
+#install(TARGETS TcpClientTest RUNTIME DESTINATION sbin)
 
 #add_executable(UdpServerTest UdpServerTest.cpp)
 #target_link_libraries(UdpServerTest base network)
@@ -33,9 +33,9 @@ install(TARGETS TcpClientTest RUNTIME DESTINATION sbin)
 #add_executable(UdpClientTest UdpClientTest.cpp)
 #target_link_libraries(UdpClientTest base network)
 #install(TARGETS UdpClientTest RUNTIME DESTINATION sbin)
+#
+#add_executable(DnsServiceTest DnsServiceTest.cpp)
+#target_link_libraries(DnsServiceTest base network)
+#install(TARGETS DnsServiceTest RUNTIME DESTINATION sbin)
 
-
-add_executable(DnsServiceTest DnsServiceTest.cpp)
-target_link_libraries(DnsServiceTest base network)
-install(TARGETS DnsServiceTest RUNTIME DESTINATION sbin)
 

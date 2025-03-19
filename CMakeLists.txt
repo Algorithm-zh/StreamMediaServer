@@ -48,6 +48,7 @@ if(CMAKE_CXX_COMPILER_VERSION VERSION_GREATER "7.2.9")
   set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wno-error=unused-result -Werror=return-type")
 endif()
 
+include_directories(src)
 # 添加子目录
 add_subdirectory(src)
 #add_subdirectory(./third_party/jsoncpp/)

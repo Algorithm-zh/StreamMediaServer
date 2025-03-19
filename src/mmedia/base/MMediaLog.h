@@ -1,12 +1,13 @@
 #pragma once
 #include "../../base/LogStream.h"
+#include <iostream>
 
 using namespace tmms::base;
 
 #define RTMP_DEBUG_ON 1
 
 #ifdef RTMP_DEBUG_ON
-#define RTMP_TREACE LOG_TRACE
+#define RTMP_TRACE std::cout << "\n" 
 #define RTMP_DEBUG LOG_DEBUG
 #define RTMP_INFO LOG_INFO
 #else
