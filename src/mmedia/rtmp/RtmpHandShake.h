@@ -33,7 +33,7 @@ namespace tmms
     class RtmpHandShake
     {
     public:
-      RtmpHandShake(const TcpConnectionPtr &conn, bool client);
+      RtmpHandShake(const TcpConnectionPtr &conn, bool client = false);
       ~RtmpHandShake() = default;
       void Start();
       //状态机函数

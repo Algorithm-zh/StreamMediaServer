@@ -103,7 +103,7 @@ namespace
  
 using namespace tmms::mm;
 
-RtmpHandShake::RtmpHandShake(const TcpConnectionPtr &conn, bool client = false)
+RtmpHandShake::RtmpHandShake(const TcpConnectionPtr &conn, bool client)
 :connecion_(conn), is_client_(client) {
  
 }
@@ -139,10 +139,11 @@ void RtmpHandShake::CreateC1S1()  {
     //offset存储的是digest结尾的位置
     //从第8个字节开始，在728个字节中找出digest的位置
     auto offset = GetDigestOffset(C1S1_ + 1, 8, 728);
-    //计算摘要
+    //得到digest值
     uint8_t *data = C1S1_  + 1 + offset;
     if(is_client_)
     {
+      //版本号
       memcpy(C1S1_ + 5, rtmp_client_ver, 4);
       CalculateDigest(C1S1_ + 1, kRtmpHandShakePacketSize, offset, rtmp_player_key, PLAYER_KEY_OPEN_PART_LEN, data);
     }
@@ -151,6 +152,7 @@ void RtmpHandShake::CreateC1S1()  {
       memcpy(C1S1_ + 5, rtmp_server_ver, 4);
       CalculateDigest(C1S1_ + 1, kRtmpHandShakePacketSize, offset, rtmp_server_key, SERVER_KEY_OPEN_PART_LEN, data);
     }
+    //将计算出的digest值存储到digest_中
     memcpy(digest_, data, SHA256_DIGEST_LENGTH);
   }
 }
@@ -270,6 +272,7 @@ int32_t RtmpHandShake::HandShake(MsgBuffer &buf)  {
   {
     case kHandShakeWaitC0C1:
     {
+      //看收到的数据是否完整
       if(buf.ReadableBytes() < 1537)
       {
         return 1;
