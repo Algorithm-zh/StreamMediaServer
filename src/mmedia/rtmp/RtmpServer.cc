@@ -1,5 +1,5 @@
 #include "RtmpServer.h"
-#include "RtmpHandShake.h"
+#include "RtmpContext.h"
 #include "../base/MMediaLog.h"
 using namespace tmms::mm;
 
@@ -35,9 +35,9 @@ void RtmpServer::OnNewConnection(const TcpConnectionPtr &conn)  {
   {
     rtmp_handler_->OnNewConnection(conn);
   }
-  RtmpHandShakePtr shake = std::make_shared<RtmpHandShake>(conn);
+  RtmpContextPtr shake = std::make_shared<RtmpContext>(conn, nullptr);
   conn->SetContext(kRtmpContext, shake);
-  shake->Start();
+  shake->StartHandShake();
 }
  
 void RtmpServer::OnDestroyed(const TcpConnectionPtr &conn)  {
@@ -51,10 +51,10 @@ void RtmpServer::OnDestroyed(const TcpConnectionPtr &conn)  {
  
 void RtmpServer::OnMessage(const TcpConnectionPtr &conn, MsgBuffer &buf)  {
  
-  RtmpHandShakePtr shake = conn->GetContext<RtmpHandShake>(kRtmpContext);
+  RtmpContextPtr shake = conn->GetContext<RtmpContext>(kRtmpContext);
   if(shake)
   {
-    int ret = shake->HandShake(buf);
+    int ret = shake->Parse(buf);
     //握手成功
     if(ret == 0)
     {
@@ -69,10 +69,10 @@ void RtmpServer::OnMessage(const TcpConnectionPtr &conn, MsgBuffer &buf)  {
  
 void RtmpServer::OnWriteComplete(const ConnectionPtr &conn)  {
  
-  RtmpHandShakePtr shake = conn->GetContext<RtmpHandShake>(kRtmpContext);
+  RtmpContextPtr shake = conn->GetContext<RtmpContext>(kRtmpContext);
   if(shake)
   {
-    shake->WriteComplete();
+    shake->OnWriteComplete();
   }
 }
  

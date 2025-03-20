@@ -306,10 +306,11 @@ int32_t RtmpHandShake::HandShake(MsgBuffer &buf)  {
         buf.Retrieve(1536);
         RTMP_TRACE << "host: " << connecion_->PeerAddr().ToIpPort() << ", handshake done\n";
         state_ = kHandShakeDone;
+        return 0;
       }
       else
       {
-          RTMP_TRACE << "host: " << connecion_->PeerAddr().ToIpPort() << ", check S2 \n";
+          RTMP_TRACE << "host: " << connecion_->PeerAddr().ToIpPort() << ", check S2 failed\n";
           return -1;
       }
       break;
