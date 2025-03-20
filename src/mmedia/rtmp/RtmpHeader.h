@@ -34,8 +34,7 @@ namespace tmms
       kRtmpMsgTypeUserControl,
       kRtmpMsgTypeWindowACKSize,
       kRtmpMsgTypeSetPeerBW,
-      kRtmpMsgTypeAudio
-      = 8,
+      kRtmpMsgTypeAudio = 8,
       kRtmpMsgTypeVideo,
       kRtmpMsgTypeAMF3Meta = 15,
       kRtmpMsgTypeAMF3Shared,
@@ -43,8 +42,7 @@ namespace tmms
       kRtmpMsgTypeAMFMeta ,
       kRtmpMsgTypeAMFShared,
       kRtmpMsgTypeAMFMessage,
-      kRtmpMsgTypeMetadata
-      = 22,
+      kRtmpMsgTypeMetadata = 22,
     };
     //Basic Header中的fmt
     //fmt决定了编码过的消息头的格式。这个字段是一个变长字段，长度取决于cdid
