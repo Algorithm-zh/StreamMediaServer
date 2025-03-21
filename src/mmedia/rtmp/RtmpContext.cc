@@ -32,7 +32,7 @@ int32_t RtmpContext::Parse(MsgBuffer &buf)  {
     }
     else if(ret == -1)
     {
-      RTMP_ERROR << "rtmp handshake failed\n";
+      RTMP_ERROR << "rtmp handshake failed";
     }
     else if(ret == 2)
     {
@@ -41,8 +41,8 @@ int32_t RtmpContext::Parse(MsgBuffer &buf)  {
   }
   else if(state_ == kRtmpMessage)
   {
-    std::cout << "start parse message\n";
-    ret = ParseMessage(buf);
+    auto ret = ParseMessage(buf);
+    last_left_ = buf.ReadableBytes();
   }
   return ret;
 }
@@ -77,6 +77,10 @@ int32_t RtmpContext::ParseMessage(MsgBuffer &buf)  {
   uint32_t total_bytes = buf.ReadableBytes();
   //每读取一个字节就++
   int32_t parsed = 0;
+
+  in_bytes_ += buf.ReadableBytes() - last_left_;
+  //接收到消息之后判断是否要recv一个确认消息
+  SendBytesRecv();
 
   while(total_bytes > 1)
   {
@@ -251,7 +255,33 @@ int32_t RtmpContext::ParseMessage(MsgBuffer &buf)  {
  
 void RtmpContext::MessageComplete(PacketPtr &&data)  {
  
-  RTMP_TRACE << "recv message type:" << data->PacketType() << ", len = " << data->PacketSize() << "\n";
+  RTMP_TRACE << "recv message type:" << data->PacketType() << ", len = " << data->PacketSize();
+  auto type = data->PacketType();
+  switch (type) {
+    case kRtmpMsgTypeChunkSize:
+    {
+      HandleChunkSize(data);
+      break;
+    }
+    case kRtmpMsgTypeBytesRead:
+    {
+      RTMP_TRACE << "message bytes read recv";
+      break;
+    }
+    case kRtmpMsgTypeUserControl:
+    {
+      HandleUserMessage(data);
+      break;
+    }
+    case kRtmpMsgTypeWindowACKSize:
+    {
+      HandleAckWindowSize(data);
+      break;
+    }
+    default:
+    RTMP_ERROR << "not support message type:" << type;
+    break;
+  }
 }
 
  
@@ -373,7 +403,7 @@ bool RtmpContext::BuildChunk(const PacketPtr &packet, uint32_t timestamp, bool f
         //创建一个header继续发
         if(out_current_ - out_buffer_ >= 4096)
         {
-          RTMP_ERROR << "rtmp had no enough out header buffer.\n";
+          RTMP_ERROR << "rtmp had no enough out header buffer.";
           break;
         }
         
@@ -533,7 +563,7 @@ bool RtmpContext::BuildChunk(PacketPtr &&packet, uint32_t timestamp, bool fmt0) 
         //创建一个header继续发
         if(out_current_ - out_buffer_ >= 4096)
         {
-          RTMP_ERROR << "rtmp had no enough out header buffer.\n";
+          RTMP_ERROR << "rtmp had no enough out header buffer.";
           break;
         }
         
@@ -625,3 +655,217 @@ void RtmpContext::PushOutQueue(PacketPtr &&packet)  {
   Send();
 }
  
+ 
+void RtmpContext::SendSetChunkSize()  {
+  PacketPtr packet = Packet::NewPacket(64); //applied for more memory
+  RtmpMsgHeaderPtr header = packet->Ext<RtmpMsgHeader>();
+  if(header)
+  {
+    //csid fixed is 2 and msg_sid fixed is 0
+    header->cs_id = kRtmpCSIDCommand; 
+    header->msg_len = 0;
+    header->msg_type = kRtmpMsgTypeChunkSize;
+    header->timestamp = 0;
+    header->msg_sid = kRtmpMsID0;
+    packet->SetExt(header);
+  }
+
+  char *body = packet->Data();
+
+  header->msg_len = BytesWriter::WriteUint32T(body, out_chunk_size_);
+  packet->SetPacketSize(header->msg_len);
+  RTMP_DEBUG << "send chunk size " << out_chunk_size_ << "to host:" << connection_->PeerAddr().ToIpPort();
+  PushOutQueue(std::move(packet));
+}
+ 
+void RtmpContext::SendAckWindowSize()  {
+ 
+  PacketPtr packet = Packet::NewPacket(64); //applied for more memory
+  RtmpMsgHeaderPtr header = packet->Ext<RtmpMsgHeader>();
+  if(header)
+  {
+    //csid fixed is 2 and msg_sid fixed is 0
+    header->cs_id = kRtmpCSIDCommand; 
+    header->msg_len = 0;
+    header->msg_type = kRtmpMsgTypeWindowACKSize;
+    header->timestamp = 0;
+    header->msg_sid = kRtmpMsID0;
+    packet->SetExt(header);
+  }
+
+  char *body = packet->Data();
+
+  header->msg_len = BytesWriter::WriteUint32T(body, ack_size_);
+  packet->SetPacketSize(header->msg_len);
+  RTMP_DEBUG << "send ack window size " << out_chunk_size_ << "to host: " << connection_->PeerAddr().ToIpPort();
+  PushOutQueue(std::move(packet));
+}
+ 
+void RtmpContext::SendSetPeerBandwidth()  {
+ 
+  PacketPtr packet = Packet::NewPacket(64); //applied for more memory
+  RtmpMsgHeaderPtr header = packet->Ext<RtmpMsgHeader>();
+  if(header)
+  {
+    //csid fixed is 2 and msg_sid fixed is 0
+    header->cs_id = kRtmpCSIDCommand; 
+    header->msg_len = 0;
+    header->msg_type = kRtmpMsgTypeSetPeerBW;
+    header->timestamp = 0;
+    header->msg_sid = kRtmpMsID0;
+    packet->SetExt(header);
+  }
+
+  char *body = packet->Data();
+
+  body += BytesWriter::WriteUint32T(body, ack_size_);
+  *body ++ = 0x02;//dynamic limit
+  packet->SetPacketSize(5);
+  RTMP_DEBUG << "send band width " << out_chunk_size_ << "to host: " << connection_->PeerAddr().ToIpPort();
+  PushOutQueue(std::move(packet));
+}
+ 
+void RtmpContext::SendBytesRecv()  {
+ 
+  if(in_bytes_ >= ack_size_)
+  {
+    PacketPtr packet = Packet::NewPacket(64); //applied for more memory
+    RtmpMsgHeaderPtr header = packet->Ext<RtmpMsgHeader>();
+    if(header)
+    {
+      //csid fixed is 2 and msg_sid fixed is 0
+      header->cs_id = kRtmpCSIDCommand; 
+      header->msg_len = 0;
+      header->msg_type = kRtmpMsgTypeBytesRead;
+      header->timestamp = 0;
+      header->msg_sid = kRtmpMsID0;
+      packet->SetExt(header);
+    }
+
+    char *body = packet->Data();
+
+    header->msg_len = BytesWriter::WriteUint32T(body, in_bytes_);
+    packet->SetPacketSize(header->msg_len);
+    PushOutQueue(std::move(packet));
+    in_bytes_ = 0;
+  }
+}
+ 
+//注意用户控制消息只处理了两个 
+void RtmpContext::SendUserCtrlMessage(short nType, uint32_t value1, uint32_t value2)  {
+ 
+  PacketPtr packet = Packet::NewPacket(64); //applied for more memory
+  RtmpMsgHeaderPtr header = packet->Ext<RtmpMsgHeader>();
+  if(header)
+  {
+    //csid fixed is 2 and msg_sid fixed is 0
+    header->cs_id = kRtmpCSIDCommand; 
+    header->msg_len = 0;
+    header->msg_type = kRtmpMsgTypeUserControl;
+    header->timestamp = 0;
+    header->msg_sid = kRtmpMsID0;
+    packet->SetExt(header);
+  }
+
+  char *body = packet->Data();
+  char *p = body;
+
+  p += BytesWriter::WriteUint16T(body, nType);
+  p += BytesWriter::WriteUint32T(p, value1);
+  if(nType == kRtmpEventTypeSetBufferLength)
+  {
+    //只有设置 buffer 长度是两个变量
+    p += BytesWriter::WriteUint32T(p, value2);
+  }
+  packet->SetPacketSize(header->msg_len);
+  RTMP_DEBUG << "set user control type: " << nType << ", value1: " << value1 << ", value2: " << value2;
+  PushOutQueue(std::move(packet));
+
+}
+ 
+void RtmpContext::HandleChunkSize(PacketPtr &packet)  {
+ 
+  if(packet->PacketSize() >= 4)
+  {
+    auto size = BytesReader::ReadUint32T(packet->Data());
+    RTMP_DEBUG << "recv chunk size in_chunk_size: " << in_chunk_size_ 
+      << "change to " << size << "host : " << connection_->PeerAddr().ToIpPort();
+    in_chunk_size_ = size;
+  }
+}
+ 
+void RtmpContext::HandleAckWindowSize(PacketPtr &packet)  {
+
+  if(packet->PacketSize() >= 4)
+  {
+    auto size = BytesReader::ReadUint32T(packet->Data());
+    RTMP_DEBUG << "recv ack window size in_chunk_size: " << ack_size_ 
+      << "change to " << size << "host : " << connection_->PeerAddr().ToIpPort();
+    ack_size_ = size;
+  }
+  else
+  {
+    RTMP_ERROR << "invalid ack windows size packet msg_len:" << packet->PacketSize() 
+      << "host : " << connection_->PeerAddr().ToIpPort();
+  }
+}
+ 
+void RtmpContext::HandleUserMessage(PacketPtr &packet)  {
+ 
+  auto msg_len = packet->PacketSize();
+  if(msg_len < 6)
+  {
+    RTMP_ERROR << "invalid user control packet msg_len:" 
+      << packet->PacketSize() << "host : " << connection_->PeerAddr().ToIpPort();
+    return;
+  }
+  char *body = packet->Data();
+  auto type = BytesReader::ReadUint16T(body);
+  auto value = BytesReader::ReadUint32T(body + 2);
+  RTMP_TRACE << "recv user control type:" << type << " value:"<< value << " host:" << connection_->PeerAddr().ToIpPort();
+  switch(type)
+  {
+    case kRtmpEventTypeStreamBegin:
+    {
+      RTMP_TRACE << "recv stream begin value:"<< value << " host:" << connection_->PeerAddr().ToIpPort();
+      break;
+    }
+    case kRtmpEventTypeStreamEOF:
+    {
+      RTMP_TRACE << "recv stream eof value:"<< value << " host:" << connection_->PeerAddr().ToIpPort();
+      break;
+    }
+    case kRtmpEventTypeStreamDry:
+    {
+      RTMP_TRACE << "recv stream dry value:"<< value << " host:" << connection_->PeerAddr().ToIpPort();
+      break;
+    }
+    case kRtmpEventTypeSetBufferLength:
+    {
+      RTMP_TRACE << "recv set buffer length value:"<< value << " host:" << connection_->PeerAddr().ToIpPort();
+      if(msg_len < 10)
+      {
+        RTMP_ERROR << "invalid user control packet msg_len:" 
+        << packet->PacketSize() << "host : " << connection_->PeerAddr().ToIpPort();
+        return;
+      }
+      break;
+    }
+    case kRtmpEventTypeStreamsRecorded:
+    {
+      RTMP_TRACE << "recv stream recorded value:"<< value << " host:" << connection_->PeerAddr().ToIpPort();
+      break;
+    }
+    case kRtmpEventTypePingRequest:
+    {
+      RTMP_TRACE << "recv ping request value:"<< value << " host:" << connection_->PeerAddr().ToIpPort();
+      SendUserCtrlMessage(kRtmpEventTypePingResponse, value, 0);
+      break;
+    }
+    case kRtmpEventTypePingResponse:
+    {
+      RTMP_TRACE << "recv ping response value:"<< value << " host:" << connection_->PeerAddr().ToIpPort();
+      break;
+    }
+  }
+}
