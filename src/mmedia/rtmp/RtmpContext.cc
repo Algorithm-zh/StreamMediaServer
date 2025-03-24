@@ -4,9 +4,7 @@
 #include "RtmpHeader.h"
 #include "../base/BytesReader.h"
 #include "../base/BytesWriter.h"
-#include <algorithm>
-#include <cstdint>
-#include <cstring>
+#include "amf/AMFObject.h"
 #include <memory>
 using namespace tmms::mm;
  
@@ -276,6 +274,16 @@ void RtmpContext::MessageComplete(PacketPtr &&data)  {
     case kRtmpMsgTypeWindowACKSize:
     {
       HandleAckWindowSize(data);
+      break;
+    }
+    case kRtmpMsgTypeAMF3Message:
+    {
+      HandleAmfCommand(data, true);
+      break;
+    }
+    case kRtmpMsgTypeAMFMessage:
+    {
+      HandleAmfCommand(data);
       break;
     }
     default:
@@ -867,5 +875,31 @@ void RtmpContext::HandleUserMessage(PacketPtr &packet)  {
       RTMP_TRACE << "recv ping response value:"<< value << " host:" << connection_->PeerAddr().ToIpPort();
       break;
     }
+    default:
+      break;
   }
+}
+
+ 
+void RtmpContext::HandleAmfCommand(PacketPtr &data, bool amf3)  {
+  
+  RTMP_TRACE << "amf message len:" << data->PacketSize() << "host:" << connection_->PeerAddr().ToIpPort();
+
+  const char *body = data->Data();
+  int32_t msg_len = data->PacketSize();
+  
+  if(amf3)
+  {
+    //不处理第一个字节
+    body += 1;
+    msg_len -= 1;
+  }
+
+  AMFObject obj;
+  if(obj.Decode(body, msg_len) < 0)
+  {
+    RTMP_ERROR << "decode amf message failed, host:" << connection_->PeerAddr().ToIpPort();
+  }
+  obj.Dump();
+
 }

@@ -73,6 +73,7 @@ namespace tmms
       void HandleChunkSize(PacketPtr &packet);
       void HandleAckWindowSize(PacketPtr &packet);
       void HandleUserMessage(PacketPtr &packet);//用户控制消息
+      void HandleAmfCommand(PacketPtr &data, bool amf3 = false);
       
       
       char out_buffer_[4096];
