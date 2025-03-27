@@ -4,18 +4,29 @@
 #include "RtmpHeader.h"
 #include "../base/BytesReader.h"
 #include "../base/BytesWriter.h"
+#include "amf/AMFAny.h"
 #include "amf/AMFObject.h"
+#include "../base/Packet.h"
+#include "../../base/StringUtils.h"
+#include <functional>
 #include <memory>
+#include <vector>
 using namespace tmms::mm;
  
 RtmpContext::RtmpContext(const TcpConnectionPtr &conn, RtmpHandler *handler, bool client)
-:handshake_(conn, client), connection_(conn), handler_(handler)  
+:handshake_(conn, client), connection_(conn), rtmp_handler_(handler), is_client_(client)  
 {
- 
+  commands_["connect"] = std::bind(&RtmpContext::HandleConnect, this, std::placeholders::_1); 
+  commands_["createStream"] = std::bind(&RtmpContext::HandleCreateStream, this, std::placeholders::_1);
+  commands_["_result"] = std::bind(&RtmpContext::HandleResult, this, std::placeholders::_1);
+  commands_["_error"] = std::bind(&RtmpContext::HandleError, this, std::placeholders::_1);
+  commands_["play"] = std::bind(&RtmpContext::HandlePlay, this, std::placeholders::_1);
+  commands_["publish"] = std::bind(&RtmpContext::HandlePublish, this, std::placeholders::_1);
+  out_current_ = out_buffer_;
 }
  
 int32_t RtmpContext::Parse(MsgBuffer &buf)  {
-  int32_t ret = -1;
+  int32_t ret = 0;
   if(state_ == kRtmpHandShake)
   {
     ret = handshake_.HandShake(buf);
@@ -92,6 +103,7 @@ int32_t RtmpContext::ParseMessage(MsgBuffer &buf)  {
     {
       if(total_bytes < 2)
       {
+        //数据不过
         return 1;
       }
       csid = 64;
@@ -298,7 +310,6 @@ bool RtmpContext::BuildChunk(const PacketPtr &packet, uint32_t timestamp, bool f
   RtmpMsgHeaderPtr h = packet->Ext<RtmpMsgHeader>();
   if(h)
   {
-    out_sending_packets_.emplace_back(packet);
     RtmpMsgHeaderPtr &prev = out_message_headers_[h->cs_id];
     //使用delta就代表不使用fmt0
     //使用fmt0的条件：强制使用fmt0, 第一个包, 时间戳小于上一个包, 包号相同
@@ -448,21 +459,22 @@ bool RtmpContext::BuildChunk(const PacketPtr &packet, uint32_t timestamp, bool f
         break;
       }
     }
+    out_sending_packets_.emplace_back(packet);
     return true;
   }
   return false;
 }
 
+//核心函数:构建要发送的chunk包
 bool RtmpContext::BuildChunk(PacketPtr &&packet, uint32_t timestamp, bool fmt0)  {
 
   RtmpMsgHeaderPtr h = packet->Ext<RtmpMsgHeader>();
   if(h)
   {
-    out_sending_packets_.emplace_back(std::move(packet));
     RtmpMsgHeaderPtr &prev = out_message_headers_[h->cs_id];
     //使用delta就代表不使用fmt0
     //使用fmt0的条件：强制使用fmt0, 第一个包, 时间戳小于上一个包, 包号相同
-    bool use_delta = !fmt0 && !prev && timestamp >= prev->timestamp && h->msg_sid == prev->msg_sid;
+    bool use_delta = !fmt0 && prev && timestamp >= prev->timestamp && h->msg_sid == prev->msg_sid;
     if(!prev)
     {
       prev = std::make_shared<RtmpMsgHeader>();
@@ -560,7 +572,7 @@ bool RtmpContext::BuildChunk(PacketPtr &&packet, uint32_t timestamp, bool fmt0) 
     {
       const char *chunk = body + bytes_parsed;
       int32_t size = h->msg_len - bytes_parsed;
-      size = std::min(size, packet->Space());
+      size = std::min(size, out_chunk_size_);
 
       BufferNodePtr node = std::make_shared<BufferNode>((void *)chunk, size);
       sending_bufs_.emplace_back(std::move(node));
@@ -571,6 +583,7 @@ bool RtmpContext::BuildChunk(PacketPtr &&packet, uint32_t timestamp, bool fmt0) 
         //创建一个header继续发
         if(out_current_ - out_buffer_ >= 4096)
         {
+          
           RTMP_ERROR << "rtmp had no enough out header buffer.";
           break;
         }
@@ -608,14 +621,16 @@ bool RtmpContext::BuildChunk(PacketPtr &&packet, uint32_t timestamp, bool fmt0) 
         break;
       }
     }
+    out_sending_packets_.emplace_back(std::move(packet));
     return true;
   }
   return false;
 }
  
+
 void RtmpContext::Send()  {
  
-  if(sending_)return;
+  if(sending_) return;
   sending_ = true;
   //最多发送10个包
   for(int i = 0; i < 10; i ++)
@@ -626,7 +641,7 @@ void RtmpContext::Send()  {
     }
     PacketPtr packet = std::move(out_waiting_queue_.front());
     out_waiting_queue_.pop_front();
-    BuildChunk(std::move(packet), 0, false);
+    BuildChunk(std::move(packet));
   }
   connection_->Send(sending_bufs_);
 }
@@ -645,10 +660,10 @@ void RtmpContext::CheckAndSend()  {
   }
   else
   {
-    if(handler_)
+    if(rtmp_handler_)
     {
       //发送完毕，激活上层，让上层决定处理
-      handler_->OnActive(connection_);
+      rtmp_handler_->OnActive(connection_);
     }
   }
 }
@@ -666,7 +681,7 @@ void RtmpContext::PushOutQueue(PacketPtr &&packet)  {
  
 void RtmpContext::SendSetChunkSize()  {
   PacketPtr packet = Packet::NewPacket(64); //applied for more memory
-  RtmpMsgHeaderPtr header = packet->Ext<RtmpMsgHeader>();
+  RtmpMsgHeaderPtr header = std::make_shared<RtmpMsgHeader>();
   if(header)
   {
     //csid fixed is 2 and msg_sid fixed is 0
@@ -689,7 +704,7 @@ void RtmpContext::SendSetChunkSize()  {
 void RtmpContext::SendAckWindowSize()  {
  
   PacketPtr packet = Packet::NewPacket(64); //applied for more memory
-  RtmpMsgHeaderPtr header = packet->Ext<RtmpMsgHeader>();
+  RtmpMsgHeaderPtr header = std::make_shared<RtmpMsgHeader>();
   if(header)
   {
     //csid fixed is 2 and msg_sid fixed is 0
@@ -702,17 +717,16 @@ void RtmpContext::SendAckWindowSize()  {
   }
 
   char *body = packet->Data();
-
   header->msg_len = BytesWriter::WriteUint32T(body, ack_size_);
   packet->SetPacketSize(header->msg_len);
-  RTMP_DEBUG << "send ack window size " << out_chunk_size_ << "to host: " << connection_->PeerAddr().ToIpPort();
+  RTMP_DEBUG << "send ack window size " << ack_size_ << "to host: " << connection_->PeerAddr().ToIpPort();
   PushOutQueue(std::move(packet));
 }
  
 void RtmpContext::SendSetPeerBandwidth()  {
  
   PacketPtr packet = Packet::NewPacket(64); //applied for more memory
-  RtmpMsgHeaderPtr header = packet->Ext<RtmpMsgHeader>();
+  RtmpMsgHeaderPtr header = std::make_shared<RtmpMsgHeader>();
   if(header)
   {
     //csid fixed is 2 and msg_sid fixed is 0
@@ -728,6 +742,7 @@ void RtmpContext::SendSetPeerBandwidth()  {
 
   body += BytesWriter::WriteUint32T(body, ack_size_);
   *body ++ = 0x02;//dynamic limit
+  header->msg_len = 5;
   packet->SetPacketSize(5);
   RTMP_DEBUG << "send band width " << out_chunk_size_ << "to host: " << connection_->PeerAddr().ToIpPort();
   PushOutQueue(std::move(packet));
@@ -738,7 +753,8 @@ void RtmpContext::SendBytesRecv()  {
   if(in_bytes_ >= ack_size_)
   {
     PacketPtr packet = Packet::NewPacket(64); //applied for more memory
-    RtmpMsgHeaderPtr header = packet->Ext<RtmpMsgHeader>();
+    RtmpMsgHeaderPtr header = std::make_shared<RtmpMsgHeader>();
+
     if(header)
     {
       //csid fixed is 2 and msg_sid fixed is 0
@@ -763,7 +779,7 @@ void RtmpContext::SendBytesRecv()  {
 void RtmpContext::SendUserCtrlMessage(short nType, uint32_t value1, uint32_t value2)  {
  
   PacketPtr packet = Packet::NewPacket(64); //applied for more memory
-  RtmpMsgHeaderPtr header = packet->Ext<RtmpMsgHeader>();
+  RtmpMsgHeaderPtr header = std::make_shared<RtmpMsgHeader>();
   if(header)
   {
     //csid fixed is 2 and msg_sid fixed is 0
@@ -902,4 +918,340 @@ void RtmpContext::HandleAmfCommand(PacketPtr &data, bool amf3)  {
   }
   obj.Dump();
 
+  const std::string &method = obj.Property(0)->String();
+  RTMP_TRACE << "amf command:" << method << " host:" << connection_->PeerAddr().ToIpPort();
+  auto iter = commands_.find(method);
+  if(iter == commands_.end())
+  {
+    RTMP_TRACE << "not support method" << method << " host:" << connection_->PeerAddr().ToIpPort();
+    return ;
+  }
+  iter->second(obj);
+}
+ 
+//客户端发送
+void RtmpContext::SendConnect()  {
+ 
+  SendSetChunkSize();
+  PacketPtr packet = Packet::NewPacket(1024);
+  RtmpMsgHeaderPtr header = std::make_shared<RtmpMsgHeader>();
+  header->cs_id = kRtmpCSIDAMFIni;
+  header->msg_sid = 0;
+  header->msg_len = 0;
+  header->msg_type = kRtmpMsgTypeAMFMessage;
+  packet->SetExt(header);
+
+  char *body = packet->Data();
+  char *p = body;
+
+  p += AMFAny::EncodeString(p, "connect");
+  p += AMFAny::EncodeNumber(p, 1.0);//设置id
+  *p ++ = kAMFObject;
+  p += AMFAny::EncodeNamedString(p, "app", app_);//推流点
+  p += AMFAny::EncodeNamedString(p, "tcUrl", tc_url_);//推流url
+  p += AMFAny::EncodeNamedBoolean(p, "fpad", false);//是否用代理
+  p += AMFAny::EncodeNamedNumber(p, "capabilities", 31.0);
+  p += AMFAny::EncodeNamedNumber(p, "audioCodecs", 1639.0);
+  p += AMFAny::EncodeNamedNumber(p, "videoCodecs", 252.0);
+  p += AMFAny::EncodeNamedNumber(p, "videoFunction", 1.0);//支持seek
+  //结束符号
+  *p ++ = 0x00;
+  *p ++ = 0x00;
+  *p ++ = 0x09;
+
+  header->msg_len = p - body;
+  packet->SetPacketSize(header->msg_len);
+  RTMP_TRACE << "send connect message len:" << header->msg_len << "host:" << connection_->PeerAddr().ToIpPort();
+  PushOutQueue(std::move(packet));
+}
+ 
+void RtmpContext::HandleConnect(AMFObject &obj)  {
+ 
+  bool amf3 = false;
+  tc_url_ = obj.Property("tcUrl")->String();
+  AMFObjectPtr sub_obj = obj.Property(2)->Object();
+  if(sub_obj)
+  {
+    app_ = sub_obj->Property("app")->String();
+    if(sub_obj->Property("objectEncoding"))
+    {
+      amf3 = sub_obj->Property("objectEncoding")->Number() == 3.0;
+    }
+  }
+
+  RTMP_TRACE << " recv connect tcUrl:" << tc_url_ << " app:" << app_ << " amf3:" << amf3;
+  SendAckWindowSize();
+  SendSetPeerBandwidth();
+  SendSetChunkSize();
+  //回复
+  PacketPtr packet = Packet::NewPacket(1024);
+  RtmpMsgHeaderPtr header = std::make_shared<RtmpMsgHeader>();
+  header->cs_id = kRtmpCSIDAMFIni;
+  header->msg_sid = 0;
+  header->msg_len = 0;
+  header->msg_type = kRtmpMsgTypeAMFMessage;
+  packet->SetExt(header);
+
+  char *body = packet->Data();
+  char *p = body;
+
+  p += AMFAny::EncodeString(p, "_result");
+  p += AMFAny::EncodeNumber(p, 1.0);
+  *p ++ = kAMFObject;
+  p += AMFAny::EncodeNamedString(p, "fmsVer", "FMS/3,0,1,123");
+  p += AMFAny::EncodeNamedNumber(p, "capabilities", 31);
+  *p ++ = 0x00;
+  *p ++ = 0x00;
+  *p ++ = 0x09;
+  *p ++ = kAMFObject;
+  p += AMFAny::EncodeNamedString(p, "level", "status");
+  p += AMFAny::EncodeNamedString(p, "code", "NetConnection.Connect.Success");
+  p += AMFAny::EncodeNamedString(p, "description", "Connection succeed.");
+  p += AMFAny::EncodeNamedNumber(p, "objectEncoding", amf3 ? 3.0 : 0);
+  *p ++ = 0x00;
+  *p ++ = 0x00;
+  *p ++ = 0x09;
+
+  header->msg_len = p - body;
+  packet->SetPacketSize(header->msg_len);
+  RTMP_TRACE << "connect result len:" << header->msg_len << "host:" << connection_->PeerAddr().ToIpPort();
+  PushOutQueue(std::move(packet));
+
+}
+ 
+void RtmpContext::SendCreateStream()  {
+ 
+ 
+  SendSetChunkSize();
+  PacketPtr packet = Packet::NewPacket(1024);
+  RtmpMsgHeaderPtr header = std::make_shared<RtmpMsgHeader>();
+  header->cs_id = kRtmpCSIDAMFIni;
+  header->msg_sid = 0;
+  header->msg_len = 0;
+  header->msg_type = kRtmpMsgTypeAMFMessage;
+  packet->SetExt(header);
+
+  char *body = packet->Data();
+  char *p = body;
+
+  p += AMFAny::EncodeString(p, "createStream");
+  p += AMFAny::EncodeNumber(p, 4.0);
+  *p ++ = kAMFNull;
+
+  header->msg_len = p - body;
+  packet->SetPacketSize(header->msg_len);
+  RTMP_TRACE << "send createStream message len:" << header->msg_len << "host:" << connection_->PeerAddr().ToIpPort();
+  PushOutQueue(std::move(packet));
+}
+ 
+void RtmpContext::HandleCreateStream(AMFObject &obj)  {
+  
+  auto tran_id = obj.Property(1)->Number();
+  PacketPtr packet = Packet::NewPacket(1024);
+  RtmpMsgHeaderPtr header = std::make_shared<RtmpMsgHeader>();
+  header->cs_id = kRtmpCSIDAMFIni;
+  header->msg_sid = 0;
+  header->msg_len = 0;
+  header->msg_type = kRtmpMsgTypeAMFMessage;
+  packet->SetExt(header);
+
+  char *body = packet->Data();
+  char *p = body;
+  p += AMFAny::EncodeString(p, "_result");
+  p += AMFAny::EncodeNumber(p, tran_id);
+  *p ++ = kAMFNull;
+  p += AMFAny::EncodeNumber(p, kRtmpMsID1);
+
+  header->msg_len = p - body;
+  packet->SetPacketSize(header->msg_len);
+  RTMP_TRACE << "createStream result len:" << header->msg_len << "host:" << connection_->PeerAddr().ToIpPort();
+  PushOutQueue(std::move(packet));
+}
+ 
+void RtmpContext::SendStatus(const std::string &level, const std::string &code, const std::string &description)  {
+ 
+ 
+  SendSetChunkSize();
+  PacketPtr packet = Packet::NewPacket(1024);
+  RtmpMsgHeaderPtr header = std::make_shared<RtmpMsgHeader>();
+  header->cs_id = kRtmpCSIDAMFIni;
+  header->msg_sid = 1;
+  header->msg_len = 0;
+  header->msg_type = kRtmpMsgTypeAMFMessage;
+  packet->SetExt(header);
+
+  char *body = packet->Data();
+  char *p = body;
+
+  p += AMFAny::EncodeString(p, "onStatus");
+  p += AMFAny::EncodeNumber(p, 0);//csid
+  *p ++ = kAMFNull;
+  *p ++ = kAMFObject;
+  p += AMFAny::EncodeNamedString(p, "level", level);//state error warning
+  p += AMFAny::EncodeNamedString(p, "code", code);
+  p += AMFAny::EncodeNamedString(p, "description", description);
+  *p ++ = 0x00;
+  *p ++ = 0x00;
+  *p ++ = 0x09;
+
+  header->msg_len = p - body;
+  packet->SetPacketSize(header->msg_len);
+  RTMP_TRACE << "send status level:" << level << " code:" << code << " description:" << description << " len:" << header->msg_len << "host:" << connection_->PeerAddr().ToIpPort();
+  PushOutQueue(std::move(packet));
+}
+ 
+void RtmpContext::SendPlay()  {
+ 
+  SendSetChunkSize();
+  PacketPtr packet = Packet::NewPacket(1024);
+  RtmpMsgHeaderPtr header = std::make_shared<RtmpMsgHeader>();
+  header->cs_id = kRtmpCSIDAMFIni;
+  header->msg_sid = 1;
+  header->msg_len = 0;
+  header->msg_type = kRtmpMsgTypeAMFMessage;
+  packet->SetExt(header);
+
+  char *body = packet->Data();
+  char *p = body;
+  p += AMFAny::EncodeString(p, "play");
+  p += AMFAny::EncodeNumber(p, 0);
+  *p ++ = kAMFNull;
+  p += AMFAny::EncodeString(p, name_);//流名称
+  p += AMFAny::EncodeNumber(p, -1000.0);//播放起始时间(因为是直播所以是负数)
+
+  header->msg_len = p - body;
+  packet->SetPacketSize(header->msg_len);
+  RTMP_TRACE << "send play name:" << name_ 
+             << " len:" << header->msg_len << "host:" << connection_->PeerAddr().ToIpPort();
+  PushOutQueue(std::move(packet));
+}
+ 
+void RtmpContext::HandlePlay(AMFObject &obj)  {
+ 
+  auto tran_id = obj.Property(2)->Number();
+  name_ = obj.Property(3)->String();
+  ParseNameAndTcUrl();
+  RTMP_TRACE << "recv play session_name:" << session_name_ 
+             << " param:" << param_ << " host:" << connection_->PeerAddr().ToIpPort();
+  is_player_ = true;
+  SendUserCtrlMessage(kRtmpEventTypeStreamBegin, 1, 0);
+  SendStatus("status", "NetStream.Play.Start", "Start Playing");
+  if(rtmp_handler_)
+  {
+    rtmp_handler_->OnPlay(connection_, session_name_, param_);
+  }
+}
+ 
+void RtmpContext::ParseNameAndTcUrl()  {
+ 
+  auto pos = app_.find_last_of("/");
+  if(pos != std::string::npos)
+  {
+    app_ = app_.substr(pos + 1);
+  }
+  param_.clear();
+  pos = name_.find_last_of("?");
+  if(pos != std::string::npos)
+  {
+    param_ = name_.substr(pos + 1);
+    name_ = name_.substr(0, pos);
+  }
+  std::string domain;
+  std::vector<std::string> list = base::StringUtils::SplitString(tc_url_, "/");
+  if(list.size() == 6)//rtmp://ip或domain:port/app/stream
+  {
+    domain = list[3];
+    app_ = list[4];
+    name_ = list[5];
+  }
+
+  if(domain.empty() && tc_url_.size() > 7)//"rtmp://"
+  {
+    auto pos = tc_url_.find_last_of(":/", 7);//从第7个位置开始查找第一个:或者/后面的位置
+    if(pos != std::string::npos)
+    {
+      domain = tc_url_.substr(7, pos);
+    }
+  }
+  session_name_.clear();
+  session_name_ += domain;
+  session_name_ += "/";
+  session_name_ += app_;
+  session_name_ += "/";
+  session_name_ += name_;
+
+  RTMP_TRACE << "session_name:" << session_name_ 
+             << " param:" << param_ << " host:" << connection_->PeerAddr().ToIpPort();
+
+}
+ 
+void RtmpContext::SendPublish()  {
+ 
+  SendSetChunkSize();
+  PacketPtr packet = Packet::NewPacket(1024);
+  RtmpMsgHeaderPtr header = std::make_shared<RtmpMsgHeader>();
+  header->cs_id = kRtmpCSIDAMFIni;
+  header->msg_sid = 1;
+  header->msg_len = 0;
+  header->msg_type = kRtmpMsgTypeAMFMessage;
+  packet->SetExt(header);
+
+  char *body = packet->Data();
+  char *p = body;
+  p += AMFAny::EncodeString(p, "publish");
+  p += AMFAny::EncodeNumber(p, 5);
+  *p ++ = kAMFNull;
+  p += AMFAny::EncodeString(p, name_);
+  p += AMFAny::EncodeString(p, "live");
+
+
+  header->msg_len = p - body;
+  packet->SetPacketSize(header->msg_len);
+  RTMP_TRACE << "send publish name:" << name_ 
+             << " len:" << header->msg_len << "host:" << connection_->PeerAddr().ToIpPort();
+  PushOutQueue(std::move(packet));
+}
+ 
+//没用到
+void RtmpContext::HandlePublish(AMFObject &obj)  {
+ 
+  auto tran_id = obj.Property(1)->Number();
+  name_ = obj.Property(3)->String();
+  RTMP_TRACE << "recv publish session:" << session_name_ 
+             << " param:" << param_ << " host:" << connection_->PeerAddr().ToIpPort();
+  is_player_ = false;
+  SendStatus("status", "NetStream.Publish.Start", "Start Publishing");
+
+  if(rtmp_handler_)
+  {
+    rtmp_handler_->OnPublish(connection_, session_name_, param_);
+  }
+}
+ 
+void RtmpContext::HandleResult(AMFObject &obj)  {
+ 
+  auto id = obj.Property(1)->Number();
+  RTMP_TRACE << "recv result id:" << id << " host: " << connection_->PeerAddr().ToIpPort();
+  if(id == 1)
+  {
+    SendCreateStream();   
+  }
+  else if(id == 4)
+  {
+    if(is_player_)
+    {
+      SendPlay();  
+    }
+    else
+    {
+      SendPublish();
+    }
+  }
+}
+ 
+void RtmpContext::HandleError(AMFObject &obj)  {
+ 
+  const std::string &description = obj.Property(3)->Object()->Property("description")->String();
+  RTMP_ERROR << "recv error description:" << description << " host:" << connection_->PeerAddr().ToIpPort();
+  connection_->ForceClose();
 }

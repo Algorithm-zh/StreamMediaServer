@@ -132,7 +132,7 @@ int32_t AMFAny::EncodeNumber(char *output, double dVal)  {
 
   *p ++ = kAMFNumber;
 
-  p += WriteNumber(output, dVal);
+  p += WriteNumber(p, dVal);
 
   //返回写入的字节数
   return p - output;
@@ -163,7 +163,6 @@ int32_t AMFAny::EncodeBoolean(char *output, bool b)  {
 }
 int AMFAny::EncodeName(char *buf, const std::string &name)
 {
-    char *old = buf;
     auto len = name.size();
     unsigned short length = htons(len);
     memcpy(buf, &length, 2);//长度
@@ -177,7 +176,7 @@ int32_t AMFAny::EncodeNamedNumber(char *output, const std::string &name, double 
 
   char *old = output;
 
-  old += EncodeName(old, name);
+  output += EncodeName(output, name);
   output += EncodeNumber(output, dVal);
   return output - old;
 }
@@ -187,7 +186,7 @@ int32_t AMFAny::EncodeNamedString(char *output, const std::string &name, const s
 
   char *old = output;
 
-  old += EncodeName(old, name);
+  output += EncodeName(output, name);
   output += EncodeString(output, value);
   return output - old;
 }
@@ -196,7 +195,7 @@ int32_t AMFAny::EncodeNamedBoolean(char *output, const std::string &name, bool b
 
   char *old = output;
 
-  old += EncodeName(old, name);
+  output += EncodeName(output, name);
   output += EncodeBoolean(output, bVal);
   return output - old;
 }

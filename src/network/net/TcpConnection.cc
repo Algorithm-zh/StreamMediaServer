@@ -50,6 +50,7 @@ void TcpConnection::OnRead()  {
     NETWORK_TRACE << "host:" << peer_addr_.ToIpPort() << " closed";
     return;
   }
+  ExtendLife();
   while(true)
   {
     int err = 0;
@@ -95,6 +96,7 @@ void TcpConnection::OnWrite()  {
     NETWORK_TRACE << "host:" << peer_addr_.ToIpPort() << " closed";
     return;
   }
+  ExtendLife();
   if(!io_vec_list_.empty()) 
   {
     while(true)
@@ -108,8 +110,9 @@ void TcpConnection::OnWrite()  {
           //说明第一个缓冲区没有发送完整
           if(io_vec_list_.front().iov_len > ret)
           {
-            io_vec_list_.front().iov_base = static_cast<char *>(io_vec_list_.front().iov_base) + ret;
+            io_vec_list_.front().iov_base = (char *)io_vec_list_.front().iov_base + ret;
             io_vec_list_.front().iov_len -= ret;
+            break;
           }
           else
           {
@@ -181,7 +184,7 @@ void TcpConnection::SendInLoop(std::list<BufferNodePtr> &list)  {
   for(auto &l : list)
   {
     struct iovec vec;
-    vec.iov_base = l->addr;
+    vec.iov_base = (void *)l->addr;
     vec.iov_len = l->size;
 
     io_vec_list_.push_back(vec);

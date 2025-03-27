@@ -92,6 +92,7 @@ namespace
   int32_t GetDigestOffset(const uint8_t *buf, int off, int mod_val)
   {
     uint32_t offset = 0;
+    //c++风格的强转
     const uint8_t *ptr = reinterpret_cast<const uint8_t *>(buf + off);
     uint32_t res;
     
@@ -330,7 +331,10 @@ int32_t RtmpHandShake::HandShake(MsgBuffer &buf)  {
         //可能收到S0S1的同时也收到了S2
         if(buf.ReadableBytes() == 1536)
         {
+          RTMP_TRACE << "host:" << connecion_->PeerAddr().ToIpPort() << ",Recv S2.\n";
           state_ = kHandShakeDoning;
+          //之前忘写了
+          buf.Retrieve(1536);
           SendC2S2();
           return 2;
         }

@@ -2,7 +2,10 @@
 #include "../../base/Network.h"
 #include "../EventLoop.h"
 #include "../EventLoopThread.h"
+#include <algorithm>
 #include <iostream>
+#include <list>
+#include <memory>
 #include "../../base/InetAddress.h"
 #include "../../TcpClient.h"
 using namespace tmms::network;
@@ -39,8 +42,12 @@ int main(int argc, char *argv[]) {
     client->SetConnectCallback([](const TcpConnectionPtr& con, bool connected){
       if(connected)
       {
+        std::list<BufferNodePtr> list;
         auto size = htonl(strlen(http_request));
-        con->Send((const char*)&size, sizeof(size));
+        BufferNodePtr node = std::make_shared<BufferNode>((void *)&size, sizeof(size));
+        list.emplace_back(std::move(node));
+        //con->Send((const char*)&size, sizeof(size));
+        con->Send(list);
         con->Send(http_request, strlen(http_request));
       }
     });
