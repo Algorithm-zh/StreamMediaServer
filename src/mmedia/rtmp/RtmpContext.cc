@@ -523,7 +523,8 @@ bool RtmpContext::BuildChunk(PacketPtr &&packet, uint32_t timestamp, bool fmt0) 
     if(fmt == kRtmpFmt0)
     {
       p += BytesWriter::WriteUint24T(p, ts);
-      p += BytesWriter::WriteUint8T(p, h->msg_len);
+      //这tm把24写成8了 让我找了整整两天!!!!!!!!!!!
+      p += BytesWriter::WriteUint24T(p, h->msg_len);
       p += BytesWriter::WriteUint8T(p, h->msg_type);
 
       memcpy(p, &h->msg_sid, 4);
@@ -533,7 +534,7 @@ bool RtmpContext::BuildChunk(PacketPtr &&packet, uint32_t timestamp, bool fmt0) 
     else if(fmt == kRtmpFmt1)
     {
       p += BytesWriter::WriteUint24T(p, ts);
-      p += BytesWriter::WriteUint8T(p, h->msg_len);
+      p += BytesWriter::WriteUint24T(p, h->msg_len);
       p += BytesWriter::WriteUint8T(p, h->msg_type);
       out_deltas_[h->cs_id] = timestamp;
     }
@@ -548,8 +549,8 @@ bool RtmpContext::BuildChunk(PacketPtr &&packet, uint32_t timestamp, bool fmt0) 
       memcpy(p, &timestamp, 4);
       p += 4;
     }
-    BufferNodePtr node = std::make_shared<BufferNode>(out_current_, p - out_current_);
-    sending_bufs_.emplace_back(std::move(node));
+    BufferNodePtr nheader = std::make_shared<BufferNode>(out_current_, p - out_current_);
+    sending_bufs_.emplace_back(std::move(nheader));
     out_current_ = p;
 
     prev->cs_id = h->cs_id;
@@ -612,8 +613,8 @@ bool RtmpContext::BuildChunk(PacketPtr &&packet, uint32_t timestamp, bool fmt0) 
           p += 4;
         }
 
-        BufferNodePtr node = std::make_shared<BufferNode>(out_current_, p - out_current_);
-        sending_bufs_.emplace_back(std::move(node));
+        BufferNodePtr nheader = std::make_shared<BufferNode>(out_current_, p - out_current_);
+        sending_bufs_.emplace_back(std::move(nheader));
         out_current_ = p;
       }
       else
@@ -705,6 +706,7 @@ void RtmpContext::SendAckWindowSize()  {
  
   PacketPtr packet = Packet::NewPacket(64); //applied for more memory
   RtmpMsgHeaderPtr header = std::make_shared<RtmpMsgHeader>();
+  
   if(header)
   {
     //csid fixed is 2 and msg_sid fixed is 0
@@ -720,6 +722,7 @@ void RtmpContext::SendAckWindowSize()  {
   header->msg_len = BytesWriter::WriteUint32T(body, ack_size_);
   packet->SetPacketSize(header->msg_len);
   RTMP_DEBUG << "send ack window size " << ack_size_ << "to host: " << connection_->PeerAddr().ToIpPort();
+  
   PushOutQueue(std::move(packet));
 }
  

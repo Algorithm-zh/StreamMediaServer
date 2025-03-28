@@ -103,6 +103,10 @@ void TcpConnection::OnWrite()  {
     {
       //集中发送， 指定起始地址
       auto ret = ::writev(fd_, &io_vec_list_[0], io_vec_list_.size());
+      auto s = io_vec_list_.front().iov_base;
+      auto a = io_vec_list_.front().iov_len;
+      std::cout << io_vec_list_.front().iov_base << std::endl;
+      std::cout << " errno : " << errno << std::endl;
       if(ret >= 0)
       {
         while(ret > 0)
@@ -224,6 +228,7 @@ void TcpConnection::SendInLoop(const char *buf, size_t size)  {
       {
         write_complete_cb_(std::dynamic_pointer_cast<TcpConnection>(shared_from_this()));
       }
+      return;
     }
   }
   if(size > 0)
