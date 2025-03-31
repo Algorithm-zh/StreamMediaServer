@@ -49,10 +49,10 @@ namespace
     0XE6, 0x36, 0xCF, 0xEB, 0x31, 0xAE
   };
   //服务端的key
-  #define SERVER_KEY_OPEN_PART_LEN 30
+  #define SERVER_KEY_OPEN_PART_LEN 36
   static const uint8_t rtmp_server_key[] = {
     'G', 'e', 'n', 'u', 'i', 'n', 'e', ' ', 'A', 'd', 'o', 'b', 'e', ' ',
-    'F', 'l', 'a', 's', 'h', ' ', ' ', 'M', 'e', 'd', 'i', 'a', ' ',
+    'F', 'l', 'a', 's', 'h', ' ', 'M', 'e', 'd', 'i', 'a', ' ',
     'S', 'e', 'r', 'v', 'e', 'r', ' ', '0', '0', '1',
 
     0xF0, 0XEE, 0XC2, 0X4A, 0X80, 0X68, 0XBE, 0XE8, 0X2E, 0X00, 0xD0, 0XD1, 0x02,
@@ -336,7 +336,7 @@ int32_t RtmpHandShake::HandShake(MsgBuffer &buf)  {
           //之前忘写了
           buf.Retrieve(1536);
           SendC2S2();
-          return 2;
+          return 0;
         }
         else
         {
@@ -346,7 +346,7 @@ int32_t RtmpHandShake::HandShake(MsgBuffer &buf)  {
       }
       else
       {
-        RTMP_TRACE << "host: " << connecion_->PeerAddr().ToIpPort() << ", check S0S1 \n";
+        RTMP_TRACE << "host: " << connecion_->PeerAddr().ToIpPort() << ", check S0S1 failed\n";
         return -1;
       }
       break;

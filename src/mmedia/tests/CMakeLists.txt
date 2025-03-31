@@ -9,3 +9,7 @@ install(TARGETS HandShakeClientTest RUNTIME DESTINATION sbin)
 add_executable(RtmpServerTest RtmpServerTest.cpp)
 target_link_libraries(RtmpServerTest base network mmedia crypto)
 install(TARGETS RtmpServerTest RUNTIME DESTINATION sbin)
+
+add_executable(RtmpClientTest RtmpClientTest.cpp)
+target_link_libraries(RtmpClientTest base network mmedia crypto)
+install(TARGETS RtmpClientTest RUNTIME DESTINATION sbin)

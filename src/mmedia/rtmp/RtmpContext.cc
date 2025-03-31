@@ -10,6 +10,7 @@
 #include "../../base/StringUtils.h"
 #include <functional>
 #include <memory>
+#include <string>
 #include <vector>
 using namespace tmms::mm;
  
@@ -34,6 +35,10 @@ int32_t RtmpContext::Parse(MsgBuffer &buf)  {
     if(ret == 0)
     {
       state_ = kRtmpMessage;
+      if(is_client_)
+      {
+        SendConnect();
+      }
       if(buf.ReadableBytes() > 0)
       {
         return Parse(buf);
@@ -65,6 +70,10 @@ void RtmpContext::OnWriteComplete()  {
   else if(state_ == kRtmpWaitingDone)
   {
     state_ = kRtmpMessage;
+    if(is_client_)
+    {
+      SendConnect();
+    }
   }
   else if(state_ == kRtmpMessage)
   {
@@ -296,6 +305,18 @@ void RtmpContext::MessageComplete(PacketPtr &&data)  {
     case kRtmpMsgTypeAMFMessage:
     {
       HandleAmfCommand(data);
+      break;
+    }
+    case kRtmpMsgTypeAMFMeta:
+    case kRtmpMsgTypeAMF3Meta:
+    case kRtmpMsgTypeAudio:
+    case kRtmpMsgTypeVideo:
+    {
+      SetPacketType(data);
+      if(rtmp_handler_)
+      {
+        rtmp_handler_->OnRecv(connection_, data);  
+      }
       break;
     }
     default:
@@ -819,6 +840,11 @@ void RtmpContext::HandleChunkSize(PacketPtr &packet)  {
       << "change to " << size << "host : " << connection_->PeerAddr().ToIpPort();
     in_chunk_size_ = size;
   }
+  else
+  {
+    RTMP_ERROR << "invalid chunk size packet msg_len:" << packet->PacketSize()
+    << " host:" << connection_->PeerAddr().ToIpPort();
+  }
 }
  
 void RtmpContext::HandleAckWindowSize(PacketPtr &packet)  {
@@ -1025,7 +1051,7 @@ void RtmpContext::HandleConnect(AMFObject &obj)  {
 void RtmpContext::SendCreateStream()  {
  
  
-  SendSetChunkSize();
+  //SendSetChunkSize();
   PacketPtr packet = Packet::NewPacket(1024);
   RtmpMsgHeaderPtr header = std::make_shared<RtmpMsgHeader>();
   header->cs_id = kRtmpCSIDAMFIni;
@@ -1074,7 +1100,7 @@ void RtmpContext::HandleCreateStream(AMFObject &obj)  {
 void RtmpContext::SendStatus(const std::string &level, const std::string &code, const std::string &description)  {
  
  
-  SendSetChunkSize();
+  //SendSetChunkSize();
   PacketPtr packet = Packet::NewPacket(1024);
   RtmpMsgHeaderPtr header = std::make_shared<RtmpMsgHeader>();
   header->cs_id = kRtmpCSIDAMFIni;
@@ -1105,7 +1131,7 @@ void RtmpContext::SendStatus(const std::string &level, const std::string &code, 
  
 void RtmpContext::SendPlay()  {
  
-  SendSetChunkSize();
+  //SendSetChunkSize();
   PacketPtr packet = Packet::NewPacket(1024);
   RtmpMsgHeaderPtr header = std::make_shared<RtmpMsgHeader>();
   header->cs_id = kRtmpCSIDAMFIni;
@@ -1125,7 +1151,7 @@ void RtmpContext::SendPlay()  {
   header->msg_len = p - body;
   packet->SetPacketSize(header->msg_len);
   RTMP_TRACE << "send play name:" << name_ 
-             << " len:" << header->msg_len << "host:" << connection_->PeerAddr().ToIpPort();
+             << " len:" << header->msg_len << "host:" << connection_->PeerAddr().ToIpPort() << " ";
   PushOutQueue(std::move(packet));
 }
  
@@ -1161,21 +1187,25 @@ void RtmpContext::ParseNameAndTcUrl()  {
   }
   std::string domain;
   std::vector<std::string> list = base::StringUtils::SplitString(tc_url_, "/");
-  if(list.size() == 6)//rtmp://ip或domain:port/app/stream
+  if(list.size() == 6)//rtmp://ip/domain:port/app/stream
   {
     domain = list[3];
     app_ = list[4];
     name_ = list[5];
   }
-
-  if(domain.empty() && tc_url_.size() > 7)//"rtmp://"
+  else if(list.size() == 5)//rtmp://domain:port/app/stream
   {
-    auto pos = tc_url_.find_last_of(":/", 7);//从第7个位置开始查找第一个:或者/后面的位置
-    if(pos != std::string::npos)
-    {
-      domain = tc_url_.substr(7, pos);
-    }
+    domain = list[2];
+    app_ = list[3];
+    name_ = list[4];
   }
+
+  auto p = domain.find_first_of(":");
+  if(p != std::string::npos)
+  {
+    domain = domain.substr(0, p);//去掉端口号
+  }
+
   session_name_.clear();
   session_name_ += domain;
   session_name_ += "/";
@@ -1190,7 +1220,7 @@ void RtmpContext::ParseNameAndTcUrl()  {
  
 void RtmpContext::SendPublish()  {
  
-  SendSetChunkSize();
+  //SendSetChunkSize();
   PacketPtr packet = Packet::NewPacket(1024);
   RtmpMsgHeaderPtr header = std::make_shared<RtmpMsgHeader>();
   header->cs_id = kRtmpCSIDAMFIni;
@@ -1257,4 +1287,41 @@ void RtmpContext::HandleError(AMFObject &obj)  {
   const std::string &description = obj.Property(3)->Object()->Property("description")->String();
   RTMP_ERROR << "recv error description:" << description << " host:" << connection_->PeerAddr().ToIpPort();
   connection_->ForceClose();
+}
+ 
+void RtmpContext::SetPacketType(PacketPtr &packet)  {
+ 
+  if(packet->PacketType() == kRtmpMsgTypeAudio)
+  {
+    packet->SetPacketType(kPacketTypeAudio);
+  }
+  else if(packet->PacketType() == kRtmpMsgTypeVideo)
+  {
+    packet->SetPacketType(kPacketTypeVideo);
+  }
+  else if(packet->PacketType() == kRtmpMsgTypeMetadata)
+  {
+    packet->SetPacketType(kPacketTypeMeta);
+  }
+  else if(packet->PacketType() == kRtmpMsgTypeAMF3Meta)
+  {
+    packet->SetPacketType(kPacketTypeMeta3);
+  }
+
+}
+ 
+void RtmpContext::Play(const std::string &url)  {
+ 
+  is_client_ = true;
+  is_player_ = true;
+  tc_url_ = url;
+  ParseNameAndTcUrl();
+}
+ 
+void RtmpContext::Publish(const std::string &url)  {
+ 
+  is_client_ = true;
+  is_player_ = false;
+  tc_url_ = url;
+  ParseNameAndTcUrl();
 }

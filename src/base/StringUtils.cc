@@ -81,6 +81,10 @@ std::vector<std::string> StringUtils::SplitString(const std::string &s, const st
     {
       result.emplace_back(s.substr(last, next - last));
     }
+    else
+    {
+      result.emplace_back("");
+    }
     last = next + delim.size();
   }
   if(last < s.size())

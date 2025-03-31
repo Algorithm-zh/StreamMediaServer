@@ -49,6 +49,8 @@ namespace tmms
       bool BuildChunk(const PacketPtr &packet, uint32_t timestamp = 0, bool fmt0 = false);
       void Send();
       bool Ready() const;//当前能不能发送数据
+      void Play(const std::string &url);//pull stream
+      void Publish(const std::string &url);//push stream
     private:
       //发送相关
       bool BuildChunk(PacketPtr &&packet, uint32_t timestamp = 0, bool fmt0 = false);
@@ -81,6 +83,8 @@ namespace tmms
       void HandleResult(AMFObject &obj);
       //_error命令消息实现
       void HandleError(AMFObject &obj);
+      // 转换包类型
+      void SetPacketType(PacketPtr &packet);
 
       // 协议控制-recv(handle)
       void HandleChunkSize(PacketPtr &packet);
