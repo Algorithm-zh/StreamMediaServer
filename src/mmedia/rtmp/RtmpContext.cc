@@ -1280,6 +1280,13 @@ void RtmpContext::HandleResult(AMFObject &obj)  {
       SendPublish();
     }
   }
+  else if(id == 5)
+  {
+    if(rtmp_handler_)
+    {
+      rtmp_handler_->OnPublishPrepare(connection_);
+    }
+  }
 }
  
 void RtmpContext::HandleError(AMFObject &obj)  {

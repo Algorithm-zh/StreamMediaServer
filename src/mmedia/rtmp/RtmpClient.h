@@ -22,6 +22,7 @@ namespace tmms
       //其它函数
       void Play(const std::string &url);//启动拉流
       void Publish(const std::string &url);//启动推流
+      void Send(PacketPtr &&data);
     private:
       void OnWriteComplete(const TcpConnectionPtr & conn);
       void OnConnection(const TcpConnectionPtr & conn, bool connected);

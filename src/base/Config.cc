@@ -5,6 +5,10 @@
 #include <memory>
 #include <mutex>
 using namespace tmms::base;
+
+namespace {
+  static ServiceInfoPtr service_info_nullptr;
+}
  
 bool Config::LoadConfig(const std::string &file)  {
 
@@ -34,6 +38,10 @@ bool Config::LoadConfig(const std::string &file)  {
   Json::Value logObj = root["log"];
   if(!logObj.isNull()){
     ParseLogInfo(logObj);
+  }
+  if(!ParseServiceInfo(root["services"]))
+  {
+    return false;
   }
 
   return true;
@@ -111,4 +119,46 @@ bool ConfigMgr::LoadConfig(const std::string &file)  {
 ConfigPtr ConfigMgr::GetConfig()  {
   std::lock_guard<std::mutex> lk(lock_);
   return config_;
+}
+ 
+const std::vector<ServiceInfoPtr> &Config::GetServiceInfos()  {
+  return services_;
+}
+ 
+const ServiceInfoPtr &Config::GetServiceInfo(const std::string &protocol, const std::string &transport)  {
+  for(auto &s : services_)
+  {
+    if(s->protocol == protocol && s->transport == transport)
+    {
+      return s;
+    }
+  }
+  return service_info_nullptr;
+}
+ 
+bool Config::ParseServiceInfo(const Json::Value &serviceObj)  {
+  
+  if(serviceObj.isNull())
+  {
+    LOG_ERROR << "config no service section!";
+    return false;
+  }
+  if(!serviceObj.isArray())
+  {
+    LOG_ERROR << "config service section is not array!";
+    return false;
+  }
+  for(auto const &s : serviceObj)
+  {
+    ServiceInfoPtr sinfo = std::make_shared<ServiceInfo>();
+    sinfo->addr = s.get("addr", "0.0.0.0").asString();
+    sinfo->port = s.get("port", "0").asInt();
+    sinfo->protocol = s.get("protocol", "rtmp").asString();
+    sinfo->transport = s.get("transport", "tcp").asString();
+
+    LOG_INFO << "service info addr:" << sinfo->addr << ", port:" << sinfo->port 
+             << ", protocol:" << sinfo->protocol << ", transport:" << sinfo->transport;
+    services_.emplace_back(sinfo);
+  }
+  return true;
 }
