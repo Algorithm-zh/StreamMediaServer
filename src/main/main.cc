@@ -9,7 +9,7 @@
 #include <iostream>
 using namespace tmms::base;
 std::thread t;
-#if 0
+#if 1
 void TestLog()
 {
   t = std::thread([](){
@@ -23,6 +23,8 @@ void TestLog()
 }
 int main (int argc, char *argv[]) {
   
+  g_logger = new Logger(nullptr);
+  g_logger->SetLogLevel(kTrace);
   if(!sConfigMgr->LoadConfig("../config/config.json"))
   {
     std::cerr << "load config failed" << std::endl;

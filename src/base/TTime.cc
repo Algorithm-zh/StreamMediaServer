@@ -28,11 +28,14 @@ int64_t TTime::Now(int &year, int &month, int &day, int &hour, int &minute, int 
 }
  
 std::string TTime::ISOTime()  {
+
+  //这俩没用到
   struct timeval tv;
+  gettimeofday(&tv, NULL);//能获得从epoch到当前时间总微秒数
+  
   struct tm tm;
-  gettimeofday(&tv, NULL);
-  time_t t = time(NULL);
-  localtime_r(&t, &tm);
+  time_t t = time(NULL);//获取从epoch到当前时间总秒数
+  localtime_r(&t, &tm);//通过时间总秒数获取对应UTC标准时间
   char buf[128] = {0};
   auto n = sprintf(buf, "%4d-%02d-%02dT%02d:%02d:%02d",
                    tm.tm_year + 1900,

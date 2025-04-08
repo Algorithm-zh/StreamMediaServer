@@ -1,9 +1,13 @@
 #include "Config.h"
 #include "LogStream.h"
 #include "json/reader.h"
+#include <fcntl.h>
+#include <sys/stat.h>
+#include <unistd.h>
 #include <fstream>
 #include <memory>
 #include <mutex>
+#include <dirent.h>
 using namespace tmms::base;
 
 namespace {
@@ -43,6 +47,7 @@ bool Config::LoadConfig(const std::string &file)  {
   {
     return false;
   }
+  ParseDirectory(root["directory"]);
 
   return true;
 }
@@ -161,4 +166,117 @@ bool Config::ParseServiceInfo(const Json::Value &serviceObj)  {
     services_.emplace_back(sinfo);
   }
   return true;
+}
+
+//解析目录
+bool Config::ParseDirectory(const Json::Value &root)  {
+  if(root.isNull() || !root.isArray())
+  {
+    return false;
+  }
+  for(const Json::Value &d : root)
+  {
+    std::string path = d.asString();
+    struct stat st;
+
+    int ret = stat(path.c_str(), &st);
+    LOG_TRACE << "ret: " << ret << "errno: " << errno;
+    if(ret != -1)
+    {
+      if((st.st_mode & S_IFMT) == S_IFDIR)
+      {
+        LOG_TRACE << "dir:" << path;
+        ParseDomainPath(path);
+      }
+      else if((st.st_mode & S_IFMT) == S_IFREG)
+      {
+        ParseDomainFile(path);
+      }
+    }
+    LOG_TRACE << "path:" << path;
+  }
+  return true;
+}
+
+//解析目录下的文件
+bool Config::ParseDomainPath(const std::string &path)  {
+
+  DIR *dp = nullptr;
+  struct dirent *pp = nullptr;
+  LOG_DEBUG << "parse domain path:" << path;
+  dp = opendir(path.c_str());
+  if(dp == nullptr)
+  {
+    return false;
+  }
+  while(true)
+  {
+    pp = readdir(dp);
+    if(pp == nullptr)
+    {
+      break;
+    }
+    //过滤文件(隐藏文件，当前目录 和上级目录)
+    if(pp->d_name[0] == '.')
+    {
+      continue;
+    }
+    if(pp->d_type == DT_REG)
+    {
+      //转绝对路径
+      if(path.at(path.size() - 1) != '/')
+      {
+        ParseDomainFile(path + "/" + pp->d_name);
+      }
+      else
+      {
+        ParseDomainFile(path + pp->d_name);
+      }
+    }
+      
+  }
+  closedir(dp);
+  return true;
+}
+ 
+//解析文件
+bool Config::ParseDomainFile(const std::string &file)  {
+  LOG_DEBUG << "parse domain file:" << file;
+  DomainInfoPtr d = std::make_shared<DomainInfo>();
+  auto ret = d->ParseDomainInfo(file);
+  if(ret)
+  {
+    std::lock_guard<std::mutex> lk(lock_);
+    auto iter = domaininfos_.find(d->DomainName());
+    if(iter != domaininfos_.end())
+    {
+      domaininfos_.erase(iter);
+    }
+    domaininfos_.emplace(d->DomainName(), d);
+  }
+  return true;
+}
+ 
+
+ 
+AppInfoPtr Config::GetAppInfo(const std::string &domain, const std::string &app)  {
+
+  std::lock_guard<std::mutex> lk(lock_);
+  auto iter = domaininfos_.find(domain);
+  if(iter != domaininfos_.end())
+  {
+    return iter->second->GetAppInfo(app);
+  }
+  return AppInfoPtr();
+}
+ 
+DomainInfoPtr Config::GetDomainInfo(const std::string &domain)  {
+
+  std::lock_guard<std::mutex> lk(lock_);
+  auto iter = domaininfos_.find(domain);
+  if(iter != domaininfos_.end())
+  {
+    return iter->second;
+  }
+  return DomainInfoPtr();
 }

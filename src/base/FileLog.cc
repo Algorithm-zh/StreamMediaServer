@@ -26,11 +26,13 @@ size_t FileLog::WriteLog(const std::string &msg)  {
   return ::write(fd_, msg.data(), msg.size());
 }
  
+//注意传进来的是last date,也就是说旧文件改名字，新文件永远都是file_path_变量存储的名字
 void FileLog::Rotate(const std::string &file)  {
   if(file_path_.empty())
   {
     return ;
   }
+  //rename改变的是文件系统的文件名，不会影响file_path_字符串本身的值 
   int ret = ::rename(file_path_.c_str(), file.c_str());
   if(ret != 0)std::cerr << "rename file error" << file << std::endl;
   //有append,保证了原子操作，所以dup2关闭fd_时保证了关闭和写不会冲突

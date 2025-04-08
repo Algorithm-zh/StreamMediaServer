@@ -17,6 +17,7 @@ const char *log_string[] = {
 };
 LogStream::LogStream(Logger *loger, const char * file, int line, LogLevel l, const char *func)  
 :logger_(loger){
+  //搜索最后一次出现的字符
   const char* file_name = strrchr(file, '/');
   if(file_name)
   {
@@ -28,9 +29,10 @@ LogStream::LogStream(Logger *loger, const char * file, int line, LogLevel l, con
   stream_ << TTime::ISOTime();
   if(thread_id == 0)
   {
+    //syscall(SYS_gettid)获取当前线程id
     thread_id = static_cast<pid_t>(syscall(SYS_gettid));
   }
-  stream_ << thread_id;
+  stream_ << " " << thread_id;
   stream_ << log_string[l];
   stream_ << "[" << file_name << ":" << line << "]";
   if(func)
