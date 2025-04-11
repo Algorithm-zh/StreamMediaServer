@@ -312,6 +312,7 @@ void RtmpContext::MessageComplete(PacketPtr &&data)  {
     case kRtmpMsgTypeAudio:
     case kRtmpMsgTypeVideo:
     {
+      RTMP_TRACE << "AMFMeta type:" << type;
       SetPacketType(data);
       if(rtmp_handler_)
       {
@@ -1300,14 +1301,17 @@ void RtmpContext::SetPacketType(PacketPtr &packet)  {
  
   if(packet->PacketType() == kRtmpMsgTypeAudio)
   {
+    RTMP_TRACE << "save audio type\n";
     packet->SetPacketType(kPacketTypeAudio);
   }
   else if(packet->PacketType() == kRtmpMsgTypeVideo)
   {
+    RTMP_TRACE << "save Video type\n";
     packet->SetPacketType(kPacketTypeVideo);
   }
-  else if(packet->PacketType() == kRtmpMsgTypeMetadata)
+  else if(packet->PacketType() == kRtmpMsgTypeAMFMeta)
   {
+    RTMP_TRACE << "save meta type\n";
     packet->SetPacketType(kPacketTypeMeta);
   }
   else if(packet->PacketType() == kRtmpMsgTypeAMF3Meta)

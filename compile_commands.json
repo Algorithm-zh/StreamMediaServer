@@ -1,0 +1,302 @@
+[
+{
+  "directory": "/home/zxe/My-Project/StreamMediaServer/src/base",
+  "command": "/usr/bin/c++  -I/home/zxe/My-Project/StreamMediaServer/lib/jsoncpp/include -I/home/zxe/My-Project/StreamMediaServer/src  -std=c++17 -O0 -g -pipe -Wall -Werror -Wno-unused-variable -lrt -pthread -fno-strict-aliasing -Wno-error=shadow -Wno-sign-compare -Wno-error=unused-result -Werror=return-type -g -o CMakeFiles/base.dir/AppInfo.cc.o -c /home/zxe/My-Project/StreamMediaServer/src/base/AppInfo.cc",
+  "file": "/home/zxe/My-Project/StreamMediaServer/src/base/AppInfo.cc"
+},
+{
+  "directory": "/home/zxe/My-Project/StreamMediaServer/src/base",
+  "command": "/usr/bin/c++  -I/home/zxe/My-Project/StreamMediaServer/lib/jsoncpp/include -I/home/zxe/My-Project/StreamMediaServer/src  -std=c++17 -O0 -g -pipe -Wall -Werror -Wno-unused-variable -lrt -pthread -fno-strict-aliasing -Wno-error=shadow -Wno-sign-compare -Wno-error=unused-result -Werror=return-type -g -o CMakeFiles/base.dir/Config.cc.o -c /home/zxe/My-Project/StreamMediaServer/src/base/Config.cc",
+  "file": "/home/zxe/My-Project/StreamMediaServer/src/base/Config.cc"
+},
+{
+  "directory": "/home/zxe/My-Project/StreamMediaServer/src/base",
+  "command": "/usr/bin/c++  -I/home/zxe/My-Project/StreamMediaServer/lib/jsoncpp/include -I/home/zxe/My-Project/StreamMediaServer/src  -std=c++17 -O0 -g -pipe -Wall -Werror -Wno-unused-variable -lrt -pthread -fno-strict-aliasing -Wno-error=shadow -Wno-sign-compare -Wno-error=unused-result -Werror=return-type -g -o CMakeFiles/base.dir/DomainInfo.cc.o -c /home/zxe/My-Project/StreamMediaServer/src/base/DomainInfo.cc",
+  "file": "/home/zxe/My-Project/StreamMediaServer/src/base/DomainInfo.cc"
+},
+{
+  "directory": "/home/zxe/My-Project/StreamMediaServer/src/base",
+  "command": "/usr/bin/c++  -I/home/zxe/My-Project/StreamMediaServer/lib/jsoncpp/include -I/home/zxe/My-Project/StreamMediaServer/src  -std=c++17 -O0 -g -pipe -Wall -Werror -Wno-unused-variable -lrt -pthread -fno-strict-aliasing -Wno-error=shadow -Wno-sign-compare -Wno-error=unused-result -Werror=return-type -g -o CMakeFiles/base.dir/FileLog.cc.o -c /home/zxe/My-Project/StreamMediaServer/src/base/FileLog.cc",
+  "file": "/home/zxe/My-Project/StreamMediaServer/src/base/FileLog.cc"
+},
+{
+  "directory": "/home/zxe/My-Project/StreamMediaServer/src/base",
+  "command": "/usr/bin/c++  -I/home/zxe/My-Project/StreamMediaServer/lib/jsoncpp/include -I/home/zxe/My-Project/StreamMediaServer/src  -std=c++17 -O0 -g -pipe -Wall -Werror -Wno-unused-variable -lrt -pthread -fno-strict-aliasing -Wno-error=shadow -Wno-sign-compare -Wno-error=unused-result -Werror=return-type -g -o CMakeFiles/base.dir/FileMgr.cc.o -c /home/zxe/My-Project/StreamMediaServer/src/base/FileMgr.cc",
+  "file": "/home/zxe/My-Project/StreamMediaServer/src/base/FileMgr.cc"
+},
+{
+  "directory": "/home/zxe/My-Project/StreamMediaServer/src/base",
+  "command": "/usr/bin/c++  -I/home/zxe/My-Project/StreamMediaServer/lib/jsoncpp/include -I/home/zxe/My-Project/StreamMediaServer/src  -std=c++17 -O0 -g -pipe -Wall -Werror -Wno-unused-variable -lrt -pthread -fno-strict-aliasing -Wno-error=shadow -Wno-sign-compare -Wno-error=unused-result -Werror=return-type -g -o CMakeFiles/base.dir/LogStream.cc.o -c /home/zxe/My-Project/StreamMediaServer/src/base/LogStream.cc",
+  "file": "/home/zxe/My-Project/StreamMediaServer/src/base/LogStream.cc"
+},
+{
+  "directory": "/home/zxe/My-Project/StreamMediaServer/src/base",
+  "command": "/usr/bin/c++  -I/home/zxe/My-Project/StreamMediaServer/lib/jsoncpp/include -I/home/zxe/My-Project/StreamMediaServer/src  -std=c++17 -O0 -g -pipe -Wall -Werror -Wno-unused-variable -lrt -pthread -fno-strict-aliasing -Wno-error=shadow -Wno-sign-compare -Wno-error=unused-result -Werror=return-type -g -o CMakeFiles/base.dir/Logger.cc.o -c /home/zxe/My-Project/StreamMediaServer/src/base/Logger.cc",
+  "file": "/home/zxe/My-Project/StreamMediaServer/src/base/Logger.cc"
+},
+{
+  "directory": "/home/zxe/My-Project/StreamMediaServer/src/base",
+  "command": "/usr/bin/c++  -I/home/zxe/My-Project/StreamMediaServer/lib/jsoncpp/include -I/home/zxe/My-Project/StreamMediaServer/src  -std=c++17 -O0 -g -pipe -Wall -Werror -Wno-unused-variable -lrt -pthread -fno-strict-aliasing -Wno-error=shadow -Wno-sign-compare -Wno-error=unused-result -Werror=return-type -g -o CMakeFiles/base.dir/StringUtils.cc.o -c /home/zxe/My-Project/StreamMediaServer/src/base/StringUtils.cc",
+  "file": "/home/zxe/My-Project/StreamMediaServer/src/base/StringUtils.cc"
+},
+{
+  "directory": "/home/zxe/My-Project/StreamMediaServer/src/base",
+  "command": "/usr/bin/c++  -I/home/zxe/My-Project/StreamMediaServer/lib/jsoncpp/include -I/home/zxe/My-Project/StreamMediaServer/src  -std=c++17 -O0 -g -pipe -Wall -Werror -Wno-unused-variable -lrt -pthread -fno-strict-aliasing -Wno-error=shadow -Wno-sign-compare -Wno-error=unused-result -Werror=return-type -g -o CMakeFiles/base.dir/TTime.cc.o -c /home/zxe/My-Project/StreamMediaServer/src/base/TTime.cc",
+  "file": "/home/zxe/My-Project/StreamMediaServer/src/base/TTime.cc"
+},
+{
+  "directory": "/home/zxe/My-Project/StreamMediaServer/src/base",
+  "command": "/usr/bin/c++  -I/home/zxe/My-Project/StreamMediaServer/lib/jsoncpp/include -I/home/zxe/My-Project/StreamMediaServer/src  -std=c++17 -O0 -g -pipe -Wall -Werror -Wno-unused-variable -lrt -pthread -fno-strict-aliasing -Wno-error=shadow -Wno-sign-compare -Wno-error=unused-result -Werror=return-type -g -o CMakeFiles/base.dir/Task.cc.o -c /home/zxe/My-Project/StreamMediaServer/src/base/Task.cc",
+  "file": "/home/zxe/My-Project/StreamMediaServer/src/base/Task.cc"
+},
+{
+  "directory": "/home/zxe/My-Project/StreamMediaServer/src/base",
+  "command": "/usr/bin/c++  -I/home/zxe/My-Project/StreamMediaServer/lib/jsoncpp/include -I/home/zxe/My-Project/StreamMediaServer/src  -std=c++17 -O0 -g -pipe -Wall -Werror -Wno-unused-variable -lrt -pthread -fno-strict-aliasing -Wno-error=shadow -Wno-sign-compare -Wno-error=unused-result -Werror=return-type -g -o CMakeFiles/base.dir/TaskMgr.cc.o -c /home/zxe/My-Project/StreamMediaServer/src/base/TaskMgr.cc",
+  "file": "/home/zxe/My-Project/StreamMediaServer/src/base/TaskMgr.cc"
+},
+{
+  "directory": "/home/zxe/My-Project/StreamMediaServer/src/network",
+  "command": "/usr/bin/c++  -I/home/zxe/My-Project/StreamMediaServer/lib/jsoncpp/include -I/home/zxe/My-Project/StreamMediaServer/src  -std=c++17 -O0 -g -pipe -Wall -Werror -Wno-unused-variable -lrt -pthread -fno-strict-aliasing -Wno-error=shadow -Wno-sign-compare -Wno-error=unused-result -Werror=return-type -g -o CMakeFiles/network.dir/DnsService.cc.o -c /home/zxe/My-Project/StreamMediaServer/src/network/DnsService.cc",
+  "file": "/home/zxe/My-Project/StreamMediaServer/src/network/DnsService.cc"
+},
+{
+  "directory": "/home/zxe/My-Project/StreamMediaServer/src/network",
+  "command": "/usr/bin/c++  -I/home/zxe/My-Project/StreamMediaServer/lib/jsoncpp/include -I/home/zxe/My-Project/StreamMediaServer/src  -std=c++17 -O0 -g -pipe -Wall -Werror -Wno-unused-variable -lrt -pthread -fno-strict-aliasing -Wno-error=shadow -Wno-sign-compare -Wno-error=unused-result -Werror=return-type -g -o CMakeFiles/network.dir/TcpClient.cc.o -c /home/zxe/My-Project/StreamMediaServer/src/network/TcpClient.cc",
+  "file": "/home/zxe/My-Project/StreamMediaServer/src/network/TcpClient.cc"
+},
+{
+  "directory": "/home/zxe/My-Project/StreamMediaServer/src/network",
+  "command": "/usr/bin/c++  -I/home/zxe/My-Project/StreamMediaServer/lib/jsoncpp/include -I/home/zxe/My-Project/StreamMediaServer/src  -std=c++17 -O0 -g -pipe -Wall -Werror -Wno-unused-variable -lrt -pthread -fno-strict-aliasing -Wno-error=shadow -Wno-sign-compare -Wno-error=unused-result -Werror=return-type -g -o CMakeFiles/network.dir/TcpServer.cc.o -c /home/zxe/My-Project/StreamMediaServer/src/network/TcpServer.cc",
+  "file": "/home/zxe/My-Project/StreamMediaServer/src/network/TcpServer.cc"
+},
+{
+  "directory": "/home/zxe/My-Project/StreamMediaServer/src/network",
+  "command": "/usr/bin/c++  -I/home/zxe/My-Project/StreamMediaServer/lib/jsoncpp/include -I/home/zxe/My-Project/StreamMediaServer/src  -std=c++17 -O0 -g -pipe -Wall -Werror -Wno-unused-variable -lrt -pthread -fno-strict-aliasing -Wno-error=shadow -Wno-sign-compare -Wno-error=unused-result -Werror=return-type -g -o CMakeFiles/network.dir/TestContext.cc.o -c /home/zxe/My-Project/StreamMediaServer/src/network/TestContext.cc",
+  "file": "/home/zxe/My-Project/StreamMediaServer/src/network/TestContext.cc"
+},
+{
+  "directory": "/home/zxe/My-Project/StreamMediaServer/src/network",
+  "command": "/usr/bin/c++  -I/home/zxe/My-Project/StreamMediaServer/lib/jsoncpp/include -I/home/zxe/My-Project/StreamMediaServer/src  -std=c++17 -O0 -g -pipe -Wall -Werror -Wno-unused-variable -lrt -pthread -fno-strict-aliasing -Wno-error=shadow -Wno-sign-compare -Wno-error=unused-result -Werror=return-type -g -o CMakeFiles/network.dir/UdpClient.cc.o -c /home/zxe/My-Project/StreamMediaServer/src/network/UdpClient.cc",
+  "file": "/home/zxe/My-Project/StreamMediaServer/src/network/UdpClient.cc"
+},
+{
+  "directory": "/home/zxe/My-Project/StreamMediaServer/src/network",
+  "command": "/usr/bin/c++  -I/home/zxe/My-Project/StreamMediaServer/lib/jsoncpp/include -I/home/zxe/My-Project/StreamMediaServer/src  -std=c++17 -O0 -g -pipe -Wall -Werror -Wno-unused-variable -lrt -pthread -fno-strict-aliasing -Wno-error=shadow -Wno-sign-compare -Wno-error=unused-result -Werror=return-type -g -o CMakeFiles/network.dir/UdpServer.cc.o -c /home/zxe/My-Project/StreamMediaServer/src/network/UdpServer.cc",
+  "file": "/home/zxe/My-Project/StreamMediaServer/src/network/UdpServer.cc"
+},
+{
+  "directory": "/home/zxe/My-Project/StreamMediaServer/src/network",
+  "command": "/usr/bin/c++  -I/home/zxe/My-Project/StreamMediaServer/lib/jsoncpp/include -I/home/zxe/My-Project/StreamMediaServer/src  -std=c++17 -O0 -g -pipe -Wall -Werror -Wno-unused-variable -lrt -pthread -fno-strict-aliasing -Wno-error=shadow -Wno-sign-compare -Wno-error=unused-result -Werror=return-type -g -o CMakeFiles/network.dir/base/InetAddress.cc.o -c /home/zxe/My-Project/StreamMediaServer/src/network/base/InetAddress.cc",
+  "file": "/home/zxe/My-Project/StreamMediaServer/src/network/base/InetAddress.cc"
+},
+{
+  "directory": "/home/zxe/My-Project/StreamMediaServer/src/network",
+  "command": "/usr/bin/c++  -I/home/zxe/My-Project/StreamMediaServer/lib/jsoncpp/include -I/home/zxe/My-Project/StreamMediaServer/src  -std=c++17 -O0 -g -pipe -Wall -Werror -Wno-unused-variable -lrt -pthread -fno-strict-aliasing -Wno-error=shadow -Wno-sign-compare -Wno-error=unused-result -Werror=return-type -g -o CMakeFiles/network.dir/base/MsgBuffer.cpp.o -c /home/zxe/My-Project/StreamMediaServer/src/network/base/MsgBuffer.cpp",
+  "file": "/home/zxe/My-Project/StreamMediaServer/src/network/base/MsgBuffer.cpp"
+},
+{
+  "directory": "/home/zxe/My-Project/StreamMediaServer/src/network",
+  "command": "/usr/bin/c++  -I/home/zxe/My-Project/StreamMediaServer/lib/jsoncpp/include -I/home/zxe/My-Project/StreamMediaServer/src  -std=c++17 -O0 -g -pipe -Wall -Werror -Wno-unused-variable -lrt -pthread -fno-strict-aliasing -Wno-error=shadow -Wno-sign-compare -Wno-error=unused-result -Werror=return-type -g -o CMakeFiles/network.dir/base/SocketOpt.cc.o -c /home/zxe/My-Project/StreamMediaServer/src/network/base/SocketOpt.cc",
+  "file": "/home/zxe/My-Project/StreamMediaServer/src/network/base/SocketOpt.cc"
+},
+{
+  "directory": "/home/zxe/My-Project/StreamMediaServer/src/network",
+  "command": "/usr/bin/c++  -I/home/zxe/My-Project/StreamMediaServer/lib/jsoncpp/include -I/home/zxe/My-Project/StreamMediaServer/src  -std=c++17 -O0 -g -pipe -Wall -Werror -Wno-unused-variable -lrt -pthread -fno-strict-aliasing -Wno-error=shadow -Wno-sign-compare -Wno-error=unused-result -Werror=return-type -g -o CMakeFiles/network.dir/net/Acceptor.cc.o -c /home/zxe/My-Project/StreamMediaServer/src/network/net/Acceptor.cc",
+  "file": "/home/zxe/My-Project/StreamMediaServer/src/network/net/Acceptor.cc"
+},
+{
+  "directory": "/home/zxe/My-Project/StreamMediaServer/src/network",
+  "command": "/usr/bin/c++  -I/home/zxe/My-Project/StreamMediaServer/lib/jsoncpp/include -I/home/zxe/My-Project/StreamMediaServer/src  -std=c++17 -O0 -g -pipe -Wall -Werror -Wno-unused-variable -lrt -pthread -fno-strict-aliasing -Wno-error=shadow -Wno-sign-compare -Wno-error=unused-result -Werror=return-type -g -o CMakeFiles/network.dir/net/Connection.cc.o -c /home/zxe/My-Project/StreamMediaServer/src/network/net/Connection.cc",
+  "file": "/home/zxe/My-Project/StreamMediaServer/src/network/net/Connection.cc"
+},
+{
+  "directory": "/home/zxe/My-Project/StreamMediaServer/src/network",
+  "command": "/usr/bin/c++  -I/home/zxe/My-Project/StreamMediaServer/lib/jsoncpp/include -I/home/zxe/My-Project/StreamMediaServer/src  -std=c++17 -O0 -g -pipe -Wall -Werror -Wno-unused-variable -lrt -pthread -fno-strict-aliasing -Wno-error=shadow -Wno-sign-compare -Wno-error=unused-result -Werror=return-type -g -o CMakeFiles/network.dir/net/Event.cc.o -c /home/zxe/My-Project/StreamMediaServer/src/network/net/Event.cc",
+  "file": "/home/zxe/My-Project/StreamMediaServer/src/network/net/Event.cc"
+},
+{
+  "directory": "/home/zxe/My-Project/StreamMediaServer/src/network",
+  "command": "/usr/bin/c++  -I/home/zxe/My-Project/StreamMediaServer/lib/jsoncpp/include -I/home/zxe/My-Project/StreamMediaServer/src  -std=c++17 -O0 -g -pipe -Wall -Werror -Wno-unused-variable -lrt -pthread -fno-strict-aliasing -Wno-error=shadow -Wno-sign-compare -Wno-error=unused-result -Werror=return-type -g -o CMakeFiles/network.dir/net/EventLoop.cc.o -c /home/zxe/My-Project/StreamMediaServer/src/network/net/EventLoop.cc",
+  "file": "/home/zxe/My-Project/StreamMediaServer/src/network/net/EventLoop.cc"
+},
+{
+  "directory": "/home/zxe/My-Project/StreamMediaServer/src/network",
+  "command": "/usr/bin/c++  -I/home/zxe/My-Project/StreamMediaServer/lib/jsoncpp/include -I/home/zxe/My-Project/StreamMediaServer/src  -std=c++17 -O0 -g -pipe -Wall -Werror -Wno-unused-variable -lrt -pthread -fno-strict-aliasing -Wno-error=shadow -Wno-sign-compare -Wno-error=unused-result -Werror=return-type -g -o CMakeFiles/network.dir/net/EventLoopThread.cc.o -c /home/zxe/My-Project/StreamMediaServer/src/network/net/EventLoopThread.cc",
+  "file": "/home/zxe/My-Project/StreamMediaServer/src/network/net/EventLoopThread.cc"
+},
+{
+  "directory": "/home/zxe/My-Project/StreamMediaServer/src/network",
+  "command": "/usr/bin/c++  -I/home/zxe/My-Project/StreamMediaServer/lib/jsoncpp/include -I/home/zxe/My-Project/StreamMediaServer/src  -std=c++17 -O0 -g -pipe -Wall -Werror -Wno-unused-variable -lrt -pthread -fno-strict-aliasing -Wno-error=shadow -Wno-sign-compare -Wno-error=unused-result -Werror=return-type -g -o CMakeFiles/network.dir/net/EventLoopThreadPool.cc.o -c /home/zxe/My-Project/StreamMediaServer/src/network/net/EventLoopThreadPool.cc",
+  "file": "/home/zxe/My-Project/StreamMediaServer/src/network/net/EventLoopThreadPool.cc"
+},
+{
+  "directory": "/home/zxe/My-Project/StreamMediaServer/src/network",
+  "command": "/usr/bin/c++  -I/home/zxe/My-Project/StreamMediaServer/lib/jsoncpp/include -I/home/zxe/My-Project/StreamMediaServer/src  -std=c++17 -O0 -g -pipe -Wall -Werror -Wno-unused-variable -lrt -pthread -fno-strict-aliasing -Wno-error=shadow -Wno-sign-compare -Wno-error=unused-result -Werror=return-type -g -o CMakeFiles/network.dir/net/PipeEvent.cc.o -c /home/zxe/My-Project/StreamMediaServer/src/network/net/PipeEvent.cc",
+  "file": "/home/zxe/My-Project/StreamMediaServer/src/network/net/PipeEvent.cc"
+},
+{
+  "directory": "/home/zxe/My-Project/StreamMediaServer/src/network",
+  "command": "/usr/bin/c++  -I/home/zxe/My-Project/StreamMediaServer/lib/jsoncpp/include -I/home/zxe/My-Project/StreamMediaServer/src  -std=c++17 -O0 -g -pipe -Wall -Werror -Wno-unused-variable -lrt -pthread -fno-strict-aliasing -Wno-error=shadow -Wno-sign-compare -Wno-error=unused-result -Werror=return-type -g -o CMakeFiles/network.dir/net/TcpConnection.cc.o -c /home/zxe/My-Project/StreamMediaServer/src/network/net/TcpConnection.cc",
+  "file": "/home/zxe/My-Project/StreamMediaServer/src/network/net/TcpConnection.cc"
+},
+{
+  "directory": "/home/zxe/My-Project/StreamMediaServer/src/network",
+  "command": "/usr/bin/c++  -I/home/zxe/My-Project/StreamMediaServer/lib/jsoncpp/include -I/home/zxe/My-Project/StreamMediaServer/src  -std=c++17 -O0 -g -pipe -Wall -Werror -Wno-unused-variable -lrt -pthread -fno-strict-aliasing -Wno-error=shadow -Wno-sign-compare -Wno-error=unused-result -Werror=return-type -g -o CMakeFiles/network.dir/net/TimingWheel.cc.o -c /home/zxe/My-Project/StreamMediaServer/src/network/net/TimingWheel.cc",
+  "file": "/home/zxe/My-Project/StreamMediaServer/src/network/net/TimingWheel.cc"
+},
+{
+  "directory": "/home/zxe/My-Project/StreamMediaServer/src/network",
+  "command": "/usr/bin/c++  -I/home/zxe/My-Project/StreamMediaServer/lib/jsoncpp/include -I/home/zxe/My-Project/StreamMediaServer/src  -std=c++17 -O0 -g -pipe -Wall -Werror -Wno-unused-variable -lrt -pthread -fno-strict-aliasing -Wno-error=shadow -Wno-sign-compare -Wno-error=unused-result -Werror=return-type -g -o CMakeFiles/network.dir/net/UdpSocket.cc.o -c /home/zxe/My-Project/StreamMediaServer/src/network/net/UdpSocket.cc",
+  "file": "/home/zxe/My-Project/StreamMediaServer/src/network/net/UdpSocket.cc"
+},
+{
+  "directory": "/home/zxe/My-Project/StreamMediaServer/src/network/net/tests",
+  "command": "/usr/bin/c++  -I/home/zxe/My-Project/StreamMediaServer/lib/jsoncpp/include -I/home/zxe/My-Project/StreamMediaServer/src  -std=c++17 -O0 -g -pipe -Wall -Werror -Wno-unused-variable -lrt -pthread -fno-strict-aliasing -Wno-error=shadow -Wno-sign-compare -Wno-error=unused-result -Werror=return-type -g -o CMakeFiles/TcpServerTest.dir/TcpServerTest.cpp.o -c /home/zxe/My-Project/StreamMediaServer/src/network/net/tests/TcpServerTest.cpp",
+  "file": "/home/zxe/My-Project/StreamMediaServer/src/network/net/tests/TcpServerTest.cpp"
+},
+{
+  "directory": "/home/zxe/My-Project/StreamMediaServer/src/network/net/tests",
+  "command": "/usr/bin/c++  -I/home/zxe/My-Project/StreamMediaServer/lib/jsoncpp/include -I/home/zxe/My-Project/StreamMediaServer/src  -std=c++17 -O0 -g -pipe -Wall -Werror -Wno-unused-variable -lrt -pthread -fno-strict-aliasing -Wno-error=shadow -Wno-sign-compare -Wno-error=unused-result -Werror=return-type -g -o CMakeFiles/TcpClientTest.dir/TcpClientTest.cpp.o -c /home/zxe/My-Project/StreamMediaServer/src/network/net/tests/TcpClientTest.cpp",
+  "file": "/home/zxe/My-Project/StreamMediaServer/src/network/net/tests/TcpClientTest.cpp"
+},
+{
+  "directory": "/home/zxe/My-Project/StreamMediaServer/src/mmedia",
+  "command": "/usr/bin/c++  -I/home/zxe/My-Project/StreamMediaServer/lib/jsoncpp/include -I/home/zxe/My-Project/StreamMediaServer/src  -std=c++17 -O0 -g -pipe -Wall -Werror -Wno-unused-variable -lrt -pthread -fno-strict-aliasing -Wno-error=shadow -Wno-sign-compare -Wno-error=unused-result -Werror=return-type -g -o CMakeFiles/mmedia.dir/base/BytesReader.cc.o -c /home/zxe/My-Project/StreamMediaServer/src/mmedia/base/BytesReader.cc",
+  "file": "/home/zxe/My-Project/StreamMediaServer/src/mmedia/base/BytesReader.cc"
+},
+{
+  "directory": "/home/zxe/My-Project/StreamMediaServer/src/mmedia",
+  "command": "/usr/bin/c++  -I/home/zxe/My-Project/StreamMediaServer/lib/jsoncpp/include -I/home/zxe/My-Project/StreamMediaServer/src  -std=c++17 -O0 -g -pipe -Wall -Werror -Wno-unused-variable -lrt -pthread -fno-strict-aliasing -Wno-error=shadow -Wno-sign-compare -Wno-error=unused-result -Werror=return-type -g -o CMakeFiles/mmedia.dir/base/BytesWriter.cc.o -c /home/zxe/My-Project/StreamMediaServer/src/mmedia/base/BytesWriter.cc",
+  "file": "/home/zxe/My-Project/StreamMediaServer/src/mmedia/base/BytesWriter.cc"
+},
+{
+  "directory": "/home/zxe/My-Project/StreamMediaServer/src/mmedia",
+  "command": "/usr/bin/c++  -I/home/zxe/My-Project/StreamMediaServer/lib/jsoncpp/include -I/home/zxe/My-Project/StreamMediaServer/src  -std=c++17 -O0 -g -pipe -Wall -Werror -Wno-unused-variable -lrt -pthread -fno-strict-aliasing -Wno-error=shadow -Wno-sign-compare -Wno-error=unused-result -Werror=return-type -g -o CMakeFiles/mmedia.dir/base/Packet.cc.o -c /home/zxe/My-Project/StreamMediaServer/src/mmedia/base/Packet.cc",
+  "file": "/home/zxe/My-Project/StreamMediaServer/src/mmedia/base/Packet.cc"
+},
+{
+  "directory": "/home/zxe/My-Project/StreamMediaServer/src/mmedia",
+  "command": "/usr/bin/c++  -I/home/zxe/My-Project/StreamMediaServer/lib/jsoncpp/include -I/home/zxe/My-Project/StreamMediaServer/src  -std=c++17 -O0 -g -pipe -Wall -Werror -Wno-unused-variable -lrt -pthread -fno-strict-aliasing -Wno-error=shadow -Wno-sign-compare -Wno-error=unused-result -Werror=return-type -g -o CMakeFiles/mmedia.dir/rtmp/RtmpClient.cc.o -c /home/zxe/My-Project/StreamMediaServer/src/mmedia/rtmp/RtmpClient.cc",
+  "file": "/home/zxe/My-Project/StreamMediaServer/src/mmedia/rtmp/RtmpClient.cc"
+},
+{
+  "directory": "/home/zxe/My-Project/StreamMediaServer/src/mmedia",
+  "command": "/usr/bin/c++  -I/home/zxe/My-Project/StreamMediaServer/lib/jsoncpp/include -I/home/zxe/My-Project/StreamMediaServer/src  -std=c++17 -O0 -g -pipe -Wall -Werror -Wno-unused-variable -lrt -pthread -fno-strict-aliasing -Wno-error=shadow -Wno-sign-compare -Wno-error=unused-result -Werror=return-type -g -o CMakeFiles/mmedia.dir/rtmp/RtmpContext.cc.o -c /home/zxe/My-Project/StreamMediaServer/src/mmedia/rtmp/RtmpContext.cc",
+  "file": "/home/zxe/My-Project/StreamMediaServer/src/mmedia/rtmp/RtmpContext.cc"
+},
+{
+  "directory": "/home/zxe/My-Project/StreamMediaServer/src/mmedia",
+  "command": "/usr/bin/c++  -I/home/zxe/My-Project/StreamMediaServer/lib/jsoncpp/include -I/home/zxe/My-Project/StreamMediaServer/src  -std=c++17 -O0 -g -pipe -Wall -Werror -Wno-unused-variable -lrt -pthread -fno-strict-aliasing -Wno-error=shadow -Wno-sign-compare -Wno-error=unused-result -Werror=return-type -g -o CMakeFiles/mmedia.dir/rtmp/RtmpHandShake.cc.o -c /home/zxe/My-Project/StreamMediaServer/src/mmedia/rtmp/RtmpHandShake.cc",
+  "file": "/home/zxe/My-Project/StreamMediaServer/src/mmedia/rtmp/RtmpHandShake.cc"
+},
+{
+  "directory": "/home/zxe/My-Project/StreamMediaServer/src/mmedia",
+  "command": "/usr/bin/c++  -I/home/zxe/My-Project/StreamMediaServer/lib/jsoncpp/include -I/home/zxe/My-Project/StreamMediaServer/src  -std=c++17 -O0 -g -pipe -Wall -Werror -Wno-unused-variable -lrt -pthread -fno-strict-aliasing -Wno-error=shadow -Wno-sign-compare -Wno-error=unused-result -Werror=return-type -g -o CMakeFiles/mmedia.dir/rtmp/RtmpServer.cc.o -c /home/zxe/My-Project/StreamMediaServer/src/mmedia/rtmp/RtmpServer.cc",
+  "file": "/home/zxe/My-Project/StreamMediaServer/src/mmedia/rtmp/RtmpServer.cc"
+},
+{
+  "directory": "/home/zxe/My-Project/StreamMediaServer/src/mmedia",
+  "command": "/usr/bin/c++  -I/home/zxe/My-Project/StreamMediaServer/lib/jsoncpp/include -I/home/zxe/My-Project/StreamMediaServer/src  -std=c++17 -O0 -g -pipe -Wall -Werror -Wno-unused-variable -lrt -pthread -fno-strict-aliasing -Wno-error=shadow -Wno-sign-compare -Wno-error=unused-result -Werror=return-type -g -o CMakeFiles/mmedia.dir/rtmp/amf/AMFAny.cc.o -c /home/zxe/My-Project/StreamMediaServer/src/mmedia/rtmp/amf/AMFAny.cc",
+  "file": "/home/zxe/My-Project/StreamMediaServer/src/mmedia/rtmp/amf/AMFAny.cc"
+},
+{
+  "directory": "/home/zxe/My-Project/StreamMediaServer/src/mmedia",
+  "command": "/usr/bin/c++  -I/home/zxe/My-Project/StreamMediaServer/lib/jsoncpp/include -I/home/zxe/My-Project/StreamMediaServer/src  -std=c++17 -O0 -g -pipe -Wall -Werror -Wno-unused-variable -lrt -pthread -fno-strict-aliasing -Wno-error=shadow -Wno-sign-compare -Wno-error=unused-result -Werror=return-type -g -o CMakeFiles/mmedia.dir/rtmp/amf/AMFBoolean.cc.o -c /home/zxe/My-Project/StreamMediaServer/src/mmedia/rtmp/amf/AMFBoolean.cc",
+  "file": "/home/zxe/My-Project/StreamMediaServer/src/mmedia/rtmp/amf/AMFBoolean.cc"
+},
+{
+  "directory": "/home/zxe/My-Project/StreamMediaServer/src/mmedia",
+  "command": "/usr/bin/c++  -I/home/zxe/My-Project/StreamMediaServer/lib/jsoncpp/include -I/home/zxe/My-Project/StreamMediaServer/src  -std=c++17 -O0 -g -pipe -Wall -Werror -Wno-unused-variable -lrt -pthread -fno-strict-aliasing -Wno-error=shadow -Wno-sign-compare -Wno-error=unused-result -Werror=return-type -g -o CMakeFiles/mmedia.dir/rtmp/amf/AMFDate.cc.o -c /home/zxe/My-Project/StreamMediaServer/src/mmedia/rtmp/amf/AMFDate.cc",
+  "file": "/home/zxe/My-Project/StreamMediaServer/src/mmedia/rtmp/amf/AMFDate.cc"
+},
+{
+  "directory": "/home/zxe/My-Project/StreamMediaServer/src/mmedia",
+  "command": "/usr/bin/c++  -I/home/zxe/My-Project/StreamMediaServer/lib/jsoncpp/include -I/home/zxe/My-Project/StreamMediaServer/src  -std=c++17 -O0 -g -pipe -Wall -Werror -Wno-unused-variable -lrt -pthread -fno-strict-aliasing -Wno-error=shadow -Wno-sign-compare -Wno-error=unused-result -Werror=return-type -g -o CMakeFiles/mmedia.dir/rtmp/amf/AMFLongString.cc.o -c /home/zxe/My-Project/StreamMediaServer/src/mmedia/rtmp/amf/AMFLongString.cc",
+  "file": "/home/zxe/My-Project/StreamMediaServer/src/mmedia/rtmp/amf/AMFLongString.cc"
+},
+{
+  "directory": "/home/zxe/My-Project/StreamMediaServer/src/mmedia",
+  "command": "/usr/bin/c++  -I/home/zxe/My-Project/StreamMediaServer/lib/jsoncpp/include -I/home/zxe/My-Project/StreamMediaServer/src  -std=c++17 -O0 -g -pipe -Wall -Werror -Wno-unused-variable -lrt -pthread -fno-strict-aliasing -Wno-error=shadow -Wno-sign-compare -Wno-error=unused-result -Werror=return-type -g -o CMakeFiles/mmedia.dir/rtmp/amf/AMFNumber.cc.o -c /home/zxe/My-Project/StreamMediaServer/src/mmedia/rtmp/amf/AMFNumber.cc",
+  "file": "/home/zxe/My-Project/StreamMediaServer/src/mmedia/rtmp/amf/AMFNumber.cc"
+},
+{
+  "directory": "/home/zxe/My-Project/StreamMediaServer/src/mmedia",
+  "command": "/usr/bin/c++  -I/home/zxe/My-Project/StreamMediaServer/lib/jsoncpp/include -I/home/zxe/My-Project/StreamMediaServer/src  -std=c++17 -O0 -g -pipe -Wall -Werror -Wno-unused-variable -lrt -pthread -fno-strict-aliasing -Wno-error=shadow -Wno-sign-compare -Wno-error=unused-result -Werror=return-type -g -o CMakeFiles/mmedia.dir/rtmp/amf/AMFObject.cc.o -c /home/zxe/My-Project/StreamMediaServer/src/mmedia/rtmp/amf/AMFObject.cc",
+  "file": "/home/zxe/My-Project/StreamMediaServer/src/mmedia/rtmp/amf/AMFObject.cc"
+},
+{
+  "directory": "/home/zxe/My-Project/StreamMediaServer/src/mmedia",
+  "command": "/usr/bin/c++  -I/home/zxe/My-Project/StreamMediaServer/lib/jsoncpp/include -I/home/zxe/My-Project/StreamMediaServer/src  -std=c++17 -O0 -g -pipe -Wall -Werror -Wno-unused-variable -lrt -pthread -fno-strict-aliasing -Wno-error=shadow -Wno-sign-compare -Wno-error=unused-result -Werror=return-type -g -o CMakeFiles/mmedia.dir/rtmp/amf/AMFString.cc.o -c /home/zxe/My-Project/StreamMediaServer/src/mmedia/rtmp/amf/AMFString.cc",
+  "file": "/home/zxe/My-Project/StreamMediaServer/src/mmedia/rtmp/amf/AMFString.cc"
+},
+{
+  "directory": "/home/zxe/My-Project/StreamMediaServer/src/mmedia/tests",
+  "command": "/usr/bin/c++  -I/home/zxe/My-Project/StreamMediaServer/lib/jsoncpp/include -I/home/zxe/My-Project/StreamMediaServer/src  -std=c++17 -O0 -g -pipe -Wall -Werror -Wno-unused-variable -lrt -pthread -fno-strict-aliasing -Wno-error=shadow -Wno-sign-compare -Wno-error=unused-result -Werror=return-type -g -o CMakeFiles/HandShakeServerTest.dir/HandShakeServerTest.cpp.o -c /home/zxe/My-Project/StreamMediaServer/src/mmedia/tests/HandShakeServerTest.cpp",
+  "file": "/home/zxe/My-Project/StreamMediaServer/src/mmedia/tests/HandShakeServerTest.cpp"
+},
+{
+  "directory": "/home/zxe/My-Project/StreamMediaServer/src/mmedia/tests",
+  "command": "/usr/bin/c++  -I/home/zxe/My-Project/StreamMediaServer/lib/jsoncpp/include -I/home/zxe/My-Project/StreamMediaServer/src  -std=c++17 -O0 -g -pipe -Wall -Werror -Wno-unused-variable -lrt -pthread -fno-strict-aliasing -Wno-error=shadow -Wno-sign-compare -Wno-error=unused-result -Werror=return-type -g -o CMakeFiles/HandShakeClientTest.dir/HandShakeClientTest.cpp.o -c /home/zxe/My-Project/StreamMediaServer/src/mmedia/tests/HandShakeClientTest.cpp",
+  "file": "/home/zxe/My-Project/StreamMediaServer/src/mmedia/tests/HandShakeClientTest.cpp"
+},
+{
+  "directory": "/home/zxe/My-Project/StreamMediaServer/src/mmedia/tests",
+  "command": "/usr/bin/c++  -I/home/zxe/My-Project/StreamMediaServer/lib/jsoncpp/include -I/home/zxe/My-Project/StreamMediaServer/src  -std=c++17 -O0 -g -pipe -Wall -Werror -Wno-unused-variable -lrt -pthread -fno-strict-aliasing -Wno-error=shadow -Wno-sign-compare -Wno-error=unused-result -Werror=return-type -g -o CMakeFiles/RtmpServerTest.dir/RtmpServerTest.cpp.o -c /home/zxe/My-Project/StreamMediaServer/src/mmedia/tests/RtmpServerTest.cpp",
+  "file": "/home/zxe/My-Project/StreamMediaServer/src/mmedia/tests/RtmpServerTest.cpp"
+},
+{
+  "directory": "/home/zxe/My-Project/StreamMediaServer/src/mmedia/tests",
+  "command": "/usr/bin/c++  -I/home/zxe/My-Project/StreamMediaServer/lib/jsoncpp/include -I/home/zxe/My-Project/StreamMediaServer/src  -std=c++17 -O0 -g -pipe -Wall -Werror -Wno-unused-variable -lrt -pthread -fno-strict-aliasing -Wno-error=shadow -Wno-sign-compare -Wno-error=unused-result -Werror=return-type -g -o CMakeFiles/RtmpClientTest.dir/RtmpClientTest.cpp.o -c /home/zxe/My-Project/StreamMediaServer/src/mmedia/tests/RtmpClientTest.cpp",
+  "file": "/home/zxe/My-Project/StreamMediaServer/src/mmedia/tests/RtmpClientTest.cpp"
+},
+{
+  "directory": "/home/zxe/My-Project/StreamMediaServer/src/main",
+  "command": "/usr/bin/c++  -I/home/zxe/My-Project/StreamMediaServer/lib/jsoncpp/include -I/home/zxe/My-Project/StreamMediaServer/src  -std=c++17 -O0 -g -pipe -Wall -Werror -Wno-unused-variable -lrt -pthread -fno-strict-aliasing -Wno-error=shadow -Wno-sign-compare -Wno-error=unused-result -Werror=return-type -g -o CMakeFiles/tmms.dir/TestLog.cc.o -c /home/zxe/My-Project/StreamMediaServer/src/main/TestLog.cc",
+  "file": "/home/zxe/My-Project/StreamMediaServer/src/main/TestLog.cc"
+},
+{
+  "directory": "/home/zxe/My-Project/StreamMediaServer/src/main",
+  "command": "/usr/bin/c++  -I/home/zxe/My-Project/StreamMediaServer/lib/jsoncpp/include -I/home/zxe/My-Project/StreamMediaServer/src  -std=c++17 -O0 -g -pipe -Wall -Werror -Wno-unused-variable -lrt -pthread -fno-strict-aliasing -Wno-error=shadow -Wno-sign-compare -Wno-error=unused-result -Werror=return-type -g -o CMakeFiles/tmms.dir/TestTask.cc.o -c /home/zxe/My-Project/StreamMediaServer/src/main/TestTask.cc",
+  "file": "/home/zxe/My-Project/StreamMediaServer/src/main/TestTask.cc"
+},
+{
+  "directory": "/home/zxe/My-Project/StreamMediaServer/src/main",
+  "command": "/usr/bin/c++  -I/home/zxe/My-Project/StreamMediaServer/lib/jsoncpp/include -I/home/zxe/My-Project/StreamMediaServer/src  -std=c++17 -O0 -g -pipe -Wall -Werror -Wno-unused-variable -lrt -pthread -fno-strict-aliasing -Wno-error=shadow -Wno-sign-compare -Wno-error=unused-result -Werror=return-type -g -o CMakeFiles/tmms.dir/main.cc.o -c /home/zxe/My-Project/StreamMediaServer/src/main/main.cc",
+  "file": "/home/zxe/My-Project/StreamMediaServer/src/main/main.cc"
+},
+{
+  "directory": "/home/zxe/My-Project/StreamMediaServer/src/live",
+  "command": "/usr/bin/c++  -I/home/zxe/My-Project/StreamMediaServer/lib/jsoncpp/include -I/home/zxe/My-Project/StreamMediaServer/src  -std=c++17 -O0 -g -pipe -Wall -Werror -Wno-unused-variable -lrt -pthread -fno-strict-aliasing -Wno-error=shadow -Wno-sign-compare -Wno-error=unused-result -Werror=return-type -g -o CMakeFiles/live.dir/CodecHeader.cc.o -c /home/zxe/My-Project/StreamMediaServer/src/live/CodecHeader.cc",
+  "file": "/home/zxe/My-Project/StreamMediaServer/src/live/CodecHeader.cc"
+},
+{
+  "directory": "/home/zxe/My-Project/StreamMediaServer/src/live",
+  "command": "/usr/bin/c++  -I/home/zxe/My-Project/StreamMediaServer/lib/jsoncpp/include -I/home/zxe/My-Project/StreamMediaServer/src  -std=c++17 -O0 -g -pipe -Wall -Werror -Wno-unused-variable -lrt -pthread -fno-strict-aliasing -Wno-error=shadow -Wno-sign-compare -Wno-error=unused-result -Werror=return-type -g -o CMakeFiles/live.dir/GopMgr.cc.o -c /home/zxe/My-Project/StreamMediaServer/src/live/GopMgr.cc",
+  "file": "/home/zxe/My-Project/StreamMediaServer/src/live/GopMgr.cc"
+},
+{
+  "directory": "/home/zxe/My-Project/StreamMediaServer/src/live",
+  "command": "/usr/bin/c++  -I/home/zxe/My-Project/StreamMediaServer/lib/jsoncpp/include -I/home/zxe/My-Project/StreamMediaServer/src  -std=c++17 -O0 -g -pipe -Wall -Werror -Wno-unused-variable -lrt -pthread -fno-strict-aliasing -Wno-error=shadow -Wno-sign-compare -Wno-error=unused-result -Werror=return-type -g -o CMakeFiles/live.dir/PlayerUser.cc.o -c /home/zxe/My-Project/StreamMediaServer/src/live/PlayerUser.cc",
+  "file": "/home/zxe/My-Project/StreamMediaServer/src/live/PlayerUser.cc"
+},
+{
+  "directory": "/home/zxe/My-Project/StreamMediaServer/src/live",
+  "command": "/usr/bin/c++  -I/home/zxe/My-Project/StreamMediaServer/lib/jsoncpp/include -I/home/zxe/My-Project/StreamMediaServer/src  -std=c++17 -O0 -g -pipe -Wall -Werror -Wno-unused-variable -lrt -pthread -fno-strict-aliasing -Wno-error=shadow -Wno-sign-compare -Wno-error=unused-result -Werror=return-type -g -o CMakeFiles/live.dir/User.cc.o -c /home/zxe/My-Project/StreamMediaServer/src/live/User.cc",
+  "file": "/home/zxe/My-Project/StreamMediaServer/src/live/User.cc"
+},
+{
+  "directory": "/home/zxe/My-Project/StreamMediaServer/src/live",
+  "command": "/usr/bin/c++  -I/home/zxe/My-Project/StreamMediaServer/lib/jsoncpp/include -I/home/zxe/My-Project/StreamMediaServer/src  -std=c++17 -O0 -g -pipe -Wall -Werror -Wno-unused-variable -lrt -pthread -fno-strict-aliasing -Wno-error=shadow -Wno-sign-compare -Wno-error=unused-result -Werror=return-type -g -o CMakeFiles/live.dir/base/CodecUtils.cc.o -c /home/zxe/My-Project/StreamMediaServer/src/live/base/CodecUtils.cc",
+  "file": "/home/zxe/My-Project/StreamMediaServer/src/live/base/CodecUtils.cc"
+},
+{
+  "directory": "/home/zxe/My-Project/StreamMediaServer/src/live",
+  "command": "/usr/bin/c++  -I/home/zxe/My-Project/StreamMediaServer/lib/jsoncpp/include -I/home/zxe/My-Project/StreamMediaServer/src  -std=c++17 -O0 -g -pipe -Wall -Werror -Wno-unused-variable -lrt -pthread -fno-strict-aliasing -Wno-error=shadow -Wno-sign-compare -Wno-error=unused-result -Werror=return-type -g -o CMakeFiles/live.dir/base/TimeCorrector.cc.o -c /home/zxe/My-Project/StreamMediaServer/src/live/base/TimeCorrector.cc",
+  "file": "/home/zxe/My-Project/StreamMediaServer/src/live/base/TimeCorrector.cc"
+},
+{
+  "directory": "/home/zxe/My-Project/StreamMediaServer/src/live/tests",
+  "command": "/usr/bin/c++  -I/home/zxe/My-Project/StreamMediaServer/lib/jsoncpp/include -I/home/zxe/My-Project/StreamMediaServer/src  -std=c++17 -O0 -g -pipe -Wall -Werror -Wno-unused-variable -lrt -pthread -fno-strict-aliasing -Wno-error=shadow -Wno-sign-compare -Wno-error=unused-result -Werror=return-type -g -o CMakeFiles/CodecHeaderTest.dir/CodecHeaderTest.cpp.o -c /home/zxe/My-Project/StreamMediaServer/src/live/tests/CodecHeaderTest.cpp",
+  "file": "/home/zxe/My-Project/StreamMediaServer/src/live/tests/CodecHeaderTest.cpp"
+}
+]
