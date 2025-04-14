@@ -42,6 +42,7 @@ namespace tmms
     class User : public std::enable_shared_from_this<User>
     {
     public:
+      friend class Session;
       explicit User(const ConnectionPtr &ptr, const StreamPtr &stream);
       virtual ~User() = default;
       //SessionName成员函数
@@ -67,6 +68,10 @@ namespace tmms
       uint64_t ElapsedTime();//用户创建了多长时间
       void Active();//激活用户，有数据请求时会调用
       void Deactive();
+      const std::string &UserId() const
+      {
+        return user_id_;
+      }
     protected:
       ConnectionPtr connection_;
       StreamPtr stream_;
@@ -79,6 +84,7 @@ namespace tmms
       int64_t start_timestamp_{0};
       UserType type_{UserType::kUserTypeUnknowed};
       UserProtocol protocol_{UserProtocol::kUserProtocolUnknowed};
+      std::atomic_bool destroyed_{false};
     };
   }
 }
