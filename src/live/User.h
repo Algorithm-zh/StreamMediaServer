@@ -37,10 +37,12 @@ namespace tmms
         kUserProtocolUdp,
         kUserProtocolUnknowed = 255,
     };
+    class Stream;
+    using StreamPtr = std::shared_ptr<Stream>;
     class User : public std::enable_shared_from_this<User>
     {
     public:
-      explicit User(const ConnectionPtr &ptr);
+      explicit User(const ConnectionPtr &ptr, const StreamPtr &stream);
       virtual ~User() = default;
       //SessionName成员函数
       const std::string &DomainName() const;
@@ -65,12 +67,14 @@ namespace tmms
       uint64_t ElapsedTime();//用户创建了多长时间
       void Active();//激活用户，有数据请求时会调用
       void Deactive();
-    private:
+    protected:
       ConnectionPtr connection_;
+      StreamPtr stream_;
       std::string domain_name_;
       std::string app_name_;
       std::string stream_name_;
       std::string param_;
+      std::string user_id_;
       AppInfoPtr app_info_;
       int64_t start_timestamp_{0};
       UserType type_{UserType::kUserTypeUnknowed};

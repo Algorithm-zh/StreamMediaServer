@@ -3,6 +3,7 @@
 #include "base/TimeCorrector.h"
 #include "mmedia/base/Packet.h"
 #include "live/base/TimeCorrector.h"
+#include <cstdint>
 #include <vector>
 namespace tmms
 {
@@ -12,7 +13,9 @@ namespace tmms
     class PlayerUser : public User
     {
     public:
-      explicit PlayerUser(const ConnectionPtr &ptr);
+      friend class Stream;
+      //委托构造
+      using User::User;
       //CodecHeader成员函数
       PacketPtr Meta() const;
       PacketPtr AudioHeader() const;
@@ -23,7 +26,7 @@ namespace tmms
       //其它成员函数
       virtual bool PostFrames() = 0;
       TimeCorrector& GetTimeCorrector();
-   private:
+   protected:
       PacketPtr meta_;
       PacketPtr audio_header_;
       PacketPtr video_header_;
@@ -41,6 +44,7 @@ namespace tmms
       int32_t out_version_{-1};
       int32_t out_frame_timestamp_{0};
       std::vector<PacketPtr> out_frames_;
+      int32_t out_index_{-1};
       
     };
   }

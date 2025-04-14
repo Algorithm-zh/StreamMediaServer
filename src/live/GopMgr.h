@@ -27,6 +27,10 @@ namespace tmms
       int GetGopByLatency(int content_latency, int &latency) const;
       void ClearExpriedGop(int min_idx);
       void PrintAllGop();
+      int64_t LatestTimestamp() const
+      {
+        return latest_timestamp_;
+      }
     private:
       std::vector<GopItemInfo> gops_;
       int32_t gop_length_{0};

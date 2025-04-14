@@ -13,3 +13,13 @@ bool CodecUtils::IsCodecHeader(const PacketPtr &packet)  {
   }
   return false;
 }
+ 
+bool CodecUtils::IsKeyFrame(const PacketPtr &packet)  {
+
+  if(packet->PacketSize() > 0)
+  {
+    const char *b = packet->Data();
+    return ((*b >> 4)&0x0f) == 1;//判断是否是关键帧
+  }
+  return false;
+}

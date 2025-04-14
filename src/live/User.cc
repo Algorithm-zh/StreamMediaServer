@@ -1,11 +1,13 @@
 #include "User.h"
 #include "base/TTime.h"
+#include "live/Stream.h"
 using namespace tmms::live;
 
  
-User::User(const ConnectionPtr &ptr)  
-:connection_(ptr){
+User::User(const ConnectionPtr &ptr, const StreamPtr &stream)  
+:connection_(ptr), stream_(stream){
   start_timestamp_ = tmms::base::TTime::NowMs(); 
+  user_id_ = ptr->PeerAddr().ToIpPort();
 }
  
 const std::string &User::DomainName() const {

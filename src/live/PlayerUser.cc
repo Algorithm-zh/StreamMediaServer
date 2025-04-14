@@ -1,10 +1,5 @@
 #include "PlayerUser.h"
 using namespace tmms::live;
-PlayerUser::PlayerUser(const ConnectionPtr &ptr)
-:User(ptr)
-{
-
-}
 //CodecHeader成员函数
 PacketPtr PlayerUser::Meta() const
 {
