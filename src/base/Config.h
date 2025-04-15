@@ -65,7 +65,8 @@ namespace tmms
       //配置文件信息，后续可以根据配置文件动态更改
       std::string name_;
       int32_t cpu_start_{0};
-      int32_t thread_num_{0};
+      int32_t thread_num_{1};
+      int32_t cpus_{1};
     
     private:
       //解析配置文件

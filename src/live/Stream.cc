@@ -155,6 +155,7 @@ bool Stream::LocateGop(const PlayerUserPtr &user)  {
   }
   else
   {
+    //等待关键帧超时
     auto elapsed = user->ElapsedTime();
     if(elapsed >= 1000 && !user->wait_timeout_)
     {

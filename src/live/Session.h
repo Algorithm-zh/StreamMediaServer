@@ -12,7 +12,7 @@ namespace tmms
   {
     using PlayerUserPtr = std::shared_ptr<PlayerUser>;
     using UserPtr = std::shared_ptr<User>;
-    class Session
+    class Session : public std::enable_shared_from_this<Session>
     {
     public:
       explicit Session(const std::string &session_name);

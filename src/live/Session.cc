@@ -61,7 +61,7 @@ UserPtr Session::CreatePublishUser(const ConnectionPtr &conn,
     LIVE_ERROR << "create publish User failed, Invalid session name:" << session_name;
     return user_null;
   }
-  UserPtr user = std::make_shared<User>(conn, stream_);
+  UserPtr user = std::make_shared<User>(conn, stream_, shared_from_this());
   user->SetAppInfo(app_info_);
   user->SetDomainName(list[0]);
   user->SetAppName(list[1]);
@@ -90,7 +90,7 @@ UserPtr Session::CreatePlayerUser(const ConnectionPtr &conn,
   PlayerUserPtr user;
   if(type == UserType::kUserTypePlayerRtmp)
   {
-    user = std::make_shared<RtmpPlayerUser>(conn, stream_);
+    user = std::make_shared<RtmpPlayerUser>(conn, stream_, shared_from_this());
   }
   user->SetAppInfo(app_info_);
   user->SetDomainName(list[0]);

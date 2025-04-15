@@ -13,7 +13,8 @@ namespace tmms
     using namespace tmms::network;
     using namespace tmms::base;
     using AppInfoPtr = std::shared_ptr<AppInfo>;
-
+    class Session;
+    using SessionPtr = std::shared_ptr<Session>;
     enum class UserType
     {
         kUserTypePublishRtmp = 0,
@@ -43,7 +44,7 @@ namespace tmms
     {
     public:
       friend class Session;
-      explicit User(const ConnectionPtr &ptr, const StreamPtr &stream);
+      explicit User(const ConnectionPtr &ptr, const StreamPtr &stream, const SessionPtr &s);
       virtual ~User() = default;
       //SessionName成员函数
       const std::string &DomainName() const;
@@ -72,6 +73,14 @@ namespace tmms
       {
         return user_id_;
       }
+      SessionPtr GetSession() const
+      {
+        return session_;
+      }
+      StreamPtr GetStream() const
+      {
+        return stream_;
+      }
     protected:
       ConnectionPtr connection_;
       StreamPtr stream_;
@@ -85,6 +94,7 @@ namespace tmms
       UserType type_{UserType::kUserTypeUnknowed};
       UserProtocol protocol_{UserProtocol::kUserProtocolUnknowed};
       std::atomic_bool destroyed_{false};
+      SessionPtr session_;
     };
   }
 }

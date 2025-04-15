@@ -4,8 +4,8 @@
 using namespace tmms::live;
 
  
-User::User(const ConnectionPtr &ptr, const StreamPtr &stream)  
-:connection_(ptr), stream_(stream){
+User::User(const ConnectionPtr &ptr, const StreamPtr &stream, const SessionPtr &s)
+:connection_(ptr), stream_(stream), session_(s){
   start_timestamp_ = tmms::base::TTime::NowMs(); 
   user_id_ = ptr->PeerAddr().ToIpPort();
 }

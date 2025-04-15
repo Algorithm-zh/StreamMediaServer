@@ -35,6 +35,10 @@ bool Config::LoadConfig(const std::string &file)  {
   if(!cpuStartObj.isNull()) {
     cpu_start_ = cpuStartObj.asInt();
   }
+  Json::Value cpusObj = root["cpus"];
+  if(!cpusObj.isNull()) {
+    cpus_ = cpusObj.asInt();
+  }
   Json::Value threadNumObj = root["threads"];
   if(!threadNumObj.isNull()) {
     thread_num_ = threadNumObj.asInt();
