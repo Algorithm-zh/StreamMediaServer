@@ -1,0 +1,26 @@
+{
+  "name" : "tmms server",
+  "cpu_start" : 0,
+  "threads" : 4,
+  "cpus" : 4,
+  "log" : 
+  {
+    "level" : "TRACE",
+    "name" : "tmms.log",
+    "path" : "../log/",
+    "rotate" : "DAY",
+  },
+  "services" : 
+  [
+    {
+      "addr" : "0.0.0.0",
+      "port" : 1935,
+      "protocol" : "rtmp",
+      "transport" : "tcp"
+    }
+  ],
+  "directory" :
+  [
+    "../config/publish/"
+  ]
+}

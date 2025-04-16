@@ -1,0 +1,43 @@
+{
+	"sources" : 
+	[
+		{
+			"file" : "/home/zxe/My-Project/\u4ee3\u7801+\u8bfe\u4ef6/\u4ee3\u7801/tmms-lesson_8.17/tmms/build/CMakeFiles/jsoncpp"
+		},
+		{
+			"file" : "/home/zxe/My-Project/\u4ee3\u7801+\u8bfe\u4ef6/\u4ee3\u7801/tmms-lesson_8.17/tmms/build/CMakeFiles/jsoncpp.rule"
+		},
+		{
+			"file" : "/home/zxe/My-Project/\u4ee3\u7801+\u8bfe\u4ef6/\u4ee3\u7801/tmms-lesson_8.17/tmms/build/CMakeFiles/jsoncpp-complete.rule"
+		},
+		{
+			"file" : "/home/zxe/My-Project/\u4ee3\u7801+\u8bfe\u4ef6/\u4ee3\u7801/tmms-lesson_8.17/tmms/build/jsoncpp-prefix/src/jsoncpp-stamp/jsoncpp-build.rule"
+		},
+		{
+			"file" : "/home/zxe/My-Project/\u4ee3\u7801+\u8bfe\u4ef6/\u4ee3\u7801/tmms-lesson_8.17/tmms/build/jsoncpp-prefix/src/jsoncpp-stamp/jsoncpp-configure.rule"
+		},
+		{
+			"file" : "/home/zxe/My-Project/\u4ee3\u7801+\u8bfe\u4ef6/\u4ee3\u7801/tmms-lesson_8.17/tmms/build/jsoncpp-prefix/src/jsoncpp-stamp/jsoncpp-download.rule"
+		},
+		{
+			"file" : "/home/zxe/My-Project/\u4ee3\u7801+\u8bfe\u4ef6/\u4ee3\u7801/tmms-lesson_8.17/tmms/build/jsoncpp-prefix/src/jsoncpp-stamp/jsoncpp-install.rule"
+		},
+		{
+			"file" : "/home/zxe/My-Project/\u4ee3\u7801+\u8bfe\u4ef6/\u4ee3\u7801/tmms-lesson_8.17/tmms/build/jsoncpp-prefix/src/jsoncpp-stamp/jsoncpp-mkdir.rule"
+		},
+		{
+			"file" : "/home/zxe/My-Project/\u4ee3\u7801+\u8bfe\u4ef6/\u4ee3\u7801/tmms-lesson_8.17/tmms/build/jsoncpp-prefix/src/jsoncpp-stamp/jsoncpp-patch.rule"
+		},
+		{
+			"file" : "/home/zxe/My-Project/\u4ee3\u7801+\u8bfe\u4ef6/\u4ee3\u7801/tmms-lesson_8.17/tmms/build/jsoncpp-prefix/src/jsoncpp-stamp/jsoncpp-update.rule"
+		}
+	],
+	"target" : 
+	{
+		"labels" : 
+		[
+			"jsoncpp"
+		],
+		"name" : "jsoncpp"
+	}
+}

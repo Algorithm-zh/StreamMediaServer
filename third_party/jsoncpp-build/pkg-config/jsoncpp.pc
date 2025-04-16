@@ -1,0 +1,11 @@
+prefix=/home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/lib/jsoncpp
+exec_prefix=/home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/lib/jsoncpp
+libdir=${exec_prefix}/lib
+includedir=${prefix}/include
+
+Name: jsoncpp
+Description: A C++ library for interacting with JSON
+Version: 1.9.4
+URL: https://github.com/open-source-parsers/jsoncpp
+Libs: -L${libdir} -ljsoncpp
+Cflags: -I${includedir}

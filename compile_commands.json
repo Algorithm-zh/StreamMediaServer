@@ -1,0 +1,372 @@
+[
+{
+  "directory": "/home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/src/base",
+  "command": "/usr/bin/c++  -I/home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/lib/jsoncpp/include -I/home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/src -Wno-error=unused-result -Werror=return-type  -std=c++11 -O3 -g -pipe -Wall -Werror -Wno-unused-variable -lrt -pthread -fno-strict-aliasing -Wno-error=shadow -Wno-sign-compare -o CMakeFiles/base.dir/AppInfo.cpp.o -c /home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/src/base/AppInfo.cpp",
+  "file": "/home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/src/base/AppInfo.cpp"
+},
+{
+  "directory": "/home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/src/base",
+  "command": "/usr/bin/c++  -I/home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/lib/jsoncpp/include -I/home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/src -Wno-error=unused-result -Werror=return-type  -std=c++11 -O3 -g -pipe -Wall -Werror -Wno-unused-variable -lrt -pthread -fno-strict-aliasing -Wno-error=shadow -Wno-sign-compare -o CMakeFiles/base.dir/Config.cpp.o -c /home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/src/base/Config.cpp",
+  "file": "/home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/src/base/Config.cpp"
+},
+{
+  "directory": "/home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/src/base",
+  "command": "/usr/bin/c++  -I/home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/lib/jsoncpp/include -I/home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/src -Wno-error=unused-result -Werror=return-type  -std=c++11 -O3 -g -pipe -Wall -Werror -Wno-unused-variable -lrt -pthread -fno-strict-aliasing -Wno-error=shadow -Wno-sign-compare -o CMakeFiles/base.dir/DomainInfo.cpp.o -c /home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/src/base/DomainInfo.cpp",
+  "file": "/home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/src/base/DomainInfo.cpp"
+},
+{
+  "directory": "/home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/src/base",
+  "command": "/usr/bin/c++  -I/home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/lib/jsoncpp/include -I/home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/src -Wno-error=unused-result -Werror=return-type  -std=c++11 -O3 -g -pipe -Wall -Werror -Wno-unused-variable -lrt -pthread -fno-strict-aliasing -Wno-error=shadow -Wno-sign-compare -o CMakeFiles/base.dir/FileLog.cpp.o -c /home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/src/base/FileLog.cpp",
+  "file": "/home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/src/base/FileLog.cpp"
+},
+{
+  "directory": "/home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/src/base",
+  "command": "/usr/bin/c++  -I/home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/lib/jsoncpp/include -I/home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/src -Wno-error=unused-result -Werror=return-type  -std=c++11 -O3 -g -pipe -Wall -Werror -Wno-unused-variable -lrt -pthread -fno-strict-aliasing -Wno-error=shadow -Wno-sign-compare -o CMakeFiles/base.dir/FileMgr.cpp.o -c /home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/src/base/FileMgr.cpp",
+  "file": "/home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/src/base/FileMgr.cpp"
+},
+{
+  "directory": "/home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/src/base",
+  "command": "/usr/bin/c++  -I/home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/lib/jsoncpp/include -I/home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/src -Wno-error=unused-result -Werror=return-type  -std=c++11 -O3 -g -pipe -Wall -Werror -Wno-unused-variable -lrt -pthread -fno-strict-aliasing -Wno-error=shadow -Wno-sign-compare -o CMakeFiles/base.dir/LogStream.cpp.o -c /home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/src/base/LogStream.cpp",
+  "file": "/home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/src/base/LogStream.cpp"
+},
+{
+  "directory": "/home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/src/base",
+  "command": "/usr/bin/c++  -I/home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/lib/jsoncpp/include -I/home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/src -Wno-error=unused-result -Werror=return-type  -std=c++11 -O3 -g -pipe -Wall -Werror -Wno-unused-variable -lrt -pthread -fno-strict-aliasing -Wno-error=shadow -Wno-sign-compare -o CMakeFiles/base.dir/Logger.cpp.o -c /home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/src/base/Logger.cpp",
+  "file": "/home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/src/base/Logger.cpp"
+},
+{
+  "directory": "/home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/src/base",
+  "command": "/usr/bin/c++  -I/home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/lib/jsoncpp/include -I/home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/src -Wno-error=unused-result -Werror=return-type  -std=c++11 -O3 -g -pipe -Wall -Werror -Wno-unused-variable -lrt -pthread -fno-strict-aliasing -Wno-error=shadow -Wno-sign-compare -o CMakeFiles/base.dir/StringUtils.cpp.o -c /home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/src/base/StringUtils.cpp",
+  "file": "/home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/src/base/StringUtils.cpp"
+},
+{
+  "directory": "/home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/src/base",
+  "command": "/usr/bin/c++  -I/home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/lib/jsoncpp/include -I/home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/src -Wno-error=unused-result -Werror=return-type  -std=c++11 -O3 -g -pipe -Wall -Werror -Wno-unused-variable -lrt -pthread -fno-strict-aliasing -Wno-error=shadow -Wno-sign-compare -o CMakeFiles/base.dir/TTime.cpp.o -c /home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/src/base/TTime.cpp",
+  "file": "/home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/src/base/TTime.cpp"
+},
+{
+  "directory": "/home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/src/base",
+  "command": "/usr/bin/c++  -I/home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/lib/jsoncpp/include -I/home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/src -Wno-error=unused-result -Werror=return-type  -std=c++11 -O3 -g -pipe -Wall -Werror -Wno-unused-variable -lrt -pthread -fno-strict-aliasing -Wno-error=shadow -Wno-sign-compare -o CMakeFiles/base.dir/Task.cpp.o -c /home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/src/base/Task.cpp",
+  "file": "/home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/src/base/Task.cpp"
+},
+{
+  "directory": "/home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/src/base",
+  "command": "/usr/bin/c++  -I/home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/lib/jsoncpp/include -I/home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/src -Wno-error=unused-result -Werror=return-type  -std=c++11 -O3 -g -pipe -Wall -Werror -Wno-unused-variable -lrt -pthread -fno-strict-aliasing -Wno-error=shadow -Wno-sign-compare -o CMakeFiles/base.dir/TaskMgr.cpp.o -c /home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/src/base/TaskMgr.cpp",
+  "file": "/home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/src/base/TaskMgr.cpp"
+},
+{
+  "directory": "/home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/src/base",
+  "command": "/usr/bin/c++  -I/home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/lib/jsoncpp/include -I/home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/src -Wno-error=unused-result -Werror=return-type  -std=c++11 -O3 -g -pipe -Wall -Werror -Wno-unused-variable -lrt -pthread -fno-strict-aliasing -Wno-error=shadow -Wno-sign-compare -o CMakeFiles/base.dir/TestBase.cpp.o -c /home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/src/base/TestBase.cpp",
+  "file": "/home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/src/base/TestBase.cpp"
+},
+{
+  "directory": "/home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/src/base",
+  "command": "/usr/bin/c++  -I/home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/lib/jsoncpp/include -I/home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/src -Wno-error=unused-result -Werror=return-type  -std=c++11 -O3 -g -pipe -Wall -Werror -Wno-unused-variable -lrt -pthread -fno-strict-aliasing -Wno-error=shadow -Wno-sign-compare -o CMakeFiles/base.dir/TestLog.cpp.o -c /home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/src/base/TestLog.cpp",
+  "file": "/home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/src/base/TestLog.cpp"
+},
+{
+  "directory": "/home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/src/base",
+  "command": "/usr/bin/c++  -I/home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/lib/jsoncpp/include -I/home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/src -Wno-error=unused-result -Werror=return-type  -std=c++11 -O3 -g -pipe -Wall -Werror -Wno-unused-variable -lrt -pthread -fno-strict-aliasing -Wno-error=shadow -Wno-sign-compare -o CMakeFiles/base.dir/TestTask.cpp.o -c /home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/src/base/TestTask.cpp",
+  "file": "/home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/src/base/TestTask.cpp"
+},
+{
+  "directory": "/home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/src/base",
+  "command": "/usr/bin/c++  -I/home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/lib/jsoncpp/include -I/home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/src -Wno-error=unused-result -Werror=return-type  -std=c++11 -O3 -g -pipe -Wall -Werror -Wno-unused-variable -lrt -pthread -fno-strict-aliasing -Wno-error=shadow -Wno-sign-compare -o CMakeFiles/base_test.dir/AppInfo.cpp.o -c /home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/src/base/AppInfo.cpp",
+  "file": "/home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/src/base/AppInfo.cpp"
+},
+{
+  "directory": "/home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/src/base",
+  "command": "/usr/bin/c++  -I/home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/lib/jsoncpp/include -I/home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/src -Wno-error=unused-result -Werror=return-type  -std=c++11 -O3 -g -pipe -Wall -Werror -Wno-unused-variable -lrt -pthread -fno-strict-aliasing -Wno-error=shadow -Wno-sign-compare -o CMakeFiles/base_test.dir/Config.cpp.o -c /home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/src/base/Config.cpp",
+  "file": "/home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/src/base/Config.cpp"
+},
+{
+  "directory": "/home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/src/base",
+  "command": "/usr/bin/c++  -I/home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/lib/jsoncpp/include -I/home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/src -Wno-error=unused-result -Werror=return-type  -std=c++11 -O3 -g -pipe -Wall -Werror -Wno-unused-variable -lrt -pthread -fno-strict-aliasing -Wno-error=shadow -Wno-sign-compare -o CMakeFiles/base_test.dir/DomainInfo.cpp.o -c /home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/src/base/DomainInfo.cpp",
+  "file": "/home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/src/base/DomainInfo.cpp"
+},
+{
+  "directory": "/home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/src/base",
+  "command": "/usr/bin/c++  -I/home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/lib/jsoncpp/include -I/home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/src -Wno-error=unused-result -Werror=return-type  -std=c++11 -O3 -g -pipe -Wall -Werror -Wno-unused-variable -lrt -pthread -fno-strict-aliasing -Wno-error=shadow -Wno-sign-compare -o CMakeFiles/base_test.dir/FileLog.cpp.o -c /home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/src/base/FileLog.cpp",
+  "file": "/home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/src/base/FileLog.cpp"
+},
+{
+  "directory": "/home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/src/base",
+  "command": "/usr/bin/c++  -I/home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/lib/jsoncpp/include -I/home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/src -Wno-error=unused-result -Werror=return-type  -std=c++11 -O3 -g -pipe -Wall -Werror -Wno-unused-variable -lrt -pthread -fno-strict-aliasing -Wno-error=shadow -Wno-sign-compare -o CMakeFiles/base_test.dir/FileMgr.cpp.o -c /home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/src/base/FileMgr.cpp",
+  "file": "/home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/src/base/FileMgr.cpp"
+},
+{
+  "directory": "/home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/src/base",
+  "command": "/usr/bin/c++  -I/home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/lib/jsoncpp/include -I/home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/src -Wno-error=unused-result -Werror=return-type  -std=c++11 -O3 -g -pipe -Wall -Werror -Wno-unused-variable -lrt -pthread -fno-strict-aliasing -Wno-error=shadow -Wno-sign-compare -o CMakeFiles/base_test.dir/LogStream.cpp.o -c /home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/src/base/LogStream.cpp",
+  "file": "/home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/src/base/LogStream.cpp"
+},
+{
+  "directory": "/home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/src/base",
+  "command": "/usr/bin/c++  -I/home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/lib/jsoncpp/include -I/home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/src -Wno-error=unused-result -Werror=return-type  -std=c++11 -O3 -g -pipe -Wall -Werror -Wno-unused-variable -lrt -pthread -fno-strict-aliasing -Wno-error=shadow -Wno-sign-compare -o CMakeFiles/base_test.dir/Logger.cpp.o -c /home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/src/base/Logger.cpp",
+  "file": "/home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/src/base/Logger.cpp"
+},
+{
+  "directory": "/home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/src/base",
+  "command": "/usr/bin/c++  -I/home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/lib/jsoncpp/include -I/home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/src -Wno-error=unused-result -Werror=return-type  -std=c++11 -O3 -g -pipe -Wall -Werror -Wno-unused-variable -lrt -pthread -fno-strict-aliasing -Wno-error=shadow -Wno-sign-compare -o CMakeFiles/base_test.dir/StringUtils.cpp.o -c /home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/src/base/StringUtils.cpp",
+  "file": "/home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/src/base/StringUtils.cpp"
+},
+{
+  "directory": "/home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/src/base",
+  "command": "/usr/bin/c++  -I/home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/lib/jsoncpp/include -I/home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/src -Wno-error=unused-result -Werror=return-type  -std=c++11 -O3 -g -pipe -Wall -Werror -Wno-unused-variable -lrt -pthread -fno-strict-aliasing -Wno-error=shadow -Wno-sign-compare -o CMakeFiles/base_test.dir/TTime.cpp.o -c /home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/src/base/TTime.cpp",
+  "file": "/home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/src/base/TTime.cpp"
+},
+{
+  "directory": "/home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/src/base",
+  "command": "/usr/bin/c++  -I/home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/lib/jsoncpp/include -I/home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/src -Wno-error=unused-result -Werror=return-type  -std=c++11 -O3 -g -pipe -Wall -Werror -Wno-unused-variable -lrt -pthread -fno-strict-aliasing -Wno-error=shadow -Wno-sign-compare -o CMakeFiles/base_test.dir/Task.cpp.o -c /home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/src/base/Task.cpp",
+  "file": "/home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/src/base/Task.cpp"
+},
+{
+  "directory": "/home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/src/base",
+  "command": "/usr/bin/c++  -I/home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/lib/jsoncpp/include -I/home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/src -Wno-error=unused-result -Werror=return-type  -std=c++11 -O3 -g -pipe -Wall -Werror -Wno-unused-variable -lrt -pthread -fno-strict-aliasing -Wno-error=shadow -Wno-sign-compare -o CMakeFiles/base_test.dir/TaskMgr.cpp.o -c /home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/src/base/TaskMgr.cpp",
+  "file": "/home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/src/base/TaskMgr.cpp"
+},
+{
+  "directory": "/home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/src/base",
+  "command": "/usr/bin/c++  -I/home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/lib/jsoncpp/include -I/home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/src -Wno-error=unused-result -Werror=return-type  -std=c++11 -O3 -g -pipe -Wall -Werror -Wno-unused-variable -lrt -pthread -fno-strict-aliasing -Wno-error=shadow -Wno-sign-compare -o CMakeFiles/base_test.dir/TestBase.cpp.o -c /home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/src/base/TestBase.cpp",
+  "file": "/home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/src/base/TestBase.cpp"
+},
+{
+  "directory": "/home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/src/base",
+  "command": "/usr/bin/c++  -I/home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/lib/jsoncpp/include -I/home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/src -Wno-error=unused-result -Werror=return-type  -std=c++11 -O3 -g -pipe -Wall -Werror -Wno-unused-variable -lrt -pthread -fno-strict-aliasing -Wno-error=shadow -Wno-sign-compare -o CMakeFiles/base_test.dir/TestLog.cpp.o -c /home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/src/base/TestLog.cpp",
+  "file": "/home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/src/base/TestLog.cpp"
+},
+{
+  "directory": "/home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/src/base",
+  "command": "/usr/bin/c++  -I/home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/lib/jsoncpp/include -I/home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/src -Wno-error=unused-result -Werror=return-type  -std=c++11 -O3 -g -pipe -Wall -Werror -Wno-unused-variable -lrt -pthread -fno-strict-aliasing -Wno-error=shadow -Wno-sign-compare -o CMakeFiles/base_test.dir/TestTask.cpp.o -c /home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/src/base/TestTask.cpp",
+  "file": "/home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/src/base/TestTask.cpp"
+},
+{
+  "directory": "/home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/src/network",
+  "command": "/usr/bin/c++  -I/home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/lib/jsoncpp/include -I/home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/src -Wno-error=unused-result -Werror=return-type  -std=c++11 -O3 -g -pipe -Wall -Werror -Wno-unused-variable -lrt -pthread -fno-strict-aliasing -Wno-error=shadow -Wno-sign-compare -o CMakeFiles/network.dir/DnsService.cpp.o -c /home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/src/network/DnsService.cpp",
+  "file": "/home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/src/network/DnsService.cpp"
+},
+{
+  "directory": "/home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/src/network",
+  "command": "/usr/bin/c++  -I/home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/lib/jsoncpp/include -I/home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/src -Wno-error=unused-result -Werror=return-type  -std=c++11 -O3 -g -pipe -Wall -Werror -Wno-unused-variable -lrt -pthread -fno-strict-aliasing -Wno-error=shadow -Wno-sign-compare -o CMakeFiles/network.dir/TcpClient.cpp.o -c /home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/src/network/TcpClient.cpp",
+  "file": "/home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/src/network/TcpClient.cpp"
+},
+{
+  "directory": "/home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/src/network",
+  "command": "/usr/bin/c++  -I/home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/lib/jsoncpp/include -I/home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/src -Wno-error=unused-result -Werror=return-type  -std=c++11 -O3 -g -pipe -Wall -Werror -Wno-unused-variable -lrt -pthread -fno-strict-aliasing -Wno-error=shadow -Wno-sign-compare -o CMakeFiles/network.dir/TcpServer.cpp.o -c /home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/src/network/TcpServer.cpp",
+  "file": "/home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/src/network/TcpServer.cpp"
+},
+{
+  "directory": "/home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/src/network",
+  "command": "/usr/bin/c++  -I/home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/lib/jsoncpp/include -I/home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/src -Wno-error=unused-result -Werror=return-type  -std=c++11 -O3 -g -pipe -Wall -Werror -Wno-unused-variable -lrt -pthread -fno-strict-aliasing -Wno-error=shadow -Wno-sign-compare -o CMakeFiles/network.dir/TestContext.cpp.o -c /home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/src/network/TestContext.cpp",
+  "file": "/home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/src/network/TestContext.cpp"
+},
+{
+  "directory": "/home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/src/network",
+  "command": "/usr/bin/c++  -I/home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/lib/jsoncpp/include -I/home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/src -Wno-error=unused-result -Werror=return-type  -std=c++11 -O3 -g -pipe -Wall -Werror -Wno-unused-variable -lrt -pthread -fno-strict-aliasing -Wno-error=shadow -Wno-sign-compare -o CMakeFiles/network.dir/UdpClient.cpp.o -c /home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/src/network/UdpClient.cpp",
+  "file": "/home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/src/network/UdpClient.cpp"
+},
+{
+  "directory": "/home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/src/network",
+  "command": "/usr/bin/c++  -I/home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/lib/jsoncpp/include -I/home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/src -Wno-error=unused-result -Werror=return-type  -std=c++11 -O3 -g -pipe -Wall -Werror -Wno-unused-variable -lrt -pthread -fno-strict-aliasing -Wno-error=shadow -Wno-sign-compare -o CMakeFiles/network.dir/UdpServer.cpp.o -c /home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/src/network/UdpServer.cpp",
+  "file": "/home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/src/network/UdpServer.cpp"
+},
+{
+  "directory": "/home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/src/network",
+  "command": "/usr/bin/c++  -I/home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/lib/jsoncpp/include -I/home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/src -Wno-error=unused-result -Werror=return-type  -std=c++11 -O3 -g -pipe -Wall -Werror -Wno-unused-variable -lrt -pthread -fno-strict-aliasing -Wno-error=shadow -Wno-sign-compare -o CMakeFiles/network.dir/base/InetAddress.cpp.o -c /home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/src/network/base/InetAddress.cpp",
+  "file": "/home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/src/network/base/InetAddress.cpp"
+},
+{
+  "directory": "/home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/src/network",
+  "command": "/usr/bin/c++  -I/home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/lib/jsoncpp/include -I/home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/src -Wno-error=unused-result -Werror=return-type  -std=c++11 -O3 -g -pipe -Wall -Werror -Wno-unused-variable -lrt -pthread -fno-strict-aliasing -Wno-error=shadow -Wno-sign-compare -o CMakeFiles/network.dir/base/MsgBuffer.cpp.o -c /home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/src/network/base/MsgBuffer.cpp",
+  "file": "/home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/src/network/base/MsgBuffer.cpp"
+},
+{
+  "directory": "/home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/src/network",
+  "command": "/usr/bin/c++  -I/home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/lib/jsoncpp/include -I/home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/src -Wno-error=unused-result -Werror=return-type  -std=c++11 -O3 -g -pipe -Wall -Werror -Wno-unused-variable -lrt -pthread -fno-strict-aliasing -Wno-error=shadow -Wno-sign-compare -o CMakeFiles/network.dir/base/SocketOpt.cpp.o -c /home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/src/network/base/SocketOpt.cpp",
+  "file": "/home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/src/network/base/SocketOpt.cpp"
+},
+{
+  "directory": "/home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/src/network",
+  "command": "/usr/bin/c++  -I/home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/lib/jsoncpp/include -I/home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/src -Wno-error=unused-result -Werror=return-type  -std=c++11 -O3 -g -pipe -Wall -Werror -Wno-unused-variable -lrt -pthread -fno-strict-aliasing -Wno-error=shadow -Wno-sign-compare -o CMakeFiles/network.dir/net/Acceptor.cpp.o -c /home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/src/network/net/Acceptor.cpp",
+  "file": "/home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/src/network/net/Acceptor.cpp"
+},
+{
+  "directory": "/home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/src/network",
+  "command": "/usr/bin/c++  -I/home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/lib/jsoncpp/include -I/home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/src -Wno-error=unused-result -Werror=return-type  -std=c++11 -O3 -g -pipe -Wall -Werror -Wno-unused-variable -lrt -pthread -fno-strict-aliasing -Wno-error=shadow -Wno-sign-compare -o CMakeFiles/network.dir/net/Connection.cpp.o -c /home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/src/network/net/Connection.cpp",
+  "file": "/home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/src/network/net/Connection.cpp"
+},
+{
+  "directory": "/home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/src/network",
+  "command": "/usr/bin/c++  -I/home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/lib/jsoncpp/include -I/home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/src -Wno-error=unused-result -Werror=return-type  -std=c++11 -O3 -g -pipe -Wall -Werror -Wno-unused-variable -lrt -pthread -fno-strict-aliasing -Wno-error=shadow -Wno-sign-compare -o CMakeFiles/network.dir/net/Event.cpp.o -c /home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/src/network/net/Event.cpp",
+  "file": "/home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/src/network/net/Event.cpp"
+},
+{
+  "directory": "/home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/src/network",
+  "command": "/usr/bin/c++  -I/home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/lib/jsoncpp/include -I/home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/src -Wno-error=unused-result -Werror=return-type  -std=c++11 -O3 -g -pipe -Wall -Werror -Wno-unused-variable -lrt -pthread -fno-strict-aliasing -Wno-error=shadow -Wno-sign-compare -o CMakeFiles/network.dir/net/EventLoop.cpp.o -c /home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/src/network/net/EventLoop.cpp",
+  "file": "/home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/src/network/net/EventLoop.cpp"
+},
+{
+  "directory": "/home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/src/network",
+  "command": "/usr/bin/c++  -I/home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/lib/jsoncpp/include -I/home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/src -Wno-error=unused-result -Werror=return-type  -std=c++11 -O3 -g -pipe -Wall -Werror -Wno-unused-variable -lrt -pthread -fno-strict-aliasing -Wno-error=shadow -Wno-sign-compare -o CMakeFiles/network.dir/net/EventLoopThread.cpp.o -c /home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/src/network/net/EventLoopThread.cpp",
+  "file": "/home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/src/network/net/EventLoopThread.cpp"
+},
+{
+  "directory": "/home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/src/network",
+  "command": "/usr/bin/c++  -I/home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/lib/jsoncpp/include -I/home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/src -Wno-error=unused-result -Werror=return-type  -std=c++11 -O3 -g -pipe -Wall -Werror -Wno-unused-variable -lrt -pthread -fno-strict-aliasing -Wno-error=shadow -Wno-sign-compare -o CMakeFiles/network.dir/net/EventLoopThreadPool.cpp.o -c /home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/src/network/net/EventLoopThreadPool.cpp",
+  "file": "/home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/src/network/net/EventLoopThreadPool.cpp"
+},
+{
+  "directory": "/home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/src/network",
+  "command": "/usr/bin/c++  -I/home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/lib/jsoncpp/include -I/home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/src -Wno-error=unused-result -Werror=return-type  -std=c++11 -O3 -g -pipe -Wall -Werror -Wno-unused-variable -lrt -pthread -fno-strict-aliasing -Wno-error=shadow -Wno-sign-compare -o CMakeFiles/network.dir/net/PipeEvent.cpp.o -c /home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/src/network/net/PipeEvent.cpp",
+  "file": "/home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/src/network/net/PipeEvent.cpp"
+},
+{
+  "directory": "/home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/src/network",
+  "command": "/usr/bin/c++  -I/home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/lib/jsoncpp/include -I/home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/src -Wno-error=unused-result -Werror=return-type  -std=c++11 -O3 -g -pipe -Wall -Werror -Wno-unused-variable -lrt -pthread -fno-strict-aliasing -Wno-error=shadow -Wno-sign-compare -o CMakeFiles/network.dir/net/TcpConnection.cpp.o -c /home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/src/network/net/TcpConnection.cpp",
+  "file": "/home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/src/network/net/TcpConnection.cpp"
+},
+{
+  "directory": "/home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/src/network",
+  "command": "/usr/bin/c++  -I/home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/lib/jsoncpp/include -I/home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/src -Wno-error=unused-result -Werror=return-type  -std=c++11 -O3 -g -pipe -Wall -Werror -Wno-unused-variable -lrt -pthread -fno-strict-aliasing -Wno-error=shadow -Wno-sign-compare -o CMakeFiles/network.dir/net/TimingWheel.cpp.o -c /home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/src/network/net/TimingWheel.cpp",
+  "file": "/home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/src/network/net/TimingWheel.cpp"
+},
+{
+  "directory": "/home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/src/network",
+  "command": "/usr/bin/c++  -I/home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/lib/jsoncpp/include -I/home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/src -Wno-error=unused-result -Werror=return-type  -std=c++11 -O3 -g -pipe -Wall -Werror -Wno-unused-variable -lrt -pthread -fno-strict-aliasing -Wno-error=shadow -Wno-sign-compare -o CMakeFiles/network.dir/net/UdpSocket.cpp.o -c /home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/src/network/net/UdpSocket.cpp",
+  "file": "/home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/src/network/net/UdpSocket.cpp"
+},
+{
+  "directory": "/home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/src/mmedia",
+  "command": "/usr/bin/c++  -I/home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/lib/jsoncpp/include -I/home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/src -Wno-error=unused-result -Werror=return-type  -std=c++11 -O3 -g -pipe -Wall -Werror -Wno-unused-variable -lrt -pthread -fno-strict-aliasing -Wno-error=shadow -Wno-sign-compare -o CMakeFiles/mmedia.dir/base/BytesReader.cpp.o -c /home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/src/mmedia/base/BytesReader.cpp",
+  "file": "/home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/src/mmedia/base/BytesReader.cpp"
+},
+{
+  "directory": "/home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/src/mmedia",
+  "command": "/usr/bin/c++  -I/home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/lib/jsoncpp/include -I/home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/src -Wno-error=unused-result -Werror=return-type  -std=c++11 -O3 -g -pipe -Wall -Werror -Wno-unused-variable -lrt -pthread -fno-strict-aliasing -Wno-error=shadow -Wno-sign-compare -o CMakeFiles/mmedia.dir/base/BytesWriter.cpp.o -c /home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/src/mmedia/base/BytesWriter.cpp",
+  "file": "/home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/src/mmedia/base/BytesWriter.cpp"
+},
+{
+  "directory": "/home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/src/mmedia",
+  "command": "/usr/bin/c++  -I/home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/lib/jsoncpp/include -I/home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/src -Wno-error=unused-result -Werror=return-type  -std=c++11 -O3 -g -pipe -Wall -Werror -Wno-unused-variable -lrt -pthread -fno-strict-aliasing -Wno-error=shadow -Wno-sign-compare -o CMakeFiles/mmedia.dir/base/Packet.cpp.o -c /home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/src/mmedia/base/Packet.cpp",
+  "file": "/home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/src/mmedia/base/Packet.cpp"
+},
+{
+  "directory": "/home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/src/mmedia",
+  "command": "/usr/bin/c++  -I/home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/lib/jsoncpp/include -I/home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/src -Wno-error=unused-result -Werror=return-type  -std=c++11 -O3 -g -pipe -Wall -Werror -Wno-unused-variable -lrt -pthread -fno-strict-aliasing -Wno-error=shadow -Wno-sign-compare -o CMakeFiles/mmedia.dir/rtmp/RtmpClient.cpp.o -c /home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/src/mmedia/rtmp/RtmpClient.cpp",
+  "file": "/home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/src/mmedia/rtmp/RtmpClient.cpp"
+},
+{
+  "directory": "/home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/src/mmedia",
+  "command": "/usr/bin/c++  -I/home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/lib/jsoncpp/include -I/home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/src -Wno-error=unused-result -Werror=return-type  -std=c++11 -O3 -g -pipe -Wall -Werror -Wno-unused-variable -lrt -pthread -fno-strict-aliasing -Wno-error=shadow -Wno-sign-compare -o CMakeFiles/mmedia.dir/rtmp/RtmpContext.cpp.o -c /home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/src/mmedia/rtmp/RtmpContext.cpp",
+  "file": "/home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/src/mmedia/rtmp/RtmpContext.cpp"
+},
+{
+  "directory": "/home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/src/mmedia",
+  "command": "/usr/bin/c++  -I/home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/lib/jsoncpp/include -I/home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/src -Wno-error=unused-result -Werror=return-type  -std=c++11 -O3 -g -pipe -Wall -Werror -Wno-unused-variable -lrt -pthread -fno-strict-aliasing -Wno-error=shadow -Wno-sign-compare -o CMakeFiles/mmedia.dir/rtmp/RtmpHandShake.cpp.o -c /home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/src/mmedia/rtmp/RtmpHandShake.cpp",
+  "file": "/home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/src/mmedia/rtmp/RtmpHandShake.cpp"
+},
+{
+  "directory": "/home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/src/mmedia",
+  "command": "/usr/bin/c++  -I/home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/lib/jsoncpp/include -I/home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/src -Wno-error=unused-result -Werror=return-type  -std=c++11 -O3 -g -pipe -Wall -Werror -Wno-unused-variable -lrt -pthread -fno-strict-aliasing -Wno-error=shadow -Wno-sign-compare -o CMakeFiles/mmedia.dir/rtmp/RtmpServer.cpp.o -c /home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/src/mmedia/rtmp/RtmpServer.cpp",
+  "file": "/home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/src/mmedia/rtmp/RtmpServer.cpp"
+},
+{
+  "directory": "/home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/src/mmedia",
+  "command": "/usr/bin/c++  -I/home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/lib/jsoncpp/include -I/home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/src -Wno-error=unused-result -Werror=return-type  -std=c++11 -O3 -g -pipe -Wall -Werror -Wno-unused-variable -lrt -pthread -fno-strict-aliasing -Wno-error=shadow -Wno-sign-compare -o CMakeFiles/mmedia.dir/rtmp/amf/AMFAny.cpp.o -c /home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/src/mmedia/rtmp/amf/AMFAny.cpp",
+  "file": "/home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/src/mmedia/rtmp/amf/AMFAny.cpp"
+},
+{
+  "directory": "/home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/src/mmedia",
+  "command": "/usr/bin/c++  -I/home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/lib/jsoncpp/include -I/home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/src -Wno-error=unused-result -Werror=return-type  -std=c++11 -O3 -g -pipe -Wall -Werror -Wno-unused-variable -lrt -pthread -fno-strict-aliasing -Wno-error=shadow -Wno-sign-compare -o CMakeFiles/mmedia.dir/rtmp/amf/AMFBoolean.cpp.o -c /home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/src/mmedia/rtmp/amf/AMFBoolean.cpp",
+  "file": "/home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/src/mmedia/rtmp/amf/AMFBoolean.cpp"
+},
+{
+  "directory": "/home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/src/mmedia",
+  "command": "/usr/bin/c++  -I/home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/lib/jsoncpp/include -I/home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/src -Wno-error=unused-result -Werror=return-type  -std=c++11 -O3 -g -pipe -Wall -Werror -Wno-unused-variable -lrt -pthread -fno-strict-aliasing -Wno-error=shadow -Wno-sign-compare -o CMakeFiles/mmedia.dir/rtmp/amf/AMFDate.cpp.o -c /home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/src/mmedia/rtmp/amf/AMFDate.cpp",
+  "file": "/home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/src/mmedia/rtmp/amf/AMFDate.cpp"
+},
+{
+  "directory": "/home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/src/mmedia",
+  "command": "/usr/bin/c++  -I/home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/lib/jsoncpp/include -I/home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/src -Wno-error=unused-result -Werror=return-type  -std=c++11 -O3 -g -pipe -Wall -Werror -Wno-unused-variable -lrt -pthread -fno-strict-aliasing -Wno-error=shadow -Wno-sign-compare -o CMakeFiles/mmedia.dir/rtmp/amf/AMFLongString.cpp.o -c /home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/src/mmedia/rtmp/amf/AMFLongString.cpp",
+  "file": "/home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/src/mmedia/rtmp/amf/AMFLongString.cpp"
+},
+{
+  "directory": "/home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/src/mmedia",
+  "command": "/usr/bin/c++  -I/home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/lib/jsoncpp/include -I/home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/src -Wno-error=unused-result -Werror=return-type  -std=c++11 -O3 -g -pipe -Wall -Werror -Wno-unused-variable -lrt -pthread -fno-strict-aliasing -Wno-error=shadow -Wno-sign-compare -o CMakeFiles/mmedia.dir/rtmp/amf/AMFNull.cpp.o -c /home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/src/mmedia/rtmp/amf/AMFNull.cpp",
+  "file": "/home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/src/mmedia/rtmp/amf/AMFNull.cpp"
+},
+{
+  "directory": "/home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/src/mmedia",
+  "command": "/usr/bin/c++  -I/home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/lib/jsoncpp/include -I/home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/src -Wno-error=unused-result -Werror=return-type  -std=c++11 -O3 -g -pipe -Wall -Werror -Wno-unused-variable -lrt -pthread -fno-strict-aliasing -Wno-error=shadow -Wno-sign-compare -o CMakeFiles/mmedia.dir/rtmp/amf/AMFNumber.cpp.o -c /home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/src/mmedia/rtmp/amf/AMFNumber.cpp",
+  "file": "/home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/src/mmedia/rtmp/amf/AMFNumber.cpp"
+},
+{
+  "directory": "/home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/src/mmedia",
+  "command": "/usr/bin/c++  -I/home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/lib/jsoncpp/include -I/home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/src -Wno-error=unused-result -Werror=return-type  -std=c++11 -O3 -g -pipe -Wall -Werror -Wno-unused-variable -lrt -pthread -fno-strict-aliasing -Wno-error=shadow -Wno-sign-compare -o CMakeFiles/mmedia.dir/rtmp/amf/AMFObject.cpp.o -c /home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/src/mmedia/rtmp/amf/AMFObject.cpp",
+  "file": "/home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/src/mmedia/rtmp/amf/AMFObject.cpp"
+},
+{
+  "directory": "/home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/src/mmedia",
+  "command": "/usr/bin/c++  -I/home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/lib/jsoncpp/include -I/home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/src -Wno-error=unused-result -Werror=return-type  -std=c++11 -O3 -g -pipe -Wall -Werror -Wno-unused-variable -lrt -pthread -fno-strict-aliasing -Wno-error=shadow -Wno-sign-compare -o CMakeFiles/mmedia.dir/rtmp/amf/AMFString.cpp.o -c /home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/src/mmedia/rtmp/amf/AMFString.cpp",
+  "file": "/home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/src/mmedia/rtmp/amf/AMFString.cpp"
+},
+{
+  "directory": "/home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/src/live",
+  "command": "/usr/bin/c++  -I/home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/lib/jsoncpp/include -I/home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/src -Wno-error=unused-result -Werror=return-type  -std=c++11 -O3 -g -pipe -Wall -Werror -Wno-unused-variable -lrt -pthread -fno-strict-aliasing -Wno-error=shadow -Wno-sign-compare -o CMakeFiles/live.dir/CodecHeader.cpp.o -c /home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/src/live/CodecHeader.cpp",
+  "file": "/home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/src/live/CodecHeader.cpp"
+},
+{
+  "directory": "/home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/src/live",
+  "command": "/usr/bin/c++  -I/home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/lib/jsoncpp/include -I/home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/src -Wno-error=unused-result -Werror=return-type  -std=c++11 -O3 -g -pipe -Wall -Werror -Wno-unused-variable -lrt -pthread -fno-strict-aliasing -Wno-error=shadow -Wno-sign-compare -o CMakeFiles/live.dir/GopMgr.cpp.o -c /home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/src/live/GopMgr.cpp",
+  "file": "/home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/src/live/GopMgr.cpp"
+},
+{
+  "directory": "/home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/src/live",
+  "command": "/usr/bin/c++  -I/home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/lib/jsoncpp/include -I/home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/src -Wno-error=unused-result -Werror=return-type  -std=c++11 -O3 -g -pipe -Wall -Werror -Wno-unused-variable -lrt -pthread -fno-strict-aliasing -Wno-error=shadow -Wno-sign-compare -o CMakeFiles/live.dir/LiveService.cpp.o -c /home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/src/live/LiveService.cpp",
+  "file": "/home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/src/live/LiveService.cpp"
+},
+{
+  "directory": "/home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/src/live",
+  "command": "/usr/bin/c++  -I/home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/lib/jsoncpp/include -I/home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/src -Wno-error=unused-result -Werror=return-type  -std=c++11 -O3 -g -pipe -Wall -Werror -Wno-unused-variable -lrt -pthread -fno-strict-aliasing -Wno-error=shadow -Wno-sign-compare -o CMakeFiles/live.dir/PlayerUser.cpp.o -c /home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/src/live/PlayerUser.cpp",
+  "file": "/home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/src/live/PlayerUser.cpp"
+},
+{
+  "directory": "/home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/src/live",
+  "command": "/usr/bin/c++  -I/home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/lib/jsoncpp/include -I/home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/src -Wno-error=unused-result -Werror=return-type  -std=c++11 -O3 -g -pipe -Wall -Werror -Wno-unused-variable -lrt -pthread -fno-strict-aliasing -Wno-error=shadow -Wno-sign-compare -o CMakeFiles/live.dir/RtmpPlayerUser.cpp.o -c /home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/src/live/RtmpPlayerUser.cpp",
+  "file": "/home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/src/live/RtmpPlayerUser.cpp"
+},
+{
+  "directory": "/home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/src/live",
+  "command": "/usr/bin/c++  -I/home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/lib/jsoncpp/include -I/home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/src -Wno-error=unused-result -Werror=return-type  -std=c++11 -O3 -g -pipe -Wall -Werror -Wno-unused-variable -lrt -pthread -fno-strict-aliasing -Wno-error=shadow -Wno-sign-compare -o CMakeFiles/live.dir/Session.cpp.o -c /home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/src/live/Session.cpp",
+  "file": "/home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/src/live/Session.cpp"
+},
+{
+  "directory": "/home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/src/live",
+  "command": "/usr/bin/c++  -I/home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/lib/jsoncpp/include -I/home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/src -Wno-error=unused-result -Werror=return-type  -std=c++11 -O3 -g -pipe -Wall -Werror -Wno-unused-variable -lrt -pthread -fno-strict-aliasing -Wno-error=shadow -Wno-sign-compare -o CMakeFiles/live.dir/Stream.cpp.o -c /home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/src/live/Stream.cpp",
+  "file": "/home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/src/live/Stream.cpp"
+},
+{
+  "directory": "/home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/src/live",
+  "command": "/usr/bin/c++  -I/home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/lib/jsoncpp/include -I/home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/src -Wno-error=unused-result -Werror=return-type  -std=c++11 -O3 -g -pipe -Wall -Werror -Wno-unused-variable -lrt -pthread -fno-strict-aliasing -Wno-error=shadow -Wno-sign-compare -o CMakeFiles/live.dir/User.cpp.o -c /home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/src/live/User.cpp",
+  "file": "/home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/src/live/User.cpp"
+},
+{
+  "directory": "/home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/src/live",
+  "command": "/usr/bin/c++  -I/home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/lib/jsoncpp/include -I/home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/src -Wno-error=unused-result -Werror=return-type  -std=c++11 -O3 -g -pipe -Wall -Werror -Wno-unused-variable -lrt -pthread -fno-strict-aliasing -Wno-error=shadow -Wno-sign-compare -o CMakeFiles/live.dir/base/CodecUtils.cpp.o -c /home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/src/live/base/CodecUtils.cpp",
+  "file": "/home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/src/live/base/CodecUtils.cpp"
+},
+{
+  "directory": "/home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/src/live",
+  "command": "/usr/bin/c++  -I/home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/lib/jsoncpp/include -I/home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/src -Wno-error=unused-result -Werror=return-type  -std=c++11 -O3 -g -pipe -Wall -Werror -Wno-unused-variable -lrt -pthread -fno-strict-aliasing -Wno-error=shadow -Wno-sign-compare -o CMakeFiles/live.dir/base/TimeCorrector.cpp.o -c /home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/src/live/base/TimeCorrector.cpp",
+  "file": "/home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/src/live/base/TimeCorrector.cpp"
+},
+{
+  "directory": "/home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/src/live/tests",
+  "command": "/usr/bin/c++  -I/home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/lib/jsoncpp/include -I/home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/src -Wno-error=unused-result -Werror=return-type  -std=c++11 -O3 -g -pipe -Wall -Werror -Wno-unused-variable -lrt -pthread -fno-strict-aliasing -Wno-error=shadow -Wno-sign-compare -o CMakeFiles/CodecHeaderTest.dir/CodecHeaderTest.cpp.o -c /home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/src/live/tests/CodecHeaderTest.cpp",
+  "file": "/home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/src/live/tests/CodecHeaderTest.cpp"
+},
+{
+  "directory": "/home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/src/main",
+  "command": "/usr/bin/c++  -I/home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/lib/jsoncpp/include -I/home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/src -Wno-error=unused-result -Werror=return-type  -std=c++11 -O3 -g -pipe -Wall -Werror -Wno-unused-variable -lrt -pthread -fno-strict-aliasing -Wno-error=shadow -Wno-sign-compare -o CMakeFiles/tmms.dir/main.cpp.o -c /home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/src/main/main.cpp",
+  "file": "/home/zxe/My-Project/代码+课件/代码/tmms-lesson_8.17/tmms/src/main/main.cpp"
+}
+]

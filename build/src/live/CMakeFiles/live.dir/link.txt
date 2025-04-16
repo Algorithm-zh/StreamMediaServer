@@ -1,0 +1,2 @@
+/usr/bin/ar qc liblive.a CMakeFiles/live.dir/CodecHeader.cpp.o CMakeFiles/live.dir/GopMgr.cpp.o CMakeFiles/live.dir/LiveService.cpp.o CMakeFiles/live.dir/PlayerUser.cpp.o CMakeFiles/live.dir/RtmpPlayerUser.cpp.o CMakeFiles/live.dir/Session.cpp.o CMakeFiles/live.dir/Stream.cpp.o CMakeFiles/live.dir/User.cpp.o CMakeFiles/live.dir/base/CodecUtils.cpp.o CMakeFiles/live.dir/base/TimeCorrector.cpp.o
+/usr/bin/ranlib liblive.a
