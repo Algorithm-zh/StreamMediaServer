@@ -2833,3 +2833,230 @@
 2025-04-16T15:58:58 180679 ERROR [TcpConnection.cpp:254]host:127.0.0.1:33200 timeout and close it.
 2025-04-16T15:59:14 180676 INFO [LiveService.cpp:82]LIVE::session:hx.com/live/test is timeout. close it. Now:1744790354868
 2025-04-16T15:59:23 180677 ERROR [TcpConnection.cpp:254]host:127.0.0.1:54724 timeout and close it.
+2025-04-16T21:48:51 278156 TRACE [LiveService.cpp:194][Start]LIVE::eventloops size:4
+2025-04-16T21:48:51 278156 DEBUG [RtmpServer.cpp:25][Start]RTMP::RtmpServer Start
+2025-04-16T21:48:51 278156 DEBUG [RtmpServer.cpp:25][Start]RTMP::RtmpServer Start
+2025-04-16T21:48:51 278156 DEBUG [RtmpServer.cpp:25][Start]RTMP::RtmpServer Start
+2025-04-16T21:48:51 278156 DEBUG [RtmpServer.cpp:25][Start]RTMP::RtmpServer Start
+2025-04-16T21:48:53 278158 TRACE [TcpServer.cpp:57][OnAccet]new connection fd:20 host:127.0.0.1:46572
+2025-04-16T21:48:53 278158 TRACE [RtmpHandShake.cpp:282][HandShake]RTMP::host: 127.0.0.1:46572, Recv C0C1 
+
+2025-04-16T21:48:53 278158 TRACE [RtmpHandShake.cpp:370][WriteComplete]RTMP::host: 127.0.0.1:46572, Post S0S1
+
+2025-04-16T21:48:53 278158 TRACE [RtmpHandShake.cpp:378][WriteComplete]RTMP::host: 127.0.0.1:46572, Post S2
+
+2025-04-16T21:48:53 278158 TRACE [RtmpHandShake.cpp:305][HandShake]RTMP::host: 127.0.0.1:46572, Recv S2
+
+2025-04-16T21:48:53 278158 TRACE [RtmpHandShake.cpp:309][HandShake]RTMP::host: 127.0.0.1:46572, handshake done
+
+2025-04-16T21:48:53 278158 TRACE [RtmpServer.cpp:58][OnMessage]RTMP::host: 127.0.0.1:46572 handshake success.
+2025-04-16T21:48:53 278158 DEBUG [RtmpContext.cpp:816][HandleChunkSize]RTMP::recv chunk size in_chunk_size:128 change to 4096
+2025-04-16T21:48:53 278158 TRACE [RtmpContext.cpp:904][HandleAmfCommand]RTMP::amf message len:155 host:127.0.0.1:46572
+2025-04-16T21:48:53 278158 TRACE [AMFObject.cpp:94][Decode]RTMP::String value:connect
+2025-04-16T21:48:53 278158 TRACE [AMFObject.cpp:66][Decode]RTMP::Number value:1
+2025-04-16T21:48:53 278158 TRACE [AMFObject.cpp:94][Decode]RTMP::String value:live
+2025-04-16T21:48:53 278158 TRACE [AMFObject.cpp:94][Decode]RTMP::String value:nonprivate
+2025-04-16T21:48:53 278158 TRACE [AMFObject.cpp:94][Decode]RTMP::String value:FMLE/3.0 (compatible; FMSc/1.0)
+2025-04-16T21:48:53 278158 TRACE [AMFObject.cpp:94][Decode]RTMP::String value:rtmp://hx.com/live
+2025-04-16T21:48:53 278158 TRACE [AMFObject.cpp:94][Decode]RTMP::String value:rtmp://hx.com/live
+2025-04-16T21:48:53 278158 TRACE [AMFObject.cpp:108][Decode]RTMP::Object 
+2025-04-16T21:48:53 278158 TRACE [AMFObject.cpp:219][Dump]RTMP::Object start
+2025-04-16T21:48:53 278158 TRACE [AMFString.cpp:44][Dump]RTMP::String: live
+2025-04-16T21:48:53 278158 TRACE [AMFString.cpp:44][Dump]RTMP::String: nonprivate
+2025-04-16T21:48:53 278158 TRACE [AMFString.cpp:44][Dump]RTMP::String: FMLE/3.0 (compatible; FMSc/1.0)
+2025-04-16T21:48:53 278158 TRACE [AMFString.cpp:44][Dump]RTMP::String: rtmp://hx.com/live
+2025-04-16T21:48:53 278158 TRACE [AMFString.cpp:44][Dump]RTMP::String: rtmp://hx.com/live
+2025-04-16T21:48:53 278158 TRACE [AMFObject.cpp:224][Dump]RTMP::Object end
+2025-04-16T21:48:53 278158 TRACE [RtmpContext.cpp:922][HandleAmfCommand]RTMP::amf command:connect host:127.0.0.1:46572
+2025-04-16T21:48:53 278158 TRACE [RtmpContext.cpp:979][HandleConnect]RTMP::recv connect tcUrl:rtmp://hx.com/live app:live amf3:0
+2025-04-16T21:48:53 278158 DEBUG [RtmpContext.cpp:729][SendAckWindowSize]RTMP::send act size:2500000 to host:127.0.0.1:46572
+2025-04-16T21:48:53 278158 DEBUG [RtmpContext.cpp:752][SendSetPeerBandwidth]RTMP::send band width:2500000 to host:127.0.0.1:46572
+2025-04-16T21:48:53 278158 DEBUG [RtmpContext.cpp:709][SendSetChunkSize]RTMP::send chuck size:4096 to host:127.0.0.1:46572
+2025-04-16T21:48:53 278158 TRACE [RtmpContext.cpp:1013][HandleConnect]RTMP::connect result msg_len:190 to host:127.0.0.1:46572
+2025-04-16T21:48:53 278158 TRACE [RtmpContext.cpp:904][HandleAmfCommand]RTMP::amf message len:33 host:127.0.0.1:46572
+2025-04-16T21:48:53 278158 TRACE [AMFObject.cpp:94][Decode]RTMP::String value:releaseStream
+2025-04-16T21:48:53 278158 TRACE [AMFObject.cpp:66][Decode]RTMP::Number value:2
+2025-04-16T21:48:53 278158 TRACE [AMFObject.cpp:115][Decode]RTMP::Null.
+2025-04-16T21:48:53 278158 TRACE [AMFObject.cpp:94][Decode]RTMP::String value:test
+2025-04-16T21:48:53 278158 TRACE [RtmpContext.cpp:922][HandleAmfCommand]RTMP::amf command:releaseStream host:127.0.0.1:46572
+2025-04-16T21:48:53 278158 TRACE [RtmpContext.cpp:926][HandleAmfCommand]RTMP::not surpport method:releaseStream host:127.0.0.1:46572
+2025-04-16T21:48:54 278158 TRACE [RtmpContext.cpp:904][HandleAmfCommand]RTMP::amf message len:29 host:127.0.0.1:46572
+2025-04-16T21:48:54 278158 TRACE [AMFObject.cpp:94][Decode]RTMP::String value:FCPublish
+2025-04-16T21:48:54 278158 TRACE [AMFObject.cpp:66][Decode]RTMP::Number value:3
+2025-04-16T21:48:54 278158 TRACE [AMFObject.cpp:115][Decode]RTMP::Null.
+2025-04-16T21:48:54 278158 TRACE [AMFObject.cpp:94][Decode]RTMP::String value:test
+2025-04-16T21:48:54 278158 TRACE [RtmpContext.cpp:922][HandleAmfCommand]RTMP::amf command:FCPublish host:127.0.0.1:46572
+2025-04-16T21:48:54 278158 TRACE [RtmpContext.cpp:926][HandleAmfCommand]RTMP::not surpport method:FCPublish host:127.0.0.1:46572
+2025-04-16T21:48:54 278158 TRACE [RtmpContext.cpp:904][HandleAmfCommand]RTMP::amf message len:25 host:127.0.0.1:46572
+2025-04-16T21:48:54 278158 TRACE [AMFObject.cpp:94][Decode]RTMP::String value:createStream
+2025-04-16T21:48:54 278158 TRACE [AMFObject.cpp:66][Decode]RTMP::Number value:4
+2025-04-16T21:48:54 278158 TRACE [RtmpContext.cpp:922][HandleAmfCommand]RTMP::amf command:createStream host:127.0.0.1:46572
+2025-04-16T21:48:54 278158 TRACE [RtmpContext.cpp:1062][HandleCreateStream]RTMP::create stream result msg_len:29 to host:127.0.0.1:46572
+2025-04-16T21:48:54 278158 TRACE [RtmpContext.cpp:904][HandleAmfCommand]RTMP::amf message len:34 host:127.0.0.1:46572
+2025-04-16T21:48:54 278158 TRACE [AMFObject.cpp:94][Decode]RTMP::String value:publish
+2025-04-16T21:48:54 278158 TRACE [AMFObject.cpp:66][Decode]RTMP::Number value:5
+2025-04-16T21:48:54 278158 TRACE [AMFObject.cpp:115][Decode]RTMP::Null.
+2025-04-16T21:48:54 278158 TRACE [AMFObject.cpp:94][Decode]RTMP::String value:test
+2025-04-16T21:48:54 278158 TRACE [AMFObject.cpp:94][Decode]RTMP::String value:live
+2025-04-16T21:48:54 278158 TRACE [RtmpContext.cpp:922][HandleAmfCommand]RTMP::amf command:publish host:127.0.0.1:46572
+2025-04-16T21:48:54 278158 TRACE [RtmpContext.cpp:1183][ParseNameAndTcUrl]RTMP::session_name:hx.com/live/test param: host:127.0.0.1:46572
+2025-04-16T21:48:54 278158 TRACE [RtmpContext.cpp:1221][HandlePublish]RTMP::recv publish session_name:hx.com/live/test param: host:127.0.0.1:46572
+2025-04-16T21:48:54 278158 TRACE [RtmpContext.cpp:1092][SendStatus]RTMP::send status level:status code:NetStream.Publish.Start desc:Start Publishing to host:127.0.0.1:46572
+2025-04-16T21:48:54 278158 DEBUG [LiveService.cpp:151][OnPublish]LIVE::on publish session name:hx.com/live/test param: host:127.0.0.1:46572 now:1744811334051
+2025-04-16T21:48:54 278158 DEBUG [LiveService.cpp:43][CreateSession]LIVE::create session success. session_name:hx.com/live/test now:1744811334051
+2025-04-16T21:48:54 278158 TRACE [CodecHeader.cpp:77][SaveMeta]LIVE::save meta ,meta version:1,size:403 ,elapse:0ms
+
+2025-04-16T21:48:54 278158 TRACE [AMFObject.cpp:94][Decode]RTMP::String value:@setDataFrame
+2025-04-16T21:48:54 278158 TRACE [AMFObject.cpp:94][Decode]RTMP::String value:onMetaData
+2025-04-16T21:48:54 278158 TRACE [AMFObject.cpp:66][Decode]RTMP::Number value:0
+2025-04-16T21:48:54 278158 TRACE [AMFObject.cpp:66][Decode]RTMP::Number value:0
+2025-04-16T21:48:54 278158 TRACE [AMFObject.cpp:66][Decode]RTMP::Number value:1920
+2025-04-16T21:48:54 278158 TRACE [AMFObject.cpp:66][Decode]RTMP::Number value:1080
+2025-04-16T21:48:54 278158 TRACE [AMFObject.cpp:66][Decode]RTMP::Number value:7
+2025-04-16T21:48:54 278158 TRACE [AMFObject.cpp:66][Decode]RTMP::Number value:8750
+2025-04-16T21:48:54 278158 TRACE [AMFObject.cpp:66][Decode]RTMP::Number value:60
+2025-04-16T21:48:54 278158 TRACE [AMFObject.cpp:66][Decode]RTMP::Number value:10
+2025-04-16T21:48:54 278158 TRACE [AMFObject.cpp:66][Decode]RTMP::Number value:160
+2025-04-16T21:48:54 278158 TRACE [AMFObject.cpp:66][Decode]RTMP::Number value:48000
+2025-04-16T21:48:54 278158 TRACE [AMFObject.cpp:66][Decode]RTMP::Number value:16
+2025-04-16T21:48:54 278158 TRACE [AMFObject.cpp:66][Decode]RTMP::Number value:2
+2025-04-16T21:48:54 278158 ERROR [AMFAny.cpp:51]not a Number.
+2025-04-16T21:48:54 278158 TRACE [AMFObject.cpp:80][Decode]RTMP::Boolean value:0
+2025-04-16T21:48:54 278158 ERROR [AMFAny.cpp:51]not a Number.
+2025-04-16T21:48:54 278158 TRACE [AMFObject.cpp:80][Decode]RTMP::Boolean value:0
+2025-04-16T21:48:54 278158 ERROR [AMFAny.cpp:51]not a Number.
+2025-04-16T21:48:54 278158 TRACE [AMFObject.cpp:80][Decode]RTMP::Boolean value:0
+2025-04-16T21:48:54 278158 ERROR [AMFAny.cpp:51]not a Number.
+2025-04-16T21:48:54 278158 TRACE [AMFObject.cpp:80][Decode]RTMP::Boolean value:0
+2025-04-16T21:48:54 278158 ERROR [AMFAny.cpp:51]not a Number.
+2025-04-16T21:48:54 278158 TRACE [AMFObject.cpp:80][Decode]RTMP::Boolean value:0
+2025-04-16T21:48:54 278158 ERROR [AMFAny.cpp:51]not a Number.
+2025-04-16T21:48:54 278158 TRACE [AMFObject.cpp:80][Decode]RTMP::Boolean value:0
+2025-04-16T21:48:54 278158 ERROR [AMFAny.cpp:51]not a Number.
+2025-04-16T21:48:54 278158 TRACE [AMFObject.cpp:80][Decode]RTMP::Boolean value:0
+2025-04-16T21:48:54 278158 TRACE [AMFObject.cpp:94][Decode]RTMP::String value:obs-output module (libobs version 30.2.3)
+2025-04-16T21:48:54 278158 TRACE [AMFObject.cpp:133][Decode]RTMP::EcmaArray 
+2025-04-16T21:48:54 278158 TRACE [AMFObject.cpp:219][Dump]RTMP::Object start
+2025-04-16T21:48:54 278158 TRACE [AMFNumber.cpp:39][Dump]RTMP::Number: 0
+2025-04-16T21:48:54 278158 TRACE [AMFNumber.cpp:39][Dump]RTMP::Number: 0
+2025-04-16T21:48:54 278158 TRACE [AMFNumber.cpp:39][Dump]RTMP::Number: 1920
+2025-04-16T21:48:54 278158 TRACE [AMFNumber.cpp:39][Dump]RTMP::Number: 1080
+2025-04-16T21:48:54 278158 TRACE [AMFNumber.cpp:39][Dump]RTMP::Number: 7
+2025-04-16T21:48:54 278158 TRACE [AMFNumber.cpp:39][Dump]RTMP::Number: 8750
+2025-04-16T21:48:54 278158 TRACE [AMFNumber.cpp:39][Dump]RTMP::Number: 60
+2025-04-16T21:48:54 278158 TRACE [AMFNumber.cpp:39][Dump]RTMP::Number: 10
+2025-04-16T21:48:54 278158 TRACE [AMFNumber.cpp:39][Dump]RTMP::Number: 160
+2025-04-16T21:48:54 278158 TRACE [AMFNumber.cpp:39][Dump]RTMP::Number: 48000
+2025-04-16T21:48:54 278158 TRACE [AMFNumber.cpp:39][Dump]RTMP::Number: 16
+2025-04-16T21:48:54 278158 TRACE [AMFNumber.cpp:39][Dump]RTMP::Number: 2
+2025-04-16T21:48:54 278158 TRACE [AMFBoolean.cpp:39][Dump]RTMP::Boolean: 1
+2025-04-16T21:48:54 278158 TRACE [AMFBoolean.cpp:39][Dump]RTMP::Boolean: 0
+2025-04-16T21:48:54 278158 TRACE [AMFBoolean.cpp:39][Dump]RTMP::Boolean: 0
+2025-04-16T21:48:54 278158 TRACE [AMFBoolean.cpp:39][Dump]RTMP::Boolean: 0
+2025-04-16T21:48:54 278158 TRACE [AMFBoolean.cpp:39][Dump]RTMP::Boolean: 0
+2025-04-16T21:48:54 278158 TRACE [AMFBoolean.cpp:39][Dump]RTMP::Boolean: 0
+2025-04-16T21:48:54 278158 TRACE [AMFBoolean.cpp:39][Dump]RTMP::Boolean: 0
+2025-04-16T21:48:54 278158 TRACE [AMFString.cpp:44][Dump]RTMP::String: obs-output module (libobs version 30.2.3)
+2025-04-16T21:48:54 278158 TRACE [AMFObject.cpp:224][Dump]RTMP::Object end
+2025-04-16T21:48:54 278158 TRACE [CodecHeader.cpp:153][ParseMeta]LIVE::ParseMeta  ,width:1920 ,height:1080 ,videocodecid:7 ,framerate:60 ,videodatarate:8750 ,audiosamplerate:48000 ,audiosamplesize:16 ,audiocodecid:10 ,audiodatarate:160 ,duration:0 ,encoder:obs-output module (libobs version 30.2.3)
+2025-04-16T21:48:54 278158 TRACE [CodecHeader.cpp:162][SaveAudioHeader]LIVE::save audio header ,version:1,size:4 ,elapse:651ms
+
+2025-04-16T21:48:54 278158 TRACE [CodecHeader.cpp:173][SaveVideoHeader]LIVE::save video header ,version:1,size:54 ,elapse:651ms
+
+2025-04-16T21:49:00 278158 TRACE [TcpServer.cpp:57][OnAccet]new connection fd:21 host:127.0.0.1:45762
+2025-04-16T21:49:00 278158 TRACE [RtmpHandShake.cpp:282][HandShake]RTMP::host: 127.0.0.1:45762, Recv C0C1 
+
+2025-04-16T21:49:00 278158 TRACE [RtmpHandShake.cpp:370][WriteComplete]RTMP::host: 127.0.0.1:45762, Post S0S1
+
+2025-04-16T21:49:00 278158 TRACE [RtmpHandShake.cpp:378][WriteComplete]RTMP::host: 127.0.0.1:45762, Post S2
+
+2025-04-16T21:49:00 278158 TRACE [RtmpHandShake.cpp:305][HandShake]RTMP::host: 127.0.0.1:45762, Recv S2
+
+2025-04-16T21:49:00 278158 TRACE [RtmpHandShake.cpp:309][HandShake]RTMP::host: 127.0.0.1:45762, handshake done
+
+2025-04-16T21:49:00 278158 TRACE [RtmpServer.cpp:58][OnMessage]RTMP::host: 127.0.0.1:45762 handshake success.
+2025-04-16T21:49:00 278158 TRACE [RtmpContext.cpp:904][HandleAmfCommand]RTMP::amf message len:193 host:127.0.0.1:45762
+2025-04-16T21:49:00 278158 TRACE [AMFObject.cpp:94][Decode]RTMP::String value:connect
+2025-04-16T21:49:00 278158 TRACE [AMFObject.cpp:66][Decode]RTMP::Number value:1
+2025-04-16T21:49:00 278158 TRACE [AMFObject.cpp:94][Decode]RTMP::String value:live
+2025-04-16T21:49:00 278158 TRACE [AMFObject.cpp:94][Decode]RTMP::String value:LNX 9,0,124,2
+2025-04-16T21:49:00 278158 TRACE [AMFObject.cpp:94][Decode]RTMP::String value:rtmp://hx.com:1935/live
+2025-04-16T21:49:00 278158 ERROR [AMFAny.cpp:51]not a Number.
+2025-04-16T21:49:00 278158 TRACE [AMFObject.cpp:80][Decode]RTMP::Boolean value:0
+2025-04-16T21:49:00 278158 TRACE [AMFObject.cpp:66][Decode]RTMP::Number value:15
+2025-04-16T21:49:00 278158 TRACE [AMFObject.cpp:66][Decode]RTMP::Number value:4071
+2025-04-16T21:49:00 278158 TRACE [AMFObject.cpp:66][Decode]RTMP::Number value:252
+2025-04-16T21:49:00 278158 TRACE [AMFObject.cpp:66][Decode]RTMP::Number value:1
+2025-04-16T21:49:00 278158 TRACE [AMFObject.cpp:108][Decode]RTMP::Object 
+2025-04-16T21:49:00 278158 TRACE [AMFObject.cpp:219][Dump]RTMP::Object start
+2025-04-16T21:49:00 278158 TRACE [AMFString.cpp:44][Dump]RTMP::String: live
+2025-04-16T21:49:00 278158 TRACE [AMFString.cpp:44][Dump]RTMP::String: LNX 9,0,124,2
+2025-04-16T21:49:00 278158 TRACE [AMFString.cpp:44][Dump]RTMP::String: rtmp://hx.com:1935/live
+2025-04-16T21:49:00 278158 TRACE [AMFBoolean.cpp:39][Dump]RTMP::Boolean: 0
+2025-04-16T21:49:00 278158 TRACE [AMFNumber.cpp:39][Dump]RTMP::Number: 15
+2025-04-16T21:49:00 278158 TRACE [AMFNumber.cpp:39][Dump]RTMP::Number: 4071
+2025-04-16T21:49:00 278158 TRACE [AMFNumber.cpp:39][Dump]RTMP::Number: 252
+2025-04-16T21:49:00 278158 TRACE [AMFNumber.cpp:39][Dump]RTMP::Number: 1
+2025-04-16T21:49:00 278158 TRACE [AMFObject.cpp:224][Dump]RTMP::Object end
+2025-04-16T21:49:00 278158 TRACE [RtmpContext.cpp:922][HandleAmfCommand]RTMP::amf command:connect host:127.0.0.1:45762
+2025-04-16T21:49:00 278158 TRACE [RtmpContext.cpp:979][HandleConnect]RTMP::recv connect tcUrl:rtmp://hx.com:1935/live app:live amf3:0
+2025-04-16T21:49:00 278158 DEBUG [RtmpContext.cpp:729][SendAckWindowSize]RTMP::send act size:2500000 to host:127.0.0.1:45762
+2025-04-16T21:49:00 278158 DEBUG [RtmpContext.cpp:752][SendSetPeerBandwidth]RTMP::send band width:2500000 to host:127.0.0.1:45762
+2025-04-16T21:49:00 278158 DEBUG [RtmpContext.cpp:709][SendSetChunkSize]RTMP::send chuck size:4096 to host:127.0.0.1:45762
+2025-04-16T21:49:00 278158 TRACE [RtmpContext.cpp:1013][HandleConnect]RTMP::connect result msg_len:190 to host:127.0.0.1:45762
+2025-04-16T21:49:00 278158 DEBUG [RtmpContext.cpp:830][HandleAckWindowSize]RTMP::recv ack window size ack_size_:2500000 change to 2500000
+2025-04-16T21:49:00 278158 TRACE [RtmpContext.cpp:904][HandleAmfCommand]RTMP::amf message len:25 host:127.0.0.1:45762
+2025-04-16T21:49:00 278158 TRACE [AMFObject.cpp:94][Decode]RTMP::String value:createStream
+2025-04-16T21:49:00 278158 TRACE [AMFObject.cpp:66][Decode]RTMP::Number value:2
+2025-04-16T21:49:00 278158 TRACE [RtmpContext.cpp:922][HandleAmfCommand]RTMP::amf command:createStream host:127.0.0.1:45762
+2025-04-16T21:49:00 278158 TRACE [RtmpContext.cpp:1062][HandleCreateStream]RTMP::create stream result msg_len:29 to host:127.0.0.1:45762
+2025-04-16T21:49:00 278158 TRACE [RtmpContext.cpp:904][HandleAmfCommand]RTMP::amf message len:35 host:127.0.0.1:45762
+2025-04-16T21:49:00 278158 TRACE [AMFObject.cpp:94][Decode]RTMP::String value:getStreamLength
+2025-04-16T21:49:00 278158 TRACE [AMFObject.cpp:66][Decode]RTMP::Number value:3
+2025-04-16T21:49:00 278158 TRACE [AMFObject.cpp:115][Decode]RTMP::Null.
+2025-04-16T21:49:00 278158 TRACE [AMFObject.cpp:94][Decode]RTMP::String value:test
+2025-04-16T21:49:00 278158 TRACE [RtmpContext.cpp:922][HandleAmfCommand]RTMP::amf command:getStreamLength host:127.0.0.1:45762
+2025-04-16T21:49:00 278158 TRACE [RtmpContext.cpp:926][HandleAmfCommand]RTMP::not surpport method:getStreamLength host:127.0.0.1:45762
+2025-04-16T21:49:00 278158 TRACE [RtmpContext.cpp:904][HandleAmfCommand]RTMP::amf message len:33 host:127.0.0.1:45762
+2025-04-16T21:49:00 278158 TRACE [AMFObject.cpp:94][Decode]RTMP::String value:play
+2025-04-16T21:49:00 278158 TRACE [AMFObject.cpp:66][Decode]RTMP::Number value:4
+2025-04-16T21:49:00 278158 TRACE [AMFObject.cpp:115][Decode]RTMP::Null.
+2025-04-16T21:49:00 278158 TRACE [AMFObject.cpp:94][Decode]RTMP::String value:test
+2025-04-16T21:49:00 278158 TRACE [AMFObject.cpp:66][Decode]RTMP::Number value:1.84467e+19
+2025-04-16T21:49:00 278158 TRACE [RtmpContext.cpp:922][HandleAmfCommand]RTMP::amf command:play host:127.0.0.1:45762
+2025-04-16T21:49:00 278158 TRACE [RtmpContext.cpp:1183][ParseNameAndTcUrl]RTMP::session_name:hx.com/live/test param: host:127.0.0.1:45762
+2025-04-16T21:49:00 278158 TRACE [RtmpContext.cpp:1128][HandlePlay]RTMP::recv play session_name:hx.com/live/test param: host:127.0.0.1:45762
+2025-04-16T21:49:00 278158 DEBUG [RtmpContext.cpp:804][SendUserCtrlMessage]RTMP::send user control type:0 value:1 value2:0 to host:127.0.0.1:45762
+2025-04-16T21:49:00 278158 TRACE [RtmpContext.cpp:1092][SendStatus]RTMP::send status level:status code:NetStream.Play.Start desc:Start Playing to host:127.0.0.1:45762
+2025-04-16T21:49:00 278158 DEBUG [LiveService.cpp:125][OnPlay]LIVE::on play session name:hx.com/live/test param: host:127.0.0.1:45762 now:1744811340341
+2025-04-16T21:49:00 278158 DEBUG [Session.cpp:151][AddPlayer]LIVE:: add player,session name:hx.com/live/test,user:127.0.0.1:45762
+2025-04-16T21:49:00 278158 DEBUG [Stream.cpp:229][LocateGop]LIVE::locate GOP sucess.elapsed:0ms,gop idx:447,frame index:603,lantency:1456,user:127.0.0.1:45762
+2025-04-16T21:49:00 278158 TRACE [RtmpContext.cpp:852][HandleUserMessage]RTMP::recv user control type:3 value1 host:127.0.0.1:45762
+2025-04-16T21:49:00 278158 TRACE [RtmpContext.cpp:872][HandleUserMessage]RTMP::recv set buffer length value1 host:127.0.0.1:45762
+2025-04-16T21:49:00 278158 INFO [RtmpPlayerUser.cpp:26]LIVE::rtmp sent meta now:1744811340341 host:127.0.0.1:45762
+2025-04-16T21:49:00 278158 INFO [RtmpPlayerUser.cpp:35]LIVE::rtmp sent audio_header now:1744811340341 host:127.0.0.1:45762
+2025-04-16T21:49:00 278158 INFO [RtmpPlayerUser.cpp:44]LIVE::rtmp sent video_header now:1744811340341 host:127.0.0.1:45762
+2025-04-16T21:49:00 278158 TRACE [RtmpContext.cpp:294][MessageComplete]RTMP::message bytes read recv.
+2025-04-16T21:49:01 278158 TRACE [RtmpContext.cpp:294][MessageComplete]RTMP::message bytes read recv.
+2025-04-16T21:49:02 278158 TRACE [RtmpContext.cpp:294][MessageComplete]RTMP::message bytes read recv.
+2025-04-16T21:49:03 278158 TRACE [RtmpContext.cpp:294][MessageComplete]RTMP::message bytes read recv.
+2025-04-16T21:49:04 278158 TRACE [TcpServer.cpp:79][OnConnectionClose]host:127.0.0.1:45762 closed.
+2025-04-16T21:49:04 278158 DEBUG [Session.cpp:113][CloseUser]LIVE::remove publisher,session name:hx.com/live/test,user:127.0.0.1:45762,elapsed:4457,ReadyTime:1054620893,stream time:10747
+2025-04-16T21:49:12 278158 TRACE [RtmpContext.cpp:904][HandleAmfCommand]RTMP::amf message len:31 host:127.0.0.1:46572
+2025-04-16T21:49:12 278158 TRACE [AMFObject.cpp:94][Decode]RTMP::String value:FCUnpublish
+2025-04-16T21:49:12 278158 TRACE [AMFObject.cpp:66][Decode]RTMP::Number value:6
+2025-04-16T21:49:12 278158 TRACE [AMFObject.cpp:115][Decode]RTMP::Null.
+2025-04-16T21:49:12 278158 TRACE [AMFObject.cpp:94][Decode]RTMP::String value:test
+2025-04-16T21:49:12 278158 TRACE [RtmpContext.cpp:922][HandleAmfCommand]RTMP::amf command:FCUnpublish host:127.0.0.1:46572
+2025-04-16T21:49:12 278158 TRACE [RtmpContext.cpp:926][HandleAmfCommand]RTMP::not surpport method:FCUnpublish host:127.0.0.1:46572
+2025-04-16T21:49:12 278158 TRACE [RtmpContext.cpp:904][HandleAmfCommand]RTMP::amf message len:34 host:127.0.0.1:46572
+2025-04-16T21:49:12 278158 TRACE [AMFObject.cpp:94][Decode]RTMP::String value:deleteStream
+2025-04-16T21:49:12 278158 TRACE [AMFObject.cpp:66][Decode]RTMP::Number value:7
+2025-04-16T21:49:12 278158 TRACE [AMFObject.cpp:115][Decode]RTMP::Null.
+2025-04-16T21:49:12 278158 TRACE [AMFObject.cpp:66][Decode]RTMP::Number value:1
+2025-04-16T21:49:12 278158 TRACE [RtmpContext.cpp:922][HandleAmfCommand]RTMP::amf command:deleteStream host:127.0.0.1:46572
+2025-04-16T21:49:12 278158 TRACE [RtmpContext.cpp:926][HandleAmfCommand]RTMP::not surpport method:deleteStream host:127.0.0.1:46572
+2025-04-16T21:49:12 278158 TRACE [TcpServer.cpp:79][OnConnectionClose]host:127.0.0.1:46572 closed.
+2025-04-16T21:49:35 278158 ERROR [TcpConnection.cpp:254]host:127.0.0.1:45762 timeout and close it.
+2025-04-16T21:49:36 278156 INFO [LiveService.cpp:82]LIVE::session:hx.com/live/test is timeout. close it. Now:1744811376545
+2025-04-16T21:49:42 278158 ERROR [TcpConnection.cpp:254]host:127.0.0.1:46572 timeout and close it.
