@@ -106,7 +106,6 @@ void TcpConnection::OnWrite()  {
       auto s = io_vec_list_.front().iov_base;
       auto a = io_vec_list_.front().iov_len;
       std::cout << io_vec_list_.front().iov_base << std::endl;
-      std::cout << " errno : " << errno << std::endl;
       if(ret >= 0)
       {
         while(ret > 0)

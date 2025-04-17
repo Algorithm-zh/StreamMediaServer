@@ -29,8 +29,8 @@ namespace tmms
       int meta_version_{0};
       int audio_version_{0};
       int video_version_{0};
-      std::vector<PacketPtr> video_headers_packets_;
-      std::vector<PacketPtr> audio_headers_packets_;
+      std::vector<PacketPtr> video_header_packets_;
+      std::vector<PacketPtr> audio_header_packets_;
       std::vector<PacketPtr> meta_packets_;
       int64_t start_timestamp_{0};
     };

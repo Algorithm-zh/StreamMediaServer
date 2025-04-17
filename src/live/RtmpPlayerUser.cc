@@ -6,13 +6,14 @@
 #include "mmedia/rtmp/RtmpContext.h"
 #include "network/net/Connection.h"
 #include <memory>
+#include <string>
 #include <sys/socket.h>
 using namespace tmms::live;
 using namespace tmms::base;
  
 bool RtmpPlayerUser::PostFrames()  {
   
-  if(!stream_->Ready() || !stream_->HasMeta())
+  if(!stream_->Ready() || !stream_->HasMedia())
   {
     return false;
   }
@@ -73,7 +74,7 @@ bool RtmpPlayerUser::PushFrame(PacketPtr &packet, bool is_header)  {
   int64_t ts = 0;
   if(!is_header)
   {
-    ts = time_corrector_.CorrectTimestap(packet);
+    ts = time_corrector_.CorrectTimestamp(packet);
   }
   cx->BuildChunk(packet, ts, is_header);
   cx->Send();
@@ -90,8 +91,8 @@ bool RtmpPlayerUser::PushFrame(std::vector<PacketPtr> &list)  {
   int64_t ts = 0;
   for(int i = 0; i < list.size(); i++)
   {
-    PacketPtr packet = list[i];
-    ts = time_corrector_.CorrectTimestap(packet);
+    PacketPtr &packet = list[i];
+    ts = time_corrector_.CorrectTimestamp(packet);
     cx->BuildChunk(packet, ts);
   }
   cx->Send();

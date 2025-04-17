@@ -18,7 +18,7 @@ namespace tmms
       explicit Session(const std::string &session_name);
       //时间处理成员函数
       int32_t ReadyTime() const;
-      int32_t SinceStart() const;
+      int64_t SinceStart() const;
       bool IsTimeout();
       //用户创建关闭成员函数
       UserPtr CreatePublishUser(const ConnectionPtr &conn, 
@@ -29,7 +29,7 @@ namespace tmms
                                const std::string &session_name, 
                                const std::string &param,
                                UserType type);
-      void CloseUser(UserPtr &user);
+      void CloseUser(const UserPtr &user);
       //用户操作成员函数
       void ActiveAllPlayers();
       void AddPlayer(const PlayerUserPtr &user);

@@ -39,7 +39,7 @@ bool AppInfo::ParseAppInfo(Json::Value &root)  {
   Json::Value clObj = root["content_latency"];
   if(!clObj.isNull())
   {
-    content_latency = clObj.asUInt();
+    content_latency = clObj.asUInt() * 1000;
   }
   Json::Value siObj = root["stream_idle_time"];
   if(!siObj.isNull())

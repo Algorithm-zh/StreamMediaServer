@@ -2,9 +2,10 @@
   "name" : "tmms server",
   "cpu_start" : 0,
   "threads" : 4,
+  "cpus" : 4,
   "log" : 
   {
-    "level" : "DEBUG",
+    "level" : "TRACE",
     "name" : "tmms.log",
     "path" : "../log/",
     "rotate" : "DAY",

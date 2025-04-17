@@ -1,5 +1,6 @@
 #pragma once
 #include "live/PlayerUser.h"
+#include "live/Session.h"
 #include "live/base/TimeCorrector.h"
 #include "live/GopMgr.h"
 #include "live/CodecHeader.h"
@@ -16,10 +17,11 @@ namespace tmms
   {
     using namespace tmms::mm;
     using PlayerUserPtr = std::shared_ptr<PlayerUser>;
+    class Session;
     class Stream
     {
     public:
-      Stream(const std::string &session_name);
+      Stream(Session &s, const std::string &session_name);
       //时间处理成员函数
       int64_t ReadyTime() const;
       int64_t SinceStart() const;
@@ -28,7 +30,7 @@ namespace tmms
       //流信息成员函数
       const std::string &SessionName() const;
       int32_t StreamVersion() const;
-      bool HasMeta() const;//media info
+      bool HasMedia() const;//media info
       bool Ready() const;
       //输入成员函数(important)
       void AddPacket(PacketPtr &&packet);
@@ -48,6 +50,7 @@ namespace tmms
       int64_t ready_time_{0};//收到关键帧的时间
       std::atomic_int64_t stream_time_{0};//有数据来的时间，用于判断流有无超时 推流的和检测超时的线程都在使用
   
+      Session &session_;
       std::string session_name_;
       std::atomic_int64_t  frame_index_{-1};
       uint32_t packet_buffer_size_{1000};//1000frame

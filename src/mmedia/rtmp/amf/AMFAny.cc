@@ -199,3 +199,7 @@ int32_t AMFAny::EncodeNamedBoolean(char *output, const std::string &name, bool b
   output += EncodeBoolean(output, bVal);
   return output - old;
 }
+ 
+bool AMFAny::IsNull()  {
+	return false;
+}

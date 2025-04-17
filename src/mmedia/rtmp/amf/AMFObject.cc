@@ -7,7 +7,10 @@
 #include "AMFBoolean.h"
 #include "AMFDate.h"
 #include "AMFLongString.h"
+#include "AMFNull.h"
+#include "mmedia/rtmp/amf/AMFNull.h"
 #include <memory>
+#include <utility>
 using namespace tmms::mm;
  
 namespace
@@ -109,7 +112,9 @@ int AMFObject::Decode(const char *data, int size, bool has)  {
       }
       case kAMFNull:
       {
+        std::shared_ptr<AMFNull> p = std::make_shared<AMFNull>(nname);
         RTMP_TRACE << "Null.";
+        properties_.emplace_back(std::move(p));
         break;
       }
       case kAMFEcmaArray:
@@ -301,7 +306,9 @@ int AMFObject::DecodeOnce(const char *data, int size, bool has)  {
     }
     case kAMFNull:
     {
+      std::shared_ptr<AMFNull> p = std::make_shared<AMFNull>(nname);
       RTMP_TRACE << "Null.";
+      properties_.emplace_back(std::move(p));
       break;
     }
     case kAMFEcmaArray:

@@ -48,6 +48,7 @@ namespace tmms
       std::mutex lock_;
       std::unordered_map<std::string, SessionPtr> sessions_;
     };
+    #define sLiveService tmms::live::Singleton<LiveService>::Instance()
   }
 }
 

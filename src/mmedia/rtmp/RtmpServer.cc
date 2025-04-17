@@ -35,7 +35,7 @@ void RtmpServer::OnNewConnection(const TcpConnectionPtr &conn)  {
   {
     rtmp_handler_->OnNewConnection(conn);
   }
-  RtmpContextPtr shake = std::make_shared<RtmpContext>(conn, nullptr);
+  RtmpContextPtr shake = std::make_shared<RtmpContext>(conn, rtmp_handler_);
   conn->SetContext(kRtmpContext, shake);
   shake->StartHandShake();
 }
@@ -58,7 +58,7 @@ void RtmpServer::OnMessage(const TcpConnectionPtr &conn, MsgBuffer &buf)  {
     //握手成功
     if(ret == 0)
     {
-      RTMP_TRACE << "host: " << conn->PeerAddr().ToIpPort() << ", handshake done\n";
+//      RTMP_TRACE << "host: " << conn->PeerAddr().ToIpPort() << ", handshake done\n";
     }
     else if(ret == -1)
     {

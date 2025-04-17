@@ -4,7 +4,7 @@ using namespace tmms::live;
 
 
  
-uint32_t TimeCorrector::CorrectTimestap(const PacketPtr &packet)  {
+uint32_t TimeCorrector::CorrectTimestamp(const PacketPtr &packet)  {
   //如果是音视频的序列头，直接返回0
   if(CodecUtils::IsCodecHeader(packet))
   {

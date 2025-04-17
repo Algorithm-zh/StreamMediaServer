@@ -118,7 +118,7 @@ void TcpClient::OnClose()  {
   {
     loop_->DelEvent(std::dynamic_pointer_cast<TcpClient>(shared_from_this()));
   }
-  status_ = kTcpConStatusDisconnected;
+  status_ = kTcpConStatusDisConnected;
   TcpConnection::OnClose();
 }
 

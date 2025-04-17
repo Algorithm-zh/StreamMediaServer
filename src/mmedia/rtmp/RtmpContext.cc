@@ -11,6 +11,7 @@
 #include <functional>
 #include <memory>
 #include <string>
+#include <utility>
 #include <vector>
 using namespace tmms::mm;
  
@@ -90,7 +91,7 @@ void RtmpContext::StartHandShake()  {
  
 int32_t RtmpContext::ParseMessage(MsgBuffer &buf)  {
   uint8_t fmt;
-  uint32_t csid, msg_len = 0, msg_sid = 0, timestamp = 0;
+  uint32_t csid, msg_len = 0, msg_sid = 0;
   uint8_t msg_type = 0;
   uint32_t total_bytes = buf.ReadableBytes();
   //每读取一个字节就++
@@ -144,7 +145,6 @@ int32_t RtmpContext::ParseMessage(MsgBuffer &buf)  {
     //parse the message header
     msg_len = 0;
     msg_sid = 0;
-    timestamp = 0;
     msg_type = 0;
     int32_t ts = 0;
     RtmpMsgHeaderPtr &prev = in_message_headers_[csid];
@@ -152,18 +152,43 @@ int32_t RtmpContext::ParseMessage(MsgBuffer &buf)  {
     {
       prev = std::make_shared<RtmpMsgHeader>();
     }
+    msg_len = prev->msg_len;
+    if(fmt == kRtmpFmt0 || fmt == kRtmpFmt1)
+    {
+        msg_len = BytesReader::ReadUint24T((pos+parsed)+3);
+    }
+    else if(msg_len == 0)
+    {
+        msg_len = in_chunk_size_;
+    }
+    PacketPtr &packet = in_packets_[csid];
+    if(!packet)
+    {
+        packet = Packet::NewPacket(msg_len);
+        RtmpMsgHeaderPtr header = std::make_shared<RtmpMsgHeader>();
+        header->cs_id = csid;
+        header->msg_len = msg_len;
+        header->msg_sid = msg_sid;
+        header->msg_type = msg_type;
+        header->timestamp = 0;  
+        packet->SetExt(header);          
+    }
+
+    RtmpMsgHeaderPtr header = packet->Ext<RtmpMsgHeader>();
+
     if(fmt == kRtmpFmt0)
     {
       ts = BytesReader::ReadUint24T(pos + parsed);
       parsed += 3;
       //fmt0 haven't delta
       in_deltas_[csid] = 0;//下个message检测这个值没有时间差
-      msg_len = BytesReader::ReadUint24T(pos + parsed);
+      header->timestamp = ts;
+      header->msg_len = BytesReader::ReadUint24T(pos + parsed);
       parsed += 3;
-      msg_type = BytesReader::ReadUint8T(pos + parsed);
+      header->msg_type = BytesReader::ReadUint8T(pos + parsed);
       parsed ++;
       //msg_sid is 4 bytes and little endian. it can directly copy to uint32_t
-      memcpy(&msg_sid, pos + parsed, 4);
+      memcpy(&header->msg_sid, pos + parsed, 4);
       parsed += 4;
     }
     else if(fmt == kRtmpFmt1)
@@ -171,29 +196,33 @@ int32_t RtmpContext::ParseMessage(MsgBuffer &buf)  {
       ts = BytesReader::ReadUint24T(pos + parsed);
       parsed += 3;
       in_deltas_[csid] = ts;
-      timestamp = ts + prev->timestamp;
-      msg_len = BytesReader::ReadUint24T(pos + parsed);
+      header->timestamp = ts + prev->timestamp;
+      header->msg_len = BytesReader::ReadUint24T(pos + parsed);
       parsed += 3;
-      msg_type = BytesReader::ReadUint8T(pos + parsed);
+      header->msg_type = BytesReader::ReadUint8T(pos + parsed);
       parsed ++;
-      msg_sid = prev->msg_sid;
+      header->msg_sid = prev->msg_sid;
     }
     else if(fmt == kRtmpFmt2)
     {
       ts = BytesReader::ReadUint24T(pos + parsed);
       parsed += 3;
       in_deltas_[csid] = ts;
-      timestamp = ts + prev->timestamp;
-      msg_len = prev->msg_len;
-      msg_type = prev->msg_type;
-      msg_sid = prev->msg_sid;
+      header->timestamp = ts + prev->timestamp;
+      header->msg_len = prev->msg_len;
+      header->msg_type = prev->msg_type;
+      header->msg_sid = prev->msg_sid;
     }
     else if(fmt == kRtmpFmt3)
     {
-      timestamp = in_deltas_[csid] + prev->timestamp;
-      msg_len = prev->msg_len;
-      msg_type = prev->msg_type;
-      msg_sid = prev->msg_sid;
+      if(header->timestamp == 0)
+      {
+          header->timestamp = in_deltas_[csid] + prev->timestamp;
+      }
+      header->timestamp = in_deltas_[csid] + prev->timestamp;
+      header->msg_len = prev->msg_len;
+      header->msg_type = prev->msg_type;
+      header->msg_sid = prev->msg_sid;
     }
 
     //calculate extended timestamp
@@ -216,29 +245,11 @@ int32_t RtmpContext::ParseMessage(MsgBuffer &buf)  {
       parsed += 4;
       if(fmt != kRtmpFmt0)
       {
-        timestamp = ts + prev->timestamp;
+        header->timestamp = ts + prev->timestamp;
         in_deltas_[csid] = ts;
       }
     }
-    
-    PacketPtr &packet = in_packets_[csid];
-    if(!packet)
-    {
-      packet = Packet::NewPacket(msg_len);
-    }
-    //将msgHeader存储到Packet的ext里
-    RtmpMsgHeaderPtr header = packet->Ext<RtmpMsgHeader>();
-    if(!header)
-    {
-      header = std::make_shared<RtmpMsgHeader>();
-      packet->SetExt(header);
-    }
-    header->cs_id = csid;
-    header->timestamp = timestamp;
-    header->msg_len = msg_len;
-    header->msg_type = msg_type;
-    header->msg_sid = msg_sid;
-
+   
     int bytes = std::min(packet->Space(), in_chunk_size_);
     if(total_bytes - parsed < bytes)
     {
@@ -254,17 +265,17 @@ int32_t RtmpContext::ParseMessage(MsgBuffer &buf)  {
     buf.Retrieve(parsed);
     total_bytes -= parsed;
 
-    prev->cs_id = csid;
-    prev->msg_len = msg_len;
-    prev->msg_sid = msg_sid;
-    prev->timestamp = timestamp;
-    prev->msg_type = msg_type;
+    prev->cs_id = header->cs_id;
+    prev->msg_len = header->msg_len;
+    prev->msg_sid = header->msg_sid;
+    prev->timestamp = header->timestamp;
+    prev->msg_type = header->msg_type;
 
     //no space. parse finished
     if(packet->Space() == 0)
     {
-      packet->SetPacketType(msg_type);
-      packet->SetTimeStamp(timestamp);
+      packet->SetPacketType(header->msg_type);
+      packet->SetTimeStamp(header->timestamp);
       MessageComplete(std::move(packet));
       packet.reset();
     }
@@ -274,7 +285,7 @@ int32_t RtmpContext::ParseMessage(MsgBuffer &buf)  {
  
 void RtmpContext::MessageComplete(PacketPtr &&data)  {
  
-  RTMP_TRACE << "recv message type:" << data->PacketType() << ", len = " << data->PacketSize();
+  //RTMP_TRACE << "recv message type:" << data->PacketType() << ", len = " << data->PacketSize();
   auto type = data->PacketType();
   switch (type) {
     case kRtmpMsgTypeChunkSize:
@@ -312,11 +323,10 @@ void RtmpContext::MessageComplete(PacketPtr &&data)  {
     case kRtmpMsgTypeAudio:
     case kRtmpMsgTypeVideo:
     {
-      RTMP_TRACE << "AMFMeta type:" << type;
       SetPacketType(data);
       if(rtmp_handler_)
       {
-        rtmp_handler_->OnRecv(connection_, data);  
+        rtmp_handler_->OnRecv(connection_, std::move(data));  
       }
       break;
     }
@@ -335,7 +345,7 @@ bool RtmpContext::BuildChunk(const PacketPtr &packet, uint32_t timestamp, bool f
     RtmpMsgHeaderPtr &prev = out_message_headers_[h->cs_id];
     //使用delta就代表不使用fmt0
     //使用fmt0的条件：强制使用fmt0, 第一个包, 时间戳小于上一个包, 包号相同
-    bool use_delta = !fmt0 && !prev && timestamp >= prev->timestamp && h->msg_sid == prev->msg_sid;
+    bool use_delta = !fmt0 && prev && timestamp >= prev->timestamp && h->msg_sid == prev->msg_sid;
     if(!prev)
     {
       prev = std::make_shared<RtmpMsgHeader>();
@@ -826,6 +836,7 @@ void RtmpContext::SendUserCtrlMessage(short nType, uint32_t value1, uint32_t val
     //只有设置 buffer 长度是两个变量
     p += BytesWriter::WriteUint32T(p, value2);
   }
+  header->msg_len = p - body;
   packet->SetPacketSize(header->msg_len);
   RTMP_DEBUG << "set user control type: " << nType << ", value1: " << value1 << ", value2: " << value2;
   PushOutQueue(std::move(packet));
@@ -1188,17 +1199,17 @@ void RtmpContext::ParseNameAndTcUrl()  {
   }
   std::string domain;
   std::vector<std::string> list = base::StringUtils::SplitString(tc_url_, "/");
-  if(list.size() == 6)//rtmp://ip/domain:port/app/stream
+  if(list.size() == 5)//rtmp://ip/domain:port/app/stream
   {
     domain = list[3];
     app_ = list[4];
-    name_ = list[5];
+ //   name_ = list[5];
   }
-  else if(list.size() == 5)//rtmp://domain:port/app/stream
+  else if(list.size() == 4)//rtmp://domain:port/app/stream
   {
     domain = list[2];
     app_ = list[3];
-    name_ = list[4];
+ //   name_ = list[4];
   }
 
   auto p = domain.find_first_of(":");
@@ -1246,11 +1257,11 @@ void RtmpContext::SendPublish()  {
   PushOutQueue(std::move(packet));
 }
  
-//没用到
 void RtmpContext::HandlePublish(AMFObject &obj)  {
  
   auto tran_id = obj.Property(1)->Number();
   name_ = obj.Property(3)->String();
+  ParseNameAndTcUrl();
   RTMP_TRACE << "recv publish session:" << session_name_ 
              << " param:" << param_ << " host:" << connection_->PeerAddr().ToIpPort();
   is_player_ = false;
@@ -1301,17 +1312,14 @@ void RtmpContext::SetPacketType(PacketPtr &packet)  {
  
   if(packet->PacketType() == kRtmpMsgTypeAudio)
   {
-    RTMP_TRACE << "save audio type\n";
     packet->SetPacketType(kPacketTypeAudio);
   }
   else if(packet->PacketType() == kRtmpMsgTypeVideo)
   {
-    RTMP_TRACE << "save Video type\n";
     packet->SetPacketType(kPacketTypeVideo);
   }
   else if(packet->PacketType() == kRtmpMsgTypeAMFMeta)
   {
-    RTMP_TRACE << "save meta type\n";
     packet->SetPacketType(kPacketTypeMeta);
   }
   else if(packet->PacketType() == kRtmpMsgTypeAMF3Meta)

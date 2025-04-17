@@ -4,6 +4,7 @@
 #include "base/TTime.h"
 #include "base/Task.h"
 #include "base/TaskMgr.h"
+#include "live/PlayerUser.h"
 #include "live/User.h"
 #include "live/base/LiveLog.h"
 #include "live/Stream.h"
@@ -11,6 +12,7 @@
 #include "mmedia/rtmp/RtmpServer.h"
 #include "network/base/InetAddress.h"
 #include "network/net/EventLoopThreadPool.h"
+#include <memory>
 using namespace tmms::live;
  
 namespace
@@ -40,7 +42,7 @@ SessionPtr LiveService::CreateSession(const std::string &session_name)  {
     return session_null;
   }
   //找到配置了，创建session
-  auto s = std::make_shared<Session>(app_info);
+  auto s = std::make_shared<Session>(session_name);
   s->SetAppInfo(app_info);
   sessions_.emplace(session_name, s);
   LIVE_DEBUG << "create session success. session name:" << session_name << " now:" << base::TTime::NowMs();
@@ -117,11 +119,11 @@ void LiveService::OnActive(const ConnectionPtr &conn)  {
     //发送数据帧
     user->PostFrames();
   }
-  else
-  {
-    LIVE_ERROR << "no user found.host:" << conn->PeerAddr().ToIpPort();
-    conn->ForceClose();
-  }
+  //else
+  //{
+  //  LIVE_ERROR << "no user found.host:" << conn->PeerAddr().ToIpPort();
+  //  conn->ForceClose();
+  //}
 }
  
 bool LiveService::OnPlay(const TcpConnectionPtr &conn, const std::string &session_name, const std::string &param)  {
@@ -145,6 +147,7 @@ bool LiveService::OnPlay(const TcpConnectionPtr &conn, const std::string &sessio
     return false;
   }
   conn->SetContext(kUserContext, user);
+  s->AddPlayer(std::dynamic_pointer_cast<PlayerUser>(user));
   return true;
 }
  
@@ -169,6 +172,7 @@ bool LiveService::OnPublish(const TcpConnectionPtr &conn, const std::string &ses
     return false;
   }
   conn->SetContext(kUserContext, user);
+  s->SetPublisher(user);
   return true;
 }
  

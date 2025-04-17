@@ -12,7 +12,7 @@ void GopMgr::AddFrame(const PacketPtr &packet)  {
     gops_.emplace_back(packet->Index(), packet->TimeStamp());
     max_gop_length_ = std::max(max_gop_length_, gop_length_);
     total_gop_length_ += gop_length_;
-    gop_numers_ ++;
+    gop_numbers_ ++;
     gop_length_ = 0;
   }
   gop_length_ ++;
@@ -33,7 +33,7 @@ int GopMgr::GetGopByLatency(int content_latency, int &latency) const {
   for(; iter != gops_.rend(); ++iter)
   {
     int item_latency = latest_timestamp_ - iter->timestamp;//当前延时
-    if(item_latency < content_latency)
+    if(item_latency <= content_latency)
     {
       got = iter->index;
       latency = item_latency;

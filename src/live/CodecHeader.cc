@@ -40,8 +40,8 @@ PacketPtr CodecHeader::VideoHeader(int idx)  {
     return video_header_;
   }
   //从后往前查找最新的播放
-  auto iter = video_headers_packets_.rbegin();
-  for(; iter != video_headers_packets_.rend(); ++iter)
+  auto iter = video_header_packets_.rbegin();
+  for(; iter != video_header_packets_.rend(); ++iter)
   {
     PacketPtr pkt = *iter;
     if(pkt->Index() <= idx)
@@ -58,8 +58,8 @@ PacketPtr CodecHeader::AudioHeader(int idx)  {
     return audio_header_;
   }
   //从后往前查找最新的播放
-  auto iter = audio_headers_packets_.rbegin();
-  for(; iter != audio_headers_packets_.rend(); ++iter)
+  auto iter = audio_header_packets_.rbegin();
+  for(; iter != audio_header_packets_.rend(); ++iter)
   {
     PacketPtr pkt = *iter;
     if(pkt->Index() <= idx)
@@ -167,7 +167,7 @@ void CodecHeader::SaveAudioHeader(const PacketPtr &packet)  {
   audio_header_ = packet;
   ++ audio_version_;
 
-  audio_headers_packets_.emplace_back(packet);
+  audio_header_packets_.emplace_back(packet);
 
   LIVE_TRACE << "save audio header ,audio version:" << audio_version_
               << ", size:" << packet->PacketSize()
@@ -179,7 +179,7 @@ void CodecHeader::SaveVideoHeader(const PacketPtr &packet)  {
   video_header_ = packet;
   ++ video_version_;
 
-  video_headers_packets_.emplace_back(packet);
+  video_header_packets_.emplace_back(packet);
 
   LIVE_TRACE << "save video header ,video version:" << video_version_
               << ", size:" << packet->PacketSize()
@@ -188,7 +188,7 @@ void CodecHeader::SaveVideoHeader(const PacketPtr &packet)  {
  
 bool CodecHeader::ParseCodecHeader(const PacketPtr &packet)  {
 
-  LIVE_TRACE << "ParseCodecHeader";
+  //LIVE_TRACE << "ParseCodecHeader";
   if(packet->IsMeta())
   {
     SaveMeta(packet);

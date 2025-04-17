@@ -21,13 +21,13 @@ namespace tmms
     private:
       void StartEventLoop();
 
-      std::thread thread_;
       std::mutex lock_;
       std::condition_variable condition_;
       EventLoop* loop_{nullptr};
       bool running_{false};
       std::once_flag once_;
       std::promise<int> promise_loop;
+      std::thread thread_;
       
     };
   }

@@ -35,7 +35,7 @@ namespace tmms
       std::vector<GopItemInfo> gops_;
       int32_t gop_length_{0};
       int32_t max_gop_length_{0};
-      int32_t gop_numers_{0};
+      int32_t gop_numbers_{0};
       int32_t total_gop_length_{0};
       int64_t latest_timestamp_{0};
 

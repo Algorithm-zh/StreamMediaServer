@@ -15,7 +15,7 @@ namespace tmms
     public:
       TimeCorrector() = default;
       ~TimeCorrector() = default;
-      uint32_t CorrectTimestap(const PacketPtr &packet);
+      uint32_t CorrectTimestamp(const PacketPtr &packet);
       uint32_t CorrectAudioTimeStampByVideo(const PacketPtr &packet); 
       uint32_t CorrectVideoTimeStampByVideo(const PacketPtr &packet);
       uint32_t CorrectAudioTimeStampByAudio(const PacketPtr &packet); 

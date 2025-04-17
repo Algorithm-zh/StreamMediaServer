@@ -7,7 +7,7 @@ using namespace tmms::base;
 #define LIVE_DEBUG_ON 1
 
 #ifdef LIVE_DEBUG_ON
-#define LIVE_TRACE std::cout << "\nLIVE::" 
+#define LIVE_TRACE LOG_TRACE << "LIVE::" 
 #define LIVE_DEBUG LOG_DEBUG << "LIVE::"
 #define LIVE_INFO LOG_INFO << "LIVE::"
 #else

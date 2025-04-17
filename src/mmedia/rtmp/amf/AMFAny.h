@@ -56,6 +56,7 @@ namespace tmms
       virtual bool IsBoolean();
       virtual bool IsDate();
       virtual bool IsObject();
+      virtual bool IsNull();
       //其它成员函数
       virtual void Dump() const = 0; //输出数据
       const std::string &Name() const;

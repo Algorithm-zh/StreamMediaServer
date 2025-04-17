@@ -1,4 +1,5 @@
 #include "RtmpHandShake.h"
+#include <cstdint>
 #include <cstring>
 #include <openssl/sha.h>
 #include <openssl/hmac.h>
@@ -233,11 +234,11 @@ void RtmpHandShake::CreateC2S2(const char* data, int bytes, int offset)  {
     uint8_t digest[32];
     if(is_client_)
     {
-      CalculateDigest(digest_, 32, 0, rtmp_player_key, sizeof(rtmp_player_key), digest);
+      CalculateDigest((const uint8_t*)(data + offset), 32, 0, rtmp_player_key, sizeof(rtmp_player_key), digest);
     }
     else
     {
-      CalculateDigest(digest_, 32, 0, rtmp_server_key, sizeof(rtmp_server_key), digest);
+      CalculateDigest((const uint8_t*)(data + offset), 32, 0, rtmp_server_key, sizeof(rtmp_server_key), digest);
     }
     CalculateDigest(C2S2_, kRtmpHandShakePacketSize - 32, 0, digest, 32, &C2S2_[kRtmpHandShakePacketSize - 32]);
   }

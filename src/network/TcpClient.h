@@ -13,7 +13,7 @@ namespace tmms
       kTcpConStatusInit = 0,
       kTcpConStatusConnecting = 1,
       kTcpConStatusConnected = 2,
-      kTcpConStatusDisconnected = 3,
+      kTcpConStatusDisConnected = 3,
     };
     using ConnectionCallback = std::function<void(const TcpConnectionPtr &con, bool)> ;
     class TcpClient : public TcpConnection

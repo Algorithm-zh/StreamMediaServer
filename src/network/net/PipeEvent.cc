@@ -37,7 +37,6 @@ void PipeEvent::OnRead()  {
     NETWORK_ERROR << "read error: " << strerror(errno);
     return;
   }
-  std::cout << "pipe read tmp : " << tmp << std::endl;
   
 }
  
