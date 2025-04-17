@@ -2,8 +2,9 @@
 #include "base/LogStream.h"
 #include "base/FileMgr.h"
 #include "base/TaskMgr.h"
+#include "base/Logger.h"
+#include "base/FileLog.h"
 #include "live/LiveService.h"
-#include <stdio.h>
 #include <iostream>
 #include <thread>
 

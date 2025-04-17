@@ -33,7 +33,7 @@ void Connection::SetContext(int type, std::shared_ptr<void> &&context)  {
 }
 
 void Connection::ClearContext(int type)  {
- 
+  contexts_[type].reset();
 }
  
 void Connection::ClearContext()  {

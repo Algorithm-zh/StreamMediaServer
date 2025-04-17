@@ -20,7 +20,7 @@ int AMFBoolean::Decode(const char *data, int size, bool has)  {
 
   if(size >= 1)
   {
-    b_ = *data != 0;
+    b_ = *data != 0 ? true : false;
     return 1;
   }
   return -1;

@@ -48,7 +48,7 @@ namespace tmms
     {
     public:
       TimingWheel();
-      ~TimingWheel() = default;
+      ~TimingWheel();
       void InsertEntry(uint32_t delay, EntryPtr entryPtr);
       void OnTimer(int64_t now);
       void PopUp(Wheel &bq);

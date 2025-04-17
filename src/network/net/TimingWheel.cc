@@ -9,6 +9,8 @@ TimingWheel::TimingWheel()
   wheels_[kTimingTypeHour].resize(24); 
   wheels_[kTimingTypeDay].resize(30);
 }
+TimingWheel::~TimingWheel()  {
+}
  
 //转动时间轮
 void TimingWheel::OnTimer(int64_t now)  {

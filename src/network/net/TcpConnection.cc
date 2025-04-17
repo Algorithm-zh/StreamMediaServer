@@ -105,7 +105,6 @@ void TcpConnection::OnWrite()  {
       auto ret = ::writev(fd_, &io_vec_list_[0], io_vec_list_.size());
       auto s = io_vec_list_.front().iov_base;
       auto a = io_vec_list_.front().iov_len;
-      std::cout << io_vec_list_.front().iov_base << std::endl;
       if(ret >= 0)
       {
         while(ret > 0)

@@ -28,7 +28,7 @@ void EventLoopThread::Run()  {
       condition_.notify_all();
     }
     //保证事件循环和事件循环线程同步
-    auto f = promise_loop.get_future();
+    auto f = promise_loop_.get_future();
     //持续等待有值才返回
     f.get();
   });
@@ -45,7 +45,7 @@ void EventLoopThread::StartEventLoop()  {
   std::unique_lock<std::mutex> lk(lock_);
   condition_.wait(lk, [this]{return running_;});
   loop_ = &loop;
-  promise_loop.set_value(1);
+  promise_loop_.set_value(1);
   loop.Loop();
   loop_ = nullptr;
 }

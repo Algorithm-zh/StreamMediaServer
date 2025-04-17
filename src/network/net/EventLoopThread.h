@@ -26,7 +26,7 @@ namespace tmms
       EventLoop* loop_{nullptr};
       bool running_{false};
       std::once_flag once_;
-      std::promise<int> promise_loop;
+      std::promise<int> promise_loop_;
       std::thread thread_;
       
     };
