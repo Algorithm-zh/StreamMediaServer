@@ -41,7 +41,7 @@ int32_t RtmpContext::Parse(MsgBuffer &buf)
         }
         else if(ret == 2)
         {
-            state_ = kRtmpWatingDone;
+            state_ = kRtmpWaitingDone;
         }
     }
     else if(state_ == kRtmpMessage)
@@ -58,7 +58,7 @@ void RtmpContext::OnWriteComplete()
     {
         handshake_.WriteComplete();
     }
-    else if(state_ == kRtmpWatingDone)
+    else if(state_ == kRtmpWaitingDone)
     {
         state_ = kRtmpMessage;
         if(is_client_)

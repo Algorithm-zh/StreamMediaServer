@@ -1,23 +1,24 @@
 #pragma once
-
-#include "PlayerUser.h"
-
-namespace tmms
+#include "live/PlayerUser.h"
+#include "live/User.h"
+#include "mmedia/base/Packet.h"
+#include <vector>
+namespace tmms 
 {
-    namespace live
+  namespace live
+  {
+    class RtmpPlayerUser : public PlayerUser
     {
-        class RtmpPlayerUser:public PlayerUser
-        {
-        public:
-            explicit RtmpPlayerUser(const ConnectionPtr &ptr,const StreamPtr &stream,const SessionPtr &s);
+    public:
+      using PlayerUser::PlayerUser;
+      
+      bool PostFrames();
+      UserType GetUserType() const;
+    private:
+      using User::SetUserType;
 
-            bool PostFrames();
-            UserType GetUserType() const;
-        private:
-            using User::SetUserType;
-
-            bool PushFrame(PacketPtr &packet,bool is_header);
-            bool PushFrames(std::vector<PacketPtr> &list);
-        };
-    }
+      bool PushFrame(PacketPtr &packet, bool is_header);
+      bool PushFrames(std::vector<PacketPtr> &list);
+    };
+  }
 }
