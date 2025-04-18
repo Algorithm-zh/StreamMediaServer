@@ -1,6 +1,7 @@
 #pragma once
 
 #include "../../base/LogStream.h"
+#include <iostream>
 
 using namespace tmms::base;
 

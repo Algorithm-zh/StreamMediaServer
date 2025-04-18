@@ -277,7 +277,7 @@ void TcpConnection::EnableCheckIdleTimeout(int32_t max_time)  {
   auto tp = std::make_shared<TimeoutEntry>(std::dynamic_pointer_cast<TcpConnection>(shared_from_this()));
   max_idle_time_ = max_time;
   timeout_entry_ = tp;
-  loop_->InsertEntry(max_idle_time_, tp);
+  loop_->InsertEntry(max_time, tp);
 }
  
 

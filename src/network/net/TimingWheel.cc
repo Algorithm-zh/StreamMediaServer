@@ -14,14 +14,14 @@ TimingWheel::~TimingWheel()  {
  
 //转动时间轮
 void TimingWheel::OnTimer(int64_t now)  {
- 
   if(last_ts_ == 0)
   {
     last_ts_ = now;
     return ;
   }
   auto diff = now - last_ts_;
-  if(diff < 0)
+  //之前写成了 < 0,造成的后果是客户端拉流经常瞬间断开
+  if(diff < 1000)
   {
     return ;
   }

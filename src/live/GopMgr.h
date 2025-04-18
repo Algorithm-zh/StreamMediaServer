@@ -13,7 +13,8 @@ namespace tmms
     {
         int32_t index;
         int64_t timestamp;
-        GopItemInfo(int32_t i, int64_t t):index(i), timestamp(i){}
+        //他妈的，这里把t写成i了，我是真服了
+        GopItemInfo(int32_t i, int64_t t):index(i), timestamp(t){}
     };
     class GopMgr 
     {
