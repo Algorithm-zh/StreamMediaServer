@@ -118,6 +118,7 @@ HttpParserState HttpParser::Parse(MsgBuffer &buf)  {
     default:
     break;
   }
+  return state_;
 }
  
 void HttpParser::ParseStream(MsgBuffer &buf)  {
@@ -189,10 +190,10 @@ void HttpParser::ParseHeaders()  {
       auto value = l.substr(pos + 1);
 
       HTTP_DEBUG << "parse header: " << key << ":" << value;
-      AddHeader(std::move(key), std::move(value));
+      req_->AddHeader(std::move(key), std::move(value));
     }
   }
-  auto len = GetHeader("content-length");
+  auto len = req_->GetHeader("content-length");
   if(!len.empty())
   {
     HTTP_TRACE << "content-length:" << len;
@@ -219,16 +220,17 @@ void HttpParser::ParseHeaders()  {
   }
   else
   {
-    const std::string &chunk = GetHeader("transfer-encoding");
+    const std::string &chunk = req_->GetHeader("transfer-encoding");
     if(!chunk.empty() && chunk == "chunked")
     { //判断是否是chunked编码
       is_chunked_ = true;
+      req_->SetIsChunked(true);
       state_ = kExpectChunkLen;
     }
     else
     {
-      if((!is_request_ && code_ != 200) 
-        || (is_request_ && (method_ == "GET" || method_ == "HEAD" || method_ == "OPTION")))
+      if((!is_request_ && req_->GetStatusCode() != 200)
+        || (is_request_ && (req_->Method() == kGet || req_->Method() == kHead || req_->Method() == kOptions)))
       {
         //不带内容的请求或响应
         current_content_length_ = 0;
@@ -239,6 +241,7 @@ void HttpParser::ParseHeaders()  {
         //如果都不是就是一个流
         current_content_length_ = -1;//无限大
         is_stream_ = true;
+        req_->SetIsStream(true);
         state_ = kExpectStreamBody;
       }
     }
@@ -262,83 +265,41 @@ void HttpParser::ProcessMethodLine(const std::string &line)  {
     //响应
     is_request_ = false;
   }
+  if(req_)
+  {
+    req_.reset();
+  }
+  req_ = std::make_shared<HttpRequest>(is_request_);
   if(is_request_)
   {
-    method_ = std::move(list[0]);
+    req_->SetMethod(list[0]);
     const std::string &path = list[1];//url 包含路径和参数
     auto pos = path.find_first_of("?");
     if(pos != std::string::npos)
     {
-      path_ = path.substr(0, pos);
-      query_ = path.substr(pos + 1);
+      req_->SetPath(path.substr(0, pos));
+      req_->SetQuery(path.substr(pos + 1));
     }
     else
     {
-      path_ = path;
+      req_->SetPath(path);
     }
-    version_ = std::move(list[2]);
-    HTTP_DEBUG << "http method:" << method_ 
-               << " path:" << path_ 
-               << " version:" << version_ 
-               << " query:" << query_;
+    req_->SetVersion(list[2]);
+    HTTP_DEBUG << "http method:" << list[0] 
+               << " path:" << req_->Path()
+               << " version:" << list[2] 
+               << " query:" << req_->Query();
   }
   else
   {
-    version_ = list[0];
-    code_ = std::atoi(list[1].c_str());
+    req_->SetVersion(list[0]);
+    req_->SetStatusCode(std::atoi(list[1].c_str()));
+    HTTP_DEBUG << "http version:" << list[0] 
+               << " code:" << list[1];
   }
 
 }
- 
-void HttpParser::AddHeader(const std::string &key, const std::string &value)  {
-  std::string k = key;
-  //头的属性和大小写无关，所以全部转换成小写
-  std::transform(k.begin(), k.end(), k.begin(), ::tolower);
-  headers_[k] = value;
-}
- 
-void HttpParser::AddHeader(std::string &&key, std::string &&value)  {
- 
-  std::transform(key.begin(), key.end(), key.begin(), ::tolower);
-  headers_[std::move(key)] = std::move(value);
-}
- 
-std::string HttpParser::GetHeader(const std::string &key)  {
 
-  std::string k = key;
-  std::transform(k.begin(), k.end(), k.begin(), ::tolower);
-  auto iter = headers_.find(k);
-  if(iter != headers_.end())
-  {
-    return iter->second;
-  }
-  return string_empty;
-}
- 
-const std::unordered_map<std::string,std::string> &HttpParser::Headers() const {
-  return headers_; 
-}
- 
-const std::string &HttpParser::Method() const {
-  return method_;
-}
- 
-const std::string &HttpParser::Version() const {
-  return version_;
-}
- 
-uint32_t HttpParser::Code() const {
-  return code_;
-}
- 
-const std::string &HttpParser::Path() const {
-  return path_;
-}
- 
-const std::string &HttpParser::Query() const {
-  return query_;
-}
- 
 const PacketPtr &HttpParser::Chunk() const {
   return chunk_;
 }
@@ -351,8 +312,7 @@ void HttpParser::ClearForNextHttp()  {
  
   state_ = kExpectHeaders;
   header_.clear();
-  path_.clear();
-  query_.clear();
+  req_.reset();
   current_content_length_ = -1;
   chunk_.reset();
 }
@@ -379,6 +339,3 @@ void HttpParser::ClearForNextChunk()  {
   chunk_.reset();
 }
  
-bool HttpParser::IsRequest() const {
-	return is_request_;
-}
