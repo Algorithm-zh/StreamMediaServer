@@ -84,9 +84,8 @@ HttpParserState HttpParser::Parse(MsgBuffer &buf)  {
         buf.RetrieveUntil(crlf + 2);
         if(current_chunk_length_ == 0)
         {
-          chunk_.reset();//chunk传输结束
-          state_ = kExpectChunkComplete;
-          return state_;
+          //还有两个字节要处理
+          state_ = kExpectLastEmptyChunk;
         }
         else
         {
@@ -114,6 +113,16 @@ HttpParserState HttpParser::Parse(MsgBuffer &buf)  {
         return state_;
       }
       break;
+    }
+    case kExpectLastEmptyChunk:
+    {
+      auto crlf = buf.FindCRLF();
+      if(crlf)
+      {
+        buf.RetrieveUntil(crlf + 2); 
+        chunk_.reset();//chunk传输结束
+        state_ = kExpectChunkComplete;
+      }
     }
     default:
     break;
