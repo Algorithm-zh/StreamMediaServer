@@ -126,20 +126,25 @@ bool HttpContext::PostStreamHeader(const std::string &header)  {
   return true;
 }
  
-void HttpContext::PostStreamChunk(PacketPtr &packet)  {
+bool HttpContext::PostStreamChunk(PacketPtr &packet)  {
  
-  out_packet_ = packet; 
-  if(!header_sent_)//头还没有发送
+  if(post_state_ == kHttpContextPostInit)
   {
-    post_state_ = kHttpContextPostHttpStreamHeader;
-    connection_->Send(header_.c_str(), header_.size());
-    header_sent_ = true;
+    out_packet_ = packet; 
+    if(!header_sent_)//头还没有发送
+    {
+      post_state_ = kHttpContextPostHttpStreamHeader;
+      connection_->Send(header_.c_str(), header_.size());
+      header_sent_ = true;
+    }
+    else
+    {
+      post_state_ = kHttpContextPostHttpStreamChunk;
+      connection_->Send(out_packet_->Data(), out_packet_->PacketSize());
+    }  
+    return true;
   }
-  else
-  {
-    post_state_ = kHttpContextPostHttpStreamChunk;
-    connection_->Send(out_packet_->Data(), out_packet_->PacketSize());
-  }
+  return false;
 }
  
 void HttpContext::WriteComplete(const TcpConnectionPtr &conn)  {
@@ -152,6 +157,7 @@ void HttpContext::WriteComplete(const TcpConnectionPtr &conn)  {
     case kHttpContextPostHttp:
     {
       post_state_ = kHttpContextPostInit; 
+      handler_->OnSent(conn);
       break;
     }
     case kHttpContextPostHttpHeader:
@@ -163,15 +169,13 @@ void HttpContext::WriteComplete(const TcpConnectionPtr &conn)  {
     case kHttpContextPostHttpBody:
     {
       post_state_ = kHttpContextPostInit;
+      handler_->OnSent(conn);
       break;
     }
     case kHttpContextPostChunkHeader:
     {
       post_state_ = kHttpContextPostChunkLen;
-      char buf[32] = {0,};
-      sprintf(buf, "%x\r\n", out_packet_->PacketSize());
-      header_ = std::string(buf);
-      connection_->Send(header_.c_str(), header_.size());
+      handler_->OnSentNextChunk(conn);
       break;
     }
     case kHttpContextPostChunkLen:
@@ -183,21 +187,25 @@ void HttpContext::WriteComplete(const TcpConnectionPtr &conn)  {
     case kHttpContextPostChunkBody:
     {
       post_state_ = kHttpContextPostInit;
+      handler_->OnSentNextChunk(conn);
       break;
     }
     case kHttpContextPostChunkEOF:
     {
       post_state_ = kHttpContextPostInit;
+      handler_->OnSent(conn);
       break;
     }
     case kHttpContextPostHttpStreamHeader:
     {
       post_state_ = kHttpContextPostInit;
+      handler_->OnSentNextChunk(conn);
       break;
     }
     case kHttpContextPostHttpStreamChunk:
     {
       post_state_ = kHttpContextPostInit;
+      handler_->OnSentNextChunk(conn);
       break;
     }
   }

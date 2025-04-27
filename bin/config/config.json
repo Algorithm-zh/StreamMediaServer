@@ -17,6 +17,12 @@
       "port" : 1935,
       "protocol" : "rtmp",
       "transport" : "tcp"
+    },
+    {
+      "addr" : "0.0.0.0",
+      "port" : 8080,
+      "protocol" : "http",
+      "transport" : "tcp"
     }
   ],
   "directory" :

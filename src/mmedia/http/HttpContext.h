@@ -40,7 +40,7 @@ namespace tmms
           void PostChunk(PacketPtr &chunk);
           void PostEofChunk();
           bool PostStreamHeader(const std::string &header);
-          void PostStreamChunk(PacketPtr &packet);
+          bool PostStreamChunk(PacketPtr &packet);
           //其他成员函数
           //推动状态机流转的
           void WriteComplete(const TcpConnectionPtr &conn);

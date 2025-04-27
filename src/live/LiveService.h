@@ -1,6 +1,7 @@
 #pragma once
 #include "base/NonCopyable.h"
 #include "mmedia/rtmp/RtmpHandler.h"
+#include "mmedia/http/HttpHandler.h"
 #include "network/net/Connection.h"
 #include "network/TcpServer.h"
 #include "network/net/EventLoopThreadPool.h"
@@ -19,7 +20,7 @@ namespace tmms
     using namespace tmms::network;
     using namespace tmms::base;
     using SessionPtr = std::shared_ptr<Session>;
-    class LiveService : public RtmpHandler 
+    class LiveService : public RtmpHandler, public HttpHandler 
     {
     public:
       LiveService() = default;
@@ -34,10 +35,16 @@ namespace tmms
       void OnConnectionDestroy(const TcpConnectionPtr &conn) override;
       void OnActive(const ConnectionPtr &conn) override;
       //协议回调成员函数
+      //rtmp回调成员函数
       bool OnPlay(const TcpConnectionPtr &conn, const std::string &session_name, const std::string &param) override;
       bool OnPublish(const TcpConnectionPtr &conn, const std::string &session_name, const std::string &param) override;
       void OnRecv(const TcpConnectionPtr &conn, PacketPtr &&data)override;
       void OnRecv(const TcpConnectionPtr &conn, const PacketPtr &data) override{};
+      //http回调成员函数
+      void OnSent(const TcpConnectionPtr &conn) override;
+      bool OnSentNextChunk(const TcpConnectionPtr &conn) override;
+      void OnRequest(const TcpConnectionPtr &conn, const HttpRequestPtr &req, const PacketPtr &packet) override;
+
       //其它成员函数
       void Start();
       void Stop();

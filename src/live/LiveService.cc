@@ -8,11 +8,19 @@
 #include "live/User.h"
 #include "live/base/LiveLog.h"
 #include "live/Stream.h"
+#include "mmedia/base/Packet.h"
+#include "mmedia/http/HttpHandler.h"
+#include "mmedia/http/HttpUtils.h"
 #include "network/TcpServer.h"
 #include "mmedia/rtmp/RtmpServer.h"
+#include "mmedia/http/HttpServer.h"
+#include "mmedia/http/HttpRequest.h"
+#include "mmedia/http/HttpContext.h"
 #include "network/base/InetAddress.h"
 #include "network/net/EventLoopThreadPool.h"
+#include <fcntl.h>
 #include <memory>
+#include <string>
 using namespace tmms::live;
  
 namespace
@@ -207,6 +215,13 @@ void LiveService::Start()  {
         servers_.push_back(server);
         servers_.back()->Start();
       }
+      else if(s->protocol == "HTTP" || s->protocol == "http")
+      {
+        InetAddress local(s->addr, s->port);
+        TcpServer *server = new HttpServer(el, local, this);
+        servers_.push_back(server);
+        servers_.back()->Start();
+      }
     }
   }
   //启动定时任务检测会话超时，越早检测出超时，越能节省带宽
@@ -220,4 +235,78 @@ void LiveService::Stop()  {
  
 EventLoop *LiveService::GetNextLoop()  {
   return pool_->GetNextLoop();
+}
+ 
+void LiveService::OnSent(const TcpConnectionPtr &conn)  {
+ 
+}
+ 
+bool LiveService::OnSentNextChunk(const TcpConnectionPtr &conn)  {
+  
+	return false;
+}
+ 
+void LiveService::OnRequest(const TcpConnectionPtr &conn, const HttpRequestPtr &req, const PacketPtr &packet)  {
+  LIVE_DEBUG << "on request:" << req->AppendToBuffer();
+  if(req->IsRequest())
+  {
+    LIVE_DEBUG << "req method:" << req->Method() << " path:" << req->Path();
+  }
+  else
+  {
+    LIVE_DEBUG << "res code:" << req->GetStatusCode() << " msg:" << HttpUtils::ParseStatusMessage(req->GetStatusCode());
+  }
+  auto headers = req->Headers();
+  for(auto const &h : headers)
+  {
+    LIVE_DEBUG << "header:" << h.first << ":" << h.second;
+  }
+  if(req->IsRequest())
+  {
+    int fd = ::open("test.flv", O_RDONLY, 0644);
+    if(fd < 0)
+    {
+      LIVE_ERROR << "open failed.file:test.flv .error:" << strerror(errno);
+      conn->ForceClose();
+      return;
+    }
+    LIVE_DEBUG << "open file success.file:test.flv";
+    //test
+    HttpRequestPtr res = std::make_shared<HttpRequest>(false);
+    res->SetStatusCode(200);
+    res->AddHeader("server", "tmms");
+    res->AddHeader("Content-Type", "video/x-flv");
+    //res->AddHeader("content-length", std::to_string(strlen("teststes")));
+    res->SetBody("teststes");
+    auto cxt = conn->GetContext<HttpContext>(kHttpContext);
+    if(cxt)
+    {
+      res->SetIsStream(true);
+      //先发送头
+      cxt->PostRequest(res);
+    }
+    while(true)
+    {
+      PacketPtr ndata = Packet::NewPacket(65535);
+      auto ret = ::read(fd, ndata->Data(), 65535);
+      if(ret < 0)
+      {
+        //读完了
+        break;
+      }
+      ndata->SetPacketSize(ret);
+      while(true)
+      {
+        auto sent = cxt->PostStreamChunk(ndata);
+        if(sent)
+        {
+          //发送成功就退出
+          break;
+        }
+        LIVE_DEBUG << "send chunk to:" << conn->PeerAddr().ToIpPort();
+      }
+    }
+    ::close(fd);
+    conn->ForceClose();
+  }
 }

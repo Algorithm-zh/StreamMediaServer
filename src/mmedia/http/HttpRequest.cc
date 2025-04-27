@@ -71,14 +71,15 @@ std::string HttpRequest::MakeHeaders()  {
   {
     ss << h.first << ": " << h.second << "\r\n";
   }
-  if(!body_.empty())
-  {
-    ss << "content-length: " << body_.size() << "\r\n";
-  }
-  else
-  {
-    ss << "content-length: 0\r\n";
-  }
+  //不在这里加，在LiveService的request里加
+  //if(!body_.empty())
+  //{
+  //  ss << "content-length: " << body_.size() << "\r\n";
+  //}
+  //else
+  //{
+  //  ss << "content-length: 0\r\n";
+  //}
   ss << "\r\n";
   return ss.str();
 }
