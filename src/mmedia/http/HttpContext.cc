@@ -6,14 +6,15 @@ namespace
 {
   static std::string CHUNK_EOF = "0\r\n\r\n";
 }
-HttpContext::HttpContext(EventLoop *loop, const TcpConnectionPtr &conn, HttpHandler *handler)
-: loop_{loop}, connection_{conn}, handler_{handler}
+HttpContext::HttpContext(const TcpConnectionPtr &conn, HttpHandler *handler)
+:connection_{conn}, handler_{handler}
 {
  
 }
  
 int32_t HttpContext::Parse(MsgBuffer &buf)  {
 
+  HTTP_DEBUG << "parse http:" << buf.ReadableBytes();
   while(buf.ReadableBytes() > 1)
   {
     auto state = http_parser_.Parse(buf);
@@ -69,6 +70,7 @@ bool HttpContext::PostRequest(HttpRequestPtr &request)  {
   }
   else
   {
+    HTTP_DEBUG << "post request:" << request->AppendToBuffer();
     PostRequest(request->AppendToBuffer());
   }
   return true;

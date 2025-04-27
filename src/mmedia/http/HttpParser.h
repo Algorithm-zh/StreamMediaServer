@@ -57,7 +57,7 @@ namespace tmms
       int32_t current_content_length_{0};//NormalBody的长度
       bool is_stream_{false};
       bool is_chunked_{false};
-      bool is_request_{false};
+      bool is_request_{true};
       HttpStatusCode reason_{kUnknown};//失败的原因
       std::string header_;
       PacketPtr chunk_;//保存消息体

@@ -13,6 +13,7 @@ namespace tmms
     public:
       explicit HttpRequest(bool is_request = true);
       //消息头成员函数
+      const std::unordered_map<std::string, std::string> &Headers() const;
       void AddHeader(const std::string &filed, const std::string &value);
       void AddHeader(std::string &&key, std::string &&value);
       void RemoveHeader(const std::string &key);

@@ -25,13 +25,13 @@ HttpParserState HttpParser::Parse(MsgBuffer &buf)  {
       if(buf.ReadableBytes() > CRLFCRLF.size())
       {
         //查找结束符（这个函数要求前两个参数的类型一致）
-        auto *space = std::search(buf.Peek(), (const char*)buf.BeginWrite(), CRLFCRLF);
+        auto *space = std::search(buf.Peek(), (const char*)buf.BeginWrite(), CRLFCRLF.begin(), CRLFCRLF.end());
         if(space != (const char*)buf.BeginWrite())
         {
           //找到结束符,存入header
           auto size = space - buf.Peek();
           header_.assign(buf.Peek(), size);
-          buf.Retrieve(size);
+          buf.Retrieve(size + 4);
           ParseHeaders();//解析header看是否已经结束或错误
           if(state_ == kExpectHttpComplete || state_ == kExpectError)
           {
@@ -273,6 +273,10 @@ void HttpParser::ProcessMethodLine(const std::string &line)  {
   {
     //响应
     is_request_ = false;
+  }
+  else
+  {
+    is_request_ = true;
   }
   if(req_)
   {

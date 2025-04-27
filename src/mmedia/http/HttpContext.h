@@ -28,7 +28,7 @@ namespace tmms
         class HttpContext
         {
         public:
-          HttpContext(EventLoop *loop, const TcpConnectionPtr &conn, HttpHandler *handler);
+          HttpContext(const TcpConnectionPtr &conn, HttpHandler *handler);
           ~HttpContext() = default;
           //解析成员函数
           int32_t Parse(MsgBuffer &buf);
@@ -45,7 +45,6 @@ namespace tmms
           //推动状态机流转的
           void WriteComplete(const TcpConnectionPtr &conn);
         private:
-          EventLoop *loop_{nullptr};   
           TcpConnectionPtr connection_;
           HttpParser http_parser_;
           std::string header_;

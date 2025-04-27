@@ -17,7 +17,11 @@ HttpRequest::HttpRequest(bool is_request)
 {
  
 }
- 
+
+const std::unordered_map<std::string,std::string> &HttpRequest::Headers() const {
+  return headers_;   
+}
+
 void HttpRequest::AddHeader(const std::string &filed, const std::string &value)  {
  
   std::string k = filed;
@@ -298,7 +302,7 @@ void HttpRequest::AppendResponseFirstLine(std::stringstream &ss)  {
 }
  
 bool HttpRequest::IsRequest() const {
-	return false;
+	return is_request_;
 }
  
 std::string HttpRequest::AppendToBuffer()  {
@@ -326,3 +330,5 @@ void HttpRequest::SetIsStream(bool s)  {
 void HttpRequest::SetIsChunked(bool c)  {
   is_chunked_ = c;
 }
+ 
+
