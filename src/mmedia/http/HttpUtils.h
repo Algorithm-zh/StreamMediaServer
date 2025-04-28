@@ -7,6 +7,7 @@
 #include <string>
 #include <unordered_map>
 #include <algorithm>
+#include <iostream>
 
 //工具类
 namespace tmms
@@ -32,7 +33,7 @@ namespace tmms
             {
                 //古老写法,//auto p = std::find_if(str.begin(), str.end(), std::not1(std::ptr_fun<int, int>(std::isspace)));
                 //c++11写法
-                auto p = std::find_if(str.begin(), str.end(), [](unsigned char ch){return std::isspace(ch);});
+                auto p = std::find_if(str.begin(), str.end(), [](unsigned char ch){return !std::isspace(ch);});
                 str.erase(str.begin(), p);
                 return str;
             }

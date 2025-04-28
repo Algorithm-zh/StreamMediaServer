@@ -2,6 +2,7 @@
 #include "mmedia/http/HttpTypes.h"
 #include "base/StringUtils.h"
 #include "mmedia/base/MMediaLog.h"
+#include "HttpUtils.h"
 #include <algorithm>
 #include <cstring>
 #include <string>
@@ -17,6 +18,14 @@ HttpParserState HttpParser::Parse(MsgBuffer &buf)  {
   if(buf.ReadableBytes() == 0)
   {
     return state_;
+  }
+  if(state_ == kExpectHttpComplete)
+  {
+    ClearForNextHttp();
+  }
+  else if(state_ == kExpectChunkComplete)
+  {
+    ClearForNextChunk();
   }
   switch (state_)
   {
@@ -89,6 +98,7 @@ HttpParserState HttpParser::Parse(MsgBuffer &buf)  {
         }
         else
         {
+          current_chunk_length_ += 2;
           state_ = kExpectChunkBody;
         }
       }
@@ -175,6 +185,7 @@ void HttpParser::ParseChunk(MsgBuffer &buf)  {
   current_chunk_length_ -= size;
   if(current_chunk_length_ == 0 || chunk_->Space() == 0)
   {
+    chunk_->SetPacketSize(chunk_->PacketSize() - 2);
     state_ = kExpectChunkComplete;
   }
 }
@@ -197,7 +208,8 @@ void HttpParser::ParseHeaders()  {
     {
       auto key = l.substr(0, pos);
       auto value = l.substr(pos + 1);
-
+      key = HttpUtils::Trim(key);
+      value = HttpUtils::Trim(value);
       HTTP_DEBUG << "parse header: " << key << ":" << value;
       req_->AddHeader(std::move(key), std::move(value));
     }
@@ -261,12 +273,6 @@ void HttpParser::ProcessMethodLine(const std::string &line)  {
  
   HTTP_DEBUG << "parse method line:" << line;
   auto list = base::StringUtils::SplitString(line, " ");
-  if(list.size() != 3)
-  {
-    reason_ = k400BadRequest;
-    state_ = kExpectError;
-    return;
-  }
   std::string str = list[0];
   std::transform(str.begin(), str.end(), str.begin(), ::tolower);
   if(str[0] == 'h' && str[1] == 't' && str[2] == 't' && str[3] == 'p')

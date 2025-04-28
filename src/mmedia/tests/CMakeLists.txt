@@ -13,3 +13,7 @@
 #add_executable(RtmpClientTest RtmpClientTest.cpp)
 #target_link_libraries(RtmpClientTest base network mmedia crypto)
 #install(TARGETS RtmpClientTest RUNTIME DESTINATION sbin)
+
+add_executable(HttpClientTest HttpClientTest.cpp)
+target_link_libraries(HttpClientTest base network mmedia crypto)
+install(TARGETS HttpClientTest RUNTIME DESTINATION sbin)

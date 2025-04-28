@@ -86,10 +86,12 @@ std::string HttpRequest::MakeHeaders()  {
  
 void HttpRequest::SetQuery(const std::string &query)  {
   query_ = query; 
+  ParseParameters();
 }
 
 void HttpRequest::SetQuery(std::string &&query)  {
   query_ = std::move(query);
+  ParseParameters();
 }
 
 void HttpRequest::setParameter(const std::string &key, const std::string &value)  {
@@ -260,7 +262,7 @@ void HttpRequest::AppendRequestFirstLine(std::stringstream &ss)  {
     sss << "/";
   }
   //参数
-  if(parameters_.empty())
+  if(!parameters_.empty())
   {
     sss << "?";
     for(auto iter = parameters_.begin(); iter != parameters_.end(); ++iter)

@@ -1,6 +1,7 @@
 #pragma once
 #include "net/EventLoop.h"
 #include "base/InetAddress.h"
+#include "base/Singleton.h"
 #include <mutex>
 #include <unordered_map>
 #include <thread>
@@ -38,6 +39,6 @@ namespace tmms
       std::unordered_map<std::string, std::vector<InetAddressPtr>> hosts_info_;
       EventLoop *loop_{nullptr};
     };
-#define sDnsService tmms::base::Singleton<tmms::network::DnsService>::Instance()
   }
 }
+#define sDnsService tmms::base::Singleton<tmms::network::DnsService>::Instance()

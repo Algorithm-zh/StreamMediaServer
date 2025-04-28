@@ -1,5 +1,4 @@
 #include "LiveService.h"
-#include "base/Config.h"
 #include "base/StringUtils.h"
 #include "base/TTime.h"
 #include "base/Task.h"
@@ -18,9 +17,7 @@
 #include "mmedia/http/HttpContext.h"
 #include "network/base/InetAddress.h"
 #include "network/net/EventLoopThreadPool.h"
-#include <fcntl.h>
-#include <memory>
-#include <string>
+#include "network/DnsService.h"
 using namespace tmms::live;
  
 namespace
@@ -202,6 +199,8 @@ void LiveService::Start()  {
   pool_ = new EventLoopThreadPool(config->thread_num_, config->cpu_start_, config->cpus_);
   pool_->Start();
 
+  sDnsService->Start();
+
   auto services = config->GetServiceInfos();
   auto eventloops = pool_->GetLoops();
   for(auto &el : eventloops)
@@ -303,7 +302,6 @@ void LiveService::OnRequest(const TcpConnectionPtr &conn, const HttpRequestPtr &
           //发送成功就退出
           break;
         }
-        LIVE_DEBUG << "send chunk to:" << conn->PeerAddr().ToIpPort();
       }
     }
     ::close(fd);

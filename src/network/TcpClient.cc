@@ -43,7 +43,7 @@ void TcpClient::ConnectInLoop()  {
   {
     if(errno != EINPROGRESS)
     {
-      NETWORK_ERROR << "connect to server:" << server_addr_.ToIpPort() << " error:" << strerror(errno);
+      NETWORK_ERROR << "connect to server:" << server_addr_.ToIpPort() << " error:  " << errno;
       OnClose();
       return;
     }
