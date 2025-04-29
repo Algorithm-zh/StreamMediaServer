@@ -335,3 +335,17 @@ void HttpRequest::SetIsChunked(bool c)  {
 }
  
 
+ 
+HttpRequestPtr HttpRequest::NewHttp400Response()  {
+  auto res = std::make_shared<HttpRequest>(false);
+  res->SetStatusCode(400);
+  res->AddHeader("User-Agent", "tmms");
+  return res;
+}
+ 
+HttpRequestPtr HttpRequest::NewHttp404Response()  {
+  auto res = std::make_shared<HttpRequest>(false);
+  res->SetStatusCode(404);
+  res->AddHeader("User-Agent", "tmms");
+  return res;
+}

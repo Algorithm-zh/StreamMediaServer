@@ -15,6 +15,7 @@
 #include "mmedia/http/HttpServer.h"
 #include "mmedia/http/HttpRequest.h"
 #include "mmedia/http/HttpContext.h"
+#include "mmedia/flv/FlvContext.h"
 #include "network/base/InetAddress.h"
 #include "network/net/EventLoopThreadPool.h"
 #include "network/DnsService.h"
@@ -260,51 +261,116 @@ void LiveService::OnRequest(const TcpConnectionPtr &conn, const HttpRequestPtr &
   {
     LIVE_DEBUG << "header:" << h.first << ":" << h.second;
   }
+
   if(req->IsRequest())
   {
-    int fd = ::open("test.flv", O_RDONLY, 0644);
-    if(fd < 0)
+    //http://ip:port/domain/app/stream.flv
+    //http://ip:port/domain/app/stream/filename.flv
+    auto list = base::StringUtils::SplitString(req->Path(), "/");
+    if(list.size() < 4)
     {
-      LIVE_ERROR << "open failed.file:test.flv .error:" << strerror(errno);
-      conn->ForceClose();
-      return;
-    }
-    LIVE_DEBUG << "open file success.file:test.flv";
-    //test
-    HttpRequestPtr res = std::make_shared<HttpRequest>(false);
-    res->SetStatusCode(200);
-    res->AddHeader("server", "tmms");
-    res->AddHeader("Content-Type", "video/x-flv");
-    //res->AddHeader("content-length", std::to_string(strlen("teststes")));
-    res->SetBody("teststes");
-    auto cxt = conn->GetContext<HttpContext>(kHttpContext);
-    if(cxt)
-    {
-      res->SetIsStream(true);
-      //先发送头
-      cxt->PostRequest(res);
-    }
-    while(true)
-    {
-      PacketPtr ndata = Packet::NewPacket(65535);
-      auto ret = ::read(fd, ndata->Data(), 65535);
-      if(ret < 0)
+      auto http_cxt = conn->GetContext<HttpContext>(kHttpContext);
+      if(http_cxt)
       {
-        //读完了
-        break;
+        auto res = HttpRequest::NewHttp400Response();
+        http_cxt->PostRequest(res);
+        return ;//等待对端关闭
       }
-      ndata->SetPacketSize(ret);
-      while(true)
+    }
+    const std::string &domain = list[1];
+    const std::string &app = list[2];
+    std::string filename = list[3];
+    std::string stream_name;
+    if(list.size() > 4)
+    {
+      filename = list[4];
+      stream_name = list[3];
+    }
+    else
+    {
+      stream_name = base::StringUtils::FileName(filename);
+    }
+    std::string ext = base::StringUtils::Extension(filename);
+    if(ext == "flv")
+    {
+      std::string session_name = domain + "/" + app + "/" + stream_name;
+      LIVE_DEBUG << "on play session name:" << session_name;
+      auto s = CreateSession(session_name);
+      if(!s)
       {
-        auto sent = cxt->PostStreamChunk(ndata);
-        if(sent)
+        LIVE_ERROR << "create session failed.session_name:" << session_name;
+        auto http_cxt = conn->GetContext<HttpContext>(kHttpContext);
+        if(http_cxt)
         {
-          //发送成功就退出
-          break;
+          auto res = HttpRequest::NewHttp404Response();
+          http_cxt->PostRequest(res);
+          return ;//等待对端关闭
         }
       }
+      auto user = s->CreatePlayerUser(conn, session_name, "", UserType::kUserTypePlayerFlv);
+      if(!user)
+      {
+        LIVE_ERROR << "create player user failed.session_name:" << session_name;
+        auto http_cxt = conn->GetContext<HttpContext>(kHttpContext);
+        if(http_cxt)
+        {
+          auto res = HttpRequest::NewHttp404Response();
+          http_cxt->PostRequest(res);
+          return ;//等待对端关闭
+        }
+      }
+      conn->SetContext(kUserContext, user);
+      auto flv = std::make_shared<FlvContext>(conn, this);
+      conn->SetContext(kFlvContext, flv);
+      s->AddPlayer(std::dynamic_pointer_cast<PlayerUser>(user));
     }
-    ::close(fd);
-    conn->ForceClose();
   }
+  //测试使用http发送flv
+  //if(req->IsRequest())
+  //{
+  //  int fd = ::open("test.flv", O_RDONLY, 0644);
+  //  if(fd < 0)
+  //  {
+  //    LIVE_ERROR << "open failed.file:test.flv .error:" << strerror(errno);
+  //    conn->ForceClose();
+  //    return;
+  //  }
+  //  LIVE_DEBUG << "open file success.file:test.flv";
+  //  //test
+  //  HttpRequestPtr res = std::make_shared<HttpRequest>(false);
+  //  res->SetStatusCode(200);
+  //  res->AddHeader("server", "tmms");
+  //  res->AddHeader("Content-Type", "video/x-flv");
+  //  //res->AddHeader("content-length", std::to_string(strlen("teststes")));
+  //  res->SetBody("teststes");
+  //  auto cxt = conn->GetContext<HttpContext>(kHttpContext);
+  //  if(cxt)
+  //  {
+  //    res->SetIsStream(true);
+  //    //先发送头
+  //    cxt->PostRequest(res);
+  //  }
+  //  while(true)
+  //  {
+  //    PacketPtr ndata = Packet::NewPacket(65535);
+  //    auto ret = ::read(fd, ndata->Data(), 65535);
+  //    if(ret < 0)
+  //    {
+  //      //读完了
+  //      break;
+  //    }
+  //    ndata->SetPacketSize(ret);
+  //    while(true)
+  //    {
+  //      auto sent = cxt->PostStreamChunk(ndata);
+  //      if(sent)
+  //      {
+  //        //发送成功就退出
+  //        break;
+  //      }
+  //    }
+  //  }
+  //  ::close(fd);
+  //  conn->ForceClose();
+  //}
 }

@@ -5,7 +5,7 @@ namespace tmms
 {
   namespace mm
   {
-    class RtmpHandler:public MMediaHandler
+    class RtmpHandler: virtual public MMediaHandler
     {
     public:
       virtual bool OnPlay(const TcpConnectionPtr &conn, const std::string &session_name, const std::string &param){return false;}

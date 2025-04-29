@@ -44,7 +44,7 @@ namespace tmms
       int32_t out_version_{-1};
       int32_t out_frame_timestamp_{0};
       std::vector<PacketPtr> out_frames_;
-      int32_t out_index_{-1};
+      int32_t out_index_{-1};//sending frame index
       
     };
   }

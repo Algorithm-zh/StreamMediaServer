@@ -303,3 +303,11 @@ void Stream::GetNextFrame(const PlayerUserPtr &user)
         }
     }
 }
+ 
+bool Stream::HasVideo() const {
+  return has_video_;
+}
+ 
+bool Stream::HasAudio() const {
+	return has_audio_;
+}

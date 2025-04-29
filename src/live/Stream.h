@@ -37,6 +37,8 @@ namespace tmms
       //输出成员函数
       void GetFrames(const PlayerUserPtr &user);
       
+      bool HasVideo() const;
+      bool HasAudio() const;
 
     private:
       void SetReady(bool ready);
@@ -52,7 +54,7 @@ namespace tmms
   
       Session &session_;
       std::string session_name_;
-      std::atomic_int64_t  frame_index_{-1};
+      std::atomic_int64_t  frame_index_{-1};//当前帧的索引
       uint32_t packet_buffer_size_{1000};//1000frame
       std::vector<PacketPtr> packet_buffer_;
       bool has_meta_{false};

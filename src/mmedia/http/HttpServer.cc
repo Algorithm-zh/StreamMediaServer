@@ -1,10 +1,12 @@
 #include "HttpServer.h"
 #include "HttpContext.h"
 #include "../base/MMediaLog.h"
+#include "mmedia/flv/FlvContext.h"
 #include <memory>
 using namespace tmms::mm;
 
- 
+using HttpContextPtr = std::shared_ptr<HttpContext>;
+using FlvContextPtr = std::shared_ptr<FlvContext>;
 HttpServer::HttpServer(EventLoop *loop, const InetAddress &local, HttpHandler *handler)
 :TcpServer(loop, local), http_handler_(handler)  {
  
@@ -69,6 +71,11 @@ void HttpServer::OnWriteComplete(const ConnectionPtr &conn)  {
   if(shake)
   {
     shake->WriteComplete(std::dynamic_pointer_cast<TcpConnection>(conn));
+  }
+  FlvContextPtr flv = conn->GetContext<FlvContext>(kFlvContext);
+  if(flv)
+  {
+    flv->WriteComplete(std::dynamic_pointer_cast<TcpConnection>(conn));
   }
 }
  

@@ -181,9 +181,9 @@ void CodecHeader::SaveVideoHeader(const PacketPtr &packet)  {
 
   video_header_packets_.emplace_back(packet);
 
-  LIVE_TRACE << "save video header ,video version:" << video_version_
-              << ", size:" << packet->PacketSize()
-              << " elapse:" << TTime::NowMs() - start_timestamp_ << "ms\n";
+  //LIVE_TRACE << "save video header ,video version:" << video_version_
+  //            << ", size:" << packet->PacketSize()
+  //            << " elapse:" << TTime::NowMs() - start_timestamp_ << "ms\n";
 }
  
 bool CodecHeader::ParseCodecHeader(const PacketPtr &packet)  {

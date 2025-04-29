@@ -1,4 +1,5 @@
 #pragma once
+#include "mmedia/http/HttpHandler.h"
 #include "mmedia/http/HttpTypes.h"
 #include <sstream>
 #include <string>
@@ -8,6 +9,8 @@ namespace tmms
 {
   namespace mm
   {
+    class HttpRequest;
+    using HttpRequestPtr = std::shared_ptr<HttpRequest>;
     class HttpRequest
     {
     public:
@@ -50,6 +53,8 @@ namespace tmms
       void SetIsStream(bool s);
       void SetIsChunked(bool c);
       
+      static HttpRequestPtr NewHttp400Response();
+      static HttpRequestPtr NewHttp404Response();
     private:
       void ParseParameters();
       void AppendRequestFirstLine(std::stringstream &ss);

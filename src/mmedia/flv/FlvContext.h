@@ -10,7 +10,7 @@ namespace tmms
   namespace mm
   {
     using namespace tmms::network;
-    class FlvContext : public MMediaHandler
+    class FlvContext
     {
     public:
       FlvContext(const TcpConnectionPtr &conn, MMediaHandler *handler);

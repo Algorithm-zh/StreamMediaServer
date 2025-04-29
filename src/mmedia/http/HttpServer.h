@@ -7,9 +7,7 @@ namespace tmms
 {
   namespace mm
   {
-    class HttpContext;
     using namespace tmms::network;
-    using HttpContextPtr = std::shared_ptr<HttpContext>;
     class HttpServer : public TcpServer
     {
     public:

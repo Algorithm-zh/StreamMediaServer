@@ -7,7 +7,7 @@ namespace tmms
   {
     class HttpRequest;
     using HttpRequestPtr = std::shared_ptr<HttpRequest>;
-    class HttpHandler : public MMediaHandler
+    class HttpHandler : virtual public MMediaHandler
     {
     public:
         virtual void OnSent(const TcpConnectionPtr &conn) = 0;
