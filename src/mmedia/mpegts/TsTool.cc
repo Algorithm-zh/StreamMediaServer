@@ -3,6 +3,7 @@
 
 using namespace tmms::mm;
 
+
 std::string TsTool::HexString(uint32_t s)
 {
     std::ostringstream os;
@@ -120,18 +121,19 @@ uint32_t TsTool::CRC32(const void* buf, int size)
 }
 
 void TsTool::WritePts(uint8_t *q, int fourbits, int64_t pts)
-{
+{	
+    //fourbits就是前4位 if pts_dts_flags=='10' fourbits='0010' elseif '11' f='11'
+    //如果为11的话还要再存一轮dts
     int val;
-
-    val  = fourbits << 4 | (((pts >> 30) & 0x07) << 1) | 1;
-    *q++ = val;
-    val  = (((pts >> 15) & 0x7fff) << 1) | 1;
-    *q++ = val >> 8;
-    *q++ = val;
-    val  = (((pts) & 0x7fff) << 1) | 1;
-    *q++ = val >> 8;
-    *q++ = val;
-}
+    val = fourbits << 4 | (((pts >> 30) & 0x07) << 1) | 1;//pts[32,30]&marker_bit
+    *q ++ = val;
+    val = (((pts >> 15) & 0x7fff) << 1) | 1;//pts[29,15]&marker_bit
+    *q ++ = val >> 8;//val是16位的，先把高8位存储起来
+    *q ++ = val;
+    val = (((pts) & 0x7fff) << 11) | 1;//pts[14,0]&marker_bit
+    *q ++ = val >> 8;;
+    *q ++ = val;
+};
 
 bool TsTool::IsCodecHeader(const PacketPtr &packet)
 {
