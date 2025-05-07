@@ -4,6 +4,7 @@ namespace tmms
 {
   namespace mm
   {
+    const int32_t kSectionMaxSize = 1020;
     class StreamWriter
     {
     public:
