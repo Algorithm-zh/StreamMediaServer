@@ -107,7 +107,7 @@ int32_t AudioEncoder::WriteAudioPes(StreamWriter *writer, std::list<SampleBuf> &
   //构造ts包
   while(payload_size > 0 && !result.empty())
   {
-    memset(buf, 0xff, 188);
+    memset(buf, 0x00, 188);
     q = buf;
     //sync_byte
     *q ++ = 0x47;
@@ -118,7 +118,7 @@ int32_t AudioEncoder::WriteAudioPes(StreamWriter *writer, std::list<SampleBuf> &
     }
     *q ++ = val;
     *q ++ = pid_;
-    cc_ = (cc_ + 1) & 0xff;
+    cc_ = (cc_ + 1) & 0xf;
     *q ++ = 0x10 | cc_;
     //data_byte
     if(is_start)
@@ -128,7 +128,7 @@ int32_t AudioEncoder::WriteAudioPes(StreamWriter *writer, std::list<SampleBuf> &
       *q ++ = 0x00;
       *q ++ = 0x01;
       //stream id1B
-      *q = 0xc0;//audio id
+      *q ++ = 0xc0;//audio id
       int32_t len = payload_size + 5 + 3;//5 = pts长度。3 = pes可选字段长度
       if(len > 0xffff)
       {

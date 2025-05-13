@@ -7,12 +7,12 @@ int32_t TsEncoder::Encode(StreamWriter *writer, PacketPtr &data, int64_t dts)  {
 
   if(data->IsAudio())
   {
-    audio_encoder_.EncodeAudio(writer, data, dts);
+    return audio_encoder_.EncodeAudio(writer, data, dts);
   }
   else if(data->IsVideo())
   {
     bool key = data->IsKeyFrame();
-    video_encoder_.EncodeVideo(writer, key, data, dts);
+    return video_encoder_.EncodeVideo(writer, key, data, dts);
   }
   return 0;
 }
@@ -43,7 +43,7 @@ void TsEncoder::SetStreamType(StreamWriter *w, VideoCodecID vc, AudioCodecID ac)
   //说明变了，则需要写入pat pmt
   if(atype != kTsStreamReserved && atype != audio_type_)
   {
-    auto p = std::shared_ptr<ProgramInfo>();
+    auto p = std::make_shared<ProgramInfo>();
     p->stream_type = atype;
     p->elementary_pid = audio_pid_;
     pmt_writer_.AddProgramInfo(p);
@@ -54,7 +54,7 @@ void TsEncoder::SetStreamType(StreamWriter *w, VideoCodecID vc, AudioCodecID ac)
   }
   if(vtype != kTsStreamReserved && vtype != video_type_)
   {
-    auto p = std::shared_ptr<ProgramInfo>();
+    auto p = std::make_shared<ProgramInfo>();
     p->stream_type = vtype;
     p->elementary_pid = video_pid_;
     pmt_writer_.AddProgramInfo(p);

@@ -75,14 +75,15 @@ int32_t VideoEncoder::EncodeAvc(StreamWriter *writer, std::list<SampleBuf> &samp
     }
     auto bytes = l.addr;
     NaluType type = (NaluType)(bytes[0] & 0x1f);
-    if(type == kNaluTypeIDR && demux_.HasSpsPps() && !sps_pps_appended_)
+    if(type == kNaluTypeIDR && !demux_.HasSpsPps() && !sps_pps_appended_)
     {
-      auto sps = demux_.GetSPS();
+      auto const &sps = demux_.GetSPS();
       if(!sps.empty())
       {
         total_size += AvcInsertStartCode(result);
         result.emplace_back(sps.data(), sps.size());
         total_size += sps.size();
+        writer->SetSPS(sps);
       }
       else
       {
@@ -95,6 +96,7 @@ int32_t VideoEncoder::EncodeAvc(StreamWriter *writer, std::list<SampleBuf> &samp
         total_size += AvcInsertStartCode(result);
         result.emplace_back(pps.data(), pps.size());
         total_size += pps.size();
+        writer->SetPPS(pps);
       }
       else
       {
@@ -123,7 +125,7 @@ int32_t VideoEncoder::AvcInsertStartCode(std::list<SampleBuf> &sample_list)  {
   {
     static uint8_t default_start_nalu[] = {0x00, 0x00, 0x01};
     static SampleBuf defalut_start_buf((const char *)&default_start_nalu[0], 3);
-    sample_list.push_back(defalut_start_buf);
+    sample_list.emplace_back(defalut_start_buf);
     return 3;
   }
   else
@@ -131,13 +133,13 @@ int32_t VideoEncoder::AvcInsertStartCode(std::list<SampleBuf> &sample_list)  {
     //第一次的话是四个字节
     static uint8_t default_start_nalu[] = {0x00, 0x00, 0x00, 0x01};
     static SampleBuf defalut_start_buf((const char *)&default_start_nalu[0], 4);
-    sample_list.push_back(defalut_start_buf);
+    sample_list.emplace_back(defalut_start_buf);
     startcode_inserted_ = true;
     return 4;
   }
 }
  
-int32_t VideoEncoder::WriteVideoPes(StreamWriter *writer, std::list<SampleBuf> &result, int payload_size, int64_t pts, int64_t dts, int key)  {
+int32_t VideoEncoder::WriteVideoPes(StreamWriter *writer, std::list<SampleBuf> &result, int payload_size, int64_t pts, int64_t dts, bool key)  {
   //视频和音频不一样的地方是视频要写pcr
   
   uint8_t buf[188], *q;
@@ -146,7 +148,7 @@ int32_t VideoEncoder::WriteVideoPes(StreamWriter *writer, std::list<SampleBuf> &
   //构造ts包
   while(payload_size > 0 && !result.empty())
   {
-    memset(buf, 0xff, 188);
+    memset(buf, 0x00, 188);
     q = buf;
     //sync_byte
     *q ++ = 0x47;
@@ -157,7 +159,7 @@ int32_t VideoEncoder::WriteVideoPes(StreamWriter *writer, std::list<SampleBuf> &
     }
     *q ++ = val;
     *q ++ = pid_;
-    cc_ = (cc_ + 1) & 0xff;
+    cc_ = (cc_ + 1) & 0xf;
     *q ++ = 0x10 | cc_;
     //data_byte
     if(is_start)
@@ -179,7 +181,7 @@ int32_t VideoEncoder::WriteVideoPes(StreamWriter *writer, std::list<SampleBuf> &
       *q ++ = 0x00;
       *q ++ = 0x01;
       //stream id1B
-      *q = 0xe0;//video id
+      *q ++ = 0xe0;//video id
       
       int16_t header_len = 5;
       u_int8_t flags = 0x02;
@@ -191,7 +193,7 @@ int32_t VideoEncoder::WriteVideoPes(StreamWriter *writer, std::list<SampleBuf> &
         flags = 0x03;
       }
 
-      int32_t len = payload_size + 5 + 3;//5 = pts长度。3 = pes可选字段长度
+      int32_t len = payload_size + header_len + 3;//5 = pts长度。3 = pes可选字段长度
       if(len > 0xffff)
       {
         len = 0;
@@ -213,7 +215,7 @@ int32_t VideoEncoder::WriteVideoPes(StreamWriter *writer, std::list<SampleBuf> &
       {
         TsTool::WritePts(q, 0x03, pts);
         q += 5;
-        TsTool::WritePts(q, 0x01, pts);
+        TsTool::WritePts(q, 0x01, dts);
         q += 5;
       }
 

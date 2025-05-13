@@ -23,7 +23,7 @@ namespace tmms
     private:
       int32_t EncodeAvc(StreamWriter *writer, std::list<SampleBuf> &sample_list, bool key, int64_t pts);
       int32_t AvcInsertStartCode(std::list<SampleBuf> &sample_list);
-      int32_t WriteVideoPes(StreamWriter *writer, std::list<SampleBuf> &result, int payload_size, int64_t pts, int64_t dts, int key);
+      int32_t WriteVideoPes(StreamWriter *writer, std::list<SampleBuf> &result, int payload_size, int64_t pts, int64_t dts, bool key);
 
 
       uint16_t pid_{0xe000};

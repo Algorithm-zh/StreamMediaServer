@@ -6,6 +6,7 @@ using namespace tmms::mm;
  
 int32_t VideoDemux::OnDemux(const char *data, size_t size, std::list<SampleBuf> &outs)  {
   VideoCodecID id = (VideoCodecID)(*data&0x0f);
+  codec_id_ = id;
   if(id != kVideoCodecIDAVC) {
     DEMUX_ERROR << " not support codec id " << id;
     return -1;
@@ -25,11 +26,11 @@ int32_t VideoDemux::DemuxAVC(const char *data, size_t size, std::list<SampleBuf>
   composition_time_ = cst;
   if(avc_packet_type == 0)//序列头
   {
-    return DecodeAVCSeqHeader(data, size, outs);
+    return DecodeAVCSeqHeader(data + 5, size - 5, outs);
   }
   else if(avc_packet_type == 1)//nalu
   {
-    return DecodeAVCNalu(data, size, outs);
+    return DecodeAVCNalu(data + 5, size - 5, outs);
   }
   else
   {
@@ -41,7 +42,7 @@ const char* VideoDemux::FindAnnexbNalu(const char* p, const char* end)  {
 
   for(p += 2; p + 1 < end; p ++)
   {
-    if(*p == 0x01 && (p - 1) == 0x00 && *(p - 2) == 0x00)
+    if(*p == 0x01 && *(p - 1) == 0x00 && *(p - 2) == 0x00)
     {
       return p + 1;
     }
@@ -170,7 +171,7 @@ int32_t VideoDemux::DecodeAVCSeqHeader(const char* data, size_t size, std::list<
     DEMUX_ERROR << "more than one pps";
   }  
   int16_t pps_length = BytesReader::ReadUint16T(data + 1);
-  if(pps_length > 0 && pps_length < size - 3)
+  if(pps_length > 0 && pps_length <= size - 3)
   {
     DEMUX_DEBUG << "found pps, bytes " << pps_length;
   }

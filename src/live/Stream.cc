@@ -2,7 +2,10 @@
 #include "base/TTime.h"
 #include "live/base/CodecUtils.h"
 #include "live/base/LiveLog.h"
+#include "mmedia/mpegts/TsEncoder.h"
 #include "Session.h"
+#include "mmedia/base/AVTypes.h"
+#include <cstdint>
 
 using namespace tmms::live;
 using namespace tmms::base;
@@ -93,6 +96,7 @@ void Stream::AddPacket(PacketPtr && packet)
         }
 
         gop_mgr_.AddFrame(packet);
+        ProcessMpegts(packet);
         packet_buffer_[index%packet_buffer_size_] = std::move(packet);
         auto min_idx = frame_index_ - packet_buffer_size_;
         if(min_idx>0)
@@ -310,4 +314,24 @@ bool Stream::HasVideo() const {
  
 bool Stream::HasAudio() const {
 	return has_audio_;
+}
+
+
+void Stream::ProcessMpegts(PacketPtr &packet)
+{
+  if(CodecUtils::IsCodecHeader(packet))  
+  {
+    char *data = packet->Data();
+    if(packet->IsAudio())
+    {
+      AudioCodecID id = (AudioCodecID)((*data&0xf0) >> 4);
+      encoder_.SetStreamType(&writer_, kVideoCodecIDReserved, id);
+    }
+    else if(packet->IsVideo())
+    {
+      VideoCodecID id = (VideoCodecID)(*data&0x0f);
+      encoder_.SetStreamType(&writer_, id, kAudioCodecIDReserved);
+    }
+  }
+  encoder_.Encode(&writer_, packet, packet->TimeStamp());
 }
