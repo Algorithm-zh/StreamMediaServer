@@ -232,7 +232,7 @@ void Session::CloseUserNoLock(const UserPtr &user)
         }
       }
       else 
-    {
+      {
         LIVE_DEBUG << "remove player,session name:" << session_name_
           << ",user:" << user->UserId()
           << ",elapsed:" << user->ElapsedTime()
