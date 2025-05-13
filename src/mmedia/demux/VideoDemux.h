@@ -47,6 +47,16 @@ namespace tmms
       bool HasIdr() const;
       bool HasAud() const;
       bool HasSpsPps() const;
+      VideoCodecID GetCodecID() const { return codec_id_; }
+      int32_t GetCST() const { return composition_time_; }
+      const std::string &GetSPS() const { return sps_; }
+      const std::string &GetPPS() const { return pps_; }
+      void Reset()
+      {
+        has_aud_ = false;
+        has_idr_ = false;
+        has_sps_pps_ = false;
+      }
 
     private:
       int32_t DemuxAVC(const char *data, size_t size, std::list<SampleBuf> &outs);
