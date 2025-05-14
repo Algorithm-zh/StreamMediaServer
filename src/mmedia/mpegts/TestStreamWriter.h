@@ -1,5 +1,6 @@
 #pragma once
 #include <cstdint>
+#include <mutex>
 #include "StreamWriter.h"
 namespace tmms
 {

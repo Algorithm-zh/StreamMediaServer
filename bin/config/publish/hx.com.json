@@ -11,7 +11,7 @@
         "rtmp_support" : "on",
         "flv_support" : "on",
         "hls_support" : "on",
-        "content_latency" : 3,
+        "content_latency" : 3
       }
     ]
   }

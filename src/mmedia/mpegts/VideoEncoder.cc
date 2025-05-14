@@ -22,16 +22,18 @@ namespace
     }
   }
   int WritePcr(uint8_t *buf, int64_t pcr) {
-    int64_t pcr_low = pcr % 300;  // 低9位extension(27MHz)
-    int64_t pcr_high = pcr / 300; // 高33位base(90kHz)
-  
-    *buf++ = pcr_high >> 25; //[32, 25]
-    *buf++ = pcr_high >> 17; //[24, 17]
-    *buf++ = pcr_high >> 9;  //[16, 9]
-    *buf++ = pcr_high >> 1;  //[8, 1]
-    *buf++ = pcr_high >> 7 | pcr_low >> 8 | 0x7e;// pcr base[0] + reserve[6] + extension[1]
-    *buf++ = pcr_low; //[7, 0]
-  
+    int64_t pcrv = (0) & 0x1ff;
+    pcrv |= (0x3f << 9) & 0x7E00;
+    pcrv |= ((pcr) << 15) & 0xFFFFFFFF8000LL;
+
+    char *pp = (char*)&pcrv;
+    *buf++ = pp[5];
+    *buf++ = pp[4];
+    *buf++ = pp[3];
+    *buf++ = pp[2];
+    *buf++ = pp[1];
+    *buf++ = pp[0];
+
     return 6;
   }
 }
@@ -45,6 +47,10 @@ int32_t VideoEncoder::EncodeVideo(StreamWriter *writer, bool key, PacketPtr &dat
     MPEGTS_ERROR << "video demux error";
     return -1;
   }
+  if(TsTool::IsCodecHeader(data))
+  {
+      return 0;
+  }
   writer->AppendTimeStamp(dts);
   dts = dts * 90;
   if(demux_.GetCodecID() == kVideoCodecIDAVC)
@@ -54,15 +60,16 @@ int32_t VideoEncoder::EncodeVideo(StreamWriter *writer, bool key, PacketPtr &dat
 	return 0;
 }
  
-int32_t VideoEncoder::EncodeAvc(StreamWriter *writer, std::list<SampleBuf> &sample_list, bool key, int64_t pts)  {
+int32_t VideoEncoder::EncodeAvc(StreamWriter *writer, std::list<SampleBuf> &sample_list, bool key, int64_t dts)  {
 
   int32_t total_size = 0;
   std::list<SampleBuf> result;
+  bool startcode_inserted = true;
   if(!demux_.HasAud())
   {
     static uint8_t default_aud_nalu[] = {0x09, 0xf0};
     static SampleBuf defalut_aud_buf((const char *)&default_aud_nalu[0], 2);
-    total_size += AvcInsertStartCode(result);//before aud insert startcode
+    total_size += AvcInsertStartCode(result, startcode_inserted);//before aud insert startcode
     result.push_back(defalut_aud_buf);
     total_size += 2;
   }
@@ -75,12 +82,12 @@ int32_t VideoEncoder::EncodeAvc(StreamWriter *writer, std::list<SampleBuf> &samp
     }
     auto bytes = l.addr;
     NaluType type = (NaluType)(bytes[0] & 0x1f);
-    if(type == kNaluTypeIDR && !demux_.HasSpsPps() && !sps_pps_appended_)
+    if(type == kNaluTypeIDR&&!demux_.HasSpsPps()&&!sps_pps_appended_)
     {
       auto const &sps = demux_.GetSPS();
       if(!sps.empty())
       {
-        total_size += AvcInsertStartCode(result);
+        total_size += AvcInsertStartCode(result, startcode_inserted);
         result.emplace_back(sps.data(), sps.size());
         total_size += sps.size();
         writer->SetSPS(sps);
@@ -90,10 +97,10 @@ int32_t VideoEncoder::EncodeAvc(StreamWriter *writer, std::list<SampleBuf> &samp
         MPEGTS_ERROR << "no sps";
       }
 
-      auto pps = demux_.GetPPS();
+      auto const &pps = demux_.GetPPS();
       if(!pps.empty())
       {
-        total_size += AvcInsertStartCode(result);
+        total_size += AvcInsertStartCode(result, startcode_inserted);
         result.emplace_back(pps.data(), pps.size());
         total_size += pps.size();
         writer->SetPPS(pps);
@@ -103,25 +110,26 @@ int32_t VideoEncoder::EncodeAvc(StreamWriter *writer, std::list<SampleBuf> &samp
         MPEGTS_ERROR << "no pps";
       }
       sps_pps_appended_ = true;
+      writer->SetSpsPpsAppended(true);       
     }
     
-    total_size += AvcInsertStartCode(result);
+    total_size += AvcInsertStartCode(result, startcode_inserted);
     result.emplace_back(l.addr, l.size);
     total_size += l.size;
   }
-  int64_t dts = pts;
+  int64_t pts = dts;
   if(demux_.GetCST() > 0)
   {
-    dts = dts + demux_.GetCST() * 90;
+    pts = dts + demux_.GetCST() * 90;
   }
 
   return WriteVideoPes(writer, result, total_size, pts, dts, key);
 }
  
-int32_t VideoEncoder::AvcInsertStartCode(std::list<SampleBuf> &sample_list)  {
+int32_t VideoEncoder::AvcInsertStartCode(std::list<SampleBuf> &sample_list ,bool &startcode_inserted)  {
 
   //是否是第一次插入
-  if(startcode_inserted_)
+  if(startcode_inserted)
   {
     static uint8_t default_start_nalu[] = {0x00, 0x00, 0x01};
     static SampleBuf defalut_start_buf((const char *)&default_start_nalu[0], 3);
@@ -134,7 +142,7 @@ int32_t VideoEncoder::AvcInsertStartCode(std::list<SampleBuf> &sample_list)  {
     static uint8_t default_start_nalu[] = {0x00, 0x00, 0x00, 0x01};
     static SampleBuf defalut_start_buf((const char *)&default_start_nalu[0], 4);
     sample_list.emplace_back(defalut_start_buf);
-    startcode_inserted_ = true;
+    startcode_inserted = true;
     return 4;
   }
 }

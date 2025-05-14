@@ -109,6 +109,7 @@ int32_t VideoDemux::DecodeAVCNaluAvcc(const char* data, size_t size, std::list<S
       return -1;
     }
     outs.emplace_back(SampleBuf(data, nalu_size));
+    CheckNaluType(data);
     data += nalu_size;
     size -= nalu_size;
   }
@@ -180,7 +181,6 @@ int32_t VideoDemux::DecodeAVCSeqHeader(const char* data, size_t size, std::list<
     DEMUX_ERROR << "invalid pps length:" << pps_length;
   }
   pps_.assign(data + 3, pps_length);
-  has_sps_pps_ = true;
   return 0;
 }
  

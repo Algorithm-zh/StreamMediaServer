@@ -130,7 +130,7 @@ void TsTool::WritePts(uint8_t *q, int fourbits, int64_t pts)
     val = (((pts >> 15) & 0x7fff) << 1) | 1;//pts[29,15]&marker_bit
     *q ++ = val >> 8;//val是16位的，先把高8位存储起来
     *q ++ = val;
-    val = (((pts) & 0x7fff) << 11) | 1;//pts[14,0]&marker_bit
+    val = (((pts) & 0x7fff) << 1) | 1;//pts[14,0]&marker_bit
     *q ++ = val >> 8;;
     *q ++ = val;
 };

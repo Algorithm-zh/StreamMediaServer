@@ -1,6 +1,8 @@
 #include "TestStreamWriter.h"
 #include "mmedia/base/MMediaLog.h"
+#include <cstring>
 #include <fcntl.h>
+#include <mutex>
 #include <unistd.h>
 using namespace tmms::mm;
  
@@ -30,7 +32,7 @@ int32_t TestStreamWriter::Write(void *buf, uint32_t size)  {
     auto ret = ::write(fd_, buf, size);
     if(ret != size)
     {
-      MPEGTS_WARN << "write ret :" << ret << " size:" << size;
+      MPEGTS_WARN << "write ret :" << ret << " size:" << size << " " << strerror(errno);
     }
   }
   return size;

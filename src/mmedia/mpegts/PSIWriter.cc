@@ -43,7 +43,7 @@ void PSIWriter::PushSection(StreamWriter *w, uint8_t *buf, int len)  {
       len1 = len;
     }
     memcpy(q, p, len1);
-    p += len1;
+    q += len1;
     auto left = 188 - (q - packet);
     if(left > 0)
     {
@@ -67,6 +67,7 @@ int PSIWriter::WriteSection(StreamWriter *w, int id, int sec_num, int last_sec_n
   p += 2;
   //tsid16
   BytesWriter::WriteUint16T((char*)p, id);
+  p += 2;
   //reserved2 version_number5 current_next_indicator1
   *p ++ = 0xc1 | (version_ << 1);//1100 0001
   *p ++ = sec_num;
