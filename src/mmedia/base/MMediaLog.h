@@ -8,6 +8,7 @@ using namespace tmms::base;
 #define HTTP_DEBUG_ON 1
 #define DEMUX_DEBUG_ON 1
 #define MPEGTS_DEBUG_ON 1
+#define HLS_DEBUG_ON 1
 
 #ifdef RTMP_DEBUG_ON
 #define RTMP_TRACE LOG_TRACE << "RTMP::" 
@@ -65,3 +66,17 @@ using namespace tmms::base;
 
 #define MPEGTS_WARN LOG_WARN
 #define MPEGTS_ERROR LOG_ERROR
+
+
+#ifdef HLS_DEBUG_ON
+#define HLS_TRACE LOG_TRACE << "HLS::" 
+#define HLS_DEBUG LOG_DEBUG << "HLS::"
+#define HLS_INFO LOG_INFO << "HLS::"
+#else
+#define HLS_TREACE if(0) LOG_TRACE
+#define HLS_DEBUG if(0) LOG_DEBUG
+#define HLS_INFO if(0) LOG_INFO
+#endif
+
+#define HLS_WARN LOG_WARN
+#define HLS_ERROR LOG_ERROR
