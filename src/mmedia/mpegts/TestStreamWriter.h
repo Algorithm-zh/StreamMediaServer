@@ -12,9 +12,9 @@ namespace tmms
         TestStreamWriter();
         ~TestStreamWriter();
         void AppendTimeStamp(int64_t pts) override{};
-        int32_t Write(void *buf, uint32_t size) override;
+        int32_t Write(void *buf, size_t size) override;
         char* Data() override{return nullptr;};
-        int Size() override{return 0;};
+        int32_t Size() const override{return 0;};
     private:
       int fd_{-1};
     };

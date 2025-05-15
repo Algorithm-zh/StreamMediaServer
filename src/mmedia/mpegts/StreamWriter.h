@@ -12,9 +12,9 @@ namespace tmms
         StreamWriter(){}
         virtual ~StreamWriter(){}
         virtual void AppendTimeStamp(int64_t pts) = 0;
-        virtual int32_t Write(void *buf, uint32_t size) = 0;
+        virtual int32_t Write(void *buf, size_t size) = 0;
         virtual char* Data() = 0;
-        virtual int Size() = 0;
+        virtual int32_t Size() const = 0;
         void SetSPS(const std::string &sps) 
         {
             sps_ = sps;

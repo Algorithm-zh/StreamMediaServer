@@ -25,7 +25,7 @@ TestStreamWriter::~TestStreamWriter()  {
   }
 }
  
-int32_t TestStreamWriter::Write(void *buf, uint32_t size)  {
+int32_t TestStreamWriter::Write(void *buf, size_t size)  {
 
   if(fd_ >= 0)
   {

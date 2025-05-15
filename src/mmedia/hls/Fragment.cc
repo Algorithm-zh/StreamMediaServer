@@ -34,7 +34,7 @@ int32_t Fragment::Write(void *buf, size_t size)  {
     data_ = new_pkt;
   }
   memcpy(data_->Data() + data_->PacketSize(), buf, size);
-  return 0;
+  return size;
 }
  
 int32_t Fragment::Size() const {
