@@ -5,7 +5,7 @@
 #include "live/GopMgr.h"
 #include "live/CodecHeader.h"
 #include "mmedia/mpegts/TestStreamWriter.h"
-#include "mmedia/mpegts/TsEncoder.h"
+#include "mmedia/hls/HLSMuxer.h"
 #include "mmedia/base/Packet.h"
 #include <mutex>
 #include <string>
@@ -41,9 +41,18 @@ namespace tmms
       
       bool HasVideo() const;
       bool HasAudio() const;
+      //hls
+      std::string PlayList()
+      {
+        return muxer_.PlayList();
+      }
+      FragmentPtr GetFragment(const std::string &name)
+      {
+        return muxer_.GetFragment(name);
+      }
 
     private:
-      void ProcessMpegts(PacketPtr &packet);
+      void ProcessHls(PacketPtr &packet);
       void SetReady(bool ready);
 
       bool LocateGop(const PlayerUserPtr &user);//查找到所有的codecheader并且定位到gop才能发音视频数据
@@ -71,8 +80,7 @@ namespace tmms
       TimeCorrector time_corrector_;
       std::mutex lock_;
       
-      TestStreamWriter writer_;
-      TsEncoder encoder_;
+      HLSMuxer muxer_;
       
     };
   }

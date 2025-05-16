@@ -65,7 +65,7 @@ namespace tmms
       //超时事件成员变量
       //为什么要用 weak, 这个是为了记录指针的引用数，当引用数为 0 即超时，也可以通过增加引用数来延长生命周期
       std::weak_ptr<TimeoutEntry> timeout_entry_; //超时事件条目
-      int32_t max_idle_time_{30}; //最大空闲事件
+      int32_t max_idle_time_{30}; //最大空闲时间
     };
     struct TimeoutEntry
     {

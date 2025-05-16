@@ -83,6 +83,7 @@ void FragmentWindow::UpdatePlayList()  {
   //一般三个起播
   if(fragments_.empty() || fragments_.size() < 3)
   {
+    HLS_DEBUG << "fragments_.size() = " << fragments_.size();
     return ;
   }
   std::ostringstream ss;

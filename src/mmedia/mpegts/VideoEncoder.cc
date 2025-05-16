@@ -21,6 +21,7 @@ namespace
       return pkt + 4;
     }
   }
+  //srs中的算法
   int WritePcr(uint8_t *buf, int64_t pcr) {
     int64_t pcrv = (0) & 0x1ff;
     pcrv |= (0x3f << 9) & 0x7E00;
@@ -82,12 +83,18 @@ int32_t VideoEncoder::EncodeAvc(StreamWriter *writer, std::list<SampleBuf> &samp
     }
     auto bytes = l.addr;
     NaluType type = (NaluType)(bytes[0] & 0x1f);
-    if(type == kNaluTypeIDR&&!demux_.HasSpsPps()&&!sps_pps_appended_)
+    //spspps不同说明是新的切片，需要写新的spspps
+    if(type == kNaluTypeIDR&&!demux_.HasSpsPps() &&
+      (writer->GetSPS() != demux_.GetSPS() ||
+       writer->GetPPS() != demux_.GetPPS() ||
+       !writer->GetSpsPpsAppended()))
     {
+      //这个操作很关键，一定要用引用，否则sps的值就会被改变!!!
       auto const &sps = demux_.GetSPS();
       if(!sps.empty())
       {
         total_size += AvcInsertStartCode(result, startcode_inserted);
+        //这里，这里就是把地址填进去的，而sps如果不用引用，那么一旦出了作用域，data的值就会成为其他的东西
         result.emplace_back(sps.data(), sps.size());
         total_size += sps.size();
         writer->SetSPS(sps);
@@ -109,7 +116,6 @@ int32_t VideoEncoder::EncodeAvc(StreamWriter *writer, std::list<SampleBuf> &samp
       {
         MPEGTS_ERROR << "no pps";
       }
-      sps_pps_appended_ = true;
       writer->SetSpsPpsAppended(true);       
     }
     
@@ -180,7 +186,7 @@ int32_t VideoEncoder::WriteVideoPes(StreamWriter *writer, std::list<SampleBuf> &
         buf[4] = 1;//adaption_field_length先设为1(flga占一字节)
         buf[5] = 0x10;//设置pcr_flag
         q = get_start_payload(buf);
-        auto size = WritePcr(q, dts);
+        auto size = WritePcr(q, pts);
         buf[4] += size;//更新adaption_field_length
         q = get_start_payload(buf);//重新获取payload起始位置
       }

@@ -34,6 +34,8 @@ int32_t Fragment::Write(void *buf, size_t size)  {
     data_ = new_pkt;
   }
   memcpy(data_->Data() + data_->PacketSize(), buf, size);
+  data_->UpdatePacketSize(size);
+  data_size_ += size;
   return size;
 }
  
@@ -74,6 +76,7 @@ void Fragment::Reset()  {
   sequence_no_ = 0;
   data_size_ = 0;
   start_dts_ = -1;
+  sps_pps_appended_ = false;//每一个新的切片都要spspps
   if(data_)
   {
     data_->SetPacketSize(0);

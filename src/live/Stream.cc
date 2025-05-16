@@ -10,7 +10,7 @@
 using namespace tmms::live;
 using namespace tmms::base;
 Stream::Stream(Session& s,const std::string &session_name)
-:session_(s),session_name_(session_name),packet_buffer_(packet_buffer_size_)
+:session_(s),session_name_(session_name),packet_buffer_(packet_buffer_size_), muxer_(session_name)
 {
     stream_time_ = TTime::NowMs();
     start_timestamp_ = TTime::NowMs();
@@ -96,7 +96,7 @@ void Stream::AddPacket(PacketPtr && packet)
         }
 
         gop_mgr_.AddFrame(packet);
-        ProcessMpegts(packet);
+        ProcessHls(packet);
         packet_buffer_[index%packet_buffer_size_] = std::move(packet);
         auto min_idx = frame_index_ - packet_buffer_size_;
         if(min_idx>0)
@@ -317,21 +317,12 @@ bool Stream::HasAudio() const {
 }
 
 
-void Stream::ProcessMpegts(PacketPtr &packet)
+void Stream::ProcessHls(PacketPtr &packet)
 {
-  if(CodecUtils::IsCodecHeader(packet))  
+  if(!session_.GetAppInfo()->hls_support)
   {
-    char *data = packet->Data();
-    if(packet->IsAudio())
-    {
-      AudioCodecID id = (AudioCodecID)((*data&0xf0) >> 4);
-      encoder_.SetStreamType(&writer_, kVideoCodecIDReserved, id);
-    }
-    else if(packet->IsVideo())
-    {
-      VideoCodecID id = (VideoCodecID)(*data&0x0f);
-      encoder_.SetStreamType(&writer_, id, kAudioCodecIDReserved);
-    }
+    return ;
   }
-  encoder_.Encode(&writer_, packet, packet->TimeStamp());
+  //产生切片
+  muxer_.OnPacket(packet);
 }

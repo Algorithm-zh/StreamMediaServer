@@ -10,12 +10,11 @@ uint32_t TimeCorrector::CorrectTimestamp(const PacketPtr &packet)  {
   {
     return 0;
   }
-  int32_t pt = packet->PacketType();
-  if(pt == kPacketTypeVideo)
+  if(packet->IsVideo())
   {
     return CorrectVideoTimeStampByVideo(packet);
   }
-  else if(pt == kPacketTypeAudio)
+  else if(packet->IsAudio())
   {
     return CorrectAudioTimeStampByAudio(packet);
   }

@@ -19,6 +19,7 @@
 #include "network/base/InetAddress.h"
 #include "network/net/EventLoopThreadPool.h"
 #include "network/DnsService.h"
+#include <memory>
 using namespace tmms::live;
  
 namespace
@@ -247,6 +248,13 @@ bool LiveService::OnSentNextChunk(const TcpConnectionPtr &conn)  {
 }
  
 void LiveService::OnRequest(const TcpConnectionPtr &conn, const HttpRequestPtr &req, const PacketPtr &packet)  {
+
+  auto http_cxt = conn->GetContext<HttpContext>(kHttpContext);
+  if(!http_cxt)
+  {
+    LIVE_ERROR << "not found http context.something wrong";
+    return ;
+  }
   LIVE_DEBUG << "on request:" << req->AppendToBuffer();
   if(req->IsRequest())
   {
@@ -269,13 +277,9 @@ void LiveService::OnRequest(const TcpConnectionPtr &conn, const HttpRequestPtr &
     auto list = base::StringUtils::SplitString(req->Path(), "/");
     if(list.size() < 4)
     {
-      auto http_cxt = conn->GetContext<HttpContext>(kHttpContext);
-      if(http_cxt)
-      {
-        auto res = HttpRequest::NewHttp400Response();
-        http_cxt->PostRequest(res);
-        return ;//等待对端关闭
-      }
+      auto res = HttpRequest::NewHttp400Response();
+      http_cxt->PostRequest(res);
+      return ;//等待对端关闭
     }
     const std::string &domain = list[1];
     const std::string &app = list[2];
@@ -290,39 +294,70 @@ void LiveService::OnRequest(const TcpConnectionPtr &conn, const HttpRequestPtr &
     {
       stream_name = base::StringUtils::FileName(filename);
     }
+    std::string session_name = domain + "/" + app + "/" + stream_name;
+    LIVE_DEBUG << "request session name:" << session_name;
+    auto s = CreateSession(session_name);
+    if(!s)
+    {
+      LIVE_ERROR << "create session failed.session_name:" << session_name;
+      auto http_cxt = conn->GetContext<HttpContext>(kHttpContext);
+      if(http_cxt)
+      {
+        auto res = HttpRequest::NewHttp404Response();
+        http_cxt->PostRequest(res);
+        return ;//等待对端关闭
+      }
+    }
     std::string ext = base::StringUtils::Extension(filename);
     if(ext == "flv")
     {
-      std::string session_name = domain + "/" + app + "/" + stream_name;
-      LIVE_DEBUG << "on play session name:" << session_name;
-      auto s = CreateSession(session_name);
-      if(!s)
-      {
-        LIVE_ERROR << "create session failed.session_name:" << session_name;
-        auto http_cxt = conn->GetContext<HttpContext>(kHttpContext);
-        if(http_cxt)
-        {
-          auto res = HttpRequest::NewHttp404Response();
-          http_cxt->PostRequest(res);
-          return ;//等待对端关闭
-        }
-      }
+      
       auto user = s->CreatePlayerUser(conn, session_name, "", UserType::kUserTypePlayerFlv);
       if(!user)
       {
         LIVE_ERROR << "create player user failed.session_name:" << session_name;
-        auto http_cxt = conn->GetContext<HttpContext>(kHttpContext);
-        if(http_cxt)
-        {
-          auto res = HttpRequest::NewHttp404Response();
-          http_cxt->PostRequest(res);
-          return ;//等待对端关闭
-        }
+        auto res = HttpRequest::NewHttp404Response();
+        http_cxt->PostRequest(res);
+        return ;//等待对端关闭
       }
       conn->SetContext(kUserContext, user);
       auto flv = std::make_shared<FlvContext>(conn, this);
       conn->SetContext(kFlvContext, flv);
       s->AddPlayer(std::dynamic_pointer_cast<PlayerUser>(user));
+    }
+    else if(ext == "m3u8")
+    {
+      auto playlist = s->GetStream()->PlayList();
+      if(!playlist.empty())
+      {
+        auto res = std::make_shared<HttpRequest>(false);
+        res->AddHeader("server", "tmms");
+        res->AddHeader("content-length", std::to_string(playlist.size()));
+        res->AddHeader("content-type", "application/vnd.apple.mpegurl");
+        res->SetStatusCode(200);
+        res->SetBody(playlist);
+        http_cxt->PostRequest(res);
+      }
+      else
+      {
+        auto res = HttpRequest::NewHttp404Response();
+        http_cxt->PostRequest(res);
+        return ;
+      }
+    }
+    else if(ext == "ts")
+    {
+      LIVE_DEBUG << "request ts:" << filename;
+      auto frag = s->GetStream()->GetFragment(filename);
+      if(frag)
+      {
+        auto res = std::make_shared<HttpRequest>(false);
+        res->AddHeader("server", "tmms");
+        res->AddHeader("content-length", std::to_string(frag->Size()));
+        res->AddHeader("content-type", "video/MP2T");
+        res->SetStatusCode(200);
+        http_cxt->PostRequest(res->MakeHeaders(), frag->FragmentData());
+      }
     }
   }
   //测试使用http发送flv
