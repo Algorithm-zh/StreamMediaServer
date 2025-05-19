@@ -1,5 +1,4 @@
 #pragma once
-#include "base/NonCopyable.h"
 #include "mmedia/rtmp/RtmpHandler.h"
 #include "mmedia/http/HttpHandler.h"
 #include "network/net/Connection.h"

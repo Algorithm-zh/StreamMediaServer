@@ -2,6 +2,7 @@
 #include <string>
 #include <memory>
 #include <json/json.h>
+#include <vector>
 
 namespace tmms 
 {
@@ -10,6 +11,8 @@ namespace tmms
   
     class DomainInfo;
     using DomainInfoPtr = std::shared_ptr<DomainInfo>;
+    class Target;
+    using TargetPtr = std::shared_ptr<Target>;
     class AppInfo
     {
     public:
@@ -26,6 +29,8 @@ namespace tmms
       uint32_t content_latency{3 * 1000};
       uint32_t stream_idle_time{30 * 1000};
       uint32_t stream_timeout_time{30 * 1000};
+
+      std::vector<TargetPtr> pulls;
       
     private:
     };

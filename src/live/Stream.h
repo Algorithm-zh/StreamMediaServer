@@ -1,10 +1,9 @@
 #pragma once
-#include "live/PlayerUser.h"
+#include "user/PlayerUser.h"
 #include "live/Session.h"
 #include "live/base/TimeCorrector.h"
-#include "live/GopMgr.h"
-#include "live/CodecHeader.h"
-#include "mmedia/mpegts/TestStreamWriter.h"
+#include "base/GopMgr.h"
+#include "base/CodecHeader.h"
 #include "mmedia/hls/HLSMuxer.h"
 #include "mmedia/base/Packet.h"
 #include <mutex>

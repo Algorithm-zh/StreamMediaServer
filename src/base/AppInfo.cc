@@ -1,6 +1,8 @@
 #include "AppInfo.h"
 #include "LogStream.h"
 #include "DomainInfo.h"
+#include "Target.h"
+#include <memory>
 using namespace tmms::base;
  
 AppInfo::AppInfo(DomainInfo &d)
@@ -51,6 +53,16 @@ bool AppInfo::ParseAppInfo(Json::Value &root)  {
   {
     stream_timeout_time = stObj.asUInt();
   }
+  Json::Value pullsObj = root["pull"];
+  if(!pullsObj.isNull() && pullsObj.isArray())
+  {
+    for(auto &a : pullsObj)
+    {
+      TargetPtr p = std::make_shared<Target>(domain_name, app_name);
+      p->ParseTarget(a);
+    }
+  }
+
   LOG_INFO << "app name:" << app_name
             << " max buffer:" << max_buffer
             << " rtmp support:" << rtmp_support

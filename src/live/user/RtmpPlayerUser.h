@@ -1,6 +1,6 @@
 #pragma once
-#include "live/PlayerUser.h"
-#include "live/User.h"
+#include "PlayerUser.h"
+#include "User.h"
 #include "mmedia/base/Packet.h"
 #include <vector>
 namespace tmms 

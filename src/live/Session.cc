@@ -2,10 +2,10 @@
 #include "Stream.h"
 #include "base/TTime.h"
 #include "base/AppInfo.h"
-#include "live/FlvPlayerUser.h"
+#include "user/FlvPlayerUser.h"
 #include "live/base/LiveLog.h"
 #include "base/StringUtils.h"
-#include "live/RtmpPlayerUser.h"
+#include "user/RtmpPlayerUser.h"
 
 using namespace tmms::live;
 using namespace tmms::base;

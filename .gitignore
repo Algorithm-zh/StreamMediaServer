@@ -30,7 +30,7 @@
 
 *.cache
 *.idx
-
+out
 bin/sbin/*
 build/*
 *.log

@@ -1,8 +1,7 @@
 #pragma once
 
-#include "PlayerUser.h"
-#include "User.h"
-#include "base/AppInfo.h"
+#include "user/PlayerUser.h"
+#include "user/User.h"
 #include "network/net/Connection.h"
 #include <atomic>
 #include <unordered_set>
