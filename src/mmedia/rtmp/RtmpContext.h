@@ -83,6 +83,7 @@ namespace tmms
       void HandleResult(AMFObject &obj);
       //_error命令消息实现
       void HandleError(AMFObject &obj);
+      void HandleStatus(AMFObject &obj);
       // 转换包类型
       void SetPacketType(PacketPtr &packet);
 

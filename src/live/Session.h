@@ -9,12 +9,14 @@ namespace tmms
 {
   namespace live
   {
+    class PullerRelay;
     using PlayerUserPtr = std::shared_ptr<PlayerUser>;
     using UserPtr = std::shared_ptr<User>;
     class Session : public std::enable_shared_from_this<Session>
     {
     public:
       explicit Session(const std::string &session_name);
+      ~Session();
       //时间处理成员函数
       int32_t ReadyTime() const;
       int64_t SinceStart() const;
@@ -49,6 +51,8 @@ namespace tmms
       UserPtr publisher_;
       std::mutex lock_;
       std::atomic_int64_t player_live_time_;
+
+      PullerRelay *pull_{nullptr};
     };
   }
 }

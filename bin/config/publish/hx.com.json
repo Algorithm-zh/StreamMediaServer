@@ -11,7 +11,16 @@
         "rtmp_support" : "on",
         "flv_support" : "on",
         "hls_support" : "on",
-        "content_latency" : 3
+        "content_latency" : 3,
+        "pull":
+        [
+          {
+            "protocol":"rtmp",
+            "host":"hx.com:1936",
+            "interval":1,
+            "max_retry":2
+          }
+        ]
       }
     ]
   }

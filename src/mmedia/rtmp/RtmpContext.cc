@@ -13,6 +13,7 @@ RtmpContext::RtmpContext(const TcpConnectionPtr &conn,RtmpHandler *handler,bool 
     commands_["createStream"] = std::bind(&RtmpContext::HandleCreateStream,this,std::placeholders::_1);
     commands_["_result"] = std::bind(&RtmpContext::HandleResult,this,std::placeholders::_1);
     commands_["_error"] = std::bind(&RtmpContext::HandleError,this,std::placeholders::_1);
+    commands_["onStatus"] = std::bind(&RtmpContext::HandleStatus,this,std::placeholders::_1);
     commands_["play"] = std::bind(&RtmpContext::HandlePlay,this,std::placeholders::_1);
     commands_["publish"] = std::bind(&RtmpContext::HandlePublish,this,std::placeholders::_1);
     out_current_ = out_buffer_;
@@ -280,7 +281,6 @@ void RtmpContext::SetPacketType(PacketPtr &packet)
 }
 void RtmpContext::MessageComplete(PacketPtr && data)
 {
-    //RTMP_TRACE << "recv message type:" << data->PacketType() << " len:" << data->PacketSize()<< std::endl;
     auto type = data->PacketType();
     switch(type)
     {
@@ -291,7 +291,7 @@ void RtmpContext::MessageComplete(PacketPtr && data)
         }
         case kRtmpMsgTypeBytesRead:
         {
-            RTMP_TRACE << "message bytes read recv.";
+            RTMP_DEBUG << "message bytes read recv.";
             break;
         }        
         case kRtmpMsgTypeUserControl:
@@ -486,7 +486,29 @@ bool RtmpContext::BuildChunk(const PacketPtr &packet,uint32_t timestamp,bool fmt
     }
     return false;
 }
-
+void RtmpContext::Send()
+{
+    if(sending_)
+    {
+        return;
+    }
+    sending_ = true;
+    for(int i=0;i<10;i++)
+    {
+        if(out_waiting_queue_.empty())
+        {
+            break;
+        }
+        PacketPtr packet = std::move(out_waiting_queue_.front());
+        out_waiting_queue_.pop_front();
+        BuildChunk(std::move(packet));
+    }
+    connection_->Send(sending_bufs_);
+}
+bool RtmpContext::Ready() const
+{
+    return !sending_;
+}
 bool RtmpContext::BuildChunk (PacketPtr &&packet,uint32_t timestamp,bool fmt0)
 {
     RtmpMsgHeaderPtr h = packet->Ext<RtmpMsgHeader>();
@@ -642,31 +664,6 @@ bool RtmpContext::BuildChunk (PacketPtr &&packet,uint32_t timestamp,bool fmt0)
     }
     return false;
 }
-void RtmpContext::Send()
-{
-    if(sending_)
-    {
-        return;
-    }
-    sending_ = true;
-    for(int i=0;i<10;i++)
-    {
-        if(out_waiting_queue_.empty())
-        {
-            break;
-        }
-        PacketPtr packet = std::move(out_waiting_queue_.front());
-        out_waiting_queue_.pop_front();
-        BuildChunk(std::move(packet));
-    }
-    connection_->Send(sending_bufs_);
-}
-bool RtmpContext::Ready() const
-{
-    return !sending_;
-}
-
-
 void RtmpContext::CheckAndSend()
 {
     sending_ = false;
@@ -852,27 +849,27 @@ void RtmpContext::HandleUserMessage(PacketPtr &packet)
     auto type = BytesReader::ReadUint16T(body);
     auto value = BytesReader::ReadUint32T(body+2);
 
-    RTMP_TRACE << "recv user control type:"<<type<<" value" << value << " host:" << connection_->PeerAddr().ToIpPort();
+    RTMP_DEBUG << "recv user control type:"<<type<<" value" << value << " host:" << connection_->PeerAddr().ToIpPort();
     switch(type)
     {
         case kRtmpEventTypeStreamBegin:
         {
-            RTMP_TRACE << "recv stream begin value" << value << " host:" << connection_->PeerAddr().ToIpPort();
+            RTMP_DEBUG << "recv stream begin value" << value << " host:" << connection_->PeerAddr().ToIpPort();
             break;
         }
         case kRtmpEventTypeStreamEOF:
         {
-            RTMP_TRACE << "recv stream eof value" << value << " host:" << connection_->PeerAddr().ToIpPort();
+            RTMP_DEBUG << "recv stream eof value" << value << " host:" << connection_->PeerAddr().ToIpPort();
             break;
         }   
         case kRtmpEventTypeStreamDry:
         {
-            RTMP_TRACE << "recv stream dry value" << value << " host:" << connection_->PeerAddr().ToIpPort();
+            RTMP_DEBUG << "recv stream dry value" << value << " host:" << connection_->PeerAddr().ToIpPort();
             break;
         }
         case kRtmpEventTypeSetBufferLength:
         {
-            RTMP_TRACE << "recv set buffer length value" << value << " host:" << connection_->PeerAddr().ToIpPort();
+            RTMP_DEBUG << "recv set buffer length value" << value << " host:" << connection_->PeerAddr().ToIpPort();
             if(msg_len<10)
             {
                 RTMP_ERROR << "invalid user control packet msg_len:" << packet->PacketSize()
@@ -883,18 +880,18 @@ void RtmpContext::HandleUserMessage(PacketPtr &packet)
         }   
         case kRtmpEventTypeStreamsRecorded:
         {
-            RTMP_TRACE << "recv stream recoded value" << value << " host:" << connection_->PeerAddr().ToIpPort();
+            RTMP_DEBUG << "recv stream recoded value" << value << " host:" << connection_->PeerAddr().ToIpPort();
             break;
         }
         case kRtmpEventTypePingRequest:
         {
-            RTMP_TRACE << "recv ping request value" << value << " host:" << connection_->PeerAddr().ToIpPort();
+            RTMP_DEBUG << "recv ping request value" << value << " host:" << connection_->PeerAddr().ToIpPort();
             SendUserCtrlMessage(kRtmpEventTypePingResponse,value,0);
             break;
         }   
         case kRtmpEventTypePingResponse:
         {
-            RTMP_TRACE << "recv ping response value" << value << " host:" << connection_->PeerAddr().ToIpPort();
+            RTMP_DEBUG << "recv ping response value" << value << " host:" << connection_->PeerAddr().ToIpPort();
             break;
         }
         default:
@@ -904,7 +901,7 @@ void RtmpContext::HandleUserMessage(PacketPtr &packet)
 
 void RtmpContext::HandleAmfCommand(PacketPtr &data,bool amf3)
 {
-    RTMP_TRACE << "amf message len:" << data->PacketSize() << " host:" << connection_->PeerAddr().ToIpPort();
+    RTMP_DEBUG << "amf message len:" << data->PacketSize() << " host:" << connection_->PeerAddr().ToIpPort();
 
     const char *body = data->Data();
     int32_t msg_len = data->PacketSize();
@@ -922,11 +919,11 @@ void RtmpContext::HandleAmfCommand(PacketPtr &data,bool amf3)
         return;
     }
     const std::string &method = obj.Property(0)->String();
-    RTMP_TRACE << "amf command:" << method << " host:" << connection_->PeerAddr().ToIpPort();
+    RTMP_DEBUG << "amf command:" << method << " host:" << connection_->PeerAddr().ToIpPort();
     auto iter = commands_.find(method);
     if(iter == commands_.end())
     {
-        RTMP_TRACE << "not surpport method:" << method << " host:" << connection_->PeerAddr().ToIpPort();
+        RTMP_DEBUG << "not surpport method:" << method << " host:" << connection_->PeerAddr().ToIpPort();
         return ;
     }
     iter->second(obj);
@@ -962,7 +959,7 @@ void RtmpContext::SendConnect()
 
     header->msg_len = p - body;
     packet->SetPacketSize(header->msg_len);
-    RTMP_TRACE << "send connect msg_len:" << header->msg_len << " to host:" << connection_->PeerAddr().ToIpPort();
+    RTMP_DEBUG << "send connect msg_len:" << header->msg_len << " to host:" << connection_->PeerAddr().ToIpPort();
     PushOutQueue(std::move(packet));
 }
 void RtmpContext::HandleConnect(AMFObject &obj)
@@ -979,7 +976,7 @@ void RtmpContext::HandleConnect(AMFObject &obj)
         }
     }
 
-    RTMP_TRACE << "recv connect tcUrl:" << tc_url_ << " app:" << app_ << " amf3:" << amf3;
+    RTMP_DEBUG << "recv connect tcUrl:" << tc_url_ << " app:" << app_ << " amf3:" << amf3;
     SendAckWindowSize();
     SendSetPeerBandwidth();
     SendSetChunkSize();
@@ -1013,7 +1010,7 @@ void RtmpContext::HandleConnect(AMFObject &obj)
 
     header->msg_len = p - body;
     packet->SetPacketSize(header->msg_len);
-    RTMP_TRACE << "connect result msg_len:" << header->msg_len << " to host:" << connection_->PeerAddr().ToIpPort();
+    RTMP_DEBUG << "connect result msg_len:" << header->msg_len << " to host:" << connection_->PeerAddr().ToIpPort();
     PushOutQueue(std::move(packet));
 }
 
@@ -1036,7 +1033,7 @@ void RtmpContext::SendCreateStream()
 
     header->msg_len = p - body;
     packet->SetPacketSize(header->msg_len);
-    RTMP_TRACE << "send create stream msg_len:" << header->msg_len << " to host:" << connection_->PeerAddr().ToIpPort();
+    RTMP_DEBUG << "send create stream msg_len:" << header->msg_len << " to host:" << connection_->PeerAddr().ToIpPort();
     PushOutQueue(std::move(packet));
 }
 void RtmpContext::HandleCreateStream(AMFObject &obj)
@@ -1062,7 +1059,7 @@ void RtmpContext::HandleCreateStream(AMFObject &obj)
 
     header->msg_len = p - body;
     packet->SetPacketSize(header->msg_len);
-    RTMP_TRACE << "create stream result msg_len:" << header->msg_len << " to host:" << connection_->PeerAddr().ToIpPort();
+    RTMP_DEBUG << "create stream result msg_len:" << header->msg_len << " to host:" << connection_->PeerAddr().ToIpPort();
     PushOutQueue(std::move(packet));
 }
 void RtmpContext::SendStatus(const std::string &level, const std::string &code, const std::string &description)
@@ -1092,7 +1089,7 @@ void RtmpContext::SendStatus(const std::string &level, const std::string &code, 
 
     header->msg_len = p - body;
     packet->SetPacketSize(header->msg_len);
-    RTMP_TRACE << "send status level:" << level << " code:" << code << " desc:" << description << " to host:" << connection_->PeerAddr().ToIpPort();
+    RTMP_DEBUG << "send status level:" << level << " code:" << code << " desc:" << description << " to host:" << connection_->PeerAddr().ToIpPort();
     PushOutQueue(std::move(packet));
 }
 
@@ -1117,7 +1114,7 @@ void RtmpContext::SendPlay()
 
     header->msg_len = p - body;
     packet->SetPacketSize(header->msg_len);
-    RTMP_TRACE << "send play name:"<< name_ 
+    RTMP_DEBUG << "send play name:"<< name_ 
             << " msg_len:" << header->msg_len 
             << " to host:" << connection_->PeerAddr().ToIpPort();
     PushOutQueue(std::move(packet));
@@ -1128,7 +1125,7 @@ void RtmpContext::HandlePlay(AMFObject &obj)
     name_ = obj.Property(3)->String();
     ParseNameAndTcUrl();
 
-    RTMP_TRACE << "recv play session_name:" << session_name_ 
+    RTMP_DEBUG << "recv play session_name:" << session_name_ 
             << " param:" << param_ 
             << " host:" << connection_->PeerAddr().ToIpPort();
     is_player_ = true;
@@ -1159,7 +1156,13 @@ void RtmpContext::ParseNameAndTcUrl()
     std::string domain;
 
     std::vector<std::string> list = base::StringUtils::SplitString(tc_url_,"/");
-    if(list.size()==5)//rmtp://ip/domain:port/app
+    if(list.size() == 6)
+    {
+        domain = list[3];
+        app_ = list[4];
+        name_ = list[5];
+    } 
+    else if(list.size()==5)//rmtp://ip/domain:port/app
     {
         domain = list[3];
         app_ = list[4];
@@ -1176,6 +1179,7 @@ void RtmpContext::ParseNameAndTcUrl()
         domain = domain.substr(0,p);
     }
 
+
     session_name_.clear();
     session_name_ += domain;
     session_name_ += "/";
@@ -1183,7 +1187,7 @@ void RtmpContext::ParseNameAndTcUrl()
     session_name_ += "/";
     session_name_ += name_;
 
-    RTMP_TRACE << "session_name:" << session_name_ 
+    RTMP_DEBUG << "session_name:" << session_name_ 
             << " param:" << param_ 
             << " host:" << connection_->PeerAddr().ToIpPort();
 }
@@ -1210,7 +1214,7 @@ void RtmpContext::SendPublish()
 
     header->msg_len = p - body;
     packet->SetPacketSize(header->msg_len);
-    RTMP_TRACE << "send publish name:"<< name_ 
+    RTMP_DEBUG << "send publish name:"<< name_ 
             << " msg_len:" << header->msg_len 
             << " to host:" << connection_->PeerAddr().ToIpPort();
     PushOutQueue(std::move(packet));
@@ -1221,7 +1225,7 @@ void RtmpContext::HandlePublish(AMFObject &obj)
     name_ = obj.Property(3)->String();
     ParseNameAndTcUrl();
 
-    RTMP_TRACE << "recv publish session_name:" << session_name_ 
+    RTMP_DEBUG << "recv publish session_name:" << session_name_ 
             << " param:" << param_ 
             << " host:" << connection_->PeerAddr().ToIpPort();
     is_player_ = false;
@@ -1237,7 +1241,7 @@ void RtmpContext::HandlePublish(AMFObject &obj)
 void RtmpContext::HandleResult(AMFObject &obj)
 {
     auto id = obj.Property(1)->Number();
-    RTMP_TRACE << "recv result id:" << id << " host:" << connection_->PeerAddr().ToIpPort();
+    RTMP_DEBUG << "recv result id:" << id << " host:" << connection_->PeerAddr().ToIpPort();
     if(id == 1)
     {
         SendCreateStream();
@@ -1267,6 +1271,28 @@ void RtmpContext::HandleError(AMFObject &obj)
     const std::string &description = obj.Property(3)->Object()->Property("description")->String();
     RTMP_ERROR << "recv error description:" << description << " host:" << connection_->PeerAddr().ToIpPort();
     connection_->ForceClose();
+}
+
+void RtmpContext::HandleStatus(AMFObject &obj)
+{
+    const std::string &code  = obj.Property(3)->Object()->Property("code")->String();
+    const std::string &level = obj.Property(3)->Object()->Property("level")->String();
+    LOG_INFO << "recv status:" << code << ", level:" << level << ", ip:" << connection_->PeerAddr().ToIpPort()
+            << ", session_name:" << session_name_;
+    if (code == "NetStream.Publish.Start") 
+    {
+        rtmp_handler_->OnPublish(connection_, session_name_, param_);
+    } 
+    else if (code == "NetStream.Play.Start") 
+    {
+        rtmp_handler_->OnPlay(connection_, session_name_, param_);
+    } 
+    else if (code == "NetStream.Play.StreamNotFound") 
+    {
+    } 
+    else if (code == "NetStream.Play.Failed") 
+    {
+    }
 }
 
 void RtmpContext::Play(const std::string &url)

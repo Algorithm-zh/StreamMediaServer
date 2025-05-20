@@ -53,7 +53,7 @@ namespace tmms
       void SendC2S2();
       bool CheckC2S2(const char *data,int bytes);
 
-      TcpConnectionPtr connecion_;
+      TcpConnectionPtr connection_;
       bool is_client_{false};
       bool is_complex_handshake_{true};
       uint8_t digest_[SHA256_DIGEST_LENGTH];

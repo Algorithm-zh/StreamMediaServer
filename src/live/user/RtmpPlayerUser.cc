@@ -15,6 +15,9 @@ bool RtmpPlayerUser::PostFrames()  {
   
   if(!stream_->Ready() || !stream_->HasMedia())
   {
+    //还没准备好，不要发送,这个Deactive很关键
+    //将会导致在流还没准备好前就播放，导致流准备好后播放不了了
+    Deactive();
     return false;
   }
   stream_->GetFrames(std::dynamic_pointer_cast<PlayerUser>(shared_from_this()));

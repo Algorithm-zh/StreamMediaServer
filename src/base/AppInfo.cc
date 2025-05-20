@@ -58,8 +58,9 @@ bool AppInfo::ParseAppInfo(Json::Value &root)  {
   {
     for(auto &a : pullsObj)
     {
-      TargetPtr p = std::make_shared<Target>(domain_name, app_name);
+      TargetPtr p = std::make_shared<Target>(domain_info.DomainName(), app_name);
       p->ParseTarget(a);
+      pulls.emplace_back(std::move(p));
     }
   }
 

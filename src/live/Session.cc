@@ -6,6 +6,7 @@
 #include "live/base/LiveLog.h"
 #include "base/StringUtils.h"
 #include "user/RtmpPlayerUser.h"
+#include "live/relay/PullerRelay.h"
 
 using namespace tmms::live;
 using namespace tmms::base;
@@ -19,6 +20,14 @@ Session::Session(const std::string &session_name)
 {
   stream_ = std::make_shared<Stream>(*this,session_name);
   player_live_time_ = TTime::NowMs();
+}
+
+Session::~Session()  {
+  if(pull_) 
+  {
+    delete pull_;
+  }
+  LIVE_DEBUG << "session:" << session_name_ << " destroyed.now:" << base::TTime::NowMs();
 }
 
 int32_t Session::ReadyTime() const
@@ -115,7 +124,7 @@ void Session::CloseUser(const UserPtr &user)
   {
     {
       std::lock_guard<std::mutex> lk(lock_);
-      if(user->GetUserType() <= UserType::kUserTypePlayerWebRTC)
+      if(user->GetUserType() <= UserType::kUserTypePublishWebRtc)
       {
         if(publisher_)
         {
@@ -129,7 +138,7 @@ void Session::CloseUser(const UserPtr &user)
         }
       }
       else 
-    {
+      {
         LIVE_DEBUG << "remove player,session name:" << session_name_
           << ",user:" << user->UserId()
           << ",elapsed:" << user->ElapsedTime()
@@ -161,7 +170,12 @@ void Session::AddPlayer(const PlayerUserPtr &user)
 
   if(!publisher_)
   {
-
+    //回源
+    if(!pull_)
+    {
+      pull_ = new PullerRelay(*this);
+    }
+    pull_->StartPullStream();
   }
   user->Active();
 }
@@ -206,9 +220,13 @@ void Session::Clear()
   {
     CloseUserNoLock(publisher_);
   }
-  for(auto const &p:players_)
+  auto players_copy = players_;
+  for(auto const &p:players_copy)
   {
-    CloseUserNoLock(std::dynamic_pointer_cast<User>(p));
+    if(p)
+    {
+      CloseUserNoLock(std::dynamic_pointer_cast<User>(p));
+    }
   }
   players_.clear();
 }
@@ -218,7 +236,7 @@ void Session::CloseUserNoLock(const UserPtr &user)
   if(!user->destroyed_.exchange(true))
   {
     {
-      if(user->GetUserType() <= UserType::kUserTypePlayerWebRTC)
+      if(user->GetUserType() <= UserType::kUserTypePublishWebRtc)
       {
         if(publisher_)
         {
@@ -246,3 +264,5 @@ void Session::CloseUserNoLock(const UserPtr &user)
 
   }
 }
+ 
+

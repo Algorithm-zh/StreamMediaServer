@@ -106,7 +106,7 @@ namespace
 using namespace tmms::mm;
 
 RtmpHandShake::RtmpHandShake(const TcpConnectionPtr &conn, bool client)
-:connecion_(conn), is_client_(client) {
+:connection_(conn), is_client_(client) {
  
 }
  
@@ -214,7 +214,7 @@ int32_t RtmpHandShake::CheckC1S1(const char *data, int bytes)  {
 }
  
 void RtmpHandShake::SendC1S1()  {
-  connecion_->Send((const char*)C1S1_, 1537); 
+  connection_->Send((const char*)C1S1_, 1537); 
 }
  
 void RtmpHandShake::CreateC2S2(const char* data, int bytes, int offset)  {
@@ -246,7 +246,7 @@ void RtmpHandShake::CreateC2S2(const char* data, int bytes, int offset)  {
 }
  
 void RtmpHandShake::SendC2S2()  {
-  connecion_->Send((const char*)C2S2_, kRtmpHandShakePacketSize);
+  connection_->Send((const char*)C2S2_, kRtmpHandShakePacketSize);
 }
  
 bool RtmpHandShake::CheckC2S2(const char *data,int bytes)  {
@@ -279,7 +279,7 @@ int32_t RtmpHandShake::HandShake(MsgBuffer &buf)  {
       {
         return 1;
       }
-      RTMP_TRACE << "host: " << connecion_->PeerAddr().ToIpPort() << ", Recv C0C1 \n";
+      RTMP_TRACE << "host: " << connection_->PeerAddr().ToIpPort() << ", Recv C0C1 \n";
       auto offset = CheckC1S1(buf.Peek(), 1537);
       if(offset >= 0)
       {
@@ -291,7 +291,7 @@ int32_t RtmpHandShake::HandShake(MsgBuffer &buf)  {
       else
       {
         std::cout << "offset = " << offset << std::endl;
-        RTMP_TRACE << "host: " << connecion_->PeerAddr().ToIpPort() << ", check C0C1 failed\n";
+        RTMP_TRACE << "host: " << connection_->PeerAddr().ToIpPort() << ", check C0C1 failed\n";
         return -1;
       }
       break;
@@ -302,17 +302,17 @@ int32_t RtmpHandShake::HandShake(MsgBuffer &buf)  {
       {
         return 1;
       }
-      RTMP_TRACE << "host: " << connecion_->PeerAddr().ToIpPort() << ", Recv S2\n";
+      RTMP_TRACE << "host: " << connection_->PeerAddr().ToIpPort() << ", Recv S2\n";
       if(CheckC2S2(buf.Peek(), 1536))
       {
         buf.Retrieve(1536);
-        RTMP_TRACE << "host: " << connecion_->PeerAddr().ToIpPort() << ", handshake done\n";
+        RTMP_TRACE << "host: " << connection_->PeerAddr().ToIpPort() << ", handshake done\n";
         state_ = kHandShakeDone;
         return 0;
       }
       else
       {
-          RTMP_TRACE << "host: " << connecion_->PeerAddr().ToIpPort() << ", check S2 failed\n";
+          RTMP_TRACE << "host: " << connection_->PeerAddr().ToIpPort() << ", check S2 failed\n";
           return -1;
       }
       break;
@@ -323,7 +323,7 @@ int32_t RtmpHandShake::HandShake(MsgBuffer &buf)  {
       {
         return 1;
       }
-      RTMP_TRACE << "host: " << connecion_->PeerAddr().ToIpPort() << ", Recv S0S1 \n";
+      RTMP_TRACE << "host: " << connection_->PeerAddr().ToIpPort() << ", Recv S0S1 \n";
       auto offset = CheckC1S1(buf.Peek(), 1537);
       if(offset >= 0)
       {
@@ -332,7 +332,7 @@ int32_t RtmpHandShake::HandShake(MsgBuffer &buf)  {
         //可能收到S0S1的同时也收到了S2
         if(buf.ReadableBytes() == 1536)
         {
-          RTMP_TRACE << "host:" << connecion_->PeerAddr().ToIpPort() << ",Recv S2.\n";
+          RTMP_TRACE << "host:" << connection_->PeerAddr().ToIpPort() << ",Recv S2.\n";
           state_ = kHandShakeDoning;
           //之前忘写了
           buf.Retrieve(1536);
@@ -347,10 +347,17 @@ int32_t RtmpHandShake::HandShake(MsgBuffer &buf)  {
       }
       else
       {
-        RTMP_TRACE << "host: " << connecion_->PeerAddr().ToIpPort() << ", check S0S1 failed\n";
+        RTMP_TRACE << "host: " << connection_->PeerAddr().ToIpPort() << ", check S0S1 failed\n";
         return -1;
       }
       break;
+    }
+    case kHandShakeWaitS2:
+    {
+        RTMP_TRACE << "host:" << connection_->PeerAddr().ToIpPort() << ",Recv S2. handshake done.\n";
+        buf.Retrieve(1536);
+        state_ = kHandShakeDone; 
+        return 0;
     }
   }
   return 1;
@@ -367,7 +374,7 @@ void RtmpHandShake::WriteComplete()  {
     //发送完s0s1后，直接发送s2
     case kHandShakePostS0S1:
     {
-      RTMP_TRACE << "host: " << connecion_->PeerAddr().ToIpPort() << ", Post S0S1\n";
+      RTMP_TRACE << "host: " << connection_->PeerAddr().ToIpPort() << ", Post S0S1\n";
       state_ = kHandShakePostS2;
       SendC2S2();
       break;
@@ -375,25 +382,25 @@ void RtmpHandShake::WriteComplete()  {
     //发送完s2后，等待c2
     case kHandShakePostS2:
     {
-      RTMP_TRACE << "host: " << connecion_->PeerAddr().ToIpPort() << ", Post S2\n";
+      RTMP_TRACE << "host: " << connection_->PeerAddr().ToIpPort() << ", Post S2\n";
       state_ = kHandShakeWaitC2;
       break;
     }
     case kHandShakePostC0C1:
     {
-      RTMP_TRACE << "host: " << connecion_->PeerAddr().ToIpPort() << ", Post C0C1\n";
+      RTMP_TRACE << "host: " << connection_->PeerAddr().ToIpPort() << ", Post C0C1\n";
       state_ = kHandShakeWaitS0S1;
       break;
     }
     case kHandShakePostC2:
     {
-      RTMP_TRACE << "host: " << connecion_->PeerAddr().ToIpPort() << ", Post C2\n";
-      state_ = kHandShakeDone;
+      RTMP_TRACE << "host: " << connection_->PeerAddr().ToIpPort() << ", Post C2\n";
+      state_ = kHandShakeWaitC2;
       break;
     }
     case kHandShakeDoning:
     {
-      RTMP_TRACE << "host: " << connecion_->PeerAddr().ToIpPort() << ", Doning\n";
+      RTMP_TRACE << "host: " << connection_->PeerAddr().ToIpPort() << ", Doning\n";
       state_ = kHandShakeDone;
       break;
     }
