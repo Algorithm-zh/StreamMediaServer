@@ -14,6 +14,10 @@
 #target_link_libraries(RtmpClientTest base network mmedia crypto)
 #install(TARGETS RtmpClientTest RUNTIME DESTINATION sbin)
 
-add_executable(HttpClientTest HttpClientTest.cpp)
-target_link_libraries(HttpClientTest base network mmedia crypto)
-install(TARGETS HttpClientTest RUNTIME DESTINATION sbin)
+#add_executable(HttpClientTest HttpClientTest.cpp)
+#target_link_libraries(HttpClientTest base network mmedia crypto)
+#install(TARGETS HttpClientTest RUNTIME DESTINATION sbin)
+
+add_executable(DtlsCertsTest DtlsCertsTest.cpp)
+target_link_libraries(DtlsCertsTest base network mmedia crypto)
+install(TARGETS DtlsCertsTest RUNTIME DESTINATION sbin)
