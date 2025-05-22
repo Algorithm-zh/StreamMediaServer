@@ -40,7 +40,6 @@ void Acceptor::Open()  {
   socket_opt_->SetReusePort(true);
   socket_opt_->BindAddress(addr_);
   socket_opt_->Listen();
-  std::cout << "listen " << addr_.ToIpPort() << std::endl;
 }
 
 void Acceptor::Start()  {

@@ -68,7 +68,7 @@ void UdpSocket::OnRead()  {
       }
       if(message_cb_)
       {
-        message_cb_(peeraddr, message_buffer_);
+        message_cb_(std::dynamic_pointer_cast<UdpSocket>(shared_from_this()), peeraddr, message_buffer_);
       }
       //面向数据包，所以每次只处理一个数据，将剩余的数据清空
       message_buffer_.RetrieveAll();
@@ -166,7 +166,7 @@ void UdpSocket::SetWriteCompleteCallback(UdpSocketWriteCompleteCallback &&cb)  {
  
 void UdpSocket::SetTimeoutCallback(int timeout, const UdpSocketTimeoutCallback &cb)  {
   auto us = std::dynamic_pointer_cast<UdpSocket>(shared_from_this());  
-  loop_->RunAfter(timeout, [this, cb, us](){
+  loop_->RunAfter(timeout, [cb, us](){
     cb(us);
   });
 }

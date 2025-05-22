@@ -6,6 +6,7 @@
 #include "network/net/EventLoopThreadPool.h"
 #include "base/TaskMgr.h"
 #include "base/Singleton.h"
+#include "mmedia/webrtc/WebrtcServer.h"
 #include "live/Session.h"
 #include <memory>
 #include <mutex>
@@ -53,6 +54,8 @@ namespace tmms
       std::vector<TcpServer *> servers_;
       std::mutex lock_;
       std::unordered_map<std::string, SessionPtr> sessions_;
+
+      std::shared_ptr<WebrtcServer> webrtc_server_{nullptr};//因为servers_存的都是tcp的，现在需要udp 的server
     };
     #define sLiveService tmms::live::Singleton<LiveService>::Instance()
   }

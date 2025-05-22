@@ -3,6 +3,7 @@
 #include "base/TTime.h"
 #include "base/Task.h"
 #include "base/TaskMgr.h"
+#include "live/WebrtcService.h"
 #include "user/PlayerUser.h"
 #include "user/User.h"
 #include "live/base/LiveLog.h"
@@ -19,6 +20,7 @@
 #include "network/base/InetAddress.h"
 #include "network/net/EventLoopThreadPool.h"
 #include "network/DnsService.h"
+#include "mmedia/webrtc/WebrtcServer.h"
 #include <memory>
 using namespace tmms::live;
  
@@ -218,10 +220,35 @@ void LiveService::Start()  {
       }
       else if(s->protocol == "HTTP" || s->protocol == "http")
       {
-        InetAddress local(s->addr, s->port);
-        TcpServer *server = new HttpServer(el, local, this);
-        servers_.push_back(server);
-        servers_.back()->Start();
+        if(s->transport == "webrtc" || s->transport == "WEBRTC")
+        {
+          InetAddress local(s->addr, s->port);
+          TcpServer *server = new HttpServer(el, local, sWebrtcService);
+          servers_.push_back(server);
+          servers_.back()->Start();
+        }
+        else
+        {
+          InetAddress local(s->addr, s->port);
+          TcpServer *server = new HttpServer(el, local, this);
+          servers_.push_back(server);
+          servers_.back()->Start();
+        }
+      }
+      else if(s->protocol == "webrtc" || s->protocol == "WEBRTC")
+      {
+        if(s->transport == "udp" || s->transport == "UDP")
+        {
+          //只允许启动一个webrtc服务
+          //不然后面再启动新的会把前面的关闭，然后就不在原来的线程里了
+          //并且由于几个服务都是用的同一个端口和ip,只需要一个udp服务就可以
+          if(!webrtc_server_)
+          {
+            InetAddress local(s->addr, s->port);
+            webrtc_server_ = std::make_shared<WebrtcServer>(el, local, sWebrtcService);
+            webrtc_server_->Start();
+          }
+        }
       }
     }
   }

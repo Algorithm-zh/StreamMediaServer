@@ -55,6 +55,8 @@ namespace tmms
       
       static HttpRequestPtr NewHttp400Response();
       static HttpRequestPtr NewHttp404Response();
+      static HttpRequestPtr NewHttpOptionsResponse();
+
     private:
       void ParseParameters();
       void AppendRequestFirstLine(std::stringstream &ss);

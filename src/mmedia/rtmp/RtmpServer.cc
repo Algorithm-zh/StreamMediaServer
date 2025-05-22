@@ -62,6 +62,7 @@ void RtmpServer::OnMessage(const TcpConnectionPtr &conn, MsgBuffer &buf)  {
     }
     else if(ret == -1)
     {
+      
       conn->ForceClose();
     }
   }

@@ -9,6 +9,7 @@ using namespace tmms::base;
 #define DEMUX_DEBUG_ON 1
 #define MPEGTS_DEBUG_ON 1
 #define HLS_DEBUG_ON 1
+#define WEBRTC_DEBUG_ON 1
 
 #ifdef RTMP_DEBUG_ON
 #define RTMP_TRACE LOG_TRACE << "RTMP::" 
@@ -80,3 +81,20 @@ using namespace tmms::base;
 
 #define HLS_WARN LOG_WARN
 #define HLS_ERROR LOG_ERROR
+
+
+
+#ifdef WEBRTC_DEBUG_ON
+#define WEBRTC_TRACE LOG_TRACE << "WEBRTC::" 
+#define WEBRTC_DEBUG LOG_DEBUG << "WEBRTC::"
+#define WEBRTC_INFO LOG_INFO << "WEBRTC::"
+#else
+#define WEBRTC_TREACE if(0) LOG_TRACE
+#define WEBRTC_DEBUG if(0) LOG_DEBUG
+#define WEBRTC_INFO if(0) LOG_INFO
+#endif
+
+#define WEBRTC_WARN LOG_WARN
+#define WEBRTC_ERROR LOG_ERROR
+
+

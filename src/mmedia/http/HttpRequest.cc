@@ -349,3 +349,17 @@ HttpRequestPtr HttpRequest::NewHttp404Response()  {
   res->AddHeader("User-Agent", "tmms");
   return res;
 }
+
+HttpRequestPtr HttpRequest::NewHttpOptionsResponse()
+{
+    auto res = std::make_shared<HttpRequest>(false);
+    res->SetStatusCode(200);
+    res->AddHeader("server", "tmms");
+    res->AddHeader("content-length", "0");
+    res->AddHeader("content-type", "text/plain");
+    res->AddHeader("Access-Control-Allow-Origin", "*");
+    res->AddHeader("Access-Control-Allow-Methods", "POST,GET,OPTIONS");
+    res->AddHeader("Allow", "POST,GET,OPTIONS");
+    res->AddHeader("Access-Control-Allow-Headers", "content-type");
+    return res;
+}

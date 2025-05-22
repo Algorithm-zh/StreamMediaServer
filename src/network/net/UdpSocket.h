@@ -12,7 +12,7 @@ namespace tmms
   {
     class UdpSocket;
     using UdpSocketPtr = std::shared_ptr<UdpSocket>;
-    using UdpSocketMessageCallback = std::function<void(const InetAddress &addr, MsgBuffer &)>;
+    using UdpSocketMessageCallback = std::function<void(const UdpSocketPtr&, const InetAddress &addr, MsgBuffer &)>;
     using UdpSocketWriteCompleteCallback = std::function<void(const UdpSocketPtr&)>;
     using UdpSocketCloseConnectionCallback = std::function<void(const UdpSocketPtr&)>;
     using UdpSocketCloseCallback = std::function<void(const UdpSocketPtr&)>;
