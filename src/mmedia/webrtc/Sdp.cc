@@ -12,11 +12,11 @@ bool Sdp::Decode(const std::string &sdp)  {
   {
     return false;
   }
-  static const std::string &rtpmap_token = "a=rtpmap:";
-  static const std::string &ice_ufrag_token = "a=ice-ufrag:";
-  static const std::string &ice_pwd_token = "a=ice-pwd:";
-  static const std::string &fingerprint_token = "a=fingerprint:";
-  for(auto line:list)
+  static const std::string rtpmap_token = "a=rtpmap:";
+  static const std::string ice_ufrag_token = "a=ice-ufrag:";
+  static const std::string ice_pwd_token = "a=ice-pwd:";
+  static const std::string fingerprint_token = "a=fingerprint:";
+  for(auto &line:list)
   {
     if(base::StringUtils::StartsWith(line, ice_ufrag_token))
     {
@@ -49,8 +49,8 @@ bool Sdp::Decode(const std::string &sdp)  {
         continue;
       }
       //encode name
-      std::string name = content.substr(pos1 + 1, pos1 - pos - 1);
-      if(audio_payload_type_ == -1 && name == "OPUS")
+      std::string name = content.substr(pos + 1, pos1 - pos - 1);
+      if(audio_payload_type_ == -1 && name == "opus")
       {
         audio_payload_type_ = pt;
         WEBRTC_DEBUG << "audio payload type:" << audio_payload_type_;
@@ -63,7 +63,7 @@ bool Sdp::Decode(const std::string &sdp)  {
     }
     
   }
-	return false;
+	return true;
 }
  
 const std::string &Sdp::GetRemoteUFrag() const {
@@ -141,9 +141,9 @@ std::string Sdp::Encode()  {
   std::ostringstream ss;
   ss << "v=0\n";
   ss << "o=tmms 701762458683606775 2 IN IP4 0.0.0.0\n";
-  ss << "t=0 0\n";
   ss << "s=" << stream_name_ << "\n";
   ss << "c=IN IP4 0.0.0.0\n";
+  ss << "t=0 0\n";
   //媒体信息描述
   ss << "a=group:BUNDLE 0 1\n";
   ss << "a=msid-semantic: WMS " << stream_name_ << "\n";
@@ -156,7 +156,7 @@ std::string Sdp::Encode()  {
     ss << "c=IN IP4 0.0.0.0\n";
     ss << "a=ice-ufrag:" << local_ufrag_ << "\n";
     ss << "a=ice-pwd:" << local_passwd_ << "\n";
-    ss << "a=fingerprint:sha-256 " << fingerprint_ << "\n";
+    ss << "a=fingerprint:" << fingerprint_ << "\n";
     ss << "a=setup:passive\n";//被动连接
     ss << "a=mid:0\n";//复用一个连接，音频为0,视频为1  
     ss << "a=sendonly\n";
@@ -178,7 +178,7 @@ std::string Sdp::Encode()  {
     ss << "c=IN IP4 0.0.0.0\n";
     ss << "a=ice-ufrag:" << local_ufrag_ << "\n";
     ss << "a=ice-pwd:" << local_passwd_ << "\n";
-    ss << "a=fingerprint:sha-256 " << fingerprint_ << "\n";
+    ss << "a=fingerprint:" << fingerprint_ << "\n";
     ss << "a=setup:passive\n";//被动连接
     ss << "a=mid:1\n";//复用一个连接，音频为0,视频为1
     ss << "a=sendonly\n";
@@ -193,6 +193,7 @@ std::string Sdp::Encode()  {
     ss << "a=ssrc:" << video_ssrc_ << " msid:" << stream_name_ << " " << stream_name_ << "_video\n";
     ss << "a=ssrc:" << video_ssrc_ << " mslabel:" << stream_name_ << "\n";
     ss << "a=ssrc:" << video_ssrc_ << " label:" << stream_name_ << "_video\n";
+    ss << "a=candidate:0 1 udp 2130706431 " << server_addr_ << " " << server_port_ << " typ host generation 0\n";
   }
   return ss.str();
 }

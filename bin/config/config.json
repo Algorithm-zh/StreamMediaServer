@@ -31,7 +31,7 @@
       "transport" : "webrtc"
     },
     {
-      "addr" : "10.17.1.19",
+      "addr" : "10.17.1.20",
       "port" : 22000,
       "protocol" : "webrtc",
       "transport" : "udp"

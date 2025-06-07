@@ -30,6 +30,8 @@ namespace tmms
       void OnRecv(const TcpConnectionPtr &conn ,const PacketPtr &data)override{};
       void OnRecv(const TcpConnectionPtr &conn ,PacketPtr &&data)override{};
       void OnActive(const ConnectionPtr &conn)override{};
+    private:
+      std::string GetSessionNameFromUrl(const std::string &url);
     };
     #define sWebrtcService tmms::live::Singleton<WebrtcService>::Instance()
   }

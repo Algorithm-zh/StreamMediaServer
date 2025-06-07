@@ -32,8 +32,8 @@ namespace tmms
       uint32_t AudioSsrc() const;
       std::string Encode();
     private:
-      int32_t audio_payload_type_;
-      int32_t video_payload_type_;
+      int32_t audio_payload_type_{-1};
+      int32_t video_payload_type_{-1};
       std::string remote_ufrag_; //对端发过来的ice用户名
       std::string remote_passwd_;
       std::string local_ufrag_; //本地的ice用户名
