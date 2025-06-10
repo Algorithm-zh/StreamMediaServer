@@ -77,6 +77,11 @@ ConnectionPtr User::GetConnection()  {
   return connection_;
 }
  
+void User::SetConnection(const ConnectionPtr &conn)
+{
+  connection_ = conn;
+}
+
 uint64_t User::ElapsedTime()  {
   return tmms::base::TTime::NowMs() - start_timestamp_;
 }

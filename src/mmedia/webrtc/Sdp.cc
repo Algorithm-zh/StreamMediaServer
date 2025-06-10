@@ -127,6 +127,10 @@ void Sdp::SetAudioSsrc(int32_t ssrc)  {
 const std::string &Sdp::GetLocalPasswd() const {
   return local_passwd_;
 }
+
+const std::string &Sdp::GetLocalUFrag() const {
+   return local_ufrag_;
+}
  
 uint32_t Sdp::VideoSsrc() const {
   return video_ssrc_;
@@ -197,3 +201,4 @@ std::string Sdp::Encode()  {
   }
   return ss.str();
 }
+ 

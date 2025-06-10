@@ -50,21 +50,21 @@ void UdpSocket::OnRead()  {
     {
       InetAddress peeraddr;
       message_buffer_.HasWritten(ret);
-      if(sock_addr.sin6_family == AF_INET6)
+      if(sock_addr.sin6_family == AF_INET)
       {
-        char ip[INET6_ADDRSTRLEN]{0};
-        ::inet_ntop(AF_INET6, &sock_addr.sin6_addr, ip, sizeof(ip));
-        peeraddr.SetAddr(ip);
-        peeraddr.SetPort(ntohs(sock_addr.sin6_port));
-        peeraddr.SetIsIPV6(true);
+          char ip[16] = {0,};
+          struct sockaddr_in *saddr = (struct sockaddr_in*)&sock_addr;
+          ::inet_ntop(AF_INET,&(saddr->sin_addr.s_addr),ip,sizeof(ip));
+          peeraddr.SetAddr(ip);
+          peeraddr.SetPort(ntohs(saddr->sin_port));
       }
-      else
+      else if(sock_addr.sin6_family == AF_INET6)
       {
-        char ip[16]{0};
-        struct sockaddr_in *addr = (struct sockaddr_in *)&addr;
-        ::inet_ntop(AF_INET, &addr->sin_addr, ip, sizeof(ip));
-        peeraddr.SetAddr(ip);
-        peeraddr.SetPort(ntohs(addr->sin_port));
+          char ip[INET6_ADDRSTRLEN] = {0,};
+          ::inet_ntop(AF_INET6,&(sock_addr.sin6_addr),ip,sizeof(ip));
+          peeraddr.SetAddr(ip);
+          peeraddr.SetPort(ntohs(sock_addr.sin6_port));
+          peeraddr.SetIsIPV6(true);
       }
       if(message_cb_)
       {

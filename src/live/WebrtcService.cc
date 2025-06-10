@@ -3,21 +3,62 @@
 #include "live/LiveService.h"
 #include "live/base/LiveLog.h"
 #include "live/user/User.h"
+#include "mmedia/base/MMediaLog.h"
+#include "mmedia/base/Packet.h"
 #include "mmedia/http/HttpRequest.h"
 #include "mmedia/http/HttpTypes.h"
 #include "mmedia/http/HttpUtils.h"
 #include "mmedia/http/HttpContext.h"
 #include "live/Session.h"
 #include "live/user/WebrtcPlayerUser.h"
+#include "mmedia/webrtc/Stun.h"
 #include "json/json.h"
 #include "json/reader.h"
 #include "json/value.h"
+#include <cstring>
 #include <memory>
+#include <netinet/in.h>
+#include <sys/socket.h>
 
 using namespace tmms::live;
  
 void WebrtcService::OnStun(const network::UdpSocketPtr &socket, const network::InetAddress &addr, network::MsgBuffer &buf)  {
   LIVE_DEBUG << "stun msg:" << buf.ReadableBytes();
+  //解析
+  Stun stun;
+  if(!stun.Decode(buf.Peek(), buf.ReadableBytes()))
+  {
+    LIVE_DEBUG << "stun decode error";
+    return;
+  }
+  {
+    std::lock_guard<std::mutex> lk(lock_);
+    auto iter = name_users_.find(stun.LocalUFrag());
+    if(iter != name_users_.end())
+    {
+      auto webrtc_user = iter->second;
+      name_users_.erase(iter);
+      //更新密码
+      stun.SetPassword(webrtc_user->LocalPasswd());
+      
+      users_.emplace(addr.ToIpPort(), webrtc_user);
+    }
+    else
+    {
+      return;
+    }
+  }
+  stun.SetMessageType(mm::kStunMsgBindingResponse);
+  stun.SetMappedAddr(addr.IPv4());
+  stun.SetMappedPort(addr.Port());
+  PacketPtr packet = stun.Encode();
+  if(packet)
+  {
+    struct sockaddr_in6 sock_addr;
+    addr.GetSockAddr((sockaddr*)&sock_addr);
+    socket->Send(packet->Data(), packet->PacketSize(), (sockaddr*)&sock_addr, sizeof(struct sockaddr_in6));
+  }
+   
 }
  
 void WebrtcService::OnDtls(const network::UdpSocketPtr &socket, const network::InetAddress &addr, network::MsgBuffer &buf)  {
@@ -140,6 +181,8 @@ void WebrtcService::OnRequest(const TcpConnectionPtr &conn, const HttpRequestPtr
       res->AddHeader("Connection", "close");
       res->SetBody(content);
       http_cxt->PostRequest(res);
+      std::lock_guard<std::mutex> lk(lock_);
+      name_users_.emplace(webrtc_user->LocalUFrag(), webrtc_user);
     }
   }
 }

@@ -28,6 +28,7 @@ namespace tmms
       void SetAudioSsrc(int32_t ssrc);
       //其他成员函数
       const std::string &GetLocalPasswd() const;
+      const std::string &GetLocalUFrag() const;
       uint32_t VideoSsrc() const;
       uint32_t AudioSsrc() const;
       std::string Encode();

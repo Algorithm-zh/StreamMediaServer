@@ -66,6 +66,7 @@ namespace tmms
       //other
       void Close();
       ConnectionPtr GetConnection();
+      virtual void SetConnection(const ConnectionPtr &conn);
       uint64_t ElapsedTime();//用户创建了多长时间
       void Active();//激活用户，有数据请求时会调用
       void Deactive();

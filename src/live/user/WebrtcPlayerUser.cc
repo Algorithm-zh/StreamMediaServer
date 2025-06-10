@@ -49,7 +49,7 @@ bool WebrtcPlayerUser::ProcessOfferSdp(const std::string &sdp)  {
 }
  
 const std::string &WebrtcPlayerUser::LocalUFrag() const {
-  return sdp_.GetLocalPasswd();
+  return sdp_.GetLocalUFrag();
 }
  
 const std::string &WebrtcPlayerUser::LocalPasswd() const {
@@ -84,4 +84,8 @@ uint32_t WebrtcPlayerUser::GetSsrc(int size)  {
  
 std::string WebrtcPlayerUser::BuildAnswerSdp()  {
 	return sdp_.Encode();
+}
+ 
+void WebrtcPlayerUser::SetConnection(const ConnectionPtr &conn)  {
+  User::SetConnection(conn); 
 }

@@ -87,6 +87,7 @@ void InetAddress::GetSockAddr(struct sockaddr *saddr) const {
     {
       NETWORK_ERROR << "ipv6 ip:" << addr_ << " error:" << strerror(errno);
     }
+    return;
   }
 
   struct sockaddr_in *addr_in = (struct sockaddr_in *)saddr;

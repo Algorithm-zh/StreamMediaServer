@@ -226,8 +226,7 @@ void Session::Clear()
   {
     CloseUserNoLock(publisher_);
   }
-  auto players_copy = players_;
-  for(auto const &p:players_copy)
+  for(auto const &p:players_)
   {
     if(p)
     {
@@ -262,7 +261,7 @@ void Session::CloseUserNoLock(const UserPtr &user)
           << ",elapsed:" << user->ElapsedTime()
           << ",ReadyTime:" << ReadyTime()
           << ",stream time:" << SinceStart();            
-        players_.erase(std::dynamic_pointer_cast<PlayerUser>(user));
+        //players_.erase(std::dynamic_pointer_cast<PlayerUser>(user));
         user->Close();
         player_live_time_ = tmms::base::TTime::NowMs();
       }

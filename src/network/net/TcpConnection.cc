@@ -12,7 +12,9 @@ TcpConnection::TcpConnection(EventLoop *loop, int socketfd, const InetAddress &l
 }
  
 TcpConnection::~TcpConnection()  {
-  OnClose(); 
+  loop_->RunInLoop([this](){
+    OnClose();
+  });
 }
  
 void TcpConnection::OnClose()  {

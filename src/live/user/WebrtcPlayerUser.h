@@ -23,6 +23,7 @@ namespace tmms
       static std::string GetUFrag(int size);
       static uint32_t GetSsrc(int size);
       std::string BuildAnswerSdp();//生成回复客户端的sdp
+      void SetConnection(const ConnectionPtr &conn) override;
 
     private:
       std::string local_ufrag_;

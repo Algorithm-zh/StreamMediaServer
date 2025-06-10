@@ -1,15 +1,18 @@
 #pragma once
 #include <cstdint>
+#include "live/user/WebrtcPlayerUser.h"
 #include "mmedia/http/HttpHandler.h"
 #include "mmedia/webrtc/WebrtcHandler.h"
 #include "base/Singleton.h"
 #include <string>
+#include <unordered_map>
 namespace tmms
 {
   namespace live
   {
     using namespace tmms::network;
     using namespace tmms::mm;
+    using WebrtcPlayerUserPtr = std::shared_ptr<WebrtcPlayerUser>;
     class WebrtcService : public WebrtcHandler, public HttpHandler
     {
     public:
@@ -32,6 +35,9 @@ namespace tmms
       void OnActive(const ConnectionPtr &conn)override{};
     private:
       std::string GetSessionNameFromUrl(const std::string &url);
+      std::mutex lock_;
+      std::unordered_map<std::string, WebrtcPlayerUserPtr> name_users_;
+      std::unordered_map<std::string, WebrtcPlayerUserPtr> users_;
     };
     #define sWebrtcService tmms::live::Singleton<WebrtcService>::Instance()
   }
