@@ -23,6 +23,18 @@ include_directories(${PROJECT_SOURCE_DIR}/lib/jsoncpp/include/)
 link_directories(${PROJECT_SOURCE_DIR}/lib/jsoncpp/lib64/)
 link_directories(${PROJECT_SOURCE_DIR}/lib/jsoncpp/lib)
 
+# 配置libsrtp
+ExternalProject_Add(libsrtp2
+    SOURCE_DIR ${PROJECT_SOURCE_DIR}/third_party/libsrtp/
+    CONFIGURE_COMMAND ./configure --prefix=${PROJECT_SOURCE_DIR}/lib/libsrtp/
+    BUILD_COMMAND make
+    BUILD_IN_SOURCE 1
+    INSTALL_COMMAND make install
+)
+include_directories(${PROJECT_SOURCE_DIR}/lib/libsrtp/include/)
+link_directories(${PROJECT_SOURCE_DIR}/lib/libsrtp/lib/)
+
+
 
 # 开启debug模式 
 set(CMAKE_BUILD_TYPE Debug)
