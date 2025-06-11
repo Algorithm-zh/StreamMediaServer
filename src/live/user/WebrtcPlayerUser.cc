@@ -107,6 +107,7 @@ void WebrtcPlayerUser::OnDtlsSend(const char* data, size_t size, Dtls* dtls)  {
 void WebrtcPlayerUser::OnDtlsHandshakeDone(Dtls* dtls)  {
   LIVE_DEBUG << "dtls handshake done";
   dtls_done_ = true;
+  srtp_.Init(dtls_.RecvKey(), dtls_.SendKey());
 }
  
 void WebrtcPlayerUser::OnDtlsRecv(const char *buf, size_t size)  {

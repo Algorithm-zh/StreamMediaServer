@@ -21,6 +21,7 @@
 #include "network/net/EventLoopThreadPool.h"
 #include "network/DnsService.h"
 #include "mmedia/webrtc/WebrtcServer.h"
+#include "mmedia/webrtc/Srtp.h"
 #include <memory>
 using namespace tmms::live;
  
@@ -244,6 +245,7 @@ void LiveService::Start()  {
           //并且由于几个服务都是用的同一个端口和ip,只需要一个udp服务就可以
           if(!webrtc_server_)
           {
+            Srtp::InitSrtpLibrary();
             InetAddress local(s->addr, s->port);
             webrtc_server_ = std::make_shared<WebrtcServer>(el, local, sWebrtcService);
             webrtc_server_->Start();

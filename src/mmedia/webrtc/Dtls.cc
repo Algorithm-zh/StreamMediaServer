@@ -57,6 +57,10 @@ void Dtls::OnRecv(const char *data, uint32_t size)  {
   if(is_done_)
   {
     GetSrtpKey();
+    if(handler_)
+    {
+      handler_->OnDtlsHandshakeDone(this);
+    }
     return;
   }
   SSL_read(ssl_, buffer_, 65535);
