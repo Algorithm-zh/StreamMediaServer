@@ -160,7 +160,7 @@ std::string Sdp::Encode()  {
     ss << "c=IN IP4 0.0.0.0\n";
     ss << "a=ice-ufrag:" << local_ufrag_ << "\n";
     ss << "a=ice-pwd:" << local_passwd_ << "\n";
-    ss << "a=fingerprint:" << fingerprint_ << "\n";
+    ss << "a=fingerprint:sha-256 " << fingerprint_ << "\n";
     ss << "a=setup:passive\n";//被动连接
     ss << "a=mid:0\n";//复用一个连接，音频为0,视频为1  
     ss << "a=sendonly\n";
@@ -182,7 +182,7 @@ std::string Sdp::Encode()  {
     ss << "c=IN IP4 0.0.0.0\n";
     ss << "a=ice-ufrag:" << local_ufrag_ << "\n";
     ss << "a=ice-pwd:" << local_passwd_ << "\n";
-    ss << "a=fingerprint:" << fingerprint_ << "\n";
+    ss << "a=fingerprint:sha-256 " << fingerprint_ << "\n";
     ss << "a=setup:passive\n";//被动连接
     ss << "a=mid:1\n";//复用一个连接，音频为0,视频为1
     ss << "a=sendonly\n";

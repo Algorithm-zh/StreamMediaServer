@@ -9,6 +9,6 @@ aux_source_directory(hls DIR_LIB_SRCS)
 aux_source_directory(rtmp/amf DIR_LIB_SRCS)
 aux_source_directory(webrtc DIR_LIB_SRCS)
 add_library(mmedia ${DIR_LIB_SRCS})
-target_link_libraries(mmedia base network crypto)
+target_link_libraries(mmedia base network srtp3 ssl crypto)
 add_subdirectory(tests)
 

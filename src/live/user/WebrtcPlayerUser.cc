@@ -2,14 +2,18 @@
 #include "base/Config.h"
 #include "live/Session.h"
 #include "live/base/LiveLog.h"
+#include "mmedia/base/Packet.h"
+#include "network/net/UdpSocket.h"
 #include <cstdlib>
+#include <cstring>
+#include <memory>
 #include <random>
 using namespace tmms::live;
 
 
  
 WebrtcPlayerUser::WebrtcPlayerUser(const ConnectionPtr &ptr, const StreamPtr &stream, const SessionPtr &s)
-:PlayerUser(ptr, stream, s) 
+:PlayerUser(ptr, stream, s), dtls_(this)
 {
   local_ufrag_ = GetUFrag(8);
   local_passwd_ = GetUFrag(32);
@@ -20,8 +24,7 @@ WebrtcPlayerUser::WebrtcPlayerUser(const ConnectionPtr &ptr, const StreamPtr &st
   sdp_.SetLocalPasswd(local_passwd_);
   sdp_.SetAudioSsrc(audio_ssrc);
   sdp_.SetVideoSsrc(video_ssrc);
-  dtls_cert_.Init();
-  sdp_.SetFingerprint(dtls_cert_.Fingerprint());
+  dtls_.Init();
 
   auto config = sConfigMgr->GetConfig();
   if(config)
@@ -83,9 +86,29 @@ uint32_t WebrtcPlayerUser::GetSsrc(int size)  {
 }
  
 std::string WebrtcPlayerUser::BuildAnswerSdp()  {
+  sdp_.SetFingerprint(dtls_.Fingerprint());
 	return sdp_.Encode();
 }
  
 void WebrtcPlayerUser::SetConnection(const ConnectionPtr &conn)  {
   User::SetConnection(conn); 
+  conn->PeerAddr().GetSockAddr((struct sockaddr *)&addr_);
+}
+ 
+void WebrtcPlayerUser::OnDtlsSend(const char* data, size_t size, Dtls* dtls)  {
+  LIVE_DEBUG << "dtls send size:" << size;
+  packet_ = Packet::NewPacket(size);
+  memcpy(packet_->Data(), data, size);
+  packet_->SetPacketSize(size);
+  auto socket = std::dynamic_pointer_cast<UdpSocket>(connection_);
+  socket->Send(packet_->Data(), size, (struct sockaddr *)&addr_, addr_len_);
+}
+ 
+void WebrtcPlayerUser::OnDtlsHandshakeDone(Dtls* dtls)  {
+  LIVE_DEBUG << "dtls handshake done";
+  dtls_done_ = true;
+}
+ 
+void WebrtcPlayerUser::OnDtlsRecv(const char *buf, size_t size)  {
+  dtls_.OnRecv(buf, size); 
 }

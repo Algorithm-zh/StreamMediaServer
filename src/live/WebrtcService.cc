@@ -38,9 +38,10 @@ void WebrtcService::OnStun(const network::UdpSocketPtr &socket, const network::I
     {
       auto webrtc_user = iter->second;
       name_users_.erase(iter);
+      socket->SetPeerAddr(addr);
       //更新密码
       stun.SetPassword(webrtc_user->LocalPasswd());
-      
+      webrtc_user->SetConnection(socket);
       users_.emplace(addr.ToIpPort(), webrtc_user);
     }
     else
@@ -63,6 +64,13 @@ void WebrtcService::OnStun(const network::UdpSocketPtr &socket, const network::I
  
 void WebrtcService::OnDtls(const network::UdpSocketPtr &socket, const network::InetAddress &addr, network::MsgBuffer &buf)  {
  
+  auto iter = users_.find(addr.ToIpPort());
+  if(iter != users_.end())
+  {
+    auto webrtc_user = iter->second;
+    webrtc_user->OnDtlsRecv(buf.Peek(), buf.ReadableBytes());
+    buf.RetrieveAll();
+  }
 }
  
 void WebrtcService::OnRtp(const network::UdpSocketPtr &socket, const network::InetAddress &addr, network::MsgBuffer &buf)  {
