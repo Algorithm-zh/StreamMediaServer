@@ -9,6 +9,8 @@ set(CMAKE_INSTALL_PREFIX ../bin)
 set(LIB_PATH ${PROJECT_SOURCE_DIR}/lib)
 set(BASE_LIB base)
 
+#third lib
+
 # 配置jsoncpp
 include(ExternalProject)
 ExternalProject_Add(jsoncpp
@@ -34,6 +36,30 @@ ExternalProject_Add(libsrtp2
 include_directories(${PROJECT_SOURCE_DIR}/lib/libsrtp/include/)
 link_directories(${PROJECT_SOURCE_DIR}/lib/libsrtp/lib/)
 
+# faad2
+ExternalProject_Add(libfaad2
+    SOURCE_DIR ${PROJECT_SOURCE_DIR}/third_party/faad2/
+    #UPDATE_COMMAND ./bootstrap
+    CONFIGURE_COMMAND ./bootstrap && ./configure --prefix=${PROJECT_SOURCE_DIR}/lib/faad2/
+    BUILD_COMMAND make
+    BUILD_IN_SOURCE 1
+    INSTALL_COMMAND make install
+)
+include_directories(${PROJECT_SOURCE_DIR}/lib/faad2/include/)
+link_directories(${PROJECT_SOURCE_DIR}/lib/faad2/lib/)
+
+# opus
+ExternalProject_Add(libopus
+    #UPDATE_COMMAND
+    SOURCE_DIR ${PROJECT_SOURCE_DIR}/third_party/opus/
+    CONFIGURE_COMMAND cd ${PROJECT_SOURCE_DIR}/third_party/opus/ && pwd && autoreconf -ifv ./ && ./configure --prefix=${PROJECT_SOURCE_DIR}/lib/opus/
+    #CONFIGURE_COMMAND cmake . -DCMAKE_BUILD_TYPE=Release
+    BUILD_COMMAND make 
+    BUILD_IN_SOURCE 1
+    INSTALL_COMMAND make install
+)
+include_directories(${PROJECT_SOURCE_DIR}/lib/faad2/include/)
+link_directories(${PROJECT_SOURCE_DIR}/lib/faad2/lib/)
 
 
 # 开启debug模式 
